@@ -13,20 +13,23 @@ namespace MsgPack.Json
 {
 	public partial class JsonDecoder
 	{
-		public sealed override bool DecodeItem(ref SequenceReader<byte> source, out DecodeItemResult result, CancellationToken cancellationToken = default)
+		public sealed override void DecodeItem(ref SequenceReader<byte> source, out DecodeItemResult result, out int requestHint, CancellationToken cancellationToken = default)
 		{
+			requestHint = 0;
+
 			var startPosition = source.Position;
 			var triviaLength = this.ReadTrivia(ref source);
 			if (triviaLength != 0)
 			{
 				result = DecodeItemResult.ScalarOrSequence(ElementType.OtherTrivia, source.Sequence.Slice(startPosition, source.Position));
-				return true;
+				return;
 			}
 
 			if (!source.TryPeek(out var token))
 			{
-				result = DecodeItemResult.InsufficientInput(1);
-				return false;
+				requestHint = 1;
+				result = DecodeItemResult.InsufficientInput();
+				return;
 			}
 
 #warning HANDLE :/= and ,
@@ -44,7 +47,7 @@ namespace MsgPack.Json
 					if (source.IsNext(@true, advancePast: true))
 					{
 						result = DecodeItemResult.True();
-						return true;
+						return;
 					}
 
 					break;
@@ -61,7 +64,7 @@ namespace MsgPack.Json
 					if (source.IsNext(@false, advancePast: true))
 					{
 						result = DecodeItemResult.False();
-						return true;
+						return;
 					}
 
 					break;
@@ -78,7 +81,7 @@ namespace MsgPack.Json
 					if (source.IsNext(@null, advancePast: true))
 					{
 						result = DecodeItemResult.Null();
-						return true;
+						return;
 					}
 
 					break;
@@ -96,27 +99,27 @@ namespace MsgPack.Json
 				case (byte)'-':
 				case (byte)'+':
 				{
-					var number = this.DecodeNumber(ref source, out var requestHint);
+					var number = this.DecodeNumber(ref source, out requestHint);
 					if(requestHint != 0)
 					{
-						result = DecodeItemResult.InsufficientInput(requestHint);
-						return false;
+						result = DecodeItemResult.InsufficientInput();
+						return;
 					}
 
 					var value = new byte[sizeof(double)];
 					Unsafe.WriteUnaligned(ref MemoryMarshal.GetReference(value.AsSpan()), number);
 					result = DecodeItemResult.ScalarOrSequence(ElementType.Double, value);
-					return true;
+					return;
 				}
 				case (byte)'[':
 				{
 					result = DecodeItemResult.CollectionHeader(ElementType.Array, this.CreateArrayIterator());
-					return true;
+					return;
 				}
 				case (byte)'{':
 				{
 					result = DecodeItemResult.CollectionHeader(ElementType.OtherTrivia, this.CreateObjectPropertyIterator());
-					return true;
+					return;
 				}
 				case (byte)'\'':
 				{
@@ -129,21 +132,20 @@ namespace MsgPack.Json
 				}
 				case (byte)'"':
 				{
-					if (this.GetRawStringCore(ref source, out var rawString, out var requestHint))
+					if (this.GetRawStringCore(ref source, out var rawString, out requestHint))
 					{
-						result = DecodeItemResult.InsufficientInput(requestHint);
-						return false;
+						result = DecodeItemResult.InsufficientInput();
+						return;
 					}
 
 					result = DecodeItemResult.ScalarOrSequence(ElementType.String, rawString);
-					return true;
+					return;
 				}
 			}
 
 			JsonThrow.UnexpectedToken(source.Consumed, token);
 			// never
 			result = default;
-			return default;
 		}
 	}
 }

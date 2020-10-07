@@ -14,6 +14,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
+using MsgPack;
 using MsgPack.Internal;
 
 namespace System.Text
@@ -432,7 +433,7 @@ namespace System.Text
 					}
 
 					// overflow
-					Throw.TooLargeByteLengthForString(encoding.EncodingName);
+					ThrowTooLargeByteLengthForString(encoding.EncodingName);
 					// never reaches.
 					return null!;
 				}
@@ -675,5 +676,9 @@ namespace System.Text
 				first = sequence.FirstSpan;	
 			}
 		}
+
+		private static void ThrowTooLargeByteLengthForString(string encodingName)
+			=> throw new MessageTypeException($"Input is too large for encoding '{encodingName}' to decode.");
+
 	}
 }

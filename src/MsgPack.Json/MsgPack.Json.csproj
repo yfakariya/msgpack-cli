@@ -10,9 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="../MsgPack.Abstraction/StringEscape.cs" Link="StringEscape.cs" />
     <Compile Include="../MsgPack.Core/Internal/MemoryExtensions.cs" Link="Internal/MemoryExtensions.cs" />
     <Compile Include="../MsgPack.Core/System.Text/EncodingExtensions.cs" Link="System.Text/EncodingExtensions.cs" />
-    <Compile Include="..\MsgPack.Core\System.Text\Throw.cs" Link="System.Text\Throw.cs" />
+    <!--<Compile Include="..\MsgPack.Core\System.Text\Throw.cs" Link="System.Text\Throw.cs" />-->
   </ItemGroup>
 
   <ItemGroup>

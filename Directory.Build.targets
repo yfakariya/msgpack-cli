@@ -4,7 +4,7 @@
     <DefineConstants>$(DefineConstants);UNITY;AOT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('%(DefineConstants)', '(^|;)UNITY[^;]*($|;)'))">
-    <DefineConstants>$(DefineConstants);LIBRARY</DefineConstants>
+    <DefineConstants>$(DefineConstants);LIBRARY;FEATURE_COM_TYPES</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION</DefineConstants>

@@ -18,9 +18,9 @@ namespace MsgPack.Json
 		{
 			var originalPosition = source.Consumed;
 
-			if(!this.DecodeItem(ref source, out var decodeItemResult, cancellationToken))
+			this.DecodeItem(ref source, out var decodeItemResult, out requestHint, cancellationToken);
+			if (requestHint != 0 || decodeItemResult.ElementType == ElementType.None)
 			{
-				requestHint = (int)(decodeItemResult.RequestHint & Int32.MaxValue);
 				return;
 			}
 

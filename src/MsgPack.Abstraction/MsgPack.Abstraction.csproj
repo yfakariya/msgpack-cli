@@ -38,37 +38,22 @@
     <Compile Include="..\MsgPack\Serialization\DateTimeConversionMethod.cs" Link="Serialization\DateTimeConversionMethod.cs" />
     <Compile Include="..\MsgPack\Serialization\EnumSerializationMethod.cs" Link="Serialization\EnumSerializationMethod.cs" />
     <Compile Include="..\MsgPack\Serialization\SerializationMethod.cs" Link="Serialization\SerializationMethod.cs" />
-    <Compile Include="..\MsgPack\Serialization\SerializerCapabilities.cs" Link="Serialization\SerializerCapabilities.cs" />
     <Compile Include="..\MsgPack\SetOperation.cs" Link="SetOperation.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Internal\FormatDecoder.Strings.tt">
+    <None Update="Internal/FormatDecoder.Strings.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FormatDecoder.Strings.cs</LastGenOutput>
     </None>
-    <None Update="Internal\FormatEncoder.Primitives.tt">
+    <None Update="Internal/FormatEncoder.Primitives.tt">
       <LastGenOutput>FormatEncoder.Primitives.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <None Update="Internal\FormatDecoder.Primitives.tt">
+    <None Update="Internal/FormatDecoder.Primitives.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FormatDecoder.Primitives.cs</LastGenOutput>
     </None>
-    <None Update="Serialization\AsyncSerializationOperationContext.tt">
-      <LastGenOutput>AsyncSerializationOperationContext.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <None Update="Serialization\AsyncDeserializationOperationContext.tt">
-      <LastGenOutput>AsyncDeserializationOperationContext.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <None Update="Serialization\DeserializationOperationContext.tt">
-      <LastGenOutput>DeserializationOperationContext.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <None Update="Serialization\SerializationOperationContext.tt">
-      <LastGenOutput>SerializationOperationContext.cs</LastGenOutput>
     <None Update="MessagePackObject.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MessagePackObject.cs</LastGenOutput>
@@ -80,40 +65,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Internal\FormatDecoder.Primitives.cs">
+    <Compile Update="Internal/FormatDecoder.Primitives.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>FormatDecoder.Primitives.tt</DependentUpon>
     </Compile>
-    <Compile Update="Internal\FormatDecoder.Strings.cs">
+    <Compile Update="Internal/FormatDecoder.Strings.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>FormatDecoder.Strings.tt</DependentUpon>
     </Compile>
-    <Compile Update="Internal\FormatEncoder.Primitives.cs">
+    <Compile Update="Internal/FormatEncoder.Primitives.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>FormatEncoder.Primitives.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Serialization\AsyncDeserializationOperationContext.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AsyncDeserializationOperationContext.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Serialization\AsyncSerializationOperationContext.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>AsyncSerializationOperationContext.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Serialization\DeserializationOperationContext.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DeserializationOperationContext.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Serialization\SerializationOperationContext.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SerializationOperationContext.tt</DependentUpon>
     </Compile>
     <Compile Update="MessagePackObject.cs">
       <DesignTime>True</DesignTime>

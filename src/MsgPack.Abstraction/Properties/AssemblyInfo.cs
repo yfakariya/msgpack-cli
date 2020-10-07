@@ -6,3 +6,4 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("MsgPack.Core")]
 [assembly: InternalsVisibleTo("MsgPack.Json")]
+[assembly: InternalsVisibleTo("MsgPack.Serialization")]
