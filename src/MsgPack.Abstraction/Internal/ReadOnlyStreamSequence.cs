@@ -42,11 +42,11 @@ namespace MsgPack.Internal
 		/// </summary>
 		public ReadOnlySequence<byte> Sequence => new ReadOnlySequence<byte>(this.Memory);
 
-		internal ReadOnlyStreamSequence(Stream stream, ArrayPool<byte> arrayPool, int bufferSize, bool clearsBuffer)
+		internal ReadOnlyStreamSequence(Stream stream, ArrayPool<byte> arrayPool, int initialBufferSize, bool clearsBuffer)
 		{
 			this._stream = stream;
 			this._arrayPool = arrayPool;
-			this._array = arrayPool.Rent(bufferSize);
+			this._array = arrayPool.Rent(initialBufferSize);
 			this.Memory = this._array;
 			this._clearsBuffer = clearsBuffer;
 		}
