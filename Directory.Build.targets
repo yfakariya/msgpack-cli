@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
+  <PropertyGroup>
+    <DocumentationFile>$(OutputPath)/$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
   <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(DefineConstants)', '(^|;)UNITY[^;]*($|;)'))">
     <DefineConstants>$(DefineConstants);UNITY;AOT</DefineConstants>
   </PropertyGroup>
