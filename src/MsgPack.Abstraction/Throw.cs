@@ -3,6 +3,7 @@
 // See the LICENSE in the project root for more information.
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
 using MsgPack.Internal;
@@ -199,5 +200,8 @@ namespace MsgPack
 
 		public static void InvalidTimestampTypeCode(long tag, string paramName)
 			=> throw new ArgumentException($"Timestamp must have type code -1 (0xFF in byte), but actual value is {tag}(0x{tag:x}).", paramName);
+
+		public static void UnknownExtensionTypeMappingName(string name, [CallerArgumentExpression("name")] string? paramName = null)
+			=> throw new KeyNotFoundException($"The name '{StringEscape.ForDisplay(name)}' is not registered as extension type mappings.");
 	}
 }

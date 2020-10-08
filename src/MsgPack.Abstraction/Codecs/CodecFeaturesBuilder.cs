@@ -2,6 +2,7 @@
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
+using System;
 using System.Text;
 using MsgPack.Internal;
 using MsgPack.Serialization;
@@ -151,6 +152,15 @@ namespace MsgPack.Codecs
 		public char? Iso8601DecimalSeparator { get; private set; }
 
 		/// <summary>
+		///		Gets the <see cref="ExtensionTypeMappingsBuilder"/> to customize extension type mapping.
+		/// </summary>
+		/// <value>
+		///		The <see cref="ExtensionTypeMappingsBuilder"/> to customize extension type mapping.
+		///		When <see cref="SupportsExtensionTypes"/> is <c>false</c>, this value will be ignored.
+		/// </value>
+		public ExtensionTypeMappingsBuilder ExtensionTypeMappings { get; } = new ExtensionTypeMappingsBuilder();
+
+		/// <summary>
 		///		Initializes a new instance of <see cref="CodecFeaturesBuilder"/> object.
 		/// </summary>
 		/// <param name="name">A unique name of the underlying codec. Note that <see cref="Name"/> property will be trimmed value.</param>
@@ -278,6 +288,17 @@ namespace MsgPack.Codecs
 		public CodecFeaturesBuilder ResetIso8601DecimalSeparator()
 		{
 			this.Iso8601DecimalSeparator = null;
+			return this;
+		}
+
+		/// <summary>
+		///		Configures <see cref="P:ExtensionTypeMappings"/> property.
+		/// </summary>
+		/// <param name="configure">The delegate which accepts <see cref="P:ExtensionTypeMappings"/> property and manipulates it.</param>
+		/// <returns>This <see cref="CodecFeaturesBuilder"/> instance.</returns>
+		public CodecFeaturesBuilder ConfigureExtensionTypeMappings(Action<ExtensionTypeMappingsBuilder> configure)
+		{
+			configure?.Invoke(this.ExtensionTypeMappings);
 			return this;
 		}
 

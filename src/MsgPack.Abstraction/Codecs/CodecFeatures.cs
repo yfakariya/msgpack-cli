@@ -130,6 +130,14 @@ namespace MsgPack.Codecs
 		/// </value>
 		public char? Iso8601DecimalSeparator { get; }
 
+		/// <summary>
+		///		Gets the mapping table between known extension types and their names.
+		/// </summary>
+		/// <value>
+		///		The mapping table between known extension types and their names.
+		/// </value>
+		public ExtensionTypeMappings ExtensionTypeMappings { get; }
+
 		internal CodecFeatures(CodecFeaturesBuilder builder)
 		{
 			this.Name = builder.Name;
@@ -143,6 +151,7 @@ namespace MsgPack.Codecs
 			this.DefaultStringEncoding = builder.DefaultStringEncoding;
 			this.Iso8601FractionOfSecondsPrecision = builder.Iso8601FractionOfSecondsPrecision;
 			this.Iso8601DecimalSeparator = builder.Iso8601DecimalSeparator;
+			this.ExtensionTypeMappings = builder.ExtensionTypeMappings.Build();
 		}
 	}
 }
