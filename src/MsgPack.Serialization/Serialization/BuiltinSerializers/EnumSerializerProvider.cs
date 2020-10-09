@@ -25,21 +25,20 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		/// </summary>
 		/// <param name="targetType">The type of the target enum type.</param>
 		/// <param name="ownerProvider">The provider which will own this instance.</param>
-		/// <param name="builder"><see cref="SerializerBuilder"/> which generated actual enum serializers.</param>
 		public EnumSerializerProvider(
 			Type targetType,
-			SerializerProvider ownerProvider
+			ObjectSerializerProvider ownerProvider
 		)
 		{
 			Debug.Assert(targetType.GetIsEnum());
 
 			this._methodOnType = targetType.GetCustomAttribute<MessagePackEnumAttribute>()?.SerializationMethod;
 
-			var nameMapper = SerializationMetadataFactory.GetEnumMetadata(targetType, ownerProvider.SerializerGenerationOptions.EnumOptions);
+			var nameMapper = SerializationMetadataFactory.GetEnumMetadata(targetType, ownerProvider.GenerationOptions.EnumOptions);
 			typeof(EnumHelper<>).MakeGenericType(targetType)
 				.GetMethod("CreateNameMapping")!
 				.CreateDelegate<CreateNameMapping>()
-				.Invoke(ownerProvider.SerializerGenerationOptions, out var serializationNameMapping, out var deserializationNameMapping);
+				.Invoke(ownerProvider.GenerationOptions.EnumOptions, out var serializationNameMapping, out var deserializationNameMapping);
 
 			this._byName =
 				SerializerFactory.CreateEnumSerializer(
@@ -105,11 +104,11 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		private ObjectSerializer GetSerializer(EnumSerializationMethod enumSerializationMethod)
 			=> enumSerializationMethod == EnumSerializationMethod.ByUnderlyingValue ? this._byUnderlyingValue : this._byName;
 
-		private delegate void CreateNameMapping(ISerializerGenerationOptions options, out object serializationNameMapping, out object deserializationNameMapping);
+		private delegate void CreateNameMapping(IEnumSerializationOptions options, out object serializationNameMapping, out object deserializationNameMapping);
 
 		private static class EnumHelper<TEnum>
 		{
-			public static void CreateNameMapping(ISerializerGenerationOptions options, out object serializationNameMapping, out object deserializationNameMapping)
+			public static void CreateNameMapping(IEnumSerializationOptions options, out object serializationNameMapping, out object deserializationNameMapping)
 			{
 				var members = (Enum.GetValues(typeof(TEnum)) as TEnum[])!;
 #pragma warning disable CS8714
@@ -119,7 +118,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 				foreach (var member in members)
 				{
-					var asString = options.EnumOptions.NameTransformer(member!.ToString()!);
+					var asString = options.NameTransformer(member!.ToString()!);
 					serializationNameMappingT[member] = asString;
 					deserializationNameMappingT[asString] = member;
 				}

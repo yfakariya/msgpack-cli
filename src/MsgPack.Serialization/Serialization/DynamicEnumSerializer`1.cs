@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -20,7 +20,7 @@ namespace MsgPack.Serialization
 		private readonly ObjectSerializer<T> _byUnderlyingValue;
 
 		public DynamicEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			ObjectSerializer<T> byName,
 			ObjectSerializer<T> byUnderlyingValue
 		) : base(ownerProvider)
@@ -30,7 +30,7 @@ namespace MsgPack.Serialization
 		}
 
 		private ObjectSerializer<T> GetSerializer(CodecFeatures features)
-			=> this.OwnerProvider.SerializerGenerationOptions.EnumOptions.GetSerializationMethod(features) == EnumSerializationMethod.ByName ?
+			=> this.GetEnumSerializationMethod(features) == EnumSerializationMethod.ByName ?
 				this._byName :
 				this._byUnderlyingValue;
 

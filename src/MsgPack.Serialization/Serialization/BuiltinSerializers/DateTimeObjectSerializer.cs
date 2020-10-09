@@ -30,14 +30,14 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		}
 
 		public sealed override void Serialize(ref SerializationOperationContext context, DateTime obj, IBufferWriter<byte> sink)
-			=> Serialize(ref context, obj, sink, this._method, this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions);
+			=> Serialize(ref context, obj, sink, this._method, this.GenerationOptions.DateTimeOptions);
 
 		public static void Serialize(
 			ref SerializationOperationContext context,
 			DateTime obj,
 			IBufferWriter<byte> sink,
 			DateTimeConversionMethod? specifiedMethod,
-			IDateTimeSerializationOptions options
+			IRuntimeDateTimeSerializationOptionsProvider options
 		)
 		{
 			switch (specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
@@ -92,13 +92,13 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		}
 
 		public sealed override DateTime Deserialize(ref DeserializationOperationContext context, ref SequenceReader<byte> source)
-			=> Deserialize(ref context, ref source, this._method, this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions);
+			=> Deserialize(ref context, ref source, this._method, this.GenerationOptions.DateTimeOptions);
 
 		public static DateTime Deserialize(
 			ref DeserializationOperationContext context,
 			ref SequenceReader<byte> source,
 			DateTimeConversionMethod? specifiedMethod,
-			IDateTimeSerializationOptions options
+			IRuntimeDateTimeSerializationOptionsProvider options
 		)
 		{
 			var position = source.Consumed;
@@ -118,7 +118,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 			in DeserializationOperationContext context,
 			in DecodeItemResult result,
 			DateTimeConversionMethod? specifiedMethod,
-			IDateTimeSerializationOptions options,
+			IRuntimeDateTimeSerializationOptionsProvider options,
 			long position
 		)
 		{
@@ -196,7 +196,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						context.AsDeserializationOperationContext(),
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						position
 					);
 			}

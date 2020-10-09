@@ -24,7 +24,7 @@ namespace MsgPack.Serialization
 	{
 		private static readonly bool CanBeNull = !typeof(T).IsValueType || Nullable.GetUnderlyingType(typeof(T)) != null;
 
-		protected ObjectSerializer(SerializerProvider ownerProvider, SerializerCapabilities capabilities)
+		protected ObjectSerializer(ObjectSerializerProvider ownerProvider, SerializerCapabilities capabilities)
 			: base(ownerProvider, capabilities) { }
 
 		public abstract void Serialize(ref SerializationOperationContext context, [AllowNull] T obj, IBufferWriter<byte> sink);

@@ -14,7 +14,7 @@ namespace MsgPack.Serialization
 	/// </summary>
 	internal static partial class SerializerFactory
 	{
-		private static readonly Type[] StandardObjectSerializerConstructorParameterTypes = { typeof(SerializerProvider) };
+		private static readonly Type[] StandardObjectSerializerConstructorParameterTypes = { typeof(ObjectSerializerProvider) };
 
 		public static Serializer CreateSerializer(
 			Type targetType,
@@ -36,37 +36,37 @@ namespace MsgPack.Serialization
 					}
 				)!.InvokePreservingExceptionType<Serializer>(codecProvider, underlying, serializationOptions, deserializationOptions);
 
-		public static ObjectSerializer CreateObjectSerializer(Type genericSerializerType, Type targetType, SerializerProvider provider)
+		public static ObjectSerializer CreateObjectSerializer(Type genericSerializerType, Type targetType, ObjectSerializerProvider ownerProvider)
 			// We cannot use ArrayPool<T> here because it does not guarntee returning array length, but Reflection APIs relies it.
 			=> genericSerializerType
 				.MakeGenericType(targetType)
 #warning TODO: ArrayCache(1,2,3)
 				.GetRequiredConstructor(StandardObjectSerializerConstructorParameterTypes)
-				.InvokePreservingExceptionType<ObjectSerializer>(provider);
+				.InvokePreservingExceptionType<ObjectSerializer>(ownerProvider);
 
-		public static ObjectSerializer CreateObjectSerializer<TArg>(Type genericSerializerType, Type targetType, SerializerProvider provider, TArg arg)
+		public static ObjectSerializer CreateObjectSerializer<TArg>(Type genericSerializerType, Type targetType, ObjectSerializerProvider provider, TArg arg)
 			// We cannot use ArrayPool<T> here because it does not guarntee returning array length, but Reflection APIs relies it.
 			=> genericSerializerType
 				.MakeGenericType(targetType)
-				.GetRequiredConstructor(typeof(SerializerProvider), typeof(TArg))
+				.GetRequiredConstructor(typeof(ObjectSerializerProvider), typeof(TArg))
 				.InvokePreservingExceptionType<ObjectSerializer>(provider, arg);
 
-		public static ObjectSerializer CreateObjectSerializer<TArg1, TArg2>(Type genericSerializerType, Type targetType, SerializerProvider provider, TArg1 arg1, TArg2 arg2)
+		public static ObjectSerializer CreateObjectSerializer<TArg1, TArg2>(Type genericSerializerType, Type targetType, ObjectSerializerProvider provider, TArg1 arg1, TArg2 arg2)
 			// We cannot use ArrayPool<T> here because it does not guarntee returning array length, but Reflection APIs relies it.
 			=> genericSerializerType
 				.MakeGenericType(targetType)
-				.GetRequiredConstructor(typeof(SerializerProvider), typeof(TArg1), typeof(TArg2))
+				.GetRequiredConstructor(typeof(ObjectSerializerProvider), typeof(TArg1), typeof(TArg2))
 				.InvokePreservingExceptionType<ObjectSerializer>(provider, arg1, arg2);
 
-		public static ObjectSerializer CreateNullableObjectSerializer(Type targetType, Type underlyingType, SerializerProvider provider, ObjectSerializer underlyingSerializer)
+		public static ObjectSerializer CreateNullableObjectSerializer(Type targetType, Type underlyingType, ObjectSerializerProvider provider, ObjectSerializer underlyingSerializer)
 			=> typeof(NullableObjectSerializer<>)
 				.MakeGenericType(targetType)
-				.GetRequiredConstructor(typeof(SerializerProvider), typeof(ObjectSerializer<>).MakeGenericType(underlyingType))
+				.GetRequiredConstructor(typeof(ObjectSerializerProvider), typeof(ObjectSerializer<>).MakeGenericType(underlyingType))
 				.InvokePreservingExceptionType<ObjectSerializer>(provider, underlyingSerializer);
 
 		public static ObjectSerializer CreateEnumSerializer(
-			Type targetType, 
-			SerializerProvider provider, 
+			Type targetType,
+			ObjectSerializerProvider provider, 
 			EnumSerializationMethod? method, 
 			NameMapper nameMapper,
 			object serializationNameMapping,
@@ -79,7 +79,7 @@ namespace MsgPack.Serialization
 				GetEnumSerializerGenericTypeDefinition(Enum.GetUnderlyingType(targetType))
 				.MakeGenericType(targetType)
 				.GetRequiredConstructor(
-					typeof(SerializerProvider),
+					typeof(ObjectSerializerProvider),
 					typeof(EnumSerializationMethod?),
 					typeof(NameMapper),
 					typeof(Dictionary<,>).MakeGenericType(targetType, typeof(string)),

@@ -6,9 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\MsgPack.Abstraction\Internal\MethodImplOptionsShim.cs" Link="Internal\MethodImplOptionsShim.cs" />
-    <Compile Include="..\MsgPack.Abstraction\Internal\OptionsDefaults.cs" Link="Internal\OptionsDefaults.cs" />
-    <Compile Include="..\MsgPack.Abstraction\StringEscape.cs" Link="StringEscape.cs" />
     <Compile Include="..\MsgPack.Core\System.Text\EncodingExtensions.cs" Link="System.Text\EncodingExtensions.cs" />
     <Compile Include="..\MsgPack\ReflectionAbstractions.cs" Link="ReflectionAbstractions.cs" />
     <Compile Include="..\MsgPack\Serialization\CollectionDetailedKind.cs" Link="Serialization\CollectionDetailedKind.cs" />
@@ -67,7 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Internal\" />
     <Folder Include="System.Text\" />
   </ItemGroup>
 

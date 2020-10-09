@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -17,7 +17,7 @@ namespace MsgPack.Serialization
 	/// </remarks>
 	internal abstract class NonCollectionObjectSerializer<T> : ObjectSerializer<T>
 	{
-		protected NonCollectionObjectSerializer(SerializerProvider ownerProvider)
+		protected NonCollectionObjectSerializer(ObjectSerializerProvider ownerProvider)
 			: base(ownerProvider, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize) { }
 
 		public sealed override bool DeserializeTo(ref DeserializationOperationContext context, ref SequenceReader<byte> source, T obj)

@@ -30,9 +30,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, Timestamp obj, IBufferWriter<byte> sink)
 		{
-			var options = this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions;
-
-			switch (this._method ?? options.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
+			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
 			{
 				case DateTimeConversionMethod.Native:
 				{
@@ -81,7 +79,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						ref source,
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						ref position
 					);
 			}
@@ -205,7 +203,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						source,
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						ref position
 					);
 			}
@@ -215,6 +213,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 				throw; // Never reaches
 			}
 		}
+
 		private static Timestamp Deserialize(
 			AsyncDeserializationOperationContext context,
 			ReadOnlyStreamSequence source,

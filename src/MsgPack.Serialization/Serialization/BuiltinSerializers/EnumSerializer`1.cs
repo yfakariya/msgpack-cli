@@ -18,7 +18,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 	///		Implements basic features of enum serializer.
 	/// </summary>
 	/// <typeparam name="T">The type of the target enum type.</typeparam>
-	internal abstract class EnumSerializer<T> : ObjectSerializer<T>
+	internal abstract class EnumSerializer<T> : NonCollectionObjectSerializer<T>
 	{
 		private readonly EnumSerializationMethod? _method;
 		private readonly NameMapper _nameMapper;
@@ -29,14 +29,14 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		private readonly Dictionary<string, T> _deserializationNameMapping;
 
 		protected EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714
 			Dictionary<T, string> serializationNameMapping,
 #pragma warning restore CS8714
 			Dictionary<string, T> deserializationNameMapping
-		) : base(ownerProvider, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize)
+		) : base(ownerProvider)
 		{
 			Debug.Assert(typeof(T).GetIsEnum());
 			this._method = method;
@@ -47,7 +47,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, [AllowNull] T obj, IBufferWriter<byte> sink)
 		{
-			var method = this._method ?? this.OwnerProvider.SerializerGenerationOptions.EnumOptions.GetSerializationMethod(context.Encoder.Options.Features);
+			var method = this._method ?? this.GenerationOptions.EnumOptions.GetSerializationMethod(context.Encoder.Options.Features);
 			if (method == EnumSerializationMethod.ByName)
 			{
 				if (!this._serializationNameMapping.TryGetValue(obj!, out var asString))
@@ -165,12 +165,6 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		
 		protected abstract T FromDouble(double value);
 
-		public sealed override bool DeserializeTo(ref DeserializationOperationContext context, ref SequenceReader<byte> source, T obj)
-		{
-			Throw.DeserializeToOnlyAvailableForMutableCollection(typeof(T));
-			return default;
-		}
-
 #if FEATURE_TAP
 
 		public override async ValueTask<T> DeserializeAsync(AsyncDeserializationOperationContext context, ReadOnlyStreamSequence source)
@@ -197,12 +191,6 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 			source.Advance(reader.Consumed);
 			return true;
-		}
-
-		public sealed override ValueTask<bool> DeserializeToAsync(AsyncDeserializationOperationContext context, ReadOnlyStreamSequence source, T obj)
-		{
-			Throw.DeserializeToOnlyAvailableForMutableCollection(typeof(T));
-			return default;
 		}
 
 #endif // FEATURE_TAP

@@ -86,7 +86,7 @@ namespace MsgPack.Serialization
 		{
 			this._targetType = Ensure.NotNull(targetType);
 			Func<CodecFeatures, DateTimeConversionMethod> defaultMethodGetter =
-				Ensure.NotNull(serializerProvider).SerializerGenerationOptions.DateTimeOptions.GetDefaultDateTimeConversionMethod;
+				Ensure.NotNull(serializerProvider).GenerationOptions.DateTimeOptions.GetDefaultDateTimeConversionMethod;
 			Ensure.NotNull(serializerFactory);
 
 #pragma warning disable CS8714

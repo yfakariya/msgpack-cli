@@ -21,7 +21,7 @@ namespace MsgPack.Serialization.Polymorphic
 	{
 		private readonly PolymorphismSchema _schema;
 
-		public TypeEmbedingPolymorphicObjectSerializer(SerializerProvider ownerProvider, PolymorphismSchema schema)
+		public TypeEmbedingPolymorphicObjectSerializer(ObjectSerializerProvider ownerProvider, PolymorphismSchema schema)
 			: base(ownerProvider, SerializerCapabilities.PackTo | SerializerCapabilities.UnpackFrom | SerializerCapabilities.UnpackTo)
 		{
 			if (typeof(T).GetIsValueType())
@@ -34,7 +34,7 @@ namespace MsgPack.Serialization.Polymorphic
 
 		private ObjectSerializer GetActualTypeSerializer(Type actualType)
 		{
-			var result = this.ObjectSerializerProvider.GetSerializer(actualType, this._schema);
+			var result = this.OwnerProvider.GetPolymorphicSerializer(actualType, this._schema);
 			if (result == null)
 			{
 				Throw.CannotGetActualTypeSerializer(actualType);

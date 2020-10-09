@@ -109,7 +109,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public <#= typeName #>(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 

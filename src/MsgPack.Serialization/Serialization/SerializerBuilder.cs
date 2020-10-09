@@ -8,9 +8,9 @@ namespace MsgPack.Serialization
 {
 	internal abstract class SerializerBuilder
 	{
-		public abstract ObjectSerializer BuildObjectSerializer(Type targetType, IObjectSerializerProvider owningProvider, in SerializationTarget target, ISerializerGenerationOptions options);
+		public abstract ObjectSerializer BuildObjectSerializer(Type targetType, ObjectSerializerProvider owningProvider, in SerializationTarget target, PolymorphismSchema schema);
 
-		public abstract ObjectSerializer BuildTupleSerializer(Type targetType, IObjectSerializerProvider owningProvider, in SerializationTarget target, ISerializerGenerationOptions options);
+		public abstract ObjectSerializer BuildTupleSerializer(Type targetType, ObjectSerializerProvider owningProvider, in SerializationTarget target, PolymorphismSchema schema);
 	}
 
 	internal sealed class SerializerBuilderRegistry

@@ -16,7 +16,7 @@ namespace MsgPack.Serialization
 	/// <summary>
 	///		A single entry point to get or create <see cref="Serializer"/> which is entry point of serialization.
 	/// </summary>
-	public sealed class SerializerProvider : IObjectSerializerProvider
+	public sealed class SerializerProvider : ObjectSerializerProvider
 	{
 #warning TODO: Revise
 		private static SerializerProvider s_default = new SerializerProvider();
@@ -30,8 +30,6 @@ namespace MsgPack.Serialization
 		private readonly SerializerBuilderRegistry _builderRegistry;
 		private readonly ConcurrentDictionary<RuntimeTypeHandle, IObjectSerializerProvider> _innerProviders;
 		private readonly ConcurrentDictionary<RuntimeTypeHandle, Serializer> _serializers;
-
-		internal ISerializerGenerationOptions SerializerGenerationOptions { get; }
 
 		private ResolveObjectSerializerEventHandler? _resolveSerializer;
 
@@ -145,18 +143,17 @@ namespace MsgPack.Serialization
 		internal SerializerProvider(
 			SerializerGenerationOptionsBuilder optionsBuilder,
 			SerializerBuilderRegistry builderRegistry
-		)
+		) : base(optionsBuilder.Build())
 		{
 			this._innerProviders = new ConcurrentDictionary<RuntimeTypeHandle, IObjectSerializerProvider>();
 			this._serializers = new ConcurrentDictionary<RuntimeTypeHandle, Serializer>();
-			this.SerializerGenerationOptions = optionsBuilder.Build();
 			this._builderRegistry = builderRegistry;
 		}
 
 		internal Type EnsureDateTimeLikeType(Type targetType)
 		{
 			Ensure.NotNull(targetType);
-			var knownDateTimeLikeTypes = this.SerializerGenerationOptions.DateTimeOptions.KnownDateTimeLikeTypes;
+			var knownDateTimeLikeTypes = this.GenerationOptions.DateTimeOptions.KnownDateTimeLikeTypes;
 
 			if (!knownDateTimeLikeTypes.Contains(targetType))
 			{
@@ -181,14 +178,11 @@ namespace MsgPack.Serialization
 				targetType,
 				codecProvider,
 				this.GetObjectSerializer(targetType, providerParameter),
-				this.SerializerGenerationOptions.SerializationOptions,
-				this.SerializerGenerationOptions.DeserializationOptions
+				this.GenerationOptions.SerializationOptions,
+				this.GenerationOptions.DeserializationOptions
 			);
 
-		ObjectSerializer IObjectSerializerProvider.GetSerializer(Type targetType, object? providerParameter)
-			=> this.GetObjectSerializer(targetType, providerParameter);
-
-		private ObjectSerializer GetObjectSerializer(Type targetType, object? providerParameter)
+		private protected sealed override ObjectSerializer GetObjectSerializer(Type targetType, object? providerParameter)
 		{
 			var context = (This: this, Type: targetType, ProviderParameter: providerParameter);
 			return this._innerProviders.GetOrAdd(targetType.TypeHandle, (_, x) => x.This.CreateObjectSerializerProvider(x.Type, x.ProviderParameter), context).GetSerializer(targetType, providerParameter);
@@ -225,7 +219,7 @@ namespace MsgPack.Serialization
 					var metadata =
 						isTuple ?
 							SerializationMetadataFactory.GetTupleMetadata(targetType) :
-							SerializationMetadataFactory.GetObjectMetadata(targetType, this.SerializerGenerationOptions);
+							SerializationMetadataFactory.GetObjectMetadata(targetType, this.GenerationOptions);
 					var capabilities = metadata.GetCapabilities();
 
 					this._typeLock[targetType] =
@@ -261,7 +255,7 @@ namespace MsgPack.Serialization
 			//serializer = GenericSerializer.Create<T>(this, schema);
 
 			var builder =
-				this.SerializerGenerationOptions.IsRuntimeCodeGenerationDisabled ?
+				this.GenerationOptions.IsRuntimeCodeGenerationDisabled ?
 					this._builderRegistry.GetForReflection() :
 					this._builderRegistry.GetForRuntimeCodeGeneration();
 
@@ -281,17 +275,17 @@ namespace MsgPack.Serialization
 					{
 						provider = new EnumSerializerProvider(targetType, this);
 					}
-					else if (this.SerializerGenerationOptions.DateTimeOptions.KnownDateTimeLikeTypes.Contains(targetType))
+					else if (this.GenerationOptions.DateTimeOptions.KnownDateTimeLikeTypes.Contains(targetType))
 					{
 						provider = this.CreateDateTimeSerializerProvider(targetType);
 					}
 					else if (isTuple)
 					{
-						serializer = builder.BuildTupleSerializer(targetType, this, metadata, this.SerializerGenerationOptions);
+						serializer = builder.BuildTupleSerializer(targetType, this, metadata, schema);
 					}
 					else
 					{
-						serializer = builder.BuildObjectSerializer(targetType, this, metadata, this.SerializerGenerationOptions);
+						serializer = builder.BuildObjectSerializer(targetType, this, metadata, schema);
 					}
 				}
 			}

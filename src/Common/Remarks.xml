@@ -1,0 +1,60 @@
+<docs>
+    <doc name="DateTimeConversion">
+        <para>
+            Precision of fraction of seconds portion in ISO 8601 format will be determined as follows:
+            <list type="number">
+                <item>If the value specified in MessagePackDateTimeMemberAttribute explicitly, the value will be used.</item>
+                <item>If explicitly specified in serialization options (via DateTimeSerializationOptionsBuilder), the value will be used.</item>
+                <item>If the underlying codec specifies prefferred precision, the value will be used.</item>
+                <item>Else, serializer implementation determines the precision. Built-in serializers will use default values for types specified in following table.</item>
+            </list>
+        </para>
+        <para>
+            The default of the precision is varied for types.
+            Bulit-in serializers handle precision as following unless both of serializer options and codec specify it:
+            <list type="table">
+                <listheader>
+                    <term>Type</term>
+                    <description>Precision</description>
+                </listheader>
+                <item>
+                    <term>
+                        <see cref="System.DateTime"/>
+                    </term>
+                    <description>7</description>
+                </item>
+                <item>
+                    <term>
+                        <see cref="System.DateTimeOffset"/>
+                    </term>
+                    <description>7</description>
+                </item>
+                <item>
+                    <term>
+                        <see cref="Timestamp"/>
+                    </term>
+                    <description>9</description>
+                </item>
+            </list>
+            Above precision does not affect deserialization. Deserialization logic try to handle biggest precision as long as possible.
+        </para>
+        <para>
+            Also, time zone portion is supported on <see cref="DateTimeOffset"/>
+.
+        </para>
+    </doc>
+    <doc name="EnumSerialization">
+        A serialization strategy for specific <strong>member</strong> is determined as following:
+        <list type="numeric">
+            <item>If the member is marked with <see cref="MessagePackEnumMemberAttribute"/>
+ and its value is not <see cref="EnumMemberSerializationMethod.Default"/>
+, then it will be used.</item>
+        <item>Else, if the enum type itself is marked with <see cref="MessagePackEnumAttribute"/>
+, then it will be used.</item>
+        <item>Else, if this property is set, its value will be used.</item>
+        <item>Otherwise, the default value of the codec will be used.</item>
+    </list>
+        Note that the default value of this property is <see cref="T:EnumSerializationMethod.ByName"/>
+, it is not size efficient but tolerant to unexpected enum definition change.
+</doc>
+</docs>

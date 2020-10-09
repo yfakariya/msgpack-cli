@@ -2,17 +2,13 @@
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
-using System;
-#if !UNITY || MSGPACK_UNITY_FULL
 using System.ComponentModel;
-#endif // !UNITY || MSGPACK_UNITY_FULL
 
 namespace MsgPack.Serialization
 {
 	/// <summary>
 	///		Define options of serializer generation.
 	/// </summary>
-	[Obsolete("This type has not been used.")]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public enum SerializationMethodGeneratorOption
 	{
@@ -20,7 +16,7 @@ namespace MsgPack.Serialization
 		///		The generated method IL can be dumped to the current directory.
 		///		It is intended for the runtime, you cannot use this option.
 		/// </summary>
-		[EditorBrowsable( EditorBrowsableState.Never )]
+		[EditorBrowsable(EditorBrowsableState.Never)]
 		CanDump,
 
 		// TODO: AssemblyLoadContext support for CanCollect work properly.

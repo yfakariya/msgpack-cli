@@ -30,12 +30,12 @@ foreach (var isSpan in new [] { false, true })
 {
 	var returnType = isSpan ? "int" : "string";
 	var nonNullableReturnType = isSpan ? "int" : "string?";
-	var bufferParamegter = isSpan ? "Span<char> buffer, " : String.Empty;
+	var bufferParameter = isSpan ? "Span<char> buffer, " : String.Empty;
 	var bufferArgument = isSpan ? "buffer, " : String.Empty;
 #>
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override <#= returnType #>? DecodeNullableString(ref SequenceReader<byte> source, <#= bufferParamegter #>out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
+		public sealed override <#= returnType #>? DecodeNullableString(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
 		{
 			if (this.TryDecodeNull(ref source))
 			{
@@ -48,7 +48,7 @@ foreach (var isSpan in new [] { false, true })
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override <#= nonNullableReturnType #> DecodeString(ref SequenceReader<byte> source, <#= bufferParamegter #>out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
+		public sealed override <#= nonNullableReturnType #> DecodeString(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
 		{
 			var length = this.DecodeStringHeader(ref source, out _, out requestHint, out var consumed);
 			if (requestHint != 0)
@@ -116,14 +116,14 @@ foreach (var isSpan in new [] { false, true })
 foreach (var isSpan in new [] { false, true })
 {
 	var returnType = isSpan ? "int" : "byte[]";
-	var bufferParamegter = isSpan ? "Span<byte> buffer, " : String.Empty;
+	var bufferParameter = isSpan ? "Span<byte> buffer, " : String.Empty;
 	var bufferArgument = isSpan ? "buffer, " : String.Empty;
 	var nonNullableReturnType = isSpan ? "int" : "byte[]?";
 #>
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override <#= returnType #>? DecodeNullableBinary(ref SequenceReader<byte> source, <#= bufferParamegter #>out int requestHint, CancellationToken cancellationToken = default)
+		public sealed override <#= returnType #>? DecodeNullableBinary(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
 		{
 			if (this.TryDecodeNull(ref source))
 			{
@@ -136,7 +136,7 @@ foreach (var isSpan in new [] { false, true })
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override <#= nonNullableReturnType #> DecodeBinary(ref SequenceReader<byte> source, <#= bufferParamegter #>out int requestHint, CancellationToken cancellationToken = default)
+		public sealed override <#= nonNullableReturnType #> DecodeBinary(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var length = this.DecodeBinaryHeader(ref source, out requestHint, out var consumed);
 			if(requestHint != 0)

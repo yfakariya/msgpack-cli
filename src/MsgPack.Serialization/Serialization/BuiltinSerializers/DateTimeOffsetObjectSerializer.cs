@@ -31,16 +31,14 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, DateTimeOffset obj, IBufferWriter<byte> sink)
 		{
-			var options = this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions;
-
-			switch (this._method ?? options.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
+			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
 			{
 				case DateTimeConversionMethod.Native:
 				{
 					context.IncrementDepth();
 					context.Encoder.EncodeArrayStart(2, sink, context.CollectionContext);
 					context.Encoder.EncodeArrayItemStart(0, sink, context.CollectionContext);
-					DateTimeObjectSerializer.Serialize(ref context, obj.DateTime, sink, this._method, options);
+					DateTimeObjectSerializer.Serialize(ref context, obj.DateTime, sink, this._method, this.GenerationOptions.DateTimeOptions);
 					context.Encoder.EncodeArrayItemEnd(0, sink, context.CollectionContext);
 					context.Encoder.EncodeArrayItemStart(1, sink, context.CollectionContext);
 					Debug.Assert(obj.Offset.TotalMinutes >= Int16.MinValue && obj.Offset.TotalMinutes <= Int16.MaxValue);
@@ -60,8 +58,8 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					var features = context.Encoder.Options.Features;
 					var format =
 						Iso8601.GetFormatString(
-							options.GetIso8601DecimalMark(features) ?? '.',
-							options.GetIso8601SubsecondsPrecision(features) ?? 7
+							this.GetIso8601DecimalMark(features) ?? '.',
+							this.GetIso8601SubsecondsPrecision(features) ?? 7
 						);
 					if (format == null && (context.StringEncoding ?? features.DefaultStringEncoding) is UTF8Encoding)
 					{
@@ -107,7 +105,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						ref source,
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						ref position
 					);
 			}
@@ -278,7 +276,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						source,
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						ref position
 					);
 			}

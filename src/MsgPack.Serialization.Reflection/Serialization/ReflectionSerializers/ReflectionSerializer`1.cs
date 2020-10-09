@@ -24,19 +24,19 @@ namespace MsgPack.Serialization.ReflectionSerializers
 		private readonly AsyncDeserializingFill _deserializeToAsync;
 #endif // FEATURE_TAP
 
-		public ReflectionSerializer(SerializerProvider ownerProvider, in SerializationTarget target, ISerializerGenerationOptions options, PolymorphismSchema schema)
+		public ReflectionSerializer(ObjectSerializerProvider ownerProvider, in SerializationTarget target, PolymorphismSchema schema)
 			: base(ownerProvider, target.GetCapabilities())
 		{
 #warning TODO: AbstractCollectionSupport here
 			IReflectionObjectSerializer serializer;
 			if (!target.IsCollection)
 			{
-				serializer = new ObjectDelegateSerializer(ownerProvider, target, options);
+				serializer = new ObjectDelegateSerializer(ownerProvider, target);
 			}
 			else if (target.CollectionTraits.CollectionType == CollectionKind.Array)
 			{
 #warning TODO: PolymorphismSchema
-				var itemSerializer = ownerProvider.GetSerializer(target.CollectionTraits.ElementType!, null);
+				var itemSerializer = ownerProvider.GetPolymorphicSerializer(target.CollectionTraits.ElementType!, null);
 				serializer =
 					target.CollectionTraits.DetailedCollectionType switch
 					{
@@ -49,7 +49,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 #endif // FEATURE_TAP
 								target.Type,
 								target.CollectionTraits,
-								options
+								ownerProvider.GenerationOptions
 							),
 						_ => new CollectionDelegateSerializer(
 							itemSerializer.SerializeObject,
@@ -59,7 +59,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 #endif // FEATURE_TAP
 							target.Type,
 							target.CollectionTraits,
-							options
+							ownerProvider.GenerationOptions
 						)
 					};
 			}
@@ -68,9 +68,9 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				// Map
 				var (keyType, valueType) = target.CollectionTraits.GetKeyValueType();
 #warning TODO: PolymorphismSchema
-				var keySerializer = ownerContext.GetSerializer(keyType!, null);
+				var keySerializer = ownerProvider.GetPolymorphicSerializer(keyType!, null);
 #warning TODO: PolymorphismSchema
-				var valueSerializer = ownerContext.GetSerializer(valueType!, null);
+				var valueSerializer = ownerProvider.GetPolymorphicSerializer(valueType!, null);
 				serializer =
 					new DictionaryDelegateSerializer(
 						keySerializer.SerializeObject,
@@ -83,7 +83,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 #endif // FEATURE_TAP
 						target.Type,
 						target.CollectionTraits,
-						options
+						ownerProvider.GenerationOptions
 					);
 			}
 

@@ -17,6 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Json\JsonDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonDecoder.StringBinary.tt</DependentUpon>
+    </None>
     <None Include="Json\JsonEscapeSequence.EscapeTables.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -32,6 +37,10 @@
     <None Update="Json\JsonDecoder.Numbers.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>JsonDecoder.Numbers.cs</LastGenOutput>
+    </None>
+    <None Update="Json\JsonDecoder.StringBinary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>JsonDecoder.StringBinary.cs</LastGenOutput>
     </None>
     <None Update="Json\JsonEscapeSequence.EscapeTables.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -53,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>JsonDecoder.Numbers.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Json\JsonDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonDecoder.StringBinary.tt</DependentUpon>
     </Compile>
     <Compile Update="Json\JsonEscapeSequence.EscapeTables.cs">
       <DesignTime>True</DesignTime>

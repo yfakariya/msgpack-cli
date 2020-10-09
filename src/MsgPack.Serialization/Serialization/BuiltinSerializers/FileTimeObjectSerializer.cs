@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all cotributors.
+// Copyright (c) FUJIWARA, Yusuke and all cotributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -33,9 +33,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, FILETIME obj, IBufferWriter<byte> sink)
 		{
-			var options = this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions;
-
-			switch (this._method ?? options.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
+			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
 			{
 				case DateTimeConversionMethod.Native:
 				{
@@ -52,8 +50,8 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					var features = context.Encoder.Options.Features;
 					var format =
 						Iso8601.GetFormatString(
-							options.GetIso8601DecimalMark(features) ?? '.',
-							options.GetIso8601SubsecondsPrecision(features) ?? 0
+							this.GetIso8601DecimalMark(features) ?? '.',
+							this.GetIso8601SubsecondsPrecision(features) ?? 0
 						) ?? "o";
 					// slow path
 					Span<char> buffer = stackalloc char[Iso8601.MaxLength];
@@ -87,7 +85,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						ref source,
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						ref position
 					);
 			}
@@ -214,7 +212,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 						source,
 						result,
 						this._method,
-						this.OwnerProvider.SerializerGenerationOptions.DateTimeOptions,
+						this.GenerationOptions.DateTimeOptions,
 						ref position
 					);
 			}

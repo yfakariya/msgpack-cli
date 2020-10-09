@@ -24,6 +24,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 	/// </summary>
 	internal sealed partial class ObjectDelegateSerializer : IReflectionObjectSerializer
 	{
+		private readonly ObjectSerializerProvider _provider;
 		private readonly IReadOnlyList<Delegate> _memberValueEncoders;
 		private readonly IReadOnlyList<Delegate> _memberValueDecoders;
 		private readonly IReadOnlyList<bool> _memberIsCollections;
@@ -39,8 +40,9 @@ namespace MsgPack.Serialization.ReflectionSerializers
 		// object
 		// tuple
 		// value tuple
-		public ObjectDelegateSerializer(SerializerProvider provider, in SerializationTarget target, ISerializerGenerationOptions options)
+		public ObjectDelegateSerializer(ObjectSerializerProvider provider, in SerializationTarget target)
 		{
+			this._provider = provider;
 			this._target = target;
 			var isTuple = TupleItems.IsTuple(target.Type);
 			this._tupleTypes = isTuple ? null : TupleItems.CreateTupleTypeList(target.Type);
@@ -50,7 +52,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 					provider,
 					target.Members,
 					hasDeserializationConstructor: target.DeserializationConstructor != null,
-					hasPriviledgedAccess: !options.BindingOptions.IsPrivilegedAccessDisabled
+					hasPriviledgedAccess: !provider.GenerationOptions.BindingOptions.IsPrivilegedAccessDisabled
 				).ToList();
 			this._memberIsCollections = DetermineWhetherIndividualMembersAreCollection(target.Members).ToList();
 			this._memberValueGetters = CreateMemberValueGetters(target.Members, this._tupleTypes).ToList();
@@ -62,12 +64,12 @@ namespace MsgPack.Serialization.ReflectionSerializers
 					provider,
 					target.Members,
 					hasDeserializationConstructor: target.DeserializationConstructor != null,
-					hasPriviledgedAccess: !options.BindingOptions.IsPrivilegedAccessDisabled
+					hasPriviledgedAccess: !provider.GenerationOptions.BindingOptions.IsPrivilegedAccessDisabled
 				).ToList();
 #endif // FEATURE_TAP
 		}
 
-		private static IEnumerable<Delegate> CreateMemberValueEncoders(SerializerProvider provider, IEnumerable<SerializingMember> members)
+		private static IEnumerable<Delegate> CreateMemberValueEncoders(ObjectSerializerProvider provider, IEnumerable<SerializingMember> members)
 		{
 			foreach (var member in members)
 			{
@@ -107,7 +109,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			}
 		}
 
-		private static IEnumerable<Delegate> CreateMemberValueDecoders(SerializerProvider provider, IEnumerable<SerializingMember> members, bool hasDeserializationConstructor, bool hasPriviledgedAccess)
+		private static IEnumerable<Delegate> CreateMemberValueDecoders(ObjectSerializerProvider provider, IEnumerable<SerializingMember> members, bool hasDeserializationConstructor, bool hasPriviledgedAccess)
 		{
 			foreach (var member in members)
 			{
@@ -190,7 +192,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 
 #if FEATURE_TAP
 
-		private static IEnumerable<Delegate> CreateAsyncMemberValueDecoders(SerializerProvider provider, IEnumerable<SerializingMember> members, bool hasDeserializationConstructor, bool hasPriviledgedAccess)
+		private static IEnumerable<Delegate> CreateAsyncMemberValueDecoders(ObjectSerializerProvider provider, IEnumerable<SerializingMember> members, bool hasDeserializationConstructor, bool hasPriviledgedAccess)
 		{
 			foreach (var member in members)
 			{
@@ -370,7 +372,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				return;
 			}
 
-			if (context.SerializationMethod == SerializationMethod.Array)
+			if (this._provider.GenerationOptions.SerializationOptions.GetDefaultObjectSerializationMethod(context.Encoder.Options.Features) == SerializationMethod.Array)
 			{
 				encoder.EncodeArrayStart(this._memberValueEncoders.Count, sink, context.CollectionContext);
 

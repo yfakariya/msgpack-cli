@@ -134,7 +134,7 @@ namespace MsgPack.Serialization.Polymorphic
 			}
 			catch (DecodeException ex)
 			{
-				Throw.DecodeFailure(ex);
+				Throw.DecodeFailure(ex, source.Consumed);
 				return default!; // Never reaches
 			}
 

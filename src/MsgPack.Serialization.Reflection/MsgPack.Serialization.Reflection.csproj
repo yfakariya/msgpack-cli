@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\MsgPack.Abstraction\Ensure.cs" Link="Ensure.cs" />
+    <Compile Include="..\MsgPack.Abstraction\Internal\MethodImplOptionsShim.cs" Link="Internal\MethodImplOptionsShim.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MsgPack.Abstraction\MsgPack.Abstraction.csproj" />
     <ProjectReference Include="..\MsgPack.Serialization\MsgPack.Serialization.csproj" />
   </ItemGroup>
@@ -26,6 +31,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AsyncDecodeHelpers.Primitives.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Internal\" />
   </ItemGroup>
 
 </Project>

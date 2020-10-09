@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -29,11 +29,11 @@ namespace MsgPack.Serialization
 		/// <summary>
 		///		Initializes a new instance of the <see cref="LazyDelegatingObjectSerializer{T}"/> object.
 		/// </summary>
-		/// <param name="ownerContext">
-		///		The serialization context to support lazy retrieval.
+		/// <param name="ownerProvider">
+		///		The <see cref="ObjectSerializerProvider"/> to support lazy retrieval.
 		///	</param>
 		/// <param name="providerParameter">A provider parameter to be passed in future.</param>
-		public LazyDelegatingObjectSerializer(SerializerProvider ownerProvider, object providerParameter, SerializerCapabilities capabilities)
+		public LazyDelegatingObjectSerializer(ObjectSerializerProvider ownerProvider, object providerParameter, SerializerCapabilities capabilities)
 			: base(ownerProvider, capabilities)
 		{
 			this._providerParameter = providerParameter;
@@ -44,7 +44,7 @@ namespace MsgPack.Serialization
 			var result = this._delegated;
 			if (result == null)
 			{
-				var untypedResult = this.ObjectSerializerProvider.GetSerializer(typeof(T), this._providerParameter);
+				var untypedResult = this.OwnerProvider.GetSerializer(typeof(T), this._providerParameter);
 
 				if (untypedResult is LazyDelegatingObjectSerializer<T>)
 				{

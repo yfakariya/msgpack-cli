@@ -91,7 +91,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public Int32EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -194,7 +194,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public Int64EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -293,7 +293,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public UInt32EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -401,7 +401,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public UInt64EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -500,7 +500,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public ByteEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -608,7 +608,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public Int16EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -716,7 +716,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public SByteEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -824,7 +824,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public UInt16EnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -932,7 +932,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public BooleanEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -1003,7 +1003,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public CharEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -1077,7 +1077,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public SingleEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 
@@ -1168,7 +1168,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		where T : unmanaged // Enums are always unmanaged
 	{
 		public DoubleEnumSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			EnumSerializationMethod? method,
 			NameMapper nameMapper,
 #pragma warning disable CS8714 

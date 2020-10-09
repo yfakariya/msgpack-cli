@@ -25,7 +25,7 @@ namespace MsgPack.Serialization.Polymorphic
 		private readonly IDictionary<string, RuntimeTypeHandle> _typeHandleMap;
 		private readonly IDictionary<RuntimeTypeHandle, string> _typeCodeMap;
 
-		public KnownTypePolymorphicObjectSerializer(SerializerProvider ownerProvider, PolymorphismSchema schema)
+		public KnownTypePolymorphicObjectSerializer(ObjectSerializerProvider ownerProvider, PolymorphismSchema schema)
 			: base(ownerProvider, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize | SerializerCapabilities.DeserializeTo)
 		{
 			if (typeof(T).GetIsValueType())
@@ -64,7 +64,7 @@ namespace MsgPack.Serialization.Polymorphic
 
 		private ObjectSerializer GetActualTypeSerializer(Type actualType)
 		{
-			var result = this.ObjectSerializerProvider.GetPolymorphicSerializer(actualType, this._schema);
+			var result = this.OwnerProvider.GetPolymorphicSerializer(actualType, this._schema);
 			if (result == null)
 			{
 				Throw.CannotGetActualTypeSerializer(actualType);

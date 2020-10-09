@@ -52,6 +52,13 @@ namespace MsgPack.Json
 			return this._stringBuilder.ToString();
 		}
 
+		public int CopyTo(Span<char> buffer)
+		{
+			this.Flush(this._currentOffset);
+			this._stringBuilder.CopyTo(0, buffer, this._stringBuilder.Length);
+			return this._stringBuilder.Length;
+		}
+
 		private unsafe void Flush(int length)
 		{
 			Debug.Assert(length <= this._buffer.Length, $"length ({length}) <= this._buffer.Length ({this._buffer.Length})");

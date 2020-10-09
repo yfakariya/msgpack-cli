@@ -13,6 +13,14 @@ namespace MsgPack
 	public readonly struct ExtensionType : IComparable<ExtensionType>, IEquatable<ExtensionType>
 	{
 		/// <summary>
+		///		Gets the value which represents MsgPack timestamp type (-1 in <see cref="SByte"/>).
+		/// </summary>
+		/// <value>
+		///		The value which represents MsgPack timestamp type (-1 in <see cref="SByte"/>).
+		/// </value>
+		public static ExtensionType Timestamp { get; } = new ExtensionType(-1); // -1 in sbyte
+
+		/// <summary>
 		///		Gets raw tag data.
 		/// </summary>
 		/// <value>Raw tag data. Note that the codec might not allow full <see cref="UInt64"/> length.</value>

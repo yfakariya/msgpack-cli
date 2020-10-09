@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -24,7 +24,7 @@ namespace MsgPack.Serialization
 		/// <param name="ownerProvider">The provider which will own this object.</param>
 		/// <param name="underlying">The serializer which will handle non-null case.</param>
 		public NullableObjectSerializer(
-			SerializerProvider ownerProvider,
+			ObjectSerializerProvider ownerProvider,
 			ObjectSerializer<T> underlying
 		) : base(ownerProvider)
 		{
