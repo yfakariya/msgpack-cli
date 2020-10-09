@@ -23,11 +23,11 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -51,12 +51,12 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		public abstract String? DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
 
@@ -65,10 +65,11 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -92,11 +93,12 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract String? DecodeNullableString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
@@ -107,12 +109,13 @@ namespace MsgPack.Internal
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Char" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -137,13 +140,14 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		public abstract int DecodeString(ref SequenceReader<byte> source, Span<char> buffer, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
 
@@ -153,12 +157,14 @@ namespace MsgPack.Internal
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Char" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
 		///		This value can be <c>0</c> for empty string.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -183,13 +189,15 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
 		///		This value can be <c>0</c> for empty string.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract int? DecodeNullableString(ref SequenceReader<byte> source, Span<char> buffer, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
@@ -202,11 +210,11 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -230,12 +238,12 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		public abstract Utf8String? DecodeUtf8String(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
 
@@ -244,10 +252,11 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -271,11 +280,12 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract Utf8String? DecodeNullableUtf8String(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
@@ -286,12 +296,13 @@ namespace MsgPack.Internal
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="buffer"><see cref="Utf8Span" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -316,13 +327,14 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		public abstract int DecodeUtf8String(ref SequenceReader<byte> source, Utf8Span buffer, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
 
@@ -332,12 +344,14 @@ namespace MsgPack.Internal
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="buffer"><see cref="Utf8Span" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
 		///		This value can be <c>0</c> for empty string.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -362,13 +376,15 @@ namespace MsgPack.Internal
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
 		///		This value can be <c>0</c> for empty string.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract int? DecodeNullableUtf8String(ref SequenceReader<byte> source, Utf8Span buffer, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
@@ -377,15 +393,15 @@ namespace MsgPack.Internal
 #endif // FEATURE_UTF8STRING
 
 		/// <summary>
-		///		Decodes <see cref="byte[]" /> value from specified sequence.
+		///		Decodes <see cref="Byte" />[] value from specified sequence.
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public byte[] DecodeBinary(ref SequenceReader<byte> source, CancellationToken cancellationToken = default)
@@ -400,31 +416,32 @@ namespace MsgPack.Internal
 		}
 
 		/// <summary>
-		///		Decodes <see cref="byte[]" /> value from specified sequence.
+		///		Decodes <see cref="Byte" />[] value from specified sequence.
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		public abstract byte[]? DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default);
 
 		/// <summary>
-		///		Decodes <see cref="byte[]" /> value or <c>null</c> from specified sequence.
+		///		Decodes <see cref="Byte" />[] value or <c>null</c> from specified sequence.
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public byte[]? DecodeNullableBinary(ref SequenceReader<byte> source, CancellationToken cancellationToken = default)
@@ -439,19 +456,20 @@ namespace MsgPack.Internal
 		}
 
 		/// <summary>
-		///		Decodes <see cref="byte[]" /> value or <c>null</c> from specified sequence.
+		///		Decodes <see cref="Byte" />[] value or <c>null</c> from specified sequence.
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract byte[]? DecodeNullableBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default);
 
@@ -460,13 +478,14 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Byte" /> which will store the decoded binary.</param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public int DecodeBinary(ref SequenceReader<byte> source, Span<byte> buffer, CancellationToken cancellationToken = default)
@@ -489,14 +508,15 @@ namespace MsgPack.Internal
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
-		/// <param name="cacellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		public abstract int DecodeBinary(ref SequenceReader<byte> source, Span<byte> buffer, out int requestHint, CancellationToken cancellationToken = default);
 
 		/// <summary>
@@ -504,13 +524,15 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Byte" /> which will store the decoded binary.</param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
 		///		This value can be <c>0</c> for empty string.
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public int? DecodeNullableBinary(ref SequenceReader<byte> source, Span<byte> buffer, CancellationToken cancellationToken = default)
@@ -533,14 +555,16 @@ namespace MsgPack.Internal
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
+		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
 		///		This value can be <c>0</c> for empty string.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
-		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
-		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="byte[]" /> type.</exception>
+		/// <exception cref="ArgumentException"><paramref name="buffer" /> is too small to decode.</exception>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract int? DecodeNullableBinary(ref SequenceReader<byte> source, Span<byte> buffer, out int requestHint, CancellationToken cancellationToken = default);
 
