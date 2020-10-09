@@ -148,7 +148,7 @@ namespace MsgPack.Json
 					}
 					else
 					{
-						DecodeUnicodeEscapceSequence(source, result, out requestHint);
+						DecodeUnicodeEscapceSequence(ref source, result, out requestHint);
 						if (requestHint != 0)
 						{
 							source.Rewind(source.Consumed - startOffset);
@@ -292,7 +292,7 @@ namespace MsgPack.Json
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private static void DecodeUnicodeEscapceSequence(SequenceReader<byte> source, StringBuilderBufferWriter result, out int requestHint)
+		private static void DecodeUnicodeEscapceSequence(ref SequenceReader<byte> source, StringBuilderBufferWriter result, out int requestHint)
 		{
 			Span<byte> buffer = stackalloc byte[4];
 			if (!source.TryCopyTo(buffer))
