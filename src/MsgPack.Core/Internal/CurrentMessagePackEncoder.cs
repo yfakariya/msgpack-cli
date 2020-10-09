@@ -93,7 +93,7 @@ namespace MsgPack.Internal
 
 		private static void EncodeExtensionHeader(ExtensionType typeCode, uint serializedValueLength, IBufferWriter<byte> buffer)
 		{
-			if (typeCode.Tag > Byte.MaxValue)
+			if (typeCode.Tag > SByte.MaxValue || typeCode.Tag < SByte.MinValue)
 			{
 				MessagePackThrow.InvalidTypeCode(typeCode.Tag);
 			}
@@ -168,7 +168,7 @@ namespace MsgPack.Internal
 			// type code
 			{
 				var span = buffer.GetSpan(1);
-				span[0] = unchecked((byte)typeCode.Tag);
+				span[0] = unchecked((byte)(sbyte)typeCode.Tag);
 				buffer.Advance(1);
 			}
 		}

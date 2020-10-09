@@ -69,7 +69,6 @@ namespace MsgPack.Internal
 		public sealed override void EncodeArrayStart(int length, IBufferWriter<byte> buffer, in CollectionContext collectionContext)
 		{
 			buffer = Ensure.NotNull(buffer);
-			collectionContext.IncrementDepth();
 
 			if (length < 16)
 			{

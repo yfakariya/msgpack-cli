@@ -43,7 +43,7 @@ namespace MsgPack.Internal
 
 		private bool SkipArray(ref SequenceReader<byte> source, in CollectionContext collectionContext, ref long consumed, out int requestHint, CancellationToken cancellationToken = default)
 		{
-			collectionContext.IncrementDepth();
+			collectionContext.IncrementDepth(source.Consumed);
 
 			var initialConsumed = consumed;
 			var type = this.DecodeArrayOrMapHeaderCore(ref source, out var header, out var arrayLength, out requestHint);
@@ -70,7 +70,7 @@ namespace MsgPack.Internal
 
 		private bool SkipMap(ref SequenceReader<byte> source, in CollectionContext collectionContext, ref long consumed, out int requestHint, CancellationToken cancellationToken = default)
 		{
-			collectionContext.IncrementDepth();
+			collectionContext.IncrementDepth(source.Consumed);
 
 			var initialConsumed = consumed;
 			var type = this.DecodeArrayOrMapHeaderCore(ref source, out var header, out var mapCount, out requestHint);

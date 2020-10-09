@@ -12,13 +12,20 @@ namespace MsgPack.Internal
 {
 	public partial class MessagePackDecoder
 	{
-		public sealed override bool DecodeItem(ref SequenceReader<byte> source, out DecodeItemResult result, CancellationToken cancellationToken = default)
+		public sealed override void DecodeItem(ref SequenceReader<byte> source, out DecodeItemResult result, out int requestHint, CancellationToken cancellationToken = default)
 		{
-			var elementType = this.ReadHeader(ref source, out var consumed, out var valueOrLength, out var requestHint);
+			if (source.End)
+			{
+				requestHint = 0;
+				result = DecodeItemResult.EndOfStream();
+				return;
+			}
+
+			var elementType = this.ReadHeader(ref source, out var consumed, out var valueOrLength, out requestHint);
 			if (requestHint != 0)
 			{
-				result = DecodeItemResult.InsufficientInput(requestHint);
-				return false;
+				result = DecodeItemResult.InsufficientInput();
+				return;
 			}
 
 			requestHint = 0;
@@ -71,11 +78,9 @@ namespace MsgPack.Internal
 				{
 					if (source.Remaining < valueOrLength + consumed)
 					{
-						result =
-							DecodeItemResult.InsufficientInput(
-								(int)((valueOrLength + consumed - source.Remaining) & Int32.MaxValue)
-							);
-						return false;
+						requestHint = (int)((valueOrLength + consumed - source.Remaining) & Int32.MaxValue);
+						result = DecodeItemResult.InsufficientInput();
+						return;
 					}
 
 					result = DecodeItemResult.ScalarOrSequence(elementType, source.Sequence.Slice(source.Position).Slice(consumed, valueOrLength));
@@ -88,25 +93,23 @@ namespace MsgPack.Internal
 
 					if(source.Remaining < valueOrLength + consumed)
 					{
-						result =
-							DecodeItemResult.InsufficientInput(
-								(int)((valueOrLength + consumed - source.Remaining) & Int32.MaxValue)
-							);
-						return false;
+						requestHint = (int)((valueOrLength + consumed - source.Remaining) & Int32.MaxValue);
+						result = DecodeItemResult.InsufficientInput();
+						return;
 					}
 
 					var extensionSlice = source.Sequence.Slice(source.Position).Slice(consumed - 1);
 					var typeCode = extensionSlice.FirstSpan[0];
 					var body = extensionSlice.Slice(1, valueOrLength);
 
-					result = DecodeItemResult.ExtensionType(new ExtensionTypeObject(new ExtensionType(typeCode), body));
+					result = DecodeItemResult.ExtensionTypeObject(new ExtensionType(typeCode), body);
 					consumed += valueOrLength;
 					break;
 				}
 			}
 
 			source.Advance(consumed);
-			return true;
+			return;
 		}
 
 		private ElementType ReadHeader(ref SequenceReader<byte> source, out long consumed, out long valueOrLength, out int requestHint)

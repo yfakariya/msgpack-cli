@@ -458,6 +458,28 @@ namespace System.Text
 			});
 		}
 
+		internal static int GetStringMultiSegmentTo(this Encoding encoding, in ReadOnlySequence<byte> bytes, Span<char> buffer, CancellationToken cancellationToken = default)
+		{
+			var decoder = encoding.GetDecoder();
+
+			ReadOnlySequence<byte> remainingBytes = bytes;
+			bool isFinalSegment;
+			var destination = buffer;
+			do
+			{
+				GetFirstSpan(remainingBytes, out ReadOnlySpan<byte> firstSpan, out SequencePosition next);
+				isFinalSegment = remainingBytes.IsSingleSegment;
+
+				int actualCharsWrittenThisIteration = decoder.GetChars(firstSpan, destination, flush: isFinalSegment);
+				destination = destination.Slice(actualCharsWrittenThisIteration);
+
+				remainingBytes = remainingBytes.Slice(next);
+				cancellationToken.ThrowIfCancellationRequested();
+			} while (!isFinalSegment);
+
+			return destination.Length;
+		}
+
 		/// <summary>
 		/// Converts a <see cref="ReadOnlySpan{Char}"/> to bytes using <paramref name="encoder"/> and writes the result to <paramref name="writer"/>.
 		/// </summary>

@@ -14,6 +14,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Internal\MessagePackDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.StringBinary.tt</DependentUpon>
+    </None>
+    <None Include="Serialization\MessagePackSerializerProviderExtensions.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackSerializerProviderExtensions.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Internal\MessagePackDecoder.Integers.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -29,6 +42,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MessagePackDecoder.Reals.tt</DependentUpon>
     </Compile>
+    <Compile Update="Internal\MessagePackDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.StringBinary.tt</DependentUpon>
+    </Compile>
     <Compile Update="Internal\MessagePackEncoder.Integers.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -38,6 +56,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MessagePackEncoder.Strings.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Serialization\MessagePackSerializerProviderExtensions.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackSerializerProviderExtensions.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -61,6 +84,14 @@
     <None Update="Internal/MessagePackEncoder.Strings.tt">
       <LastGenOutput>MessagePackEncoder.Strings.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Internal\MessagePackDecoder.StringBinary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackDecoder.StringBinary.cs</LastGenOutput>
+    </None>
+    <None Update="Serialization\MessagePackSerializerProviderExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackSerializerProviderExtensions.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

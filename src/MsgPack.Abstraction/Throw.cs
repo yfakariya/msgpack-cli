@@ -56,6 +56,9 @@ namespace MsgPack
 		public static void TooLargeByteLength(Exception innerException, string encodingName)
 			=> throw new InvalidOperationException($"Input ReadOnlySequence is too large. It will be encoded to larger than {Int32.MaxValue:#,0} bytes with '{encodingName}' encoding, but it must be less than or equal to {UInt32.MaxValue:#,0} bytes.", innerException);
 
+		public static void TooLargeCharLength(long size)
+			=> throw new InvalidOperationException($"Input ReadOnlySequence is too large. Its size is {size:#,0}, but it must be less than or equal to {UInt32.MaxValue:#,0} chars.");
+
 		public static void TooLargePropertyKey(long position, int length, int maxPropertyKeyLength)
 			=> throw new LimitExceededException(position, $"Property key is too large. The size {length:#,0} is larger than configured limit {maxPropertyKeyLength:#,0}.");
 
