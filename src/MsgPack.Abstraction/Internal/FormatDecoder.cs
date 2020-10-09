@@ -47,14 +47,51 @@ namespace MsgPack.Internal
 
 		public abstract void DecodeItem(ref SequenceReader<byte> source, out DecodeItemResult result, out int requestHint, CancellationToken cancellationToken = default);
 
+		/// <summary>
+		///		Gets a raw encoded string value.
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="buffer"></param>
+		/// <param name="cancellationToken"></param>
+		/// <returns>
+		///		If <paramref name="buffer"/> has enough bytes, actually used bytes length will be returned.
+		///		Otherwise, negated value of raw string length is returned.
+		///		Note that <c>0</c> means successful result for empty raw string.
+		/// </returns>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String"/> type.</exception>
+		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public void GetRawString(ref SequenceReader<byte> source, out ReadOnlySpan<byte> rawString, CancellationToken cancellationToken = default)
+		public int GetRawString(ref SequenceReader<byte> source, Span<byte> buffer, CancellationToken cancellationToken = default)
 		{
-			if (!this.GetRawString(ref source, out rawString, out var requestHint, cancellationToken))
+			var usedOrRequested = this.GetRawString(ref source, buffer, out var requestHint, cancellationToken);
+			if (requestHint != 0)
 			{
 				Throw.InsufficientInputForRawString(source.Consumed, requestHint);
 			}
+
+			return usedOrRequested;
 		}
+
+		/// <summary>
+		///		Gets a raw encoded string value.
+		/// </summary>
+		/// <param name="source"></param>
+		/// <param name="buffer"></param>
+		/// <param name="requestHint">
+		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
+		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
+		/// </param>
+		/// <param name="cancellationToken"></param>
+		/// <returns>
+		///		If <paramref name="buffer"/> has enough bytes, actually used bytes length will be returned.
+		///		Otherwise, negated value of raw string length is returned.
+		///		Note that <c>0</c> means successful result for empty raw string.
+		///		Also, note that the return value is undefined when <paramref name="requestHint"/> is not <c>0</c>.
+		/// </returns>
+		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
+		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String"/> type.</exception>
+		public abstract int GetRawString(ref SequenceReader<byte> source, Span<byte> buffer, out int requestHint, CancellationToken cancellationToken = default);
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public bool TryDecodeNull(ref SequenceReader<byte> source)
@@ -73,9 +110,6 @@ namespace MsgPack.Internal
 		}
 
 		public abstract bool TryDecodeNull(ref SequenceReader<byte> source, out int requestHint);
-
-
-		public abstract bool GetRawString(ref SequenceReader<byte> source, out ReadOnlySpan<byte> rawString, out int requestHint, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///		Decodes current data as array or map header, and returns the items count if known.

@@ -17,31 +17,31 @@ namespace MsgPack.Json
 	{
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override bool GetRawString(ref SequenceReader<byte> source, out ReadOnlySpan<byte> rawString, out int requestHint, CancellationToken cancellationToken = default)
+		public sealed override int GetRawString(ref SequenceReader<byte> source, Span<byte> buffer, out int requestHint, CancellationToken cancellationToken = default)
 		{
+			var position = source.Consumed;
 			if (!this.GetRawStringCore(ref source, out var rawStringSequence, out requestHint, cancellationToken))
 			{
-				rawString = default;
-				return false;
+				// Int32.MaxValue * -1 -> Overflow, so this value is suitable to "undefined value".
+				return Int32.MinValue;
 			}
 
-			if (rawStringSequence.IsSingleSegment)
+			if (rawStringSequence.Length > this.Options.MaxBinaryLengthInBytes)
 			{
-				rawString = rawStringSequence.FirstSpan;
-			}
-			else
-			{
-				// length should be Int32 because max length option is Int32 type.
-				Span<byte> result = new byte[(int)rawStringSequence.Length];
-				rawStringSequence.CopyTo(result);
-				rawString = result;
+				Throw.BinaryLengthExceeded(position, rawStringSequence.Length, this.Options.MaxBinaryLengthInBytes);
 			}
 
-			return true;
+			if (buffer.Length < rawStringSequence.Length)
+			{
+				return -((int)rawStringSequence.Length);
+			}
+
+			rawStringSequence.CopyTo(buffer);
+			return (int)rawStringSequence.Length;
 		}
 
 		private bool GetRawStringCore(ref SequenceReader<byte> source, out ReadOnlySequence<byte> rawString, out int requestHint, CancellationToken cancellationToken = default)
-		{ 
+		{
 			this.ReadTrivia(ref source);
 			var startOffset = source.Consumed;
 
@@ -237,7 +237,7 @@ namespace MsgPack.Json
 		{
 			source.TryPeek(out var escaped);
 			char unescaped;
-			switch(escaped)
+			switch (escaped)
 			{
 				case (byte)'b':
 				{
@@ -339,7 +339,7 @@ namespace MsgPack.Json
 					JsonThrow.OrphanSurrogate(positionOf1stSurrogate, codePointOrHighSurrogate);
 				}
 
-				if(!source.TryCopyTo(buffer))
+				if (!source.TryCopyTo(buffer))
 				{
 					requestHint = buffer.Length - (int)source.Remaining;
 					return;
@@ -422,11 +422,13 @@ namespace MsgPack.Json
 					ReadOnlySpan<byte> inputSpan = sequence.FirstSpan;
 					Span<byte> outputSpan = outputBuffer;
 					var status = OperationStatus.DestinationTooSmall;
+					var position = source.Consumed;
 					while (true)
 					{
 						status = Base64.DecodeFromUtf8(inputSpan, outputSpan, out var bytesConsumed, out var bytesWritten, isFinalBlock: sequence.IsSingleSegment);
 						inputSpan = inputSpan.Slice(bytesConsumed);
 						outputSpan = outputSpan.Slice(bytesWritten);
+						position += bytesConsumed;
 
 						resultLength += bytesWritten;
 						switch (status)
@@ -484,7 +486,7 @@ namespace MsgPack.Json
 							default:
 							{
 								Debug.Assert(status == OperationStatus.InvalidData, $"status ({status}) == OperationStatus.InvalidData");
-								JsonThrow.InvalidBase64(startOffset);
+								JsonThrow.InvalidBase64(position, Encoding.UTF8.GetString(inputSpan));
 								// never
 								return default;
 							}
