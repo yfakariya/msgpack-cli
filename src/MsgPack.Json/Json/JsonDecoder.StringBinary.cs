@@ -38,21 +38,21 @@ namespace MsgPack.Json
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override string? DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
+		public sealed override string DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
 		{
 			this.ReadTrivia(ref source);
 			return this.DecodeStringCore(ref source, out requestHint, cancellationToken);
 		}
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		private string? DecodeStringCore(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
+		private string DecodeStringCore(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var startOffset = source.Consumed;
 
 			var quotation = this.ReadStringStart(ref source, out requestHint);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			// fast-path
@@ -61,7 +61,7 @@ namespace MsgPack.Json
 				// EoF
 				requestHint = 1;
 				source.Rewind(source.Consumed - startOffset);
-				return default;
+				return default!;
 			}
 
 			if (sequence.Length > this.Options.MaxStringLengthInBytes)
@@ -78,7 +78,7 @@ namespace MsgPack.Json
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private string? DecodeStringCoreSlow(ref SequenceReader<byte> source, out int requestHint, long startOffset, byte quotation, ref ReadOnlySequence<byte> sequence, byte delimiter, CancellationToken cancellationToken)
+		private string DecodeStringCoreSlow(ref SequenceReader<byte> source, out int requestHint, long startOffset, byte quotation, ref ReadOnlySequence<byte> sequence, byte delimiter, CancellationToken cancellationToken)
 		{
 			var length = sequence.Length;
 			using (var result = new StringBuilderBufferWriter(new StringBuilder(), this.Options))
@@ -108,7 +108,7 @@ namespace MsgPack.Json
 						if (requestHint != 0)
 						{
 							source.Rewind(source.Consumed - startOffset);
-							return default;
+							return default!;
 						}
 
 						length += 6;
@@ -145,7 +145,7 @@ namespace MsgPack.Json
 			}
 
 			// No closing quotation.
-			return default;
+			return default!;
 		}
 
 
@@ -179,7 +179,7 @@ namespace MsgPack.Json
 			var quotation = this.ReadStringStart(ref source, out requestHint);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			// fast-path
@@ -188,7 +188,7 @@ namespace MsgPack.Json
 				// EoF
 				requestHint = 1;
 				source.Rewind(source.Consumed - startOffset);
-				return default;
+				return default!;
 			}
 
 			if (sequence.Length > this.Options.MaxStringLengthInBytes)
@@ -235,7 +235,7 @@ namespace MsgPack.Json
 						if (requestHint != 0)
 						{
 							source.Rewind(source.Consumed - startOffset);
-							return default;
+							return default!;
 						}
 
 						length += 6;
@@ -272,7 +272,7 @@ namespace MsgPack.Json
 			}
 
 			// No closing quotation.
-			return default;
+			return default!;
 		}
 
 
@@ -292,20 +292,20 @@ namespace MsgPack.Json
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override byte[]? DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
+		public sealed override byte[] DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
 		{
 			this.ReadTrivia(ref source);
 			return this.DecodeBinaryCore(ref source, out requestHint, cancellationToken);
 		}
 
-		private byte[]? DecodeBinaryCore(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
+		private byte[] DecodeBinaryCore(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var startOffset = source.Consumed;
 
 			var quotation = this.ReadStringStart(ref source, out requestHint);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (!source.TryReadTo(out ReadOnlySequence<byte> sequence, quotation, advancePastDelimiter: true))
@@ -313,7 +313,7 @@ namespace MsgPack.Json
 				// EoF
 				requestHint = 1;
 				source.Rewind(source.Consumed - startOffset);
-				return default;
+				return default!;
 			}
 
 			if (sequence.Length > this.Options.MaxBinaryLengthInBytes)
@@ -397,7 +397,7 @@ namespace MsgPack.Json
 								Debug.Assert(status == OperationStatus.InvalidData, $"status ({status}) == OperationStatus.InvalidData");
 								JsonThrow.InvalidBase64(position, Encoding.UTF8.GetString(inputSpan));
 								// never
-								return default;
+								return default!;
 							}
 						}
 					}
@@ -446,7 +446,7 @@ namespace MsgPack.Json
 			var quotation = this.ReadStringStart(ref source, out requestHint);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (!source.TryReadTo(out ReadOnlySequence<byte> sequence, quotation, advancePastDelimiter: true))
@@ -454,7 +454,7 @@ namespace MsgPack.Json
 				// EoF
 				requestHint = 1;
 				source.Rewind(source.Consumed - startOffset);
-				return default;
+				return default!;
 			}
 
 			if (sequence.Length > this.Options.MaxBinaryLengthInBytes)
@@ -512,7 +512,7 @@ namespace MsgPack.Json
 								Debug.Assert(status == OperationStatus.InvalidData, $"status ({status}) == OperationStatus.InvalidData");
 								JsonThrow.InvalidBase64(position, Encoding.UTF8.GetString(inputSpan));
 								// never
-								return default;
+								return default!;
 							}
 						}
 					}

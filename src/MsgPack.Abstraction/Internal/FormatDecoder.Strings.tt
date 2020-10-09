@@ -108,7 +108,7 @@ foreach (var spec in new [] {
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <#= spec.DocType #> type.</exception>
-		public abstract <#= spec.Type #>? Decode<#= spec.Name #>(ref SequenceReader<byte> source, out int requestHint, <#= spec.ExtraParameters #>CancellationToken cancellationToken = default);
+		public abstract <#= spec.Type #> Decode<#= spec.Name #>(ref SequenceReader<byte> source, out int requestHint, <#= spec.ExtraParameters #>CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///		Decodes <#= spec.DocType #> value or <c>null</c> from specified sequence.

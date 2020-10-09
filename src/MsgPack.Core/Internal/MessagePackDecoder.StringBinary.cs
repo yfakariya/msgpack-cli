@@ -34,18 +34,18 @@ namespace MsgPack.Internal
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override string? DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
+		public sealed override string DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
 		{
 			var length = this.DecodeStringHeader(ref source, out _, out requestHint, out var consumed);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (source.Remaining < length)
 			{
 				requestHint = (int)((length - source.Remaining) & Int32.MaxValue);
-				return default;
+				return default!;
 			}
 
 			if (length > this.Options.MaxBinaryLengthInBytes)
@@ -90,13 +90,13 @@ namespace MsgPack.Internal
 			var length = this.DecodeStringHeader(ref source, out _, out requestHint, out var consumed);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (source.Remaining < length)
 			{
 				requestHint = (int)((length - source.Remaining) & Int32.MaxValue);
-				return default;
+				return default!;
 			}
 
 			if (length > this.Options.MaxBinaryLengthInBytes)
@@ -137,12 +137,12 @@ namespace MsgPack.Internal
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override byte[]? DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
+		public sealed override byte[] DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var length = this.DecodeBinaryHeader(ref source, out requestHint, out var consumed);
 			if(requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (length > this.Options.MaxBinaryLengthInBytes)
@@ -153,7 +153,7 @@ namespace MsgPack.Internal
 			if(source.Remaining < length)
 			{
 				requestHint = length - (int)source.Remaining;
-				return default;
+				return default!;
 			}
 
 			// This line may throw OutOfMemoryException, but we cannot determine the OOM is caused by heap exhausion or excess of the implementation specific max length of arrays.
@@ -186,7 +186,7 @@ namespace MsgPack.Internal
 			var length = this.DecodeBinaryHeader(ref source, out requestHint, out var consumed);
 			if(requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (length > this.Options.MaxBinaryLengthInBytes)
@@ -197,7 +197,7 @@ namespace MsgPack.Internal
 			if(source.Remaining < length)
 			{
 				requestHint = length - (int)source.Remaining;
-				return default;
+				return default!;
 			}
 
 			var shouldBeTrue = source.TryCopyTo(buffer);

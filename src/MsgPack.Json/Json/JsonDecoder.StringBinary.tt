@@ -27,7 +27,6 @@ namespace MsgPack.Json
 foreach (var isSpan in new [] { false, true })
 {
 	var returnType = isSpan ? "int" : "string";
-	var nonNullableReturnType = isSpan ? "int" : "string?";
 	var bufferParameter = isSpan ? "Span<char> buffer, " : String.Empty;
 	var bufferArgument = isSpan ? "buffer, " : String.Empty;
 #>
@@ -48,21 +47,21 @@ foreach (var isSpan in new [] { false, true })
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override <#= nonNullableReturnType #> DecodeString(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
+		public sealed override <#= returnType #> DecodeString(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default)
 		{
 			this.ReadTrivia(ref source);
 			return this.DecodeStringCore(ref source, <#= bufferArgument #>out requestHint, cancellationToken);
 		}
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		private <#= nonNullableReturnType #> DecodeStringCore(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
+		private <#= returnType #> DecodeStringCore(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var startOffset = source.Consumed;
 
 			var quotation = this.ReadStringStart(ref source, out requestHint);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			// fast-path
@@ -71,7 +70,7 @@ foreach (var isSpan in new [] { false, true })
 				// EoF
 				requestHint = 1;
 				source.Rewind(source.Consumed - startOffset);
-				return default;
+				return default!;
 			}
 
 			if (sequence.Length > this.Options.MaxStringLengthInBytes)
@@ -101,7 +100,7 @@ foreach (var isSpan in new [] { false, true })
 		}
 
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		private <#= nonNullableReturnType #> DecodeStringCoreSlow(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, long startOffset, byte quotation, ref ReadOnlySequence<byte> sequence, byte delimiter, CancellationToken cancellationToken)
+		private <#= returnType #> DecodeStringCoreSlow(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, long startOffset, byte quotation, ref ReadOnlySequence<byte> sequence, byte delimiter, CancellationToken cancellationToken)
 		{
 			var length = sequence.Length;
 			using (var result = new StringBuilderBufferWriter(new StringBuilder(), this.Options))
@@ -131,7 +130,7 @@ foreach (var isSpan in new [] { false, true })
 						if (requestHint != 0)
 						{
 							source.Rewind(source.Consumed - startOffset);
-							return default;
+							return default!;
 						}
 
 						length += 6;
@@ -181,7 +180,7 @@ foreach (var isSpan in new [] { false, true })
 			}
 
 			// No closing quotation.
-			return default;
+			return default!;
 		}
 
 <#
@@ -190,7 +189,6 @@ foreach (var isSpan in new [] { false, true })
 foreach (var isSpan in new [] { false, true })
 {
 	var returnType = isSpan ? "int" : "byte[]";
-	var nonNullableReturnType = isSpan ? "int" : "byte[]?";
 	var bufferParameter = isSpan ? "Span<byte> buffer, " : String.Empty;
 	var bufferArgument = isSpan ? "buffer, " : String.Empty;
 #>
@@ -211,20 +209,20 @@ foreach (var isSpan in new [] { false, true })
 
 		/// <inheritdoc />
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public sealed override <#= nonNullableReturnType #> DecodeBinary(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
+		public sealed override <#= returnType #> DecodeBinary(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
 		{
 			this.ReadTrivia(ref source);
 			return this.DecodeBinaryCore(ref source, <#= bufferArgument #>out requestHint, cancellationToken);
 		}
 
-		private <#= nonNullableReturnType #> DecodeBinaryCore(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
+		private <#= returnType #> DecodeBinaryCore(ref SequenceReader<byte> source, <#= bufferParameter #>out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var startOffset = source.Consumed;
 
 			var quotation = this.ReadStringStart(ref source, out requestHint);
 			if (requestHint != 0)
 			{
-				return default;
+				return default!;
 			}
 
 			if (!source.TryReadTo(out ReadOnlySequence<byte> sequence, quotation, advancePastDelimiter: true))
@@ -232,7 +230,7 @@ foreach (var isSpan in new [] { false, true })
 				// EoF
 				requestHint = 1;
 				source.Rewind(source.Consumed - startOffset);
-				return default;
+				return default!;
 			}
 
 			if (sequence.Length > this.Options.MaxBinaryLengthInBytes)
@@ -363,7 +361,7 @@ foreach (var isSpan in new [] { false, true })
 								Debug.Assert(status == OperationStatus.InvalidData, $"status ({status}) == OperationStatus.InvalidData");
 								JsonThrow.InvalidBase64(position, Encoding.UTF8.GetString(inputSpan));
 								// never
-								return default;
+								return default!;
 							}
 						}
 					}

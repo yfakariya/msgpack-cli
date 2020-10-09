@@ -58,7 +58,7 @@ namespace MsgPack.Internal
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="String" /> type.</exception>
-		public abstract String? DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
+		public abstract String DecodeString(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///		Decodes <see cref="String" /> value or <c>null</c> from specified sequence.
@@ -245,7 +245,7 @@ namespace MsgPack.Internal
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Utf8String" /> type.</exception>
-		public abstract Utf8String? DecodeUtf8String(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
+		public abstract Utf8String DecodeUtf8String(ref SequenceReader<byte> source, out int requestHint, Encoding? encoding = null, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///		Decodes <see cref="Utf8String" /> value or <c>null</c> from specified sequence.
@@ -430,7 +430,7 @@ namespace MsgPack.Internal
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains invalid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="Byte" />[] type.</exception>
-		public abstract byte[]? DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default);
+		public abstract byte[] DecodeBinary(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default);
 
 		/// <summary>
 		///		Decodes <see cref="Byte" />[] value or <c>null</c> from specified sequence.
