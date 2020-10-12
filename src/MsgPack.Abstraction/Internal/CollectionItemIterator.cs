@@ -4,6 +4,7 @@
 
 using System.Buffers;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace MsgPack.Internal
 {
@@ -49,17 +50,16 @@ namespace MsgPack.Internal
 		}
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public void Drain(ref SequenceReader<byte> source)
+		public void Drain(ref SequenceReader<byte> source, CancellationToken cancellationToken = default)
 		{
-			if (!this.Drain(ref source, out var requestHint))
+			if (!this.Drain(ref source, out var requestHint, cancellationToken))
 			{
 				Throw.InsufficientInputForDrainCollectionItems(source.Consumed, requestHint);
 			}
 		}
 
-#warning TODO: CancellationToken
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public bool Drain(ref SequenceReader<byte> source, out int requestHint)
+		public bool Drain(ref SequenceReader<byte> source, out int requestHint, CancellationToken cancellationToken = default)
 		{
 			while (!this.CollectionEnds(ref source, out requestHint))
 			{
@@ -67,16 +67,18 @@ namespace MsgPack.Internal
 				{
 					return false;
 				}
+
+				cancellationToken.ThrowIfCancellationRequested();
 			}
 
 			return true;
 		}
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		public bool Drain(ref ReadOnlySequence<byte> source, out int requestHint)
+		public bool Drain(ref ReadOnlySequence<byte> source, out int requestHint, CancellationToken cancellationToken = default)
 		{
 			var reader = new SequenceReader<byte>(source);
-			var ends = this.Drain(ref reader, out requestHint);
+			var ends = this.Drain(ref reader, out requestHint, cancellationToken);
 			source = source.Slice((int)reader.Consumed);
 			return ends;
 		}

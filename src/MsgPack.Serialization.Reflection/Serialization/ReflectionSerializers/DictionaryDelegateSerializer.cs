@@ -259,7 +259,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				this._add(result, key, value);
 			}
 
-			iterator.Drain(ref source);
+			iterator.Drain(ref source, context.CancellationToken);
 
 			return result;
 		}
@@ -348,7 +348,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				this._add(obj, key, value);
 			}
 
-			iterator.Drain(ref source);
+			iterator.Drain(ref source, context.CancellationToken);
 		}
 
 #if FEATURE_TAP

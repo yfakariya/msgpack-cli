@@ -7,6 +7,7 @@ using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using MsgPack.Internal;
 using MsgPack.Serialization.Internal;
@@ -203,7 +204,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			}
 			else
 			{
-				result = this.Deserialize(decoder, ref context, ref source);
+				result = this.Deserialize(decoder, ref context, ref source, context.CancellationToken);
 			}
 
 			if (this._itemIsCollection)
@@ -226,7 +227,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			return result;
 		}
 
-		private object Deserialize(FormatDecoder decoder, ref DeserializationOperationContext context, ref SequenceReader<byte> source)
+		private object Deserialize(FormatDecoder decoder, ref DeserializationOperationContext context, ref SequenceReader<byte> source, CancellationToken cancellationToken)
 		{
 			var result = this._defaultConstructor?.Invoke() ?? this._constructorWithCapacity!(0);
 
@@ -235,7 +236,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			{
 				this._add(result, this._deserializeItem(ref context, ref source));
 			}
-			iterator.Drain(ref source);
+			iterator.Drain(ref source, cancellationToken);
 
 			return result;
 		}
@@ -285,7 +286,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			{
 				this._add(obj, this._deserializeItem(ref context, ref source));
 			}
-			iterator.Drain(ref source);
+			iterator.Drain(ref source, context.CancellationToken);
 		}
 
 #if FEATURE_TAP

@@ -136,7 +136,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			{
 				result.Add(this._deserializeItem(ref context, ref source));
 			}
-			iterator.Drain(ref source);
+			iterator.Drain(ref source, context.CancellationToken);
 
 			return result.ToArray();
 		}

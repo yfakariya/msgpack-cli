@@ -216,7 +216,7 @@ namespace MsgPack.Serialization.Internal
 		private static bool TryDrain(CollectionItemIterator iterator, ReadOnlyStreamSequence source, out int requestHint, CancellationToken cancellationToken)
 		{
 			var reader = new SequenceReader<byte>(source.Sequence);
-			iterator.Drain(ref reader, out requestHint);
+			iterator.Drain(ref reader, out requestHint, cancellationToken);
 			source.Advance(reader.Consumed);
 			return requestHint == 0;
 		}
