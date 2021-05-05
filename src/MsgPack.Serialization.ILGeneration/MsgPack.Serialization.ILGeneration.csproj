@@ -6,14 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\MsgPack\Serialization\ReflectionExtensions.ConstructorDelegate.cs" Link="Serialization\ReflectionExtensions.ConstructorDelegate.cs" />
-    <Compile Include="..\MsgPack\Serialization\Reflection\TracingILGenerator.conveniences.cs" Link="Serialization\Reflection\TracingILGenerator.conveniences.cs" />
-    <Compile Include="..\MsgPack\Serialization\Reflection\TracingILGenerator.cs" Link="Serialization\Reflection\TracingILGenerator.cs" />
-    <Compile Include="..\MsgPack\Serialization\Reflection\TracingILGenerator.emits.cs" Link="Serialization\Reflection\TracingILGenerator.emits.cs" />
+    <Compile Include="../MsgPack.Core/Throw.Reflection.cs" Link="Throw.Reflection.cs" />
+    <Compile Include="../MsgPack/ReflectionAbstractions.cs" Link="ReflectionAbstractions.cs" />
+    <Compile Include="../MsgPack/Serialization/NullTextWriter.cs" Link="Serialization/NullTextWriter.cs" />
+    <Compile Include="../MsgPack/Serialization/ReflectionExtensions.cs" Link="Serialization/ReflectionExtensions.cs" />
+    <Compile Include="../MsgPack/Serialization/ReflectionExtensions.ConstructorDelegate.cs" Link="Serialization/ReflectionExtensions.ConstructorDelegate.cs" />
+    <Compile Include="../MsgPack/Serialization/Reflection/TracingILGenerator.conveniences.cs" Link="Serialization/Reflection/TracingILGenerator.conveniences.cs" />
+    <Compile Include="../MsgPack/Serialization/Reflection/TracingILGenerator.cs" Link="Serialization/Reflection/TracingILGenerator.cs" />
+    <Compile Include="../MsgPack/Serialization/Reflection/TracingILGenerator.emits.cs" Link="Serialization/Reflection/TracingILGenerator.emits.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Serialization\Reflection\ILTranslator.Parse.cs">
+    <None Include="Serialization/Reflection/ILTranslator.Parse.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ILTranslator.Parse.tt</DependentUpon>
@@ -21,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Serialization\Reflection\ILTranslator.Parse.tt">
+    <None Update="Serialization/Reflection/ILTranslator.Parse.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ILTranslator.Parse.cs</LastGenOutput>
     </None>
@@ -32,7 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Serialization\Reflection\ILTranslator.Parse.cs">
+    <Compile Update="Serialization/Reflection/ILTranslator.Parse.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ILTranslator.Parse.tt</DependentUpon>
