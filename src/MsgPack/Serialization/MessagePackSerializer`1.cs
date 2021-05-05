@@ -26,6 +26,7 @@
 #endif
 
 using System;
+using System.Buffers;
 using System.Globalization;
 using System.IO;
 #if FEATURE_TAP
@@ -464,7 +465,7 @@ namespace MsgPack.Serialization
 		protected internal virtual Task PackToAsyncCore( Packer packer, T objectTree, CancellationToken cancellationToken )
 		{
 #if DEBUG
-			SerializerDebugging.EnsureNaiveAsyncAllowed( this );
+			//SerializerDebugging.EnsureNaiveAsyncAllowed( this );
 #endif // DEBUG
 			return Task.Run( () => this.PackToCore( packer, objectTree ), cancellationToken );
 		}
@@ -663,7 +664,7 @@ namespace MsgPack.Serialization
 		protected internal virtual Task<T> UnpackFromAsyncCore( Unpacker unpacker, CancellationToken cancellationToken )
 		{
 #if DEBUG
-			SerializerDebugging.EnsureNaiveAsyncAllowed( this );
+			//SerializerDebugging.EnsureNaiveAsyncAllowed( this );
 #endif // DEBUG
 			return Task.Run( () => this.UnpackFrom( unpacker ), cancellationToken );
 		}
@@ -846,7 +847,7 @@ namespace MsgPack.Serialization
 		protected internal virtual Task UnpackToAsyncCore( Unpacker unpacker, T collection, CancellationToken cancellationToken )
 		{
 #if DEBUG
-			SerializerDebugging.EnsureNaiveAsyncAllowed( this );
+			//SerializerDebugging.EnsureNaiveAsyncAllowed( this );
 #endif // DEBUG
 
 			return Task.Run( () => this.UnpackToCore( unpacker, collection ), cancellationToken );
@@ -900,10 +901,19 @@ namespace MsgPack.Serialization
 		public ArraySegment<byte> PackSingleObjectAsBytes( T objectTree )
 		{
 			// Packer does not have finalizer, so just avoiding unpacker disposing prevents stream closing.
-			var packer = Packer.Create( BufferManager.NewByteBuffer( BufferSize ), /* allowExpansion */true, this.PackerCompatibilityOptions );
+#warning TODO: from codec
+			var buffer = ArrayPool<byte>.Shared.Rent(BufferSize);
+			try
+			{
+				var packer = Packer.Create(buffer, /* allowExpansion */true, this.PackerCompatibilityOptions);
 
-			this.PackTo( packer, objectTree );
-			return packer.GetResultBytes();
+				this.PackTo(packer, objectTree);
+				return packer.GetResultBytes();
+			}
+			finally
+			{
+				ArrayPool<byte>.Shared.Return(buffer, clearArray: true);
+			}
 		}
 
 #if FEATURE_TAP
@@ -980,11 +990,20 @@ namespace MsgPack.Serialization
 		/// <seealso cref="P:Capabilities"/>
 		public async Task<ArraySegment<byte>> PackSingleObjectAsBytesAsync( T objectTree, CancellationToken cancellationToken )
 		{
-			// Packer does not have finalizer, so just avoiding unpacker disposing prevents stream closing.
-			var packer = Packer.Create( BufferManager.NewByteBuffer( BufferSize ),  /* allowExpansion */true, this.PackerCompatibilityOptions );
+#warning TODO: from codec
+			var buffer = ArrayPool<byte>.Shared.Rent(BufferSize);
+			try
+			{
+				// Packer does not have finalizer, so just avoiding unpacker disposing prevents stream closing.
+				var packer = Packer.Create(buffer,  /* allowExpansion */true, this.PackerCompatibilityOptions);
 
-			await this.PackToAsync( packer, objectTree, cancellationToken ).ConfigureAwait( false );
-			return packer.GetResultBytes();
+				await this.PackToAsync(packer, objectTree, cancellationToken).ConfigureAwait(false);
+				return packer.GetResultBytes();
+			}
+			finally
+			{
+				ArrayPool<byte>.Shared.Return(buffer, clearArray: true);
+			}
 		}
 #endif // FEATURE_TAP
 

@@ -44,7 +44,7 @@ using System.Reflection;
 #endif // UNITY || WINDOWS_PHONE || WINDOWS_UWP 
 using System.Threading;
 
-using MsgPack.Serialization.DefaultSerializers;
+using MsgPack.Serialization.BuiltinSerializers;
 using MsgPack.Serialization.Polymorphic;
 
 namespace MsgPack.Serialization
@@ -53,7 +53,7 @@ namespace MsgPack.Serialization
 	///		<strong>This is intened to MsgPack for CLI internal use. Do not use this type from application directly.</strong>
 	///		Represents serialization context information for internal serialization logic.
 	/// </summary>
-	[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Rerely instanticated and backward compatibility" )]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable", Justification = "Rerely instanticated and backward compatibility")]
 	public sealed partial class SerializationContext
 	{
 #if UNITY
@@ -68,7 +68,7 @@ namespace MsgPack.Serialization
 
 
 		// Set SerializerRepository null because it requires SerializationContext, so re-init in constructor.
-		private static SerializationContext _default = new SerializationContext( PackerCompatibilityOptions.None );
+		private static SerializationContext _default = new SerializationContext(PackerCompatibilityOptions.None);
 
 		/// <summary>
 		///		Gets or sets the default instance.
@@ -82,7 +82,7 @@ namespace MsgPack.Serialization
 			get
 			{
 #if !UNITY
-				return Interlocked.CompareExchange( ref _default, null, null );
+				return Interlocked.CompareExchange(ref _default, null, null);
 #else
 				lock( DefaultContextSyncRoot )
 				{
@@ -92,13 +92,13 @@ namespace MsgPack.Serialization
 			}
 			set
 			{
-				if ( value == null )
+				if (value == null)
 				{
-					throw new ArgumentNullException( "value" );
+					throw new ArgumentNullException("value");
 				}
 
 #if !UNITY
-				Interlocked.Exchange( ref _default, value );
+				Interlocked.Exchange(ref _default, value);
 #else
 				lock( DefaultContextSyncRoot )
 				{
@@ -128,7 +128,7 @@ namespace MsgPack.Serialization
 			get
 			{
 #if DEBUG
-				Contract.Ensures( Contract.Result<SerializerRepository>() != null );
+				Contract.Ensures(Contract.Result<SerializerRepository>() != null);
 #endif // DEBUG
 
 				return this._serializers;
@@ -149,7 +149,7 @@ namespace MsgPack.Serialization
 			get
 			{
 #if DEBUG
-				Contract.Ensures( Contract.Result<SerializerOptions>() != null );
+				Contract.Ensures(Contract.Result<SerializerOptions>() != null);
 #endif // DEBUG
 
 				return this._serializerGeneratorOptions;
@@ -169,49 +169,28 @@ namespace MsgPack.Serialization
 			get
 			{
 #if DEBUG
-				Contract.Ensures( Contract.Result<SerializationCompatibilityOptions>() != null );
+				Contract.Ensures(Contract.Result<SerializationCompatibilityOptions>() != null);
 #endif // DEBUG
 
 				return this._compatibilityOptions;
 			}
 		}
 
-		private readonly DictionarySerializationOptions _dictionarySerializationOptions;
+		private readonly DictionarySerlaizationOptions _dictionarySerializationOptions;
 
+		// This typo is INTENTIONAL for v1 compatibility
 		/// <summary>
 		///		Gets the dictionary(map) based serialization options.
 		/// </summary>
 		/// <value>
 		///		The <see cref="DictionarySerializationOptions"/> which stores dictionary(map) based serialization options. This value will not be <c>null</c>.
 		/// </value>
-		public DictionarySerializationOptions DictionarySerializationOptions
+		public DictionarySerlaizationOptions DictionarySerlaizationOptions
 		{
 			get
 			{
 #if DEBUG
-				Contract.Ensures( Contract.Result<DictionarySerializationOptions>() != null );
-#endif // DEBUG
-
-				return this._dictionarySerializationOptions;
-			}
-		}
-
-		/// <summary>
-		///		Gets the dictionary(map) based serialization options.
-		/// </summary>
-		/// <value>
-		///		The <see cref="DictionarySerializationOptions"/> which stores dictionary(map) based serialization options. This value will not be <c>null</c>.
-		/// </value>
-		[Obsolete("Use DictionarySerializationOption instead.")]
-#if !UNITY || MSGPACK_UNITY_FULL
-		[EditorBrowsable(EditorBrowsableState.Never)]
-#endif
-		public DictionarySerializationOptions DictionarySerlaizationOptions
-		{
-			get
-			{
-#if DEBUG
-				Contract.Ensures( Contract.Result<DictionarySerializationOptions>() != null );
+				Contract.Ensures(Contract.Result<DictionarySerlaizationOptions>() != null);
 #endif // DEBUG
 
 				return this._dictionarySerializationOptions;
@@ -232,14 +211,14 @@ namespace MsgPack.Serialization
 			get
 			{
 #if DEBUG
-				Contract.Ensures( Enum.IsDefined( typeof( SerializationMethod ), Contract.Result<SerializationMethod>() ) );
+				Contract.Ensures(Enum.IsDefined(typeof(SerializationMethod), Contract.Result<SerializationMethod>()));
 #endif // DEBUG
 
-				return ( SerializationMethod )Volatile.Read( ref this._serializationMethod );
+				return (SerializationMethod)Volatile.Read(ref this._serializationMethod);
 			}
 			set
 			{
-				switch ( value )
+				switch (value)
 				{
 					case SerializationMethod.Array:
 					case SerializationMethod.Map:
@@ -248,13 +227,13 @@ namespace MsgPack.Serialization
 					}
 					default:
 					{
-						throw new ArgumentOutOfRangeException( "value" );
+						throw new ArgumentOutOfRangeException("value");
 					}
 				}
 
 				Contract.EndContractBlock();
 
-				Volatile.Write( ref this._serializationMethod, ( int )value );
+				Volatile.Write(ref this._serializationMethod, (int)value);
 			}
 		}
 
@@ -271,7 +250,7 @@ namespace MsgPack.Serialization
 			get
 			{
 #if DEBUG
-				Contract.Ensures( Contract.Result<EnumSerializationOptions>() != null );
+				Contract.Ensures(Contract.Result<EnumSerializationOptions>() != null);
 #endif // DEBUG
 
 				return this._enumSerializationOptions;
@@ -295,7 +274,7 @@ namespace MsgPack.Serialization
 		/// 	</list>
 		///		Note that the default value of this property is <see cref="T:EnumSerializationMethod.ByName"/>, it is not size efficient but tolerant to unexpected enum definition change.
 		/// </remarks>
-		[Obsolete( "Use EnumSerializationOptions.SerializationMethod instead." )]
+		[Obsolete("Use EnumSerializationOptions.SerializationMethod instead.")]
 		public EnumSerializationMethod EnumSerializationMethod
 		{
 			get { return this._enumSerializationOptions.SerializationMethod; }
@@ -311,7 +290,7 @@ namespace MsgPack.Serialization
 		/// <value>
 		///		The <see cref="SerializationMethodGeneratorOption"/>.
 		/// </value>
-		[Obsolete( "Use SerializerOptions.GeneratorOption instead." )]
+		[Obsolete("Use SerializerOptions.GeneratorOption instead.")]
 		public SerializationMethodGeneratorOption GeneratorOption
 		{
 
@@ -334,7 +313,7 @@ namespace MsgPack.Serialization
 			get { return this._defaultCollectionTypes; }
 		}
 
-		private int _defaultDateTimeConversionMethod = ( int )DateTimeConversionMethod.Timestamp;
+		private int _defaultDateTimeConversionMethod = (int)DateTimeConversionMethod.Timestamp;
 
 		/// <summary>
 		///		Gets or sets the default <see cref="DateTime"/> conversion methods of built-in serializers.
@@ -350,10 +329,10 @@ namespace MsgPack.Serialization
 		/// </remarks>
 		public DateTimeConversionMethod DefaultDateTimeConversionMethod
 		{
-			get { return ( DateTimeConversionMethod )Volatile.Read( ref this._defaultDateTimeConversionMethod ); }
+			get { return (DateTimeConversionMethod)Volatile.Read(ref this._defaultDateTimeConversionMethod); }
 			set
 			{
-				switch ( value )
+				switch (value)
 				{
 					case DateTimeConversionMethod.Native:
 					case DateTimeConversionMethod.UnixEpoc:
@@ -364,13 +343,13 @@ namespace MsgPack.Serialization
 					}
 					default:
 					{
-						throw new ArgumentOutOfRangeException( "value" );
+						throw new ArgumentOutOfRangeException("value");
 					}
 				}
 
 				Contract.EndContractBlock();
 
-				Volatile.Write( ref this._defaultDateTimeConversionMethod, ( int )value );
+				Volatile.Write(ref this._defaultDateTimeConversionMethod, (int)value);
 			}
 		}
 
@@ -429,10 +408,10 @@ namespace MsgPack.Serialization
 				do
 				{
 					expectedHandler = actualHandler;
-					var combined = ( EventHandler<ResolveSerializerEventArgs> )Delegate.Combine( expectedHandler, value );
-					actualHandler = Interlocked.CompareExchange( ref this._resolveSerializer, combined, expectedHandler );
+					var combined = (EventHandler<ResolveSerializerEventArgs>)Delegate.Combine(expectedHandler, value);
+					actualHandler = Interlocked.CompareExchange(ref this._resolveSerializer, combined, expectedHandler);
 				}
-				while ( expectedHandler != actualHandler );
+				while (expectedHandler != actualHandler);
 #endif
 			}
 			remove
@@ -449,31 +428,31 @@ namespace MsgPack.Serialization
 				do
 				{
 					expectedHandler = actualHandler;
-					var removed = ( EventHandler<ResolveSerializerEventArgs> )Delegate.Remove( expectedHandler, value );
-					actualHandler = Interlocked.CompareExchange( ref this._resolveSerializer, removed, expectedHandler );
+					var removed = (EventHandler<ResolveSerializerEventArgs>)Delegate.Remove(expectedHandler, value);
+					actualHandler = Interlocked.CompareExchange(ref this._resolveSerializer, removed, expectedHandler);
 				}
-				while ( expectedHandler != actualHandler );
+				while (expectedHandler != actualHandler);
 #endif
 			}
 		}
 
-		private MessagePackSerializer<T> OnResolveSerializer<T>( PolymorphismSchema schema )
+		private MessagePackSerializer<T> OnResolveSerializer<T>(PolymorphismSchema schema)
 		{
 #if UNITY
 			lock( this._resolveSerializerSyncRoot )
 			{
 			var handler = this._resolveSerializer;
 #else
-			var handler = Interlocked.CompareExchange( ref this._resolveSerializer, null, null );
+			var handler = Interlocked.CompareExchange(ref this._resolveSerializer, null, null);
 #endif
-			if ( handler == null )
+			if (handler == null)
 			{
 				return null;
 			}
 
 			// Lazily allocate event args memory.
-			var e = new ResolveSerializerEventArgs( this, typeof( T ), schema );
-			handler( this, e );
+			var e = new ResolveSerializerEventArgs(this, typeof(T), schema);
+			handler(this, e);
 			return e.GetFoundSerializer<T>();
 #if UNITY
 			}
@@ -485,22 +464,11 @@ namespace MsgPack.Serialization
 		/// </summary>
 		/// <returns>The previously set context as <see cref="Default"/>.</returns>
 		/// <seealso cref="CreateClassicContext()"/>
-		[Obsolete( "Use ConfigureClassic(SerializationCompatibilityLevel) instead." )]
+		[Obsolete("Use ConfigureClassic(SerializationCompatibilityLevel) instead.")]
 		public static SerializationContext ConfigureClassic()
 		{
-			return ConfigureClassic( SerializationCompatibilityLevel.Version0_5 );
-		}
-
-		/// <summary>
-		///		Configures <see cref="Default"/> as new classic <see cref="SerializationContext"/> instance as compatible for sepcified version.
-		/// </summary>
-		/// <param name="compatibilityLevel">A <see cref="SerializationCompatibilityLevel"/> to specify compatibility level.</param>
-		/// <returns>The previously set context as <see cref="Default"/>.</returns>
-		/// <seealso cref="CreateClassicContext(SerializationCompatibilityLevel)"/>
-		public static SerializationContext ConfigureClassic(SerializationCompatibilityLevel compatibilityLevel)
-		{
 #if !UNITY
-			return Interlocked.Exchange( ref _default, CreateClassicContext( compatibilityLevel) );
+			return Interlocked.Exchange(ref _default, CreateClassicContext());
 #else
 			lock ( DefaultContextSyncRoot )
 			{
@@ -517,106 +485,27 @@ namespace MsgPack.Serialization
 		/// <returns>
 		///		A new <see cref="SerializationContext"/> which is configured as same as 0.5.
 		/// </returns>
-		[Obsolete( "Use CreateClassicContext(SerializationCompatibilityLevel) instead." )]
+		[Obsolete("Use CreateClassicContext(SerializationCompatibilityLevel) instead.")]
 		public static SerializationContext CreateClassicContext()
 		{
-			return CreateClassicContext( SerializationCompatibilityLevel.Version0_5 );
-		}
-
-		/// <summary>
-		///		Creates a new <see cref="SerializationContext"/> which is configured as compatible for the specified version.
-		/// </summary>
-		/// <param name="compatibilityLevel">A <see cref="SerializationCompatibilityLevel"/> to specify compatibility level.</param>
-		/// <returns>
-		///		A new <see cref="SerializationContext"/> which is configured as compatible for the specified version.
-		/// </returns>
-		/// <remarks>
-		///		<para>
-		///			There are breaking changes of <see cref="SerializationContext"/> properties to improve API usability and to prevent accidental failure.
-		///			This method returns a <see cref="SerializationContext"/> which configured as classic style settings as follows:
-		///		</para>
-		///		<list type="table">
-		///			<listheader>
-		///				<term></term>
-		///				<description>Latest (as of 0.6)</description>
-		///				<description>Version0_9 (as of 0.6)</description>
-		///				<description>Version0_5 (formally, "classic", before 0.6)</description>
-		///			</listheader>
-		///			<item>
-		///				<term><see cref="DateTime"/> and <see cref="DateTimeOffset"/> value</term>
-		///				<description><see cref="Timestamp"/> value.</description>
-		///				<description>Native representation (100-nano ticks, preserving <see cref="DateTimeKind"/>.)</description>
-		///				<description>UTC, milliseconds Unix epoc.</description>
-		///			</item>
-		///			<item>
-		///				<term>Usage of <c>ext</c> types</term>
-		///				<description>Allowed</description>
-		///				<description>Allowed</description>
-		///				<description>Prohibited</description>
-		///			</item>
-		///			<item>
-		///				<term>Binary (such as <c>Byte[]</c>) representation</term>
-		///				<description>Bin types</description>
-		///				<description>Bin types</description>
-		///				<description>Raw types</description>
-		///			</item>
-		///			<item>
-		///				<term>Strings which lengthes are between 17 to 255</term>
-		///				<description>Str8 type</description>
-		///				<description>Str8 types</description>
-		///				<description>Raw16 type</description>
-		///			</item>
-		///		</list>
-		///		<para>
-		///			In short, <see cref="SerializationCompatibilityLevel.Version0_5"/> prohibits deserialization error in legacy implementation
-		///			which do not recognize ext types, str8 type, and/or bin types.
-		///			<see cref="SerializationCompatibilityLevel.Version0_9"/> prohibits only <see cref="Timestamp"/> serialization for datetime
-		///			to keep compatibility for 0.9.x instead of maximize datetime serialization for modern implementations which uses msgpack timestamp type,
-		///			which is composite ext type, nano-second precision Unix epoc time.
-		///		</para>
-		/// </remarks>
-		public static SerializationContext CreateClassicContext( SerializationCompatibilityLevel compatibilityLevel )
-		{
-			switch ( compatibilityLevel )
-			{
-				case SerializationCompatibilityLevel.Version0_5:
+			return
+				new SerializationContext(PackerCompatibilityOptions.Classic)
 				{
-					return
-						new SerializationContext( PackerCompatibilityOptions.Classic )
-						{
-							DefaultDateTimeConversionMethod = DateTimeConversionMethod.UnixEpoc
-						};
-				}
-				case SerializationCompatibilityLevel.Version0_9:
-				{
-					return
-						new SerializationContext( PackerCompatibilityOptions.None )
-						{
-							DefaultDateTimeConversionMethod = DateTimeConversionMethod.Native
-						};
-				}
-				case SerializationCompatibilityLevel.Latest:
-				{
-					return new SerializationContext( PackerCompatibilityOptions.None );
-				}
-				default:
-				{
-					throw new ArgumentOutOfRangeException( "Unknown SerializationCompatibilityLevel value." );
-				}
-			}
+					DefaultDateTimeConversionMethod = DateTimeConversionMethod.UnixEpoc
+				};
 		}
 
 		/// <summary>
 		///		Initializes a new instance of the <see cref="SerializationContext"/> class with copy of <see cref="SerializerRepository.GetDefault()"/>.
 		/// </summary>
 		public SerializationContext()
-			: this( PackerCompatibilityOptions.None ) { }
+			: this(PackerCompatibilityOptions.None) { }
 
 		/// <summary>
 		///		Initializes a new instance of the <see cref="SerializationContext"/> class with copy of <see cref="SerializerRepository.GetDefault()"/> for specified <see cref="PackerCompatibilityOptions"/>.
 		/// </summary>
 		/// <param name="packerCompatibilityOptions"><see cref="PackerCompatibilityOptions"/> which will be used on built-in serializers.</param>
-		public SerializationContext( PackerCompatibilityOptions packerCompatibilityOptions )
+		public SerializationContext(PackerCompatibilityOptions packerCompatibilityOptions)
 		{
 			this._compatibilityOptions =
 				new SerializationCompatibilityOptions
@@ -625,7 +514,7 @@ namespace MsgPack.Serialization
 						packerCompatibilityOptions
 				};
 
-			this._serializers = new SerializerRepository( SerializerRepository.GetDefault( this ) );
+			this._serializers = new SerializerRepository(SerializerRepository.GetDefault(this));
 
 #if !FEATURE_CONCURRENT
 			this._typeLock = new Dictionary<Type, object>();
@@ -633,18 +522,18 @@ namespace MsgPack.Serialization
 			this._typeLock = new ConcurrentDictionary<Type, object>();
 #endif // !FEATURE_CONCURRENT
 			this._generationLock = new object();
-			this._defaultCollectionTypes = new DefaultConcreteTypeRepository();
+#warning TODO: IMPL
+			this._defaultCollectionTypes = new DefaultConcreteTypeRepository(new Dictionary<RuntimeTypeHandle, object>());
 			this._serializerGeneratorOptions = new SerializerOptions();
-			this._dictionarySerializationOptions = new DictionarySerializationOptions();
+			this._dictionarySerializationOptions = new DictionarySerlaizationOptions();
 			this._enumSerializationOptions = new EnumSerializationOptions();
-			this._bindingOptions = new BindingOptions();
 		}
 
-		internal bool ContainsSerializer( Type rootType )
+		internal bool ContainsSerializer(Type rootType)
 		{
 			return
-				this._serializers.ContainsFor( rootType )
-				|| ( rootType.GetIsGenericType() && this._serializers.ContainsFor( rootType.GetGenericTypeDefinition() ) );
+				this._serializers.ContainsFor(rootType)
+				|| (rootType.GetIsGenericType() && this._serializers.ContainsFor(rootType.GetGenericTypeDefinition()));
 		}
 
 		/// <summary>
@@ -661,7 +550,7 @@ namespace MsgPack.Serialization
 		/// </remarks>
 		public MessagePackSerializer<T> GetSerializer<T>()
 		{
-			return this.GetSerializer<T>( null );
+			return this.GetSerializer<T>(null);
 		}
 
 		/// <summary>
@@ -693,234 +582,236 @@ namespace MsgPack.Serialization
 		///			<note><c>null</c> is valid value for <paramref name="providerParameter"/> and it indeicates default behavior of parameter.</note>
 		///		</para>
 		/// </remarks>
-		public MessagePackSerializer<T> GetSerializer<T>( object providerParameter )
+		public MessagePackSerializer<T> GetSerializer<T>(object providerParameter)
 		{
-#if DEBUG
-			Contract.Ensures( Contract.Result<MessagePackSerializer<T>>() != null );
-#endif // DEBUG
+#warning TODO: IMPL
+			throw new NotImplementedException();
+//#if DEBUG
+//			Contract.Ensures(Contract.Result<MessagePackSerializer<T>>() != null);
+//#endif // DEBUG
 
-			// Explicitly generated serializer should always used, so get it first.
-			MessagePackSerializer<T> serializer = this._serializers.Get<T>( this, providerParameter );
+//			// Explicitly generated serializer should always used, so get it first.
+//			MessagePackSerializer<T> serializer = this._serializers.Get<T>(this, providerParameter);
 
-			if ( serializer != null )
-			{
-				return serializer;
-			}
+//			if (serializer != null)
+//			{
+//				return serializer;
+//			}
 
-			bool lockTaken = false;
-			lock ( this._generationLock )
-			{
-				// Re-get to check because other thread might create the serializer when I wait the lock.
-				serializer = this._serializers.Get<T>( this, providerParameter );
+//			bool lockTaken = false;
+//			lock (this._generationLock)
+//			{
+//				// Re-get to check because other thread might create the serializer when I wait the lock.
+//				serializer = this._serializers.Get<T>(this, providerParameter);
 
-				if ( serializer != null )
-				{
-					return serializer;
-				}
+//				if (serializer != null)
+//				{
+//					return serializer;
+//				}
 
-				try
-				{
-					try { }
-					finally
-					{
-#if !FEATURE_CONCURRENT
-						lock ( this._typeLock )
-						{
-							var typeLock = new object();
-							object aquiredLock;
-							lockTaken = !this._typeLock.TryGetValue( typeof( T ), out aquiredLock );
-							if ( lockTaken )
-							{
-								this._typeLock.Add( typeof( T ), typeLock );
-							}
-						}
-#else
-						var typeLock = new object();
-						var aquiredTypeLock = this._typeLock.GetOrAdd( typeof( T ), _ => typeLock );
-						lockTaken = typeLock == aquiredTypeLock;
-#endif // !FEATURE_CONCURRENT
-					}
+//				try
+//				{
+//					try { }
+//					finally
+//					{
+//#if !FEATURE_CONCURRENT
+//						lock (this._typeLock)
+//						{
+//							var typeLock = new object();
+//							object aquiredLock;
+//							lockTaken = !this._typeLock.TryGetValue(typeof(T), out aquiredLock);
+//							if (lockTaken)
+//							{
+//								this._typeLock.Add(typeof(T), typeLock);
+//							}
+//						}
+//#else
+//						var typeLock = new object();
+//						var aquiredTypeLock = this._typeLock.GetOrAdd( typeof( T ), _ => typeLock );
+//						lockTaken = typeLock == aquiredTypeLock;
+//#endif // !FEATURE_CONCURRENT
+//					}
 
-					if ( lockTaken )
-					{
-						// First try to create generic serializer w/o code generation.
-						var schema = ( providerParameter ?? PolymorphismSchema.Create( typeof( T ), null ) ) as PolymorphismSchema;
-						serializer = GenericSerializer.Create<T>( this, schema );
+//					if (lockTaken)
+//					{
+//						// First try to create generic serializer w/o code generation.
+//						var schema = (providerParameter ?? PolymorphismSchema.Create(typeof(T), null)) as PolymorphismSchema;
+//						serializer = GenericSerializer.Create<T>(this, schema);
 
-						if ( serializer == null )
-						{
-#if !UNITY
-							if ( !this._serializerGeneratorOptions.CanRuntimeCodeGeneration )
-							{
-#endif // !UNITY
-								// On debugging, or AOT only envs, use reflection based aproach.
-								serializer =
-									this.GetSerializerWithoutGeneration<T>( schema )
-									?? this.OnResolveSerializer<T>( schema )
-									?? MessagePackSerializer.CreateReflectionInternal<T>( this, this.EnsureConcreteTypeRegistered( typeof( T ) ), schema );
-#if !UNITY
-							}
-							else
-							{
-								// This thread creating new type serializer.
-								serializer = this.OnResolveSerializer<T>( schema ) ?? MessagePackSerializer.CreateInternal<T>( this, schema );
-							}
-#endif // !UNITY
-						}
-					}
-					else
-					{
-						// This thread owns existing lock -- thus, constructing self-composite type.
-						return new LazyDelegatingMessagePackSerializer<T>( this, providerParameter );
-					}
+//						if (serializer == null)
+//						{
+//#if !UNITY
+//							if (!this._serializerGeneratorOptions.CanRuntimeCodeGeneration)
+//							{
+//#endif // !UNITY
+//								// On debugging, or AOT only envs, use reflection based aproach.
+//								serializer =
+//									this.GetSerializerWithoutGeneration<T>(schema)
+//									?? this.OnResolveSerializer<T>(schema)
+//									?? MessagePackSerializer.CreateReflectionInternal<T>(this, this.EnsureConcreteTypeRegistered(typeof(T)), schema);
+//#if !UNITY
+//							}
+//							else
+//							{
+//								// This thread creating new type serializer.
+//								serializer = this.OnResolveSerializer<T>(schema) ?? MessagePackSerializer.CreateInternal<T>(this, schema);
+//							}
+//#endif // !UNITY
+//						}
+//					}
+//					else
+//					{
+//						// This thread owns existing lock -- thus, constructing self-composite type.
+//						return new LazyDelegatingMessagePackSerializer<T>(this, providerParameter);
+//					}
 
 
-					// Some types always have to use provider. 
-					MessagePackSerializerProvider provider;
-					var asEnumSerializer = serializer as ICustomizableEnumSerializer;
-					if ( asEnumSerializer != null )
-					{
-#if DEBUG
-						Contract.Assert( typeof( T ).GetIsEnum(), typeof( T ) + " is not enum but generated serializer is ICustomizableEnumSerializer" );
-#endif // DEBUG
+//					// Some types always have to use provider. 
+//					MessagePackSerializerProvider provider;
+//					var asEnumSerializer = serializer as ICustomizableEnumSerializer;
+//					if (asEnumSerializer != null)
+//					{
+//#if DEBUG
+//						Contract.Assert(typeof(T).GetIsEnum(), typeof(T) + " is not enum but generated serializer is ICustomizableEnumSerializer");
+//#endif // DEBUG
 
-						provider = new EnumMessagePackSerializerProvider( typeof( T ), asEnumSerializer );
-					}
-					else
-					{
-#if DEBUG
-						Contract.Assert( !typeof( T ).GetIsEnum(), typeof( T ) + " is enum but generated serializer is not ICustomizableEnumSerializer : " + ( serializer == null ? "null" : serializer.GetType().FullName ) );
-#endif // DEBUG
+//						provider = new EnumMessagePackSerializerProvider(typeof(T), asEnumSerializer);
+//					}
+//					else
+//					{
+//#if DEBUG
+//						Contract.Assert(!typeof(T).GetIsEnum(), typeof(T) + " is enum but generated serializer is not ICustomizableEnumSerializer : " + (serializer == null ? "null" : serializer.GetType().FullName));
+//#endif // DEBUG
 
-						// Creates provider even if no schema -- the schema might be specified future for the type.
-						// It is OK to use polymorphic provider for value type.
-#if !UNITY
-						provider = new PolymorphicSerializerProvider<T>( serializer );
-#else
-						provider = new PolymorphicSerializerProvider<T>( this, serializer );
-#endif // !UNITY
-					}
+//						// Creates provider even if no schema -- the schema might be specified future for the type.
+//						// It is OK to use polymorphic provider for value type.
+//#if !UNITY
+//						provider = new PolymorphicSerializerProvider<T>(serializer);
+//#else
+//						provider = new PolymorphicSerializerProvider<T>( this, serializer );
+//#endif // !UNITY
+//					}
 
-#if !UNITY
-					Type nullableType;
-					MessagePackSerializerProvider nullableSerializerProvider;
-					SerializerRepository.GetNullableCompanion(
-						typeof( T ),
-						this,
-						serializer,
-						out nullableType,
-						out nullableSerializerProvider
-					);
+//#if !UNITY
+//					Type nullableType;
+//					MessagePackSerializerProvider nullableSerializerProvider;
+//					SerializerRepository.GetNullableCompanion(
+//						typeof(T),
+//						this,
+//						serializer,
+//						out nullableType,
+//						out nullableSerializerProvider
+//					);
 
-					this._serializers.Register(
-						typeof( T ),
-						provider,
-						nullableType,
-						nullableSerializerProvider,
-						SerializerRegistrationOptions.WithNullable
-					);
-#else
-					this._serializers.Register(
-						typeof( T ),
-						provider,
-						null,
-						null,
-						SerializerRegistrationOptions.None
-					);
-#endif // !UNITY
+//					this._serializers.Register(
+//						typeof(T),
+//						provider,
+//						nullableType,
+//						nullableSerializerProvider,
+//						SerializerRegistrationOptions.WithNullable
+//					);
+//#else
+//					this._serializers.Register(
+//						typeof( T ),
+//						provider,
+//						null,
+//						null,
+//						SerializerRegistrationOptions.None
+//					);
+//#endif // !UNITY
 
-					// Re-get to avoid duplicated registration and handle provider parameter or get the one created by prececing thread.
-					// If T is null and schema is not provided or default schema is provided, then exception will be thrown here from the new provider.
-					return this._serializers.Get<T>( this, providerParameter );
-				}
-				finally
-				{
-					if ( lockTaken )
-					{
-#if !FEATURE_CONCURRENT
-					lock ( this._typeLock )
-					{
-						this._typeLock.Remove( typeof( T ) );
-					}
-#else
-						object dummy;
-						this._typeLock.TryRemove( typeof( T ), out dummy );
-#endif // !FEATURE_CONCURRENT
-					}
-				}
-			}
+//					// Re-get to avoid duplicated registration and handle provider parameter or get the one created by prececing thread.
+//					// If T is null and schema is not provided or default schema is provided, then exception will be thrown here from the new provider.
+//					return this._serializers.Get<T>(this, providerParameter);
+//				}
+//				finally
+//				{
+//					if (lockTaken)
+//					{
+//#if !FEATURE_CONCURRENT
+//						lock (this._typeLock)
+//						{
+//							this._typeLock.Remove(typeof(T));
+//						}
+//#else
+//						object dummy;
+//						this._typeLock.TryRemove( typeof( T ), out dummy );
+//#endif // !FEATURE_CONCURRENT
+//					}
+//				}
+//			}
 		}
 
-		private Type EnsureConcreteTypeRegistered( Type mayBeAbstractType )
-		{
-			if ( !mayBeAbstractType.GetIsAbstract() && !mayBeAbstractType.GetIsInterface() )
-			{
-				return mayBeAbstractType;
-			}
+		//private Type EnsureConcreteTypeRegistered(Type mayBeAbstractType)
+		//{
+		//	if (!mayBeAbstractType.GetIsAbstract() && !mayBeAbstractType.GetIsInterface())
+		//	{
+		//		return mayBeAbstractType;
+		//	}
 
-			var concreteType = this.DefaultCollectionTypes.GetConcreteType( mayBeAbstractType );
-			if ( concreteType == null )
-			{
-				throw SerializationExceptions.NewNotSupportedBecauseCannotInstanciateAbstractType( mayBeAbstractType );
-			}
+		//	var concreteType = this.DefaultCollectionTypes.GetConcreteType(mayBeAbstractType);
+		//	if (concreteType == null)
+		//	{
+		//		throw SerializationExceptions.NewNotSupportedBecauseCannotInstanciateAbstractType(mayBeAbstractType);
+		//	}
 
-			return concreteType;
-		}
+		//	return concreteType;
+		//}
 
 
-		private MessagePackSerializer<T> GetSerializerWithoutGeneration<T>( PolymorphismSchema schema )
-		{
-			PolymorphicSerializerProvider<T> provider;
-			if ( typeof( T ).GetIsInterface() || typeof( T ).GetIsAbstract() )
-			{
-				var concreteCollectionType = this._defaultCollectionTypes.GetConcreteType( typeof( T ) );
-				if ( concreteCollectionType != null )
-				{
-					var serializer =
-						GenericSerializer.TryCreateAbstractCollectionSerializer( this, typeof( T ), concreteCollectionType, schema );
+//		private MessagePackSerializer<T> GetSerializerWithoutGeneration<T>(PolymorphismSchema schema)
+//		{
+//			PolymorphicSerializerProvider<T> provider;
+//			if (typeof(T).GetIsInterface() || typeof(T).GetIsAbstract())
+//			{
+//				var concreteCollectionType = this._defaultCollectionTypes.GetConcreteType(typeof(T));
+//				if (concreteCollectionType != null)
+//				{
+//					var serializer =
+//						GenericSerializer.TryCreateAbstractCollectionSerializer(this, typeof(T), concreteCollectionType, schema);
 
-#if !UNITY
-					if ( serializer != null )
-					{
-						var typedSerializer = serializer as MessagePackSerializer<T>;
+//#if !UNITY
+//					if (serializer != null)
+//					{
+//						var typedSerializer = serializer as MessagePackSerializer<T>;
 
-#if DEBUG
-						Contract.Assert(
-							typedSerializer != null,
-							serializer.GetType() + " : " + serializer.GetType().GetBaseType() + " is " + typeof( MessagePackSerializer<T> )
-						);
-#endif // DEBUG
+//#if DEBUG
+//						Contract.Assert(
+//							typedSerializer != null,
+//							serializer.GetType() + " : " + serializer.GetType().GetBaseType() + " is " + typeof(MessagePackSerializer<T>)
+//						);
+//#endif // DEBUG
 
-						provider = new PolymorphicSerializerProvider<T>( typedSerializer );
-					}
-					else
-					{
-						provider = new PolymorphicSerializerProvider<T>( null );
-					}
-#else
-					provider = new PolymorphicSerializerProvider<T>( this, serializer );
-#endif
-				}
-				else
-				{
-#if !UNITY
-					provider = new PolymorphicSerializerProvider<T>( null );
-#else
-					provider = new PolymorphicSerializerProvider<T>( this, null );
-#endif // !UNITY
-				}
-			}
-			else
-			{
-				// Go to reflection mode.
-				return null;
-			}
+//						provider = new PolymorphicSerializerProvider<T>(typedSerializer);
+//					}
+//					else
+//					{
+//						provider = new PolymorphicSerializerProvider<T>(null);
+//					}
+//#else
+//					provider = new PolymorphicSerializerProvider<T>( this, serializer );
+//#endif
+//				}
+//				else
+//				{
+//#if !UNITY
+//					provider = new PolymorphicSerializerProvider<T>(null);
+//#else
+//					provider = new PolymorphicSerializerProvider<T>( this, null );
+//#endif // !UNITY
+//				}
+//			}
+//			else
+//			{
+//				// Go to reflection mode.
+//				return null;
+//			}
 
-			// Fail when already registered manually.
-			this.Serializers.Register( typeof( T ), provider, null, null, SerializerRegistrationOptions.None );
+//			// Fail when already registered manually.
+//			this.Serializers.Register(typeof(T), provider, null, null, SerializerRegistrationOptions.None);
 
-			return ( MessagePackSerializer<T> )provider.Get( this, schema );
-		}
+//			return (MessagePackSerializer<T>)provider.Get(this, schema);
+//		}
 
 		/// <summary>
 		///		Gets the serializer for the specified <see cref="Type"/>.
@@ -939,9 +830,9 @@ namespace MsgPack.Serialization
 		///		Although <see cref="GetSerializer{T}()"/> is preferred,
 		///		this method can be used from non-generic type or methods.
 		/// </remarks>
-		public MessagePackSerializer GetSerializer( Type targetType )
+		public MessagePackSerializer GetSerializer(Type targetType)
 		{
-			return this.GetSerializer( targetType, null );
+			return this.GetSerializer(targetType, null);
 		}
 
 		/// <summary>
@@ -962,122 +853,124 @@ namespace MsgPack.Serialization
 		///		Although <see cref="GetSerializer{T}(Object)"/> is preferred,
 		///		this method can be used from non-generic type or methods.
 		/// </remarks>
-		public MessagePackSerializer GetSerializer( Type targetType, object providerParameter )
+		public MessagePackSerializer GetSerializer(Type targetType, object providerParameter)
 		{
-			if ( targetType == null )
-			{
-				throw new ArgumentNullException( "targetType" );
-			}
+#warning TODO: IMPL
+			throw new NotImplementedException();
+//			if (targetType == null)
+//			{
+//				throw new ArgumentNullException("targetType");
+//			}
 
-#if DEBUG
-			Contract.Ensures( Contract.Result<MessagePackSerializer>() != null );
-#endif // DEBUG
+//#if DEBUG
+//			Contract.Ensures(Contract.Result<MessagePackSerializer>() != null);
+//#endif // DEBUG
 
-#if UNITY
-			try
-			{
-#endif // UNITY
-			return SerializerGetter.Instance.Get( this, targetType, providerParameter );
-#if UNITY
-			}
-			catch ( Exception ex )
-			{
-				AotHelper.HandleAotError( targetType, ex );
-				throw;
-			}
-#endif // UNITY
+//#if UNITY
+//			try
+//			{
+//#endif // UNITY
+//			return SerializerGetter.Instance.Get(this, targetType, providerParameter);
+//#if UNITY
+//			}
+//			catch ( Exception ex )
+//			{
+//				AotHelper.HandleAotError( targetType, ex );
+//				throw;
+//			}
+//#endif // UNITY
 		}
 
-		private sealed class SerializerGetter
-		{
-			public static readonly SerializerGetter Instance = new SerializerGetter();
+//		private sealed class SerializerGetter
+//		{
+//			public static readonly SerializerGetter Instance = new SerializerGetter();
 
-#if FEATURE_CONCURRENT
-			private readonly ConcurrentDictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>> _cache =
-				new ConcurrentDictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>>();
-#elif UNITY
-			private readonly Dictionary<RuntimeTypeHandle, MethodInfo> _cache =
-				new Dictionary<RuntimeTypeHandle, MethodInfo>();
-#else
-			private readonly Dictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>> _cache =
-				new Dictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>>();
-#endif // FEATURE_CONCURRENT
+//#if FEATURE_CONCURRENT
+//			private readonly ConcurrentDictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>> _cache =
+//				new ConcurrentDictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>>();
+//#elif UNITY
+//			private readonly Dictionary<RuntimeTypeHandle, MethodInfo> _cache =
+//				new Dictionary<RuntimeTypeHandle, MethodInfo>();
+//#else
+//			private readonly Dictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>> _cache =
+//				new Dictionary<RuntimeTypeHandle, Func<SerializationContext, object, MessagePackSerializer>>();
+//#endif // FEATURE_CONCURRENT
 
-			private SerializerGetter() { }
+//			private SerializerGetter() { }
 
-			public MessagePackSerializer Get( SerializationContext context, Type targetType, object providerParameter )
-			{
-#if UNITY
-				MethodInfo method;
-				if ( !this._cache.TryGetValue( targetType.TypeHandle, out method ) || method == null )
-				{
-					method = GetSerializer1Method.MakeGenericMethod( targetType );
-					this._cache[ targetType.TypeHandle ] = method;
-				}
+//			public MessagePackSerializer Get(SerializationContext context, Type targetType, object providerParameter)
+//			{
+//#if UNITY
+//				MethodInfo method;
+//				if ( !this._cache.TryGetValue( targetType.TypeHandle, out method ) || method == null )
+//				{
+//					method = GetSerializer1Method.MakeGenericMethod( targetType );
+//					this._cache[ targetType.TypeHandle ] = method;
+//				}
 
-				return ( MessagePackSerializer )method.InvokePreservingExceptionType( context, providerParameter );
-#else
-				Func<SerializationContext, object, MessagePackSerializer> func;
-#if !FEATURE_CONCURRENT
-				lock ( this._cache )
-				{
-#endif // !FEATURE_CONCURRENT
-				if ( !this._cache.TryGetValue( targetType.TypeHandle, out func ) || func == null )
-				{
-#if !NETSTANDARD1_1 && !NETSTANDARD1_3
-					func =
-						Delegate.CreateDelegate(
-							typeof( Func<SerializationContext, object, MessagePackSerializer> ),
-							typeof( SerializerGetter<> ).MakeGenericType( targetType ).GetMethod( "Get" )
-						) as Func<SerializationContext, object, MessagePackSerializer>;
-#else
-					func =
-						typeof( SerializerGetter<> ).MakeGenericType( targetType ).GetMethod( "Get" ).CreateDelegate(
-							typeof( Func<SerializationContext, object, MessagePackSerializer> )
-						) as Func<SerializationContext, object, MessagePackSerializer>;
-#endif // !NETSTANDARD1_1 && !NETSTANDARD1_3
+//				return ( MessagePackSerializer )method.InvokePreservingExceptionType( context, providerParameter );
+//#else
+//				Func<SerializationContext, object, MessagePackSerializer> func;
+//#if !FEATURE_CONCURRENT
+//				lock (this._cache)
+//				{
+//#endif // !FEATURE_CONCURRENT
+//					if (!this._cache.TryGetValue(targetType.TypeHandle, out func) || func == null)
+//					{
+//#if !NETSTANDARD1_1 && !NETSTANDARD1_3
+//						func =
+//							Delegate.CreateDelegate(
+//								typeof(Func<SerializationContext, object, MessagePackSerializer>),
+//								typeof(SerializerGetter<>).MakeGenericType(targetType).GetMethod("Get")
+//							) as Func<SerializationContext, object, MessagePackSerializer>;
+//#else
+//					func =
+//						typeof( SerializerGetter<> ).MakeGenericType( targetType ).GetMethod( "Get" ).CreateDelegate(
+//							typeof( Func<SerializationContext, object, MessagePackSerializer> )
+//						) as Func<SerializationContext, object, MessagePackSerializer>;
+//#endif // !NETSTANDARD1_1 && !NETSTANDARD1_3
 
-					Contract.Assert( func != null, "func != null" );
+//						Contract.Assert(func != null, "func != null");
 
-					this._cache[ targetType.TypeHandle ] = func;
-				}
-#if !FEATURE_CONCURRENT
-				}
-#endif // !FEATURE_CONCURRENT
-				return func( context, providerParameter );
-#endif // UNITY
-			}
-		}
+//						this._cache[targetType.TypeHandle] = func;
+//					}
+//#if !FEATURE_CONCURRENT
+//				}
+//#endif // !FEATURE_CONCURRENT
+//				return func(context, providerParameter);
+//#endif // UNITY
+//			}
+//		}
 
-#if !UNITY
-		[Preserve( AllMembers = true )]
-		private static class SerializerGetter<T>
-		{
-			private static readonly Func<SerializationContext, object, MessagePackSerializer<T>> _func =
-#if !NETSTANDARD1_1 && !NETSTANDARD1_3 && !WINDOWS_PHONE && !UNITY
-				Delegate.CreateDelegate(
-					typeof( Func<SerializationContext, object, MessagePackSerializer<T>> ),
-					Metadata._SerializationContext.GetSerializer1_Parameter_Method.MakeGenericMethod( typeof( T ) )
-				) as Func<SerializationContext, object, MessagePackSerializer<T>>;
-#else
-#if !UNITY && !WINDOWS_PHONE && !WINDOWS_UWP
-				Metadata._SerializationContext.GetSerializer1_Parameter_Method
-#else // !UNITY && !WINDOWS_PHONE && !WINDOWS_UWP
-				GetSerializer1Method
-#endif // !UNITY && !WINDOWS_PHONE && !WINDOWS_UWP
-				.MakeGenericMethod( typeof( T ) ).CreateDelegate(
-					typeof( Func<SerializationContext, object, MessagePackSerializer<T>> )
-				) as Func<SerializationContext, object, MessagePackSerializer<T>>;
-#endif // !NETSTANDARD1_1 && !NETSTANDARD1_3 && !WINDOWS_PHONE && !UNITY
+//#if !UNITY
+//		[Preserve(AllMembers = true)]
+//		private static class SerializerGetter<T>
+//		{
+//			private static readonly Func<SerializationContext, object, MessagePackSerializer<T>> _func =
+//#if !NETSTANDARD1_1 && !NETSTANDARD1_3 && !WINDOWS_PHONE && !UNITY
+//				Delegate.CreateDelegate(
+//					typeof(Func<SerializationContext, object, MessagePackSerializer<T>>),
+//					Metadata._SerializationContext.GetSerializer1_Parameter_Method.MakeGenericMethod(typeof(T))
+//				) as Func<SerializationContext, object, MessagePackSerializer<T>>;
+//#else
+//#if !UNITY && !WINDOWS_PHONE && !WINDOWS_UWP
+//				Metadata._SerializationContext.GetSerializer1_Parameter_Method
+//#else // !UNITY && !WINDOWS_PHONE && !WINDOWS_UWP
+//				GetSerializer1Method
+//#endif // !UNITY && !WINDOWS_PHONE && !WINDOWS_UWP
+//				.MakeGenericMethod( typeof( T ) ).CreateDelegate(
+//					typeof( Func<SerializationContext, object, MessagePackSerializer<T>> )
+//				) as Func<SerializationContext, object, MessagePackSerializer<T>>;
+//#endif // !NETSTANDARD1_1 && !NETSTANDARD1_3 && !WINDOWS_PHONE && !UNITY
 
-			// ReSharper disable UnusedMember.Local
-			// This method is invoked via Reflection on SerializerGetter.Get().
-			public static MessagePackSerializer Get( SerializationContext context, object providerParameter )
-			{
-				return _func( context, providerParameter );
-			}
-			// ReSharper restore UnusedMember.Local
-		}
-#endif // !UNITY && !UNITY
+//			// ReSharper disable UnusedMember.Local
+//			// This method is invoked via Reflection on SerializerGetter.Get().
+//			public static MessagePackSerializer Get(SerializationContext context, object providerParameter)
+//			{
+//				return _func(context, providerParameter);
+//			}
+//			// ReSharper restore UnusedMember.Local
+//		}
+//#endif // !UNITY && !UNITY
 	}
 }

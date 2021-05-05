@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 using MsgPack.Internal;
@@ -45,7 +46,8 @@ namespace MsgPack
 
 		private readonly object? _handleOrTypeCode;
 
-		internal object? HandleOrTypeCode => this._handleOrTypeCode;
+		// For compatibility layer
+		internal object? InternalHandleOrTypeCode => this._handleOrTypeCode;
 
 		/// <summary>
 		///		Get whether this instance represents nil.
@@ -57,6 +59,9 @@ namespace MsgPack
 		}
 
 		private readonly ulong _value;
+
+		// For compatibility layer
+		internal ulong InternalValue => this._value;
 
 		#endregion -- Type Code Fields & Properties --
 
@@ -113,14 +118,23 @@ namespace MsgPack
 			}
 		}
 
-		/// <summary>
-		///		Initializes a new instance wraps <see cref="IReadOnlyList&lt;MessagePackObject&gt;"/>.
-		/// </summary>
-		/// <param name="value">
-		///		The collection to be copied.
-		/// </param>
-		public MessagePackObject(IReadOnlyList<MessagePackObject> value)
-			: this(value, false) { }
+		// Avoid compliation break for objects which implements IList<MPO> and IReadOnlyList<MPO> such as MPO[].
+
+		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
+		public static MessagePackObject FromReadOnlyCollection(IReadOnlyList<MessagePackObject> value, bool isImmutable = false)
+			=> new MessagePackObject(value, isImmutable);
+
+		// For symmetry
+
+
+		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
+		public static MessagePackObject FromList(IList<MessagePackObject> value, bool isImmutable = false)
+			=> new MessagePackObject(value, isImmutable);
+
+
+		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
+		public static MessagePackObject FromDictionary(MessagePackObjectDictionary value, bool isImmutable = false)
+			=> new MessagePackObject(value, isImmutable);
 
 		/// <summary>
 		///		Initializes a new instance wraps <see cref="IReadOnlyList&lt;MessagePackObject&gt;"/>.
@@ -141,7 +155,7 @@ namespace MsgPack
 		///			because the modification to the underlying collection will be reflected to the read-only collection.
 		///		</note>
 		/// </remarks>
-		public MessagePackObject(IReadOnlyList<MessagePackObject> value, bool isImmutable)
+		private MessagePackObject(IReadOnlyList<MessagePackObject> value, bool isImmutable)
 		{
 			// trick: Avoid long boilerplate initialization. See "CLR via C#".
 			this = new MessagePackObject();

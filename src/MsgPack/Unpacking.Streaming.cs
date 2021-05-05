@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -30,6 +30,7 @@ using System.Diagnostics.Contracts;
 #endif // FEATURE_MPCONTRACT
 using System.IO;
 using System.Text;
+using MsgPack.Internal;
 
 namespace MsgPack
 {
@@ -64,25 +65,25 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(Stream)"/> instead.
 		///		</para>
 		///	</remarks>
-		public static UnpackingStream UnpackByteStream( Stream source )
+		public static UnpackingStream UnpackByteStream(Stream source)
 		{
-			ValidateStream( source );
+			ValidateStream(source);
 			Contract.EndContractBlock();
 
-			return UnpackByteStreamCore( source );
+			return UnpackByteStreamCore(source);
 		}
 
-		private static UnpackingStream UnpackByteStreamCore( Stream source )
+		private static UnpackingStream UnpackByteStreamCore(Stream source)
 		{
-			uint length = UnpackRawLengthCore( source );
+			uint length = UnpackRawLengthCore(source);
 
-			if ( source.CanSeek )
+			if (source.CanSeek)
 			{
-				return new SeekableUnpackingStream( source, length );
+				return new SeekableUnpackingStream(source, length);
 			}
 			else
 			{
-				return new UnseekableUnpackingStream( source, length );
+				return new UnseekableUnpackingStream(source, length);
 			}
 		}
 
@@ -120,9 +121,9 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(Stream)"/> instead.
 		///		</para>
 		///	</remarks>
-		public static UnpackingStreamReader UnpackCharStream( Stream source )
+		public static UnpackingStreamReader UnpackCharStream(Stream source)
 		{
-			return UnpackCharStream( source, MessagePackConvert.Utf8NonBomStrict );
+			return UnpackCharStream(source, Utf8EncodingNonBomStrict.Instance);
 		}
 
 		///	<summary>
@@ -160,19 +161,19 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(Stream)"/> instead.
 		///		</para>
 		///	</remarks>		
-		public static UnpackingStreamReader UnpackCharStream( Stream source, Encoding encoding )
+		public static UnpackingStreamReader UnpackCharStream(Stream source, Encoding encoding)
 		{
-			ValidateStream( source );
+			ValidateStream(source);
 
-			if ( encoding == null )
+			if (encoding == null)
 			{
-				throw new ArgumentNullException( "encoding" );
+				throw new ArgumentNullException("encoding");
 			}
 
 			Contract.EndContractBlock();
 
-			var stream = UnpackByteStreamCore( source );
-			return new DefaultUnpackingStreamReader( stream, encoding, stream.RawLength );
+			var stream = UnpackByteStreamCore(source);
+			return new DefaultUnpackingStreamReader(stream, encoding, stream.RawLength);
 		}
 
 
@@ -188,35 +189,35 @@ namespace MsgPack
 			public override long Position
 			{
 				get { return this.CurrentOffset; }
-				set { this.SeekTo( value ); }
+				set { this.SeekTo(value); }
 			}
 
-			public SeekableUnpackingStream( Stream underlying, long rawLength )
-				: base( underlying, rawLength )
+			public SeekableUnpackingStream(Stream underlying, long rawLength)
+				: base(underlying, rawLength)
 			{
 #if DEBUG
-				Contract.Assert( underlying.CanSeek, "underlying.CanSeek" );
+				Contract.Assert(underlying.CanSeek, "underlying.CanSeek");
 #endif // DEBUG
 				this._initialPosition = underlying.Position;
 			}
 
-			public override long Seek( long offset, SeekOrigin origin )
+			public override long Seek(long offset, SeekOrigin origin)
 			{
-				switch ( origin )
+				switch (origin)
 				{
 					case SeekOrigin.Begin:
 					{
-						this.SeekTo( offset );
+						this.SeekTo(offset);
 						break;
 					}
 					case SeekOrigin.End:
 					{
-						this.SeekTo( this.RawLength + offset );
+						this.SeekTo(this.RawLength + offset);
 						break;
 					}
 					case SeekOrigin.Current:
 					{
-						this.SeekTo( this.Position + offset );
+						this.SeekTo(this.Position + offset);
 						break;
 					}
 				}
@@ -224,17 +225,17 @@ namespace MsgPack
 				return this.Position;
 			}
 
-			private void SeekTo( long position )
+			private void SeekTo(long position)
 			{
-				if ( position < 0 )
+				if (position < 0)
 				{
-					throw new IOException( "An attempt was made to move the position before the beginning of the stream." );
+					throw new IOException("An attempt was made to move the position before the beginning of the stream.");
 				}
 
-				if ( position > this.RawLength )
+				if (position > this.RawLength)
 				{
 					// Always thrown
-					this.SetLength( position );
+					this.SetLength(position);
 				}
 
 				this.CurrentOffset = position;
@@ -255,9 +256,9 @@ namespace MsgPack
 				set { throw new NotSupportedException(); }
 			}
 
-			public UnseekableUnpackingStream( Stream underlying, long rawLength ) : base( underlying, rawLength ) { }
+			public UnseekableUnpackingStream(Stream underlying, long rawLength) : base(underlying, rawLength) { }
 
-			public override long Seek( long offset, SeekOrigin origin )
+			public override long Seek(long offset, SeekOrigin origin)
 			{
 				throw new NotSupportedException();
 			}
@@ -265,7 +266,7 @@ namespace MsgPack
 
 		private sealed class DefaultUnpackingStreamReader : UnpackingStreamReader
 		{
-			public DefaultUnpackingStreamReader( Stream stream, Encoding encoding, long byteLength ) : base( stream, encoding, byteLength ) { }
+			public DefaultUnpackingStreamReader(Stream stream, Encoding encoding, long byteLength) : base(stream, encoding, byteLength) { }
 		}
 	}
 }

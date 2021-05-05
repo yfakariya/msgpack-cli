@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -7,6 +7,7 @@ using System.ComponentModel;
 
 namespace MsgPack.Serialization
 {
+	// This typo is INTENTIONAL for v1 compatibility
 	/// <summary>
 	///		Defines dictionary (map) based serialization options.
 	/// </summary>
@@ -15,7 +16,7 @@ namespace MsgPack.Serialization
 	///		and <see cref="System.Collections.Generic.IDictionary{TKey, TValue}"/>.
 	///		The option only affect dictionary (map) based serialization which can be enabled via <see cref="SerializerProvider.SerializationMethod"/>.
 	/// </remarks>
-	public sealed class DictionarySerializationOptions : IDictionarySerializationOptions
+	public sealed class DictionarySerlaizationOptions : IDictionarySerializationOptions
 	{
 		bool IDictionarySerializationOptions.OmitsNullEntries => this.OmitNullEntry;
 		Func<string, string> IDictionarySerializationOptions.KeyTransformer => this.KeyTransformer ?? KeyNameTransformers.AsIs;

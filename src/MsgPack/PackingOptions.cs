@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -20,6 +20,7 @@
 
 using System;
 using System.Text;
+using MsgPack.Internal;
 
 namespace MsgPack
 {
@@ -28,7 +29,7 @@ namespace MsgPack
 	/// </summary>
 	public sealed class PackingOptions
 	{
-		private Encoding _stringEncoding = MessagePackConvert.Utf8NonBom;
+		private Encoding _stringEncoding = Utf8EncodingNonBom.Instance;
 
 		/// <summary>
 		///		Get encoding for string.

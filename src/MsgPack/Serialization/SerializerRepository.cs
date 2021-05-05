@@ -26,7 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MsgPack.Serialization.DefaultSerializers;
+using MsgPack.Serialization.BuiltinSerializers;
 using MsgPack.Serialization.Polymorphic;
 
 namespace MsgPack.Serialization
@@ -34,37 +34,19 @@ namespace MsgPack.Serialization
 	/// <summary>
 	///		Repository of known <see cref="MessagePackSerializer{T}"/>s.
 	/// </summary>
-	[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Class coupling caused by default serializers registration." )]
+	[Obsolete(
+		Obsoletion.NewSerializer.Message
+	)]
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Justification = "Class coupling caused by default serializers registration.")]
 	public sealed partial class SerializerRepository : IDisposable
 	{
-		private static readonly object SyncRoot = new object();
-		private static SerializerRepository _internalDefault;
-
-		internal static SerializerRepository InternalDefault
-		{
-			get
-			{
-				// Lazy init to avoid .cctor recursion from SerializationContext.cctor()
-				lock ( SyncRoot )
-				{
-					if ( _internalDefault == null )
-					{
-						_internalDefault = GetDefault( SerializationContext.Default );
-					}
-
-					return _internalDefault;
-				}
-			}
-		}
-
-		private readonly SerializerTypeKeyRepository _repository;
-
 		/// <summary>
 		/// Initializes a new empty instance of the <see cref="SerializerRepository"/> class.
 		/// </summary>
 		public SerializerRepository()
 		{
-			this._repository = new SerializerTypeKeyRepository();
+#warning TODO: IMPL
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
@@ -74,26 +56,28 @@ namespace MsgPack.Serialization
 		/// <exception cref="ArgumentNullException">
 		///		<paramref name="copiedFrom"/> is <c>null</c>.
 		/// </exception>
-		public SerializerRepository( SerializerRepository copiedFrom )
+		public SerializerRepository(SerializerRepository copiedFrom)
 		{
-			if ( copiedFrom == null )
+			if (copiedFrom == null)
 			{
-				throw new ArgumentNullException( "copiedFrom" );
+				throw new ArgumentNullException("copiedFrom");
 			}
 
-			this._repository = new SerializerTypeKeyRepository( copiedFrom._repository );
+#warning TODO: IMPL
+			throw new NotImplementedException();
 		}
 
-		private SerializerRepository( Dictionary<RuntimeTypeHandle, object> table )
+		private SerializerRepository(Dictionary<RuntimeTypeHandle, object> table)
 		{
-			this._repository = new SerializerTypeKeyRepository( table );
+#warning TODO: IMPL
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
 		///		This method does not perform any operation.
 		/// </summary>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_repository" )]
-		[Obsolete( "This class should not be disposable, so IDisposable will be removed in future." )]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_repository")]
+		[Obsolete("This class should not be disposable, so IDisposable will be removed in future.")]
 		public void Dispose()
 		{
 			// nop
@@ -107,9 +91,9 @@ namespace MsgPack.Serialization
 		/// <returns>
 		///		<see cref="MessagePackSerializer{T}"/>. If no appropriate mashalers has benn registered, then <c>null</c>.
 		/// </returns>
-		public MessagePackSerializer<T> Get<T>( SerializationContext context )
+		public MessagePackSerializer<T> Get<T>(SerializationContext context)
 		{
-			return this.Get<T>( context, null );
+			return this.Get<T>(context, null);
 		}
 
 		/// <summary>
@@ -122,22 +106,26 @@ namespace MsgPack.Serialization
 		///		<see cref="MessagePackSerializer{T}"/>. If no appropriate mashalers has benn registered, then <c>null</c>.
 		/// </returns>
 		/// <see cref="SerializationContext.GetSerializer{T}(Object)"/>
-		public MessagePackSerializer<T> Get<T>( SerializationContext context, object providerParameter )
+		public MessagePackSerializer<T> Get<T>(SerializationContext context, object providerParameter)
 		{
-			if ( context == null )
+			if (context == null)
 			{
-				throw new ArgumentNullException( "context" );
+				throw new ArgumentNullException("context");
 			}
 
-			var result = this._repository.Get( context, typeof( T ) );
-			var asProvider = result as MessagePackSerializerProvider;
-#if !UNITY
-			return ( asProvider != null ? asProvider.Get( context, providerParameter ) : result ) as MessagePackSerializer<T>;
-#else
-			var asSerializer =
-				( asProvider != null ? asProvider.Get( context, providerParameter ) : result ) as MessagePackSerializer;
-			return asSerializer != null ? MessagePackSerializer.Wrap<T>( context, asSerializer ) : null;
-#endif // !UNITY
+
+#warning TODO: IMPL
+			throw new NotImplementedException();
+
+//			var result = this._repository.Get(context, typeof(T));
+//			var asProvider = result as MessagePackSerializerProvider;
+//#if !UNITY
+//			return (asProvider != null ? asProvider.Get(context, providerParameter) : result) as MessagePackSerializer<T>;
+//#else
+//			var asSerializer =
+//				( asProvider != null ? asProvider.Get( context, providerParameter ) : result ) as MessagePackSerializer;
+//			return asSerializer != null ? MessagePackSerializer.Wrap<T>( context, asSerializer ) : null;
+//#endif // !UNITY
 		}
 
 #if UNITY
@@ -153,9 +141,11 @@ namespace MsgPack.Serialization
 				throw new ArgumentNullException( "targetType" );
 			}
 
-			var result = this._repository.Get( context, targetType );
-			var asProvider = result as MessagePackSerializerProvider;
-			return ( asProvider != null ? asProvider.Get( context, providerParameter ) : result ) as MessagePackSerializer;
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			//var result = this._repository.Get( context, targetType );
+			//var asProvider = result as MessagePackSerializerProvider;
+			//return ( asProvider != null ? asProvider.Get( context, providerParameter ) : result ) as MessagePackSerializer;
 		}
 #endif // UNITY
 
@@ -178,9 +168,9 @@ namespace MsgPack.Serialization
 		///			get equivalant behavior for this method with registering nullable serializer automatically.
 		///		</note>
 		/// </remarks>
-		public bool Register<T>( MessagePackSerializer<T> serializer )
+		public bool Register<T>(MessagePackSerializer<T> serializer)
 		{
-			return this.Register( serializer, SerializerRegistrationOptions.None );
+			return this.Register(serializer, SerializerRegistrationOptions.None);
 		}
 
 		/// <summary>
@@ -195,26 +185,28 @@ namespace MsgPack.Serialization
 		/// <exception cref="ArgumentNullException">
 		///		<paramref name="serializer"/> is <c>null</c>.
 		/// </exception>
-		public bool Register<T>( MessagePackSerializer<T> serializer, SerializerRegistrationOptions options )
+		public bool Register<T>(MessagePackSerializer<T> serializer, SerializerRegistrationOptions options)
 		{
-			if ( serializer == null )
+			if (serializer == null)
 			{
-				throw new ArgumentNullException( "serializer" );
+				throw new ArgumentNullException("serializer");
 			}
 
-			Type nullableType = null;
-			MessagePackSerializerProvider nullableSerializerProvider = null;
-#if !UNITY
-			if ( ( options & SerializerRegistrationOptions.WithNullable ) != 0 )
-			{
-				GetNullableCompanion( typeof( T ), serializer.OwnerContext, serializer, out nullableType, out nullableSerializerProvider );
-			}
-#endif // !UNITY
-#if !UNITY
-			return this.Register( typeof( T ), new PolymorphicSerializerProvider<T>( serializer ), nullableType, nullableSerializerProvider, options );
-#else
-			return this.Register( typeof( T ), new PolymorphicSerializerProvider<T>(  serializer.OwnerContext, serializer ), nullableType, nullableSerializerProvider, options );
-#endif // !UNITY
+#warning TODO: IMPL
+			throw new NotImplementedException();
+//			Type nullableType = null;
+//			MessagePackSerializerProvider nullableSerializerProvider = null;
+//#if !UNITY
+//			if ((options & SerializerRegistrationOptions.WithNullable) != 0)
+//			{
+//				GetNullableCompanion(typeof(T), serializer.OwnerContext, serializer, out nullableType, out nullableSerializerProvider);
+//			}
+//#endif // !UNITY
+//#if !UNITY
+//			return this.Register(typeof(T), new PolymorphicSerializerProvider<T>(serializer), nullableType, nullableSerializerProvider, options);
+//#else
+//			return this.Register( typeof( T ), new PolymorphicSerializerProvider<T>(  serializer.OwnerContext, serializer ), nullableType, nullableSerializerProvider, options );
+//#endif // !UNITY
 		}
 
 #if !UNITY
@@ -223,35 +215,37 @@ namespace MsgPack.Serialization
 			SerializationContext context,
 			object serializer,
 			out Type nullableType,
-			out MessagePackSerializerProvider nullableSerializerProvider 
+			out MessagePackSerializerProvider nullableSerializerProvider
 		)
 		{
-			if ( targetType.GetIsValueType() && Nullable.GetUnderlyingType( targetType ) == null )
-			{
-				nullableType = typeof( Nullable<> ).MakeGenericType( targetType );
-				var nullableCtor =
-					typeof( NullableMessagePackSerializer<> ).MakeGenericType( targetType ).GetConstructor(
-						new[]
-						{
-							typeof( SerializationContext ),
-							typeof( MessagePackSerializer<> ).MakeGenericType( targetType )
-						}
-					);
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			//if (targetType.GetIsValueType() && Nullable.GetUnderlyingType(targetType) == null)
+			//{
+			//	nullableType = typeof(Nullable<>).MakeGenericType(targetType);
+			//	var nullableCtor =
+			//		typeof(NullableMessagePackSerializer<>).MakeGenericType(targetType).GetConstructor(
+			//			new[]
+			//			{
+			//				typeof( SerializationContext ),
+			//				typeof( MessagePackSerializer<> ).MakeGenericType( targetType )
+			//			}
+			//		);
 
-				nullableSerializerProvider =
-					( MessagePackSerializerProvider ) ReflectionExtensions.CreateInstancePreservingExceptionType(
-						typeof( PolymorphicSerializerProvider<> ).MakeGenericType( nullableType ),
-						nullableCtor.InvokePreservingExceptionType(
-							context,
-							serializer
-						)
-					);
-			}
-			else
-			{
-				nullableType = null;
-				nullableSerializerProvider = null;
-			}
+			//	nullableSerializerProvider =
+			//		(MessagePackSerializerProvider)ReflectionExtensions.CreateInstancePreservingExceptionType(
+			//			typeof(PolymorphicSerializerProvider<>).MakeGenericType(nullableType),
+			//			nullableCtor.InvokePreservingExceptionType(
+			//				context,
+			//				serializer
+			//			)
+			//		);
+			//}
+			//else
+			//{
+			//	nullableType = null;
+			//	nullableSerializerProvider = null;
+			//}
 		}
 #endif // !UNITY
 
@@ -260,9 +254,11 @@ namespace MsgPack.Serialization
 #else
 		internal
 #endif
-		bool Register( Type targetType, MessagePackSerializerProvider serializerProvider, Type nullableType, MessagePackSerializerProvider nullableSerializerProvider, SerializerRegistrationOptions options )
+		bool Register(Type targetType, MessagePackSerializerProvider serializerProvider, Type nullableType, MessagePackSerializerProvider nullableSerializerProvider, SerializerRegistrationOptions options)
 		{
-			return this._repository.Register( targetType, serializerProvider, nullableType, nullableSerializerProvider, options );
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			//return this._repository.Register(targetType, serializerProvider, nullableType, nullableSerializerProvider, options);
 		}
 
 		/// <summary>
@@ -282,9 +278,9 @@ namespace MsgPack.Serialization
 		///			get equivalant behavior for this method with registering nullable serializer automatically.
 		///		</note>
 		/// </remarks>
-		public void RegisterOverride<T>( MessagePackSerializer<T> serializer )
+		public void RegisterOverride<T>(MessagePackSerializer<T> serializer)
 		{
-			this.Register( serializer, SerializerRegistrationOptions.AllowOverride );
+			this.Register(serializer, SerializerRegistrationOptions.AllowOverride);
 		}
 
 		/// <summary>
@@ -295,11 +291,11 @@ namespace MsgPack.Serialization
 		///		This value will not be <c>null</c>.
 		///		Note that the repository is frozen.
 		/// </value>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Historical reason" )]
-		[Obsolete( "Use GetDefault()")]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1721:PropertyNamesShouldNotMatchGetMethods", Justification = "Historical reason")]
+		[Obsolete("Use GetDefault()")]
 		public static SerializerRepository Default
 		{
-			get { return GetDefault( SerializationContext.Default ); }
+			get { return GetDefault(SerializationContext.Default); }
 		}
 
 		/// <summary>
@@ -312,7 +308,7 @@ namespace MsgPack.Serialization
 		/// </returns>
 		public static SerializerRepository GetDefault()
 		{
-			return GetDefault( SerializationContext.Default );
+			return GetDefault(SerializationContext.Default);
 		}
 
 		/// <summary>
@@ -324,11 +320,11 @@ namespace MsgPack.Serialization
 		///		This value will not be <c>null</c>.
 		///		Note that the repository is frozen.
 		/// </returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "packerCompatibilityOptions", Justification = "Historical reason" )]
-		[Obsolete( "Use GetDefault()" )]
-		public static SerializerRepository GetDefault( PackerCompatibilityOptions packerCompatibilityOptions )
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "packerCompatibilityOptions", Justification = "Historical reason")]
+		[Obsolete("Use GetDefault()")]
+		public static SerializerRepository GetDefault(PackerCompatibilityOptions packerCompatibilityOptions)
 		{
-			return GetDefault( SerializationContext.Default );
+			return GetDefault(SerializationContext.Default);
 		}
 
 		/// <summary>
@@ -341,14 +337,16 @@ namespace MsgPack.Serialization
 		///		This value will not be <c>null</c>.
 		///		Note that the repository is frozen.
 		/// </returns>
-		public static SerializerRepository GetDefault( SerializationContext ownerContext )
+		public static SerializerRepository GetDefault(SerializationContext ownerContext)
 		{
-			if ( ownerContext == null )
+			if (ownerContext == null)
 			{
-				throw new ArgumentNullException( "ownerContext" );
+				throw new ArgumentNullException("ownerContext");
 			}
 
-			return new SerializerRepository( InitializeDefaultTable( ownerContext ) );
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			//return new SerializerRepository(InitializeDefaultTable(ownerContext));
 		}
 
 		/// <summary>
@@ -359,9 +357,11 @@ namespace MsgPack.Serialization
 		///		<c>true</c> if this repository contains serializer for the specified target type; otherwise, <c>false</c>.
 		///		This method returns <c>false</c> for <c>null</c>.
 		/// </returns>
-		public bool ContainsFor( Type targetType )
+		public bool ContainsFor(Type targetType)
 		{
-			return this._repository.Contains( targetType );
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			//return this._repository.Contains(targetType);
 		}
 
 		/// <summary>
@@ -376,14 +376,16 @@ namespace MsgPack.Serialization
 		///		You should use the result for debugging or tooling purpose only.
 		///		Use <c>Get()</c> overloads to get proper serializer.
 		/// </remarks>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This method causes collection copying." )]
-		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "By design" )]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This method causes collection copying.")]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Justification = "By design")]
 		public IEnumerable<KeyValuePair<Type, MessagePackSerializer>> GetRegisteredSerializers()
 		{
-			return
-				this._repository.GetEntries()
-					.Select( kv => new KeyValuePair<Type, MessagePackSerializer>( kv.Key, kv.Value as MessagePackSerializer ) )
-					.Where( kV => kV.Value != null );
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			//return
+			//	this._repository.GetEntries()
+			//		.Select(kv => new KeyValuePair<Type, MessagePackSerializer>(kv.Key, kv.Value as MessagePackSerializer))
+			//		.Where(kV => kV.Value != null);
 		}
 	}
 }

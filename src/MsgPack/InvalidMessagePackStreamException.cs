@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -25,6 +25,7 @@ using System.Runtime.Serialization;
 
 namespace MsgPack
 {
+#warning TODO: Add appropriate base class in MsgPack.Core if possible
 	/// <summary>
 	///		Exception occured when inbound stream is invalid as serialized Message Pack stream.
 	/// </summary>

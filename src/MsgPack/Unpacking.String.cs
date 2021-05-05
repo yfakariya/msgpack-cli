@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -31,6 +31,7 @@ using System.Diagnostics.Contracts;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using MsgPack.Internal;
 
 namespace MsgPack
 {
@@ -67,9 +68,9 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(byte[])"/> instead.
 		///		</para>
 		///	</remarks>
-		public static UnpackingResult<string> UnpackString( byte[] source )
+		public static UnpackingResult<string> UnpackString(byte[] source)
 		{
-			return UnpackString( source, 0 );
+			return UnpackString(source, 0);
 		}
 
 		///	<summary>
@@ -102,9 +103,9 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(byte[])"/> instead.
 		///		</para>
 		///	</remarks>
-		public static UnpackingResult<string> UnpackString( byte[] source, Encoding encoding )
+		public static UnpackingResult<string> UnpackString(byte[] source, Encoding encoding)
 		{
-			return UnpackString( source, 0, encoding );
+			return UnpackString(source, 0, encoding);
 		}
 
 		///	<summary>
@@ -140,9 +141,9 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(byte[])"/> instead.
 		///		</para>
 		///	</remarks>
-		public static UnpackingResult<string> UnpackString( byte[] source, int offset )
+		public static UnpackingResult<string> UnpackString(byte[] source, int offset)
 		{
-			return UnpackString( source, offset, MessagePackConvert.Utf8NonBomStrict );
+			return UnpackString(source, offset, Utf8EncodingNonBomStrict.Instance);
 		}
 
 		///	<summary>
@@ -180,23 +181,23 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(byte[])"/> instead.
 		///		</para>
 		///	</remarks>
-		public static UnpackingResult<string> UnpackString( byte[] source, int offset, Encoding encoding )
+		public static UnpackingResult<string> UnpackString(byte[] source, int offset, Encoding encoding)
 		{
-			if ( encoding == null )
+			if (encoding == null)
 			{
-				throw new ArgumentNullException( "encoding" );
+				throw new ArgumentNullException("encoding");
 			}
 
 			Contract.EndContractBlock();
 
 			try
 			{
-				var result = UnpackBinary( source, offset );
-				return new UnpackingResult<string>( encoding.GetString( result.Value, 0, result.Value.Length ), result.ReadCount );
+				var result = UnpackBinary(source, offset);
+				return new UnpackingResult<string>(encoding.GetString(result.Value, 0, result.Value.Length), result.ReadCount);
 			}
-			catch ( DecoderFallbackException ex )
+			catch (DecoderFallbackException ex)
 			{
-				throw NewInvalidEncodingException( encoding, ex );
+				throw NewInvalidEncodingException(encoding, ex);
 			}
 		}
 
@@ -231,9 +232,9 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(Stream)"/> instead.
 		///		</para>
 		///	</remarks>
-		public static string UnpackString( Stream source )
+		public static string UnpackString(Stream source)
 		{
-			return UnpackString( source, MessagePackConvert.Utf8NonBomStrict );
+			return UnpackString(source, Utf8EncodingNonBomStrict.Instance);
 		}
 
 		///	<summary>
@@ -268,31 +269,31 @@ namespace MsgPack
 		///			When the type of packed value is not known, use <see cref="UnpackObject(Stream)"/> instead.
 		///		</para>
 		///	</remarks>
-		public static string UnpackString( Stream source, Encoding encoding )
+		public static string UnpackString(Stream source, Encoding encoding)
 		{
-			if ( encoding == null )
+			if (encoding == null)
 			{
-				throw new ArgumentNullException( "encoding" );
+				throw new ArgumentNullException("encoding");
 			}
 
 			Contract.EndContractBlock();
 
 			try
 			{
-				var result = UnpackBinary( source );
-				return encoding.GetString( result, 0, result.Length );
+				var result = UnpackBinary(source);
+				return encoding.GetString(result, 0, result.Length);
 			}
-			catch ( DecoderFallbackException ex )
+			catch (DecoderFallbackException ex)
 			{
-				throw NewInvalidEncodingException( encoding, ex );
+				throw NewInvalidEncodingException(encoding, ex);
 			}
 		}
 		#endregion -- UnpackString --
 
 
-		private static Exception NewInvalidEncodingException( Encoding encoding, Exception innerException )
+		private static Exception NewInvalidEncodingException(Encoding encoding, Exception innerException)
 		{
-			return new MessageTypeException( String.Format( CultureInfo.CurrentCulture, "The stream cannot be decoded as {0} string.", encoding.WebName ), innerException );
+			return new MessageTypeException(String.Format(CultureInfo.CurrentCulture, "The stream cannot be decoded as {0} string.", encoding.WebName), innerException);
 		}
 	}
 }

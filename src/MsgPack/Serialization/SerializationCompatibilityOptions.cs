@@ -3,6 +3,8 @@
 // See the LICENSE in the project root for more information.
 
 using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace MsgPack.Serialization
 {
@@ -82,6 +84,18 @@ namespace MsgPack.Serialization
 		bool ISerializationCompatibilityOptions.AllowsNonCollectionEnumerableTypes => this.AllowNonCollectionEnumerableTypes;
 		bool ISerializationCompatibilityOptions.IgnoresAdapterForCollection => this.IgnorePackabilityForCollection;
 		bool ISerializationCompatibilityOptions.UsesOneBoundDataMemberOrder => this.OneBoundDataMemberOrder;
+
+#warning TODO: IMPL
+		IEnumerable<Func<Type, ISerializerGenerationOptions, bool>> ISerializationCompatibilityOptions.SerializableInterfaceDetectors => throw new NotImplementedException();
+
+#warning TODO: IMPL
+		IEnumerable<Func<Type, ISerializerGenerationOptions, bool>> ISerializationCompatibilityOptions.DeserializableInterfaceDetectors => throw new NotImplementedException();
+
+#warning TODO: IMPL
+		Func<IEnumerable<CustomAttributeData>, IEnumerable<CustomAttributeData>, MessagePackMemberAttributeData?> ISerializationCompatibilityOptions.MessagePackMemberAttributeCompatibilityProvider => throw new NotImplementedException();
+
+#warning TODO: IMPL
+		Func<IEnumerable<CustomAttributeData>, IEnumerable<CustomAttributeData>, MessagePackIgnoreAttributeData?> ISerializationCompatibilityOptions.IgnoringAttributeCompatibilityProvider => throw new NotImplementedException();
 
 		// TODO: CheckNilImplicationInConstructorDeserialization
 

@@ -1,42 +1,12 @@
-#region -- License Terms --
-// 
-// MessagePack for CLI
-// 
-// Copyright (C) 2015 FUJIWARA, Yusuke
-// 
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-// 
-//        http://www.apache.org/licenses/LICENSE-2.0
-// 
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
-// 
-#endregion -- License Terms --
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// This file is licensed under Apache2 license.
+// See the LICENSE in the project root for more information.
 
-#if UNITY_5 || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WII || UNITY_IPHONE || UNITY_ANDROID || UNITY_PS3 || UNITY_XBOX360 || UNITY_FLASH || UNITY_BKACKBERRY || UNITY_WINRT
-#define UNITY
-#endif
-
-#if !NET40 && !NET35 && !UNITY && !SILVERLIGHT
-#define NET45
-#endif // !NET40 && !NET35 && !UNITY && !SILVERLIGHT
 using System;
 using System.Collections.Generic;
-#if FEATURE_MPCONTRACT
-using Contract = MsgPack.MPContract;
-#else
-using System.Diagnostics.Contracts;
-#endif // FEATURE_MPCONTRACT
 using System.Globalization;
 using System.Linq;
-#if NET45
-using System.Threading;
-#endif // NET45
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization
 {
@@ -50,8 +20,7 @@ namespace MsgPack.Serialization
 	public sealed class ExtTypeCodeMapping : IEnumerable<KeyValuePair<string, byte>>
 	{
 		private readonly object _syncRoot;
-		private readonly Dictionary<string, byte> _index;
-		private readonly Dictionary<byte, string> _types;
+		private readonly ExtensionTypeMappings _mappings;
 
 		/// <summary>
 		///		Gets a mapped byte to the specified ext type name.
@@ -63,23 +32,22 @@ namespace MsgPack.Serialization
 		/// <exception cref="ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
 		/// <exception cref="ArgumentException"><paramref name="name"/> is empty.</exception>
 		/// <exception cref="KeyNotFoundException"><paramref name="name"/> is not registered as known ext type name.</exception>
-		public byte this[ string name ]
+		public byte this[string name]
 		{
 			get
 			{
-				ValidateName( name );
+				ValidateName(name);
 
-				lock ( this._syncRoot )
+				lock (this._syncRoot)
 				{
-					byte code;
-					if ( !this._index.TryGetValue( name, out code ) )
+					if (!this._mappings.InternalMappings.TryGetValue(name, out var mapping))
 					{
 						throw new KeyNotFoundException(
-							String.Format( CultureInfo.CurrentCulture, "Ext type '{0}' is not found.", name )
+							String.Format(CultureInfo.CurrentCulture, "Ext type '{0}' is not found.", name)
 						);
 					}
 
-					return code;
+					return (byte)mapping.Type.Tag;
 				}
 			}
 		}
@@ -87,10 +55,7 @@ namespace MsgPack.Serialization
 		internal ExtTypeCodeMapping()
 		{
 			this._syncRoot = new object();
-			this._index = new Dictionary<string, byte>( 2 );
-			this._types = new Dictionary<byte, string>( 2 );
-			this.AddInternal( KnownExtTypeName.Timestamp, KnownExtTypeCode.Timestamp );
-			this.Add( KnownExtTypeName.MultidimensionalArray, KnownExtTypeCode.MultidimensionalArray );
+			this._mappings = new ExtensionTypeMappings(new Dictionary<string, ExtensionTypeMapping>());
 		}
 
 		/// <summary>
@@ -104,28 +69,18 @@ namespace MsgPack.Serialization
 		/// <exception cref="ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
 		/// <exception cref="ArgumentException"><paramref name="name"/> is empty.</exception>
 		/// <exception cref="ArgumentOutOfRangeException"><paramref name="typeCode"/> is greater than 0x7F.</exception>
-		public bool Add( string name, byte typeCode )
+		public bool Add(string name, byte typeCode)
 		{
-			ValidateName( name );
-			ValidateTypeCode( typeCode );
-			return this.AddInternal( name, typeCode );
+			ValidateName(name);
+			ValidateTypeCode(typeCode);
+			return this.AddInternal(name, typeCode);
 		}
 
-		private bool AddInternal( string name, byte typeCode )
+		private bool AddInternal(string name, byte typeCode)
 		{
-			lock ( this._syncRoot )
+			lock (this._syncRoot)
 			{
-				try
-				{
-					this._types.Add( typeCode, name );
-				}
-				catch ( ArgumentException )
-				{
-					return false;
-				}
-
-				this._index[ name ] = typeCode;
-				return true;
+				return this._mappings.InternalMappings.TryAdd(name, new ExtensionTypeMapping(name, new ExtensionType(typeCode), Enumerable.Empty<ExtraExtensionTypeMapping>()));
 			}
 		}
 
@@ -138,20 +93,13 @@ namespace MsgPack.Serialization
 		/// </returns>
 		/// <exception cref="ArgumentNullException"><paramref name="name"/> is <c>null</c>.</exception>
 		/// <exception cref="ArgumentException"><paramref name="name"/> is empty.</exception>
-		public bool Remove( string name )
+		public bool Remove(string name)
 		{
-			ValidateName( name );
+			ValidateName(name);
 
-			lock ( this._syncRoot )
+			lock (this._syncRoot)
 			{
-				byte typeCode;
-				if ( !this._index.TryGetValue( name, out typeCode ) )
-				{
-					return false;
-				}
-
-				this.RemoveCore( name, typeCode );
-				return true;
+				return this._mappings.InternalMappings.Remove(name);
 			}
 		}
 
@@ -163,32 +111,24 @@ namespace MsgPack.Serialization
 		///		<c>true</c> if <paramref name="typeCode"/> was registered and has been removed successfully; <c>false</c>, otherwise.
 		/// </returns>
 		/// <exception cref="ArgumentOutOfRangeException"><paramref name="typeCode"/> is greater than 0x7F.</exception>
-		public bool Remove( byte typeCode )
+		public bool Remove(byte typeCode)
 		{
-			ValidateTypeCode( typeCode );
+			ValidateTypeCode(typeCode);
 
-			lock ( this._syncRoot )
+			lock (this._syncRoot)
 			{
-				string name;
-				if ( !this._types.TryGetValue( typeCode, out name ) )
+				// This is not fast but it is OK because removal should be rare.
+
+				var mappings = this._mappings.Where(m => m.Type.Tag == typeCode || m.ExtraMappings.Any(x => x.Type.Tag == typeCode)).Select(x => x.Name);
+				var found = false;
+				foreach (var key in mappings)
 				{
-					return false;
+					this._mappings.InternalMappings.Remove(key);
+					found = true;
 				}
 
-				this.RemoveCore( name, typeCode );
-				return true;
+				return found;
 			}
-		}
-
-		private void RemoveCore( string name, byte typeCode )
-		{
-#if DEBUG && NET45
-			Contract.Assert( Monitor.IsEntered( this._syncRoot ) );
-#endif // DEBUG && NET45
-			var shouldBeTrue = this._types.Remove( typeCode );
-			Contract.Assert( shouldBeTrue );
-			shouldBeTrue = this._index.Remove( name );
-			Contract.Assert( shouldBeTrue );
 		}
 
 		/// <summary>
@@ -196,10 +136,9 @@ namespace MsgPack.Serialization
 		/// </summary>
 		public void Clear()
 		{
-			lock ( this._syncRoot )
+			lock (this._syncRoot)
 			{
-				this._types.Clear();
-				this._index.Clear();
+				this._mappings.InternalMappings.Clear();
 			}
 		}
 
@@ -214,13 +153,10 @@ namespace MsgPack.Serialization
 		/// </remarks>
 		public IEnumerator<KeyValuePair<string, byte>> GetEnumerator()
 		{
-			List<KeyValuePair<string, byte>> list;
-			lock ( this._syncRoot )
+			foreach (var mapping in this._mappings)
 			{
-				list = this._index.ToList();
+				yield return new KeyValuePair<string, byte>(mapping.Name, (byte)mapping.Type.Tag);
 			}
-
-			return list.GetEnumerator();
 		}
 
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -228,24 +164,24 @@ namespace MsgPack.Serialization
 			return this.GetEnumerator();
 		}
 
-		private static void ValidateName( string name )
+		private static void ValidateName(string name)
 		{
-			if ( name == null )
+			if (name == null)
 			{
-				throw new ArgumentNullException( "name" );
+				throw new ArgumentNullException("name");
 			}
 
-			if ( name.Length ==0 )
+			if (name.Length == 0)
 			{
-				throw new ArgumentException( String.Format( CultureInfo.CurrentCulture, "A parameter cannot be empty." ), "name" );
+				throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, "A parameter cannot be empty."), "name");
 			}
 		}
 
-		private static void ValidateTypeCode( byte typeCode )
+		private static void ValidateTypeCode(byte typeCode)
 		{
-			if ( typeCode > 0x7F )
+			if (typeCode > 0x7F)
 			{
-				throw new ArgumentOutOfRangeException( "typeCode", "Ext type code must be between 0 and 0x7F." );
+				throw new ArgumentOutOfRangeException("typeCode", "Ext type code must be between 0 and 0x7F.");
 			}
 		}
 	}

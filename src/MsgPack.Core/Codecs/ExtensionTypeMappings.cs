@@ -30,6 +30,9 @@ namespace MsgPack.Codecs
 	{
 		private readonly Dictionary<string, ExtensionTypeMapping> _mappings;
 
+		// For compatibility layer
+		internal Dictionary<string, ExtensionTypeMapping> InternalMappings => this._mappings;
+
 		/// <summary>
 		///		Gets the related primary extension type for the specified name.
 		/// </summary>

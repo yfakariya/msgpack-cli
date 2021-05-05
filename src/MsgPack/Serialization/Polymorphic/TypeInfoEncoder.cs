@@ -8,7 +8,7 @@ using System.Buffers.Binary;
 using System.Globalization;
 using System.Reflection;
 using System.Threading.Tasks;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization.Polymorphic
 {
@@ -106,7 +106,7 @@ namespace MsgPack.Serialization.Polymorphic
 			try
 			{
 				CollectionItemIterator iterator = default;
-				var canOmitIterator = decoder.Options.Features.CanCountCollectionItems;
+				var canOmitIterator = decoder.Features.CanCountCollectionItems;
 				if (canOmitIterator)
 				{
 					if (decoder.DecodeArrayOrMapHeader(ref source, out var itemsCount) != CollectionType.Array || itemsCount != 2)
@@ -156,7 +156,7 @@ namespace MsgPack.Serialization.Polymorphic
 
 			context.IncrementDepth();
 			CollectionItemIterator iterator = default;
-			var canOmitIterator = decoder.Options.Features.CanCountCollectionItems;
+			var canOmitIterator = decoder.Features.CanCountCollectionItems;
 			if (canOmitIterator)
 			{
 				if (decoder.DecodeArrayOrMapHeader(ref source, out var itemsCount) != CollectionType.Array || itemsCount != 2)
@@ -204,7 +204,7 @@ namespace MsgPack.Serialization.Polymorphic
 		)
 		{
 			var decoder = context.Decoder;
-			var canOmitIterator = decoder.Options.Features.CanCountCollectionItems;
+			var canOmitIterator = decoder.Features.CanCountCollectionItems;
 			var initialPosition = source.Consumed;
 			CollectionItemIterator iterator;
 
@@ -428,7 +428,7 @@ namespace MsgPack.Serialization.Polymorphic
 			CollectionType arrayOrMap;
 			int itemsCount;
 			CollectionItemIterator iterator;
-			var canOmitIterator = context.Decoder.Options.Features.CanCountCollectionItems;
+			var canOmitIterator = context.Decoder.Features.CanCountCollectionItems;
 
 			context.IncrementDepth();
 			while (!TryDecodeArrayOrMap(context, source, canOmitIterator, out itemsCount, out arrayOrMap, out iterator, out requestHint))
@@ -486,7 +486,7 @@ namespace MsgPack.Serialization.Polymorphic
 			CollectionType arrayOrMap;
 			int itemsCount;
 			CollectionItemIterator iterator;
-			var canOmitIterator = context.Decoder.Options.Features.CanCountCollectionItems;
+			var canOmitIterator = context.Decoder.Features.CanCountCollectionItems;
 
 			var initialPotision = source.Position;
 
@@ -535,7 +535,7 @@ namespace MsgPack.Serialization.Polymorphic
 		{
 			var decoder = context.Decoder;
 			var initialPosition = source.Position;
-			var canOmitIterator = decoder.Options.Features.CanCountCollectionItems;
+			var canOmitIterator = decoder.Features.CanCountCollectionItems;
 
 			context.IncrementDepth();
 			var itemsCount = 0;

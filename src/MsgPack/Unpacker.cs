@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -263,11 +263,15 @@ namespace MsgPack
 		{
 			if ( unpackerOptions == null || unpackerOptions.ValidationLevel == UnpackerValidationLevel.Collection )
 			{
-				return new CollectionValidatingStreamUnpacker( stream, streamOptions );
+#warning TODO: IMPL
+				throw new NotImplementedException();
+				// return new CollectionValidatingStreamUnpacker( stream, streamOptions );
 			}
 			else
 			{
-				return new FastStreamUnpacker( stream, streamOptions );
+#warning TODO: IMPL
+				throw new NotImplementedException();
+				// return new FastStreamUnpacker( stream, streamOptions );
 			}
 		}
 
@@ -326,11 +330,15 @@ namespace MsgPack
 		{
 			if ( unpackerOptions == null || unpackerOptions.ValidationLevel == UnpackerValidationLevel.Collection )
 			{
-				return new CollectionValidatingByteArrayUnpacker( source, startOffset );
+#warning TODO: IMPL
+				throw new NotImplementedException();
+				// return new CollectionValidatingByteArrayUnpacker( source, startOffset );
 			}
 			else
 			{
-				return new FastByteArrayUnpacker( source, startOffset );
+#warning TODO: IMPL
+				throw new NotImplementedException();
+				// return new FastByteArrayUnpacker( source, startOffset );
 			}
 		}
 

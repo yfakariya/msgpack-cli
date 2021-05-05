@@ -34,8 +34,8 @@ using System.Reflection;
 #endif // UNITY || WINDOWS_PHONE || WINDOWS_UWP
 using System.Runtime.Serialization;
 
-using MsgPack.Serialization.DefaultSerializers;
-using MsgPack.Serialization.ReflectionSerializers;
+//using MsgPack.Serialization.DefaultSerializers;
+//using MsgPack.Serialization.ReflectionSerializers;
 #if !SILVERLIGHT && !NET35 && !UNITY
 using System.Collections.Concurrent;
 #else // !SILVERLIGHT && !NET35 && !UNITY
@@ -214,92 +214,94 @@ namespace MsgPack.Serialization
 #endif
 		static MessagePackSerializer<T> CreateInternal<T>( SerializationContext context, PolymorphismSchema schema )
 		{
+#warning TODO: IMPL
+			throw new NotImplementedException();
 
-#if DEBUG
-			Contract.Ensures( Contract.Result<MessagePackSerializer<T>>() != null );
-#endif // DEBUG
+//#if DEBUG
+//			Contract.Ensures( Contract.Result<MessagePackSerializer<T>>() != null );
+//#endif // DEBUG
 
-#if DEBUG && FEATURE_EMIT
-			SerializerDebugging.TraceEmitEvent(
-				"SerializationContext::CreateInternal<{0}>(@{1}, {2})",
-				typeof( T ),
-				context.GetHashCode(),
-				schema == null ? "null" : schema.DebugString
-			);
+//#if DEBUG && FEATURE_EMIT
+//			SerializerDebugging.TraceEmitEvent(
+//				"SerializationContext::CreateInternal<{0}>(@{1}, {2})",
+//				typeof( T ),
+//				context.GetHashCode(),
+//				schema == null ? "null" : schema.DebugString
+//			);
 
-#endif // DEBUG && FEATURE_EMIT
-			Type concreteType = null;
-			CollectionTraits collectionTraits =
-#if UNITY
-				typeof( T ).GetCollectionTraits( CollectionTraitOptions.None, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
-#else
-				typeof( T ).GetCollectionTraits( CollectionTraitOptions.Full, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
-#endif // UNITY
+//#endif // DEBUG && FEATURE_EMIT
+//			Type concreteType = null;
+//			CollectionTraits collectionTraits =
+//#if UNITY
+//				typeof( T ).GetCollectionTraits( CollectionTraitOptions.None, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
+//#else
+//				typeof( T ).GetCollectionTraits( CollectionTraitOptions.Full, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
+//#endif // UNITY
 
-			if ( typeof( T ).GetIsAbstract() || typeof( T ).GetIsInterface() )
-			{
-				// Abstract collection types will be handled correctly.
-				if ( collectionTraits.CollectionType != CollectionKind.NotCollection )
-				{
-					concreteType = context.DefaultCollectionTypes.GetConcreteType( typeof( T ) );
-				}
+//			if ( typeof( T ).GetIsAbstract() || typeof( T ).GetIsInterface() )
+//			{
+//				// Abstract collection types will be handled correctly.
+//				if ( collectionTraits.CollectionType != CollectionKind.NotCollection )
+//				{
+//					concreteType = context.DefaultCollectionTypes.GetConcreteType( typeof( T ) );
+//				}
 
-				if ( concreteType == null )
-				{
-					// return null for polymoirphic provider.
-					return null;
-				}
+//				if ( concreteType == null )
+//				{
+//					// return null for polymoirphic provider.
+//					return null;
+//				}
 
-				ValidateType( concreteType );
-			}
-			else
-			{
-				ValidateType( typeof( T ) );
-			}
+//				ValidateType( concreteType );
+//			}
+//			else
+//			{
+//				ValidateType( typeof( T ) );
+//			}
 
-#if FEATURE_EMIT
-			ISerializerBuilder builder;
-			switch ( context.SerializerOptions.EmitterFlavor )
-			{
-#if !NETSTANDARD1_3
-				case EmitterFlavor.CodeDomBased:
-				{
-#if DEBUG
-					if ( !SerializerDebugging.OnTheFlyCodeGenerationEnabled )
-					{
-						throw new NotSupportedException(
-							String.Format(
-								CultureInfo.CurrentCulture,
-								"Flavor '{0:G}'({0:D}) is not supported for serializer instance creation.",
-								context.SerializerOptions.EmitterFlavor
-							)
-						);
-					}
+//#if FEATURE_EMIT
+//			ISerializerBuilder builder;
+//			switch ( context.SerializerOptions.EmitterFlavor )
+//			{
+//#if !NETSTANDARD1_3
+//				case EmitterFlavor.CodeDomBased:
+//				{
+//#if DEBUG
+//					if ( !SerializerDebugging.OnTheFlyCodeGenerationEnabled )
+//					{
+//						throw new NotSupportedException(
+//							String.Format(
+//								CultureInfo.CurrentCulture,
+//								"Flavor '{0:G}'({0:D}) is not supported for serializer instance creation.",
+//								context.SerializerOptions.EmitterFlavor
+//							)
+//						);
+//					}
 
-					builder = new CodeDomSerializerBuilder( typeof( T ), collectionTraits );
-					break;
-#else // DEBUG
-					throw new NotSupportedException();
-#endif // DEBUG
-				}
-#endif // !NETSTANDARD1_3
-				case EmitterFlavor.FieldBased:
-				{
-					builder = new AssemblyBuilderSerializerBuilder( typeof( T ), collectionTraits );
-					break;
-				}
-				default: // EmitterFlavor.ReflectionBased
-				{
-#endif // FEATURE_EMIT
-					return
-						GenericSerializer.TryCreateAbstractCollectionSerializer( context, typeof( T ), concreteType, schema ) as MessagePackSerializer<T>
-						?? CreateReflectionInternal<T>( context, concreteType ?? typeof( T ), schema );
-#if FEATURE_EMIT
-				}
-			}
+//					builder = new CodeDomSerializerBuilder( typeof( T ), collectionTraits );
+//					break;
+//#else // DEBUG
+//					throw new NotSupportedException();
+//#endif // DEBUG
+//				}
+//#endif // !NETSTANDARD1_3
+//				case EmitterFlavor.FieldBased:
+//				{
+//					builder = new AssemblyBuilderSerializerBuilder( typeof( T ), collectionTraits );
+//					break;
+//				}
+//				default: // EmitterFlavor.ReflectionBased
+//				{
+//#endif // FEATURE_EMIT
+//					return
+//						GenericSerializer.TryCreateAbstractCollectionSerializer( context, typeof( T ), concreteType, schema ) as MessagePackSerializer<T>
+//						?? CreateReflectionInternal<T>( context, concreteType ?? typeof( T ), schema );
+//#if FEATURE_EMIT
+//				}
+//			}
 
-			return ( MessagePackSerializer<T> ) builder.BuildSerializerInstance( context, concreteType, schema == null ? null : schema.FilterSelf() );
-#endif // FEATURE_EMIT
+//			return ( MessagePackSerializer<T> ) builder.BuildSerializerInstance( context, concreteType, schema == null ? null : schema.FilterSelf() );
+//#endif // FEATURE_EMIT
 		}
 
 #if !UNITY
@@ -360,62 +362,65 @@ namespace MsgPack.Serialization
 				throw new ArgumentNullException( "context" );
 			}
 
-#if DEBUG
-			Contract.Ensures( Contract.Result<MessagePackSerializer>() != null );
-#endif // DEBUG
+#warning TODO: IMPL
+			throw new NotImplementedException();
 
-#if UNITY || WINDOWS_PHONE || WINDOWS_UWP
-			return CreateInternal( context, targetType, null );
-#else
-			// MPS.Create should always return new instance, and creator delegate should be cached for performance.
-#if NETSTANDARD1_1 || NETSTANDARD1_3
-			var factory =
-				_creatorCache.GetOrAdd(
-					targetType,
-					type =>
-						// Utilize covariance of delegate.
-						Metadata._MessagePackSerializer.Create1_Method.MakeGenericMethod( type ).CreateDelegate(
-							typeof( Func<SerializationContext, MessagePackSerializer> )
-						) as Func<SerializationContext, MessagePackSerializer>
-				);
-#elif SILVERLIGHT || NET35
-			Func<SerializationContext, MessagePackSerializer> factory;
+//#if DEBUG
+//			Contract.Ensures( Contract.Result<MessagePackSerializer>() != null );
+//#endif // DEBUG
 
-			lock ( _syncRoot )
-			{
-				_creatorCache.TryGetValue( targetType, out factory );
-			}
+//#if UNITY || WINDOWS_PHONE || WINDOWS_UWP
+//			return CreateInternal( context, targetType, null );
+//#else
+//			// MPS.Create should always return new instance, and creator delegate should be cached for performance.
+//#if NETSTANDARD1_1 || NETSTANDARD1_3
+//			var factory =
+//				_creatorCache.GetOrAdd(
+//					targetType,
+//					type =>
+//						// Utilize covariance of delegate.
+//						Metadata._MessagePackSerializer.Create1_Method.MakeGenericMethod( type ).CreateDelegate(
+//							typeof( Func<SerializationContext, MessagePackSerializer> )
+//						) as Func<SerializationContext, MessagePackSerializer>
+//				);
+//#elif SILVERLIGHT || NET35
+//			Func<SerializationContext, MessagePackSerializer> factory;
 
-			if ( factory == null )
-			{
-				// Utilize covariance of delegate.
-				factory =
-					Delegate.CreateDelegate(
-						typeof( Func<SerializationContext, MessagePackSerializer> ),
-						Metadata._MessagePackSerializer.Create1_Method.MakeGenericMethod( targetType )
-						) as Func<SerializationContext, MessagePackSerializer>;
+//			lock ( _syncRoot )
+//			{
+//				_creatorCache.TryGetValue( targetType, out factory );
+//			}
 
-				Contract.Assert( factory != null );
+//			if ( factory == null )
+//			{
+//				// Utilize covariance of delegate.
+//				factory =
+//					Delegate.CreateDelegate(
+//						typeof( Func<SerializationContext, MessagePackSerializer> ),
+//						Metadata._MessagePackSerializer.Create1_Method.MakeGenericMethod( targetType )
+//						) as Func<SerializationContext, MessagePackSerializer>;
 
-				lock ( _syncRoot )
-				{
-					_creatorCache[ targetType ] = factory;
-				}
-			}
-#else
-			var factory =
-				_creatorCache.GetOrAdd(
-					targetType,
-					type =>
-						// Utilize covariance of delegate.
-						Delegate.CreateDelegate(
-							typeof( Func<SerializationContext, MessagePackSerializer> ),
-							Metadata._MessagePackSerializer.Create1_Method.MakeGenericMethod( type )
-						) as Func<SerializationContext, MessagePackSerializer>
-				);
-#endif // NETSTANDARD1_1 || NETSTANDARD1_3
-			return factory( context );
-#endif // UNITY || WINDOWS_PHONE || WINDOWS_UWP
+//				Contract.Assert( factory != null );
+
+//				lock ( _syncRoot )
+//				{
+//					_creatorCache[ targetType ] = factory;
+//				}
+//			}
+//#else
+//			var factory =
+//				_creatorCache.GetOrAdd(
+//					targetType,
+//					type =>
+//						// Utilize covariance of delegate.
+//						Delegate.CreateDelegate(
+//							typeof( Func<SerializationContext, MessagePackSerializer> ),
+//							Metadata._MessagePackSerializer.Create1_Method.MakeGenericMethod( type )
+//						) as Func<SerializationContext, MessagePackSerializer>
+//				);
+//#endif // NETSTANDARD1_1 || NETSTANDARD1_3
+//			return factory( context );
+//#endif // UNITY || WINDOWS_PHONE || WINDOWS_UWP
 		}
 
 		/// <summary>
@@ -570,65 +575,67 @@ namespace MsgPack.Serialization
 
 		internal static MessagePackSerializer<T> CreateReflectionInternal<T>( SerializationContext context, Type concreteType, PolymorphismSchema schema )
 		{
-			if ( concreteType.GetIsAbstract() || concreteType.GetIsInterface() )
-			{
-				// return null for polymoirphic provider.
-				return null;
-			}
+#warning TODO: IMPL
+			throw new NotImplementedException();
+//			if ( concreteType.GetIsAbstract() || concreteType.GetIsInterface() )
+//			{
+//				// return null for polymoirphic provider.
+//				return null;
+//			}
 
-			var serializer = context.Serializers.Get<T>( context );
+//			var serializer = context.Serializers.Get<T>( context );
 
-			if ( serializer != null )
-			{
-				// For MessagePack.Create compatibility. 
-				// Required for built-in types.
-				return serializer;
-			}
+//			if ( serializer != null )
+//			{
+//				// For MessagePack.Create compatibility. 
+//				// Required for built-in types.
+//				return serializer;
+//			}
 
-			ValidateType( typeof( T ) );
-			var traits = 
-#if !UNITY
-				typeof( T ).GetCollectionTraits( CollectionTraitOptions.WithAddMethod, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
-#else
-				typeof( T ).GetCollectionTraits( CollectionTraitOptions.WithAddMethod | CollectionTraitOptions.WithCountPropertyGetter, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
-#endif
-			switch ( traits.CollectionType )
-			{
-				case CollectionKind.Array:
-				case CollectionKind.Map:
-				{
-					return 
-#if !UNITY
-						ReflectionSerializerHelper.CreateCollectionSerializer<T>( context, concreteType, traits, ( schema ?? PolymorphismSchema.Default ) );
-#else
-						Wrap<T>( 
-							context,
-							ReflectionSerializerHelper.CreateCollectionSerializer<T>( context, concreteType, traits, ( schema ?? PolymorphismSchema.Default ) )
-						);
-#endif // !UNITY
-				}
-				default:
-				{
-					if ( typeof( T ).GetIsEnum() )
-					{
-						return ReflectionSerializerHelper.CreateReflectionEnumMessagePackSerializer<T>( context );
-					}
-#if !NET35 && !UNITY
-					if ( TupleItems.IsTuple( typeof( T ) ) )
-					{
-						return
-							new ReflectionTupleMessagePackSerializer<T>(
-								context,
-								( schema ?? PolymorphismSchema.Default ).ChildSchemaList
-							);
-					}
-#endif // !NET35 && !UNITY
+//			ValidateType( typeof( T ) );
+//			var traits = 
+//#if !UNITY
+//				typeof( T ).GetCollectionTraits( CollectionTraitOptions.WithAddMethod, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
+//#else
+//				typeof( T ).GetCollectionTraits( CollectionTraitOptions.WithAddMethod | CollectionTraitOptions.WithCountPropertyGetter, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes );
+//#endif
+//			switch ( traits.CollectionType )
+//			{
+//				case CollectionKind.Array:
+//				case CollectionKind.Map:
+//				{
+//					return 
+//#if !UNITY
+//						ReflectionSerializerHelper.CreateCollectionSerializer<T>( context, concreteType, traits, ( schema ?? PolymorphismSchema.Default ) );
+//#else
+//						Wrap<T>( 
+//							context,
+//							ReflectionSerializerHelper.CreateCollectionSerializer<T>( context, concreteType, traits, ( schema ?? PolymorphismSchema.Default ) )
+//						);
+//#endif // !UNITY
+//				}
+//				default:
+//				{
+//					if ( typeof( T ).GetIsEnum() )
+//					{
+//						return ReflectionSerializerHelper.CreateReflectionEnumMessagePackSerializer<T>( context );
+//					}
+//#if !NET35 && !UNITY
+//					if ( TupleItems.IsTuple( typeof( T ) ) )
+//					{
+//						return
+//							new ReflectionTupleMessagePackSerializer<T>(
+//								context,
+//								( schema ?? PolymorphismSchema.Default ).ChildSchemaList
+//							);
+//					}
+//#endif // !NET35 && !UNITY
 
-					SerializationTarget.VerifyType( typeof( T ) );
-					var target = SerializationTarget.Prepare( context, typeof( T ) );
-					return new ReflectionObjectMessagePackSerializer<T>( context, target, target.GetCapabilitiesForObject() );
-				}
-			}
+//					SerializationTarget.VerifyType( typeof( T ) );
+//					var target = SerializationTarget.Prepare( context, typeof( T ) );
+//					return new ReflectionObjectMessagePackSerializer<T>( context, target, target.GetCapabilitiesForObject() );
+//				}
+//			}
 		}
 
 		private static void ValidateType( Type type )
@@ -656,8 +663,8 @@ namespace MsgPack.Serialization
 #endif // UNITY
 
 		// For stable behavior, use singleton concrete deserializer and private context.
-		private static readonly MessagePackSerializer<MessagePackObject> _singleTonMpoDeserializer =
-			new MsgPack_MessagePackObjectMessagePackSerializer( new SerializationContext() );
+		//private static readonly MessagePackSerializer<MessagePackObject> _singleTonMpoDeserializer =
+		//	new MsgPack_MessagePackObjectMessagePackSerializer( new SerializationContext() );
 
 		/// <summary>
 		///		Directly deserialize specified MessagePack <see cref="Stream"/> as <see cref="MessagePackObject"/> tree.
@@ -675,7 +682,9 @@ namespace MsgPack.Serialization
 		/// </remarks>
 		public static MessagePackObject UnpackMessagePackObject( Stream stream )
 		{
-			return _singleTonMpoDeserializer.Unpack( stream );
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			// return _singleTonMpoDeserializer.Unpack( stream );
 		}
 
 		/// <summary>
@@ -694,7 +703,9 @@ namespace MsgPack.Serialization
 		/// </remarks>
 		public static MessagePackObject UnpackMessagePackObject( byte[] buffer )
 		{
-			return _singleTonMpoDeserializer.UnpackSingleObject( buffer );
+#warning TODO: IMPL
+			throw new NotImplementedException();
+			// return _singleTonMpoDeserializer.UnpackSingleObject( buffer );
 		}
 
 		/// <summary>

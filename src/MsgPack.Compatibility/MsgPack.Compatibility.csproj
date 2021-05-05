@@ -5,8 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\MsgPack\AsyncReadResult.cs" Link="AsyncReadResult.cs" />
+    <Compile Include="..\MsgPack\AsyncReadResult`1.cs" Link="AsyncReadResult`1.cs" />
+    <Compile Include="..\MsgPack\ByteArrayPacker.cs" Link="ByteArrayPacker.cs" />
+    <Compile Include="..\MsgPack\ByteArrayUnpacker.cs" Link="ByteArrayUnpacker.cs" />
+    <Compile Include="..\MsgPack\Float32Bits.cs" Link="Float32Bits.cs" />
+    <Compile Include="..\MsgPack\Float64Bits.cs" Link="Float64Bits.cs" />
     <Compile Include="..\MsgPack\IAsyncPackable.cs" Link="IAsyncPackable.cs" />
     <Compile Include="..\MsgPack\IAsyncUnpackable.cs" Link="IAsyncUnpackable.cs" />
+    <Compile Include="..\MsgPack\Int32OffsetValue`1.cs" Link="Int32OffsetValue`1.cs" />
+    <Compile Include="..\MsgPack\Int64OffsetValue`1.cs" Link="Int64OffsetValue`1.cs" />
+    <Compile Include="..\MsgPack\InvalidMessagePackStreamException.cs" Link="InvalidMessagePackStreamException.cs" />
     <Compile Include="..\MsgPack\IPackable.cs" Link="IPackable.cs" />
     <Compile Include="..\MsgPack\IUnpackable.cs" Link="IUnpackable.cs" />
     <Compile Include="..\MsgPack\Packer.cs" Link="Packer.cs" />
@@ -17,19 +26,27 @@
     <Compile Include="..\MsgPack\PackerUnpackerExtensions.cs" Link="PackerUnpackerExtensions.cs" />
     <Compile Include="..\MsgPack\PackerUnpackerStreamOptions.cs" Link="PackerUnpackerStreamOptions.cs" />
     <Compile Include="..\MsgPack\PackingOptions.cs" Link="PackingOptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\CollectionSerializers\ICollectionInstanceFactory.cs" Link="Serialization\CollectionSerializers\ICollectionInstanceFactory.cs" />
     <Compile Include="..\MsgPack\Serialization\DefaultConcreteTypeRepository.cs" Link="Serialization\DefaultConcreteTypeRepository.cs" />
     <Compile Include="..\MsgPack\Serialization\EnumSerializationOptions.cs" Link="Serialization\EnumSerializationOptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\ExtTypeCodeMapping.cs" Link="Serialization\ExtTypeCodeMapping.cs" />
+    <Compile Include="..\MsgPack\Serialization\IMessagePackSerializer.cs" Link="Serialization\IMessagePackSerializer.cs" />
+    <Compile Include="..\MsgPack\Serialization\IMessagePackSingleObjectSerializer.cs" Link="Serialization\IMessagePackSingleObjectSerializer.cs" />
+    <Compile Include="..\MsgPack\Serialization\MessagePackSerializer.cs" Link="Serialization\MessagePackSerializer.cs" />
+    <Compile Include="..\MsgPack\Serialization\MessagePackSerializer.Factories.cs" Link="Serialization\MessagePackSerializer.Factories.cs" />
     <Compile Include="..\MsgPack\Serialization\MessagePackSerializerProvider.cs" Link="Serialization\MessagePackSerializerProvider.cs" />
-    <Compile Include="..\MsgPack\Serialization\SerializationCompatibilityLevel.cs" Link="Serialization\SerializationCompatibilityLevel.cs" />
+    <Compile Include="..\MsgPack\Serialization\MessagePackSerializer`1.cs" Link="Serialization\MessagePackSerializer`1.cs" />
+    <Compile Include="..\MsgPack\Serialization\ResolveSerializerEventArgs.cs" Link="Serialization\ResolveSerializerEventArgs.cs" />
     <Compile Include="..\MsgPack\Serialization\SerializationCompatibilityOptions.cs" Link="Serialization\SerializationCompatibilityOptions.cs" />
     <Compile Include="..\MsgPack\Serialization\SerializationContext.cs" Link="Serialization\SerializationContext.cs" />
     <Compile Include="..\MsgPack\Serialization\SerializationContext.ExtTypeCodes.cs" Link="Serialization\SerializationContext.ExtTypeCodes.cs" />
     <Compile Include="..\MsgPack\Serialization\SerializationExceptions.cs" Link="Serialization\SerializationExceptions.cs" />
     <Compile Include="..\MsgPack\Serialization\SerializerOptions.cs" Link="Serialization\SerializerOptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializerRepository.cs" Link="Serialization\SerializerRepository.cs" />
     <Compile Include="..\MsgPack\Unpacker.cs" Link="Unpacker.cs" />
-    <Compile Include="..\MsgPack\Unpacker.Leaf.cs" Link="Unpacker.Leaf.cs" />
     <Compile Include="..\MsgPack\Unpacker.Unpacking.cs" Link="Unpacker.Unpacking.cs" />
     <Compile Include="..\MsgPack\UnpackerOptions.cs" Link="UnpackerOptions.cs" />
+    <Compile Include="..\MsgPack\UnpackerValidationLevel.cs" Link="UnpackerValidationLevel.cs" />
     <Compile Include="..\MsgPack\UnpackException.cs" Link="UnpackException.cs" />
     <Compile Include="..\MsgPack\Unpacking.cs" Link="Unpacking.cs" />
     <Compile Include="..\MsgPack\Unpacking.Numerics.cs" Link="Unpacking.Numerics.cs" />
@@ -43,8 +60,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MsgPack.Codec\MsgPack.Codec.csproj" />
     <ProjectReference Include="..\MsgPack.Core\MsgPack.Core.csproj" />
     <ProjectReference Include="..\MsgPack.Serialization\MsgPack.Serialization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Serialization\CollectionSerializers\" />
   </ItemGroup>
 
 </Project>
