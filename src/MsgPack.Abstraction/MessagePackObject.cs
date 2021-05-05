@@ -24,9 +24,9 @@ namespace MsgPack
 	{
 		#region -- Constructors --
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Boolean"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Boolean" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Boolean value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -35,9 +35,9 @@ namespace MsgPack
 			this._handleOrTypeCode = BooleanTypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Byte"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Byte" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Byte value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -46,9 +46,9 @@ namespace MsgPack
 			this._handleOrTypeCode = ByteTypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="SByte"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="SByte" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		[CLSCompliant(false)]
 		public MessagePackObject(SByte value)
 		{
@@ -58,9 +58,9 @@ namespace MsgPack
 			this._handleOrTypeCode = SByteTypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Int16"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Int16" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Int16 value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -69,9 +69,9 @@ namespace MsgPack
 			this._handleOrTypeCode = Int16TypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="UInt16"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="UInt16" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		[CLSCompliant(false)]
 		public MessagePackObject(UInt16 value)
 		{
@@ -81,9 +81,9 @@ namespace MsgPack
 			this._handleOrTypeCode = UInt16TypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Int32"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Int32" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Int32 value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -92,9 +92,9 @@ namespace MsgPack
 			this._handleOrTypeCode = Int32TypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="UInt32"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="UInt32" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		[CLSCompliant(false)]
 		public MessagePackObject(UInt32 value)
 		{
@@ -104,9 +104,9 @@ namespace MsgPack
 			this._handleOrTypeCode = UInt32TypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Int64"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Int64" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Int64 value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -115,9 +115,9 @@ namespace MsgPack
 			this._handleOrTypeCode = Int64TypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="UInt64"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="UInt64" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		[CLSCompliant(false)]
 		public MessagePackObject(UInt64 value)
 		{
@@ -127,9 +127,9 @@ namespace MsgPack
 			this._handleOrTypeCode = UInt64TypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Single"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Single" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Single value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -138,9 +138,9 @@ namespace MsgPack
 			this._handleOrTypeCode = SingleTypeCode;
 		}
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Double"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="Double" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(Double value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -281,9 +281,9 @@ namespace MsgPack
 
 #pragma warning disable 0618 // obsolete
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="MessagePackExtendedTypeObject"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="MessagePackExtendedTypeObject" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(MessagePackExtendedTypeObject value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -294,9 +294,9 @@ namespace MsgPack
 
 #pragma warning restore 0618 // obsolete
 		/// <summary>
-		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="ExtensionTypeObject"/> instance.
+		///		Initializes a new instance of the <see cref="MessagePackObject"/> type which wraps <see cref="ExtensionTypeObject" /> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="MessagePackObject"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> value to be wrapped.</param>
 		public MessagePackObject(ExtensionTypeObject value)
 		{
 			// trick: Avoid long boilerplate initialization.
@@ -310,7 +310,7 @@ namespace MsgPack
 		#region -- Primitive Type Conversion Methods --
 
 		/// <summary>
-		///		Convert this instance to <see cref="Boolean" /> instance.
+		///		Converts this instance to <see cref="Boolean" /> instance.
 		/// </summary>
 		/// <returns><see cref="Boolean" /> instance corresponds to this instance.</returns>
 		public Boolean AsBoolean()
@@ -331,7 +331,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Byte" /> instance.
+		///		Converts this instance to <see cref="Byte" /> instance.
 		/// </summary>
 		/// <returns><see cref="Byte" /> instance corresponds to this instance.</returns>
 		public Byte AsByte()
@@ -390,7 +390,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="SByte" /> instance.
+		///		Converts this instance to <see cref="SByte" /> instance.
 		/// </summary>
 		/// <returns><see cref="SByte" /> instance corresponds to this instance.</returns>
 		[CLSCompliant(false)]
@@ -450,7 +450,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Int16" /> instance.
+		///		Converts this instance to <see cref="Int16" /> instance.
 		/// </summary>
 		/// <returns><see cref="Int16" /> instance corresponds to this instance.</returns>
 		public Int16 AsInt16()
@@ -509,7 +509,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="UInt16" /> instance.
+		///		Converts this instance to <see cref="UInt16" /> instance.
 		/// </summary>
 		/// <returns><see cref="UInt16" /> instance corresponds to this instance.</returns>
 		[CLSCompliant(false)]
@@ -555,7 +555,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Int32" /> instance.
+		///		Converts this instance to <see cref="Int32" /> instance.
 		/// </summary>
 		/// <returns><see cref="Int32" /> instance corresponds to this instance.</returns>
 		public Int32 AsInt32()
@@ -614,7 +614,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="UInt32" /> instance.
+		///		Converts this instance to <see cref="UInt32" /> instance.
 		/// </summary>
 		/// <returns><see cref="UInt32" /> instance corresponds to this instance.</returns>
 		[CLSCompliant(false)]
@@ -660,7 +660,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Int64" /> instance.
+		///		Converts this instance to <see cref="Int64" /> instance.
 		/// </summary>
 		/// <returns><see cref="Int64" /> instance corresponds to this instance.</returns>
 		public Int64 AsInt64()
@@ -710,7 +710,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="UInt64" /> instance.
+		///		Converts this instance to <see cref="UInt64" /> instance.
 		/// </summary>
 		/// <returns><see cref="UInt64" /> instance corresponds to this instance.</returns>
 		[CLSCompliant(false)]
@@ -757,7 +757,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Single" /> instance.
+		///		Converts this instance to <see cref="Single" /> instance.
 		/// </summary>
 		/// <returns><see cref="Single" /> instance corresponds to this instance.</returns>
 		public Single AsSingle()
@@ -801,7 +801,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Double" /> instance.
+		///		Converts this instance to <see cref="Double" /> instance.
 		/// </summary>
 		/// <returns><see cref="Double" /> instance corresponds to this instance.</returns>
 		public Double AsDouble()
@@ -845,7 +845,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="String" /> instance.
+		///		Converts this instance to <see cref="String" /> instance.
 		/// </summary>
 		/// <returns><see cref="String" /> instance corresponds to this instance.</returns>
 		public String? AsString()
@@ -864,7 +864,7 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Byte" />[] instance.
+		///		Converts this instance to <see cref="Byte" />[] instance.
 		/// </summary>
 		/// <returns><see cref="Byte" />[] instance corresponds to this instance.</returns>
 		public Byte[]? AsBinary()
@@ -883,9 +883,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="ReadOnlyMemory<byte>" /> instance.
+		///		Converts this instance to <see cref="ReadOnlyMemory{T}" /> of <see cref="Byte" /> instance.
 		/// </summary>
-		/// <returns><see cref="ReadOnlyMemory<byte>" /> instance corresponds to this instance.</returns>
+		/// <returns><see cref="ReadOnlyMemory{T}" /> of <see cref="Byte" /> instance corresponds to this instance.</returns>
 		public ReadOnlyMemory<byte> AsReadOnlyMemoryOfByte()
 		{
 			if(this.IsNil)
@@ -900,9 +900,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="ReadOnlyMemory<char>" /> instance.
+		///		Converts this instance to <see cref="ReadOnlyMemory{T}" /> of <see cref="Char" /> instance.
 		/// </summary>
-		/// <returns><see cref="ReadOnlyMemory<char>" /> instance corresponds to this instance.</returns>
+		/// <returns><see cref="ReadOnlyMemory{T}" /> of <see cref="Char" /> instance corresponds to this instance.</returns>
 		public ReadOnlyMemory<char> AsReadOnlyMemoryOfChar()
 		{
 			if(this.IsNil)
@@ -919,7 +919,7 @@ namespace MsgPack
 #pragma warning disable 0618 // obsolete
 
 		/// <summary>
-		///		Convert this instance to <see cref="MessagePackExtendedTypeObject" /> instance.
+		///		Converts this instance to <see cref="MessagePackExtendedTypeObject" /> instance.
 		/// </summary>
 		/// <returns><see cref="MessagePackExtendedTypeObject" /> instance corresponds to this instance.</returns>
 		public MessagePackExtendedTypeObject AsMessagePackExtendedTypeObject()
@@ -936,7 +936,7 @@ namespace MsgPack
 #pragma warning restore 0618 // obsolete
 
 		/// <summary>
-		///		Convert this instance to <see cref="ExtensionTypeObject" /> instance.
+		///		Converts this instance to <see cref="ExtensionTypeObject" /> instance.
 		/// </summary>
 		/// <returns><see cref="ExtensionTypeObject" /> instance corresponds to this instance.</returns>
 		public ExtensionTypeObject AsExtensionTypeObject()
@@ -957,125 +957,125 @@ namespace MsgPack
 
 
 		/// <summary>
-		///		Convert <see cref="Boolean" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Boolean" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Boolean" /> instance.</param>
+		/// <param name="value">The <see cref="Boolean" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Boolean value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Byte" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Byte" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Byte" /> instance.</param>
+		/// <param name="value">The <see cref="Byte" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Byte value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="SByte" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="SByte" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="SByte" /> instance.</param>
+		/// <param name="value">The <see cref="SByte" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static implicit operator MessagePackObject(SByte value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Int16" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Int16" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Int16" /> instance.</param>
+		/// <param name="value">The <see cref="Int16" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Int16 value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="UInt16" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="UInt16" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="UInt16" /> instance.</param>
+		/// <param name="value">The <see cref="UInt16" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static implicit operator MessagePackObject(UInt16 value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Int32" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Int32" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Int32" /> instance.</param>
+		/// <param name="value">The <see cref="Int32" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Int32 value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="UInt32" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="UInt32" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="UInt32" /> instance.</param>
+		/// <param name="value">The <see cref="UInt32" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static implicit operator MessagePackObject(UInt32 value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Int64" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Int64" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Int64" /> instance.</param>
+		/// <param name="value">The <see cref="Int64" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Int64 value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="UInt64" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="UInt64" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="UInt64" /> instance.</param>
+		/// <param name="value">The <see cref="UInt64" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static implicit operator MessagePackObject(UInt64 value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Single" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Single" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Single" /> instance.</param>
+		/// <param name="value">The <see cref="Single" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Single value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Double" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Double" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Double" /> instance.</param>
+		/// <param name="value">The <see cref="Double" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Double value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="String" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="String" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="String" /> instance.</param>
+		/// <param name="value">The <see cref="String" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(String value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="Byte" />[]instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="Byte" />[] instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="Byte" />[] instance.</param>
+		/// <param name="value">The <see cref="Byte" />[] instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(Byte[] value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="ReadOnlyMemory<byte>" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="ReadOnlyMemory{T}" /> of <see cref="Byte" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="ReadOnlyMemory<byte>" /> instance.</param>
+		/// <param name="value">The <see cref="ReadOnlyMemory{T}" /> of <see cref="Byte" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(ReadOnlyMemory<byte> value)
 			=> new MessagePackObject(value);
 
 		/// <summary>
-		///		Convert <see cref="ReadOnlyMemory<char>" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="ReadOnlyMemory{T}" /> of <see cref="Char" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="ReadOnlyMemory<char>" /> instance.</param>
+		/// <param name="value">The <see cref="ReadOnlyMemory{T}" /> of <see cref="Char" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(ReadOnlyMemory<char> value)
 			=> new MessagePackObject(value);
@@ -1083,9 +1083,9 @@ namespace MsgPack
 #pragma warning disable 0618 // obsolete
 
 		/// <summary>
-		///		Convert <see cref="MessagePackExtendedTypeObject" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="MessagePackExtendedTypeObject" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackExtendedTypeObject" /> instance.</param>
+		/// <param name="value">The <see cref="MessagePackExtendedTypeObject" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(MessagePackExtendedTypeObject value)
 			=> new MessagePackObject(value);
@@ -1093,18 +1093,18 @@ namespace MsgPack
 #pragma warning restore 0618 // obsolete
 
 		/// <summary>
-		///		Convert <see cref="ExtensionTypeObject" />instance to <see cref="MessagePackObject"/> instance.
+		///		Converts <see cref="ExtensionTypeObject" /> instance to <see cref="MessagePackObject"/> instance.
 		/// </summary>
-		/// <param name="value"><see cref="ExtensionTypeObject" /> instance.</param>
+		/// <param name="value">The <see cref="ExtensionTypeObject" /> instance.</param>
 		/// <returns><see cref="MessagePackObject"/> instance corresponds to <paramref name="value"/>.</returns>
 		public static implicit operator MessagePackObject(ExtensionTypeObject value)
 			=> new MessagePackObject(value);
 
 
 		/// <summary>
-		///		Convert this instance to <see cref="Boolean" /> instance.
+		///		Converts this instance to <see cref="Boolean" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Boolean" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Boolean(MessagePackObject value)
 		{
@@ -1124,9 +1124,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Byte" /> instance.
+		///		Converts this instance to <see cref="Byte" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Byte" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Byte(MessagePackObject value)
 		{
@@ -1184,9 +1184,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="SByte" /> instance.
+		///		Converts this instance to <see cref="SByte" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="SByte" /> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static explicit operator SByte(MessagePackObject value)
@@ -1245,9 +1245,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Int16" /> instance.
+		///		Converts this instance to <see cref="Int16" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Int16" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Int16(MessagePackObject value)
 		{
@@ -1305,9 +1305,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="UInt16" /> instance.
+		///		Converts this instance to <see cref="UInt16" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="UInt16" /> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static explicit operator UInt16(MessagePackObject value)
@@ -1352,9 +1352,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Int32" /> instance.
+		///		Converts this instance to <see cref="Int32" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Int32" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Int32(MessagePackObject value)
 		{
@@ -1412,9 +1412,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="UInt32" /> instance.
+		///		Converts this instance to <see cref="UInt32" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="UInt32" /> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static explicit operator UInt32(MessagePackObject value)
@@ -1459,9 +1459,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Int64" /> instance.
+		///		Converts this instance to <see cref="Int64" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Int64" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Int64(MessagePackObject value)
 		{
@@ -1510,9 +1510,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="UInt64" /> instance.
+		///		Converts this instance to <see cref="UInt64" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="UInt64" /> instance corresponds to <paramref name="value"/>.</returns>
 		[CLSCompliant(false)]
 		public static explicit operator UInt64(MessagePackObject value)
@@ -1558,9 +1558,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Single" /> instance.
+		///		Converts this instance to <see cref="Single" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Single" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Single(MessagePackObject value)
 		{
@@ -1603,9 +1603,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Double" /> instance.
+		///		Converts this instance to <see cref="Double" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Double" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Double(MessagePackObject value)
 		{
@@ -1648,9 +1648,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="String" /> instance.
+		///		Converts this instance to <see cref="String" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="String" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator String?(MessagePackObject value)
 		{
@@ -1668,9 +1668,9 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="Byte" />[] instance.
+		///		Converts this instance to <see cref="Byte" />[] instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="Byte" />[] instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator Byte[]?(MessagePackObject value)
 		{
@@ -1688,10 +1688,10 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="ReadOnlyMemory<byte>" /> instance.
+		///		Converts this instance to <see cref="ReadOnlyMemory{T}" /> of <see cref="Byte" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
-		/// <returns><see cref="ReadOnlyMemory<byte>" /> instance corresponds to <paramref name="value"/>.</returns>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
+		/// <returns><see cref="ReadOnlyMemory{T}" /> of <see cref="Byte" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator ReadOnlyMemory<byte>(MessagePackObject value)
 		{
 			if(value.IsNil)
@@ -1706,10 +1706,10 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Convert this instance to <see cref="ReadOnlyMemory<char>" /> instance.
+		///		Converts this instance to <see cref="ReadOnlyMemory{T}" /> of <see cref="Char" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
-		/// <returns><see cref="ReadOnlyMemory<char>" /> instance corresponds to <paramref name="value"/>.</returns>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
+		/// <returns><see cref="ReadOnlyMemory{T}" /> of <see cref="Char" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator ReadOnlyMemory<char>(MessagePackObject value)
 		{
 			if(value.IsNil)
@@ -1726,9 +1726,9 @@ namespace MsgPack
 #pragma warning disable 0618 // obsolete
 
 		/// <summary>
-		///		Convert this instance to <see cref="MessagePackExtendedTypeObject" /> instance.
+		///		Converts this instance to <see cref="MessagePackExtendedTypeObject" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="MessagePackExtendedTypeObject" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator MessagePackExtendedTypeObject(MessagePackObject value)
 		{
@@ -1744,9 +1744,9 @@ namespace MsgPack
 #pragma warning restore 0618 // obsolete
 
 		/// <summary>
-		///		Convert this instance to <see cref="ExtensionTypeObject" /> instance.
+		///		Converts this instance to <see cref="ExtensionTypeObject" /> instance.
 		/// </summary>
-		/// <param name="value"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="value">The <see cref="MessagePackObject"/> instance.</param>
 		/// <returns><see cref="ExtensionTypeObject" /> instance corresponds to <paramref name="value"/>.</returns>
 		public static explicit operator ExtensionTypeObject(MessagePackObject value)
 		{

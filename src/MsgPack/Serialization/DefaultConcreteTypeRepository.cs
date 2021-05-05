@@ -1,34 +1,10 @@
-#region -- License Terms --
-//
-// MessagePack for CLI
-//
-// Copyright (C) 2010-2013 FUJIWARA, Yusuke
-//
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-//
-//        http://www.apache.org/licenses/LICENSE-2.0
-//
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
-//
-#endregion -- License Terms --
-
-#if UNITY_5 || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WII || UNITY_IPHONE || UNITY_ANDROID || UNITY_PS3 || UNITY_XBOX360 || UNITY_FLASH || UNITY_BKACKBERRY || UNITY_WINRT
-#define UNITY
-#endif
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// This file is licensed under Apache2 license.
+// See the LICENSE in the project root for more information.
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
-#if !NET35 && !SILVERLIGHT && !NET40
-using System.Collections.ObjectModel;
-#endif
-using System.Globalization;
 using System.Linq;
 
 namespace MsgPack.Serialization
@@ -36,41 +12,20 @@ namespace MsgPack.Serialization
 	/// <summary>
 	///		Repository of known concrete collection type for abstract collection type.
 	/// </summary>
-	public sealed class DefaultConcreteTypeRepository
+	[Obsolete(
+		Obsoletion.UseBuilder.Message
+#if FEATURE_ADVANCED_OBSOLETE
+		, DiagId = Obsoletion.UseBuilder.DiagId
+		, Url = Obsoletion.UseBuilder.Url
+#endif // FEATURE_ADVANCED_OBSOLETE
+	)]
+	public sealed class DefaultConcreteTypeRepository : IDefaultConcreteTypeRepository
 	{
-		private readonly TypeKeyRepository _defaultCollectionTypes;
+		private readonly DefaultConcreteTypeRepositoryBuilder _underlying;
 
-		internal DefaultConcreteTypeRepository()
+		internal DefaultConcreteTypeRepository(Dictionary<RuntimeTypeHandle, object> original)
 		{
-			this._defaultCollectionTypes = new TypeKeyRepository(
-				new Dictionary<RuntimeTypeHandle, object>(
-#if NET35 || ( SILVERLIGHT && !WINDOWS_PHONE )
-					8
-#elif NET40
-					9
-#else
-					12
-#endif
-				)
-				{
-					{ typeof( IEnumerable<> ).TypeHandle, typeof( List<> ) },
-					{ typeof( ICollection<> ).TypeHandle, typeof( List<> ) },
-					{ typeof( IList<> ).TypeHandle, typeof( List<> ) },
-					{ typeof( IDictionary<,> ).TypeHandle, typeof( Dictionary<,> ) },
-					{ typeof( IEnumerable ).TypeHandle, typeof( List<MessagePackObject> ) },
-					{ typeof( ICollection ).TypeHandle, typeof( List<MessagePackObject> ) },
-					{ typeof( IList ).TypeHandle, typeof( List<MessagePackObject> ) },
-					{ typeof( IDictionary ).TypeHandle, typeof( MessagePackObjectDictionary ) },
-#if !NET35 && !UNITY
-					{ typeof( ISet<> ).TypeHandle, typeof( HashSet<> ) },
-#if !NET40 && !( SILVERLIGHT && !WINDOWS_PHONE )
-					{ typeof( IReadOnlyCollection<> ).TypeHandle, typeof( List<> ) },
-					{ typeof( IReadOnlyList<> ).TypeHandle, typeof( List<> ) },
-					{ typeof( IReadOnlyDictionary<,> ).TypeHandle, typeof( Dictionary<,> ) },
-#endif // !NET40 && !( SILVERLIGHT && !WINDOWS_PHONE )
-#endif // !NET35 && !UNITY
-				}
-			);
+			this._underlying = new DefaultConcreteTypeRepositoryBuilder(new TypeKeyRepository(original));
 		}
 
 		/// <summary>
@@ -129,29 +84,11 @@ namespace MsgPack.Serialization
 		///			</item>
 		///		</list>
 		/// </remarks>
-		public Type Get( Type abstractCollectionType )
+		public Type? Get(Type abstractCollectionType)
 		{
-			if ( abstractCollectionType == null )
-			{
-				throw new ArgumentNullException( "abstractCollectionType" );
-			}
-
-			object concrete, genericDefinition;
-			this._defaultCollectionTypes.Get( abstractCollectionType, out concrete, out genericDefinition );
+			this._underlying.DefaultCollectionTypes.Get(abstractCollectionType ?? throw new ArgumentNullException(nameof(abstractCollectionType)), out var concrete, out var genericDefinition);
 
 			return concrete as Type ?? genericDefinition as Type;
-		}
-
-		internal Type GetConcreteType( Type abstractCollectionType )
-		{
-			var typeOrDefinition = this.Get( abstractCollectionType );
-			if ( typeOrDefinition == null || !typeOrDefinition.GetIsGenericTypeDefinition() || !abstractCollectionType.GetIsGenericType() )
-			{
-				return typeOrDefinition;
-			}
-
-			// Assume type repository has only concrete generic type definition which has same arity for abstract type.
-			return typeOrDefinition.MakeGenericType( abstractCollectionType.GetGenericArguments() );
 		}
 
 		/// <summary>
@@ -181,108 +118,8 @@ namespace MsgPack.Serialization
 		///		</note>
 		/// </remarks>
 		/// <seealso cref="Get"/>
-		public void Register( Type abstractCollectionType, Type defaultCollectionType )
-		{
-
-			if ( abstractCollectionType == null )
-			{
-				throw new ArgumentNullException( "abstractCollectionType" );
-			}
-
-			if ( defaultCollectionType == null )
-			{
-				throw new ArgumentNullException( "defaultCollectionType" );
-			}
-
-			// Use GetIntegerfaces() in addition to IsAssignableFrom because of open generic type support.
-			if ( !abstractCollectionType.GetInterfaces().Contains( typeof( IEnumerable ) ) )
-			{
-				throw new ArgumentException(
-					String.Format( CultureInfo.CurrentCulture, "The type '{0}' is not collection.", abstractCollectionType ),
-					"abstractCollectionType" );
-			}
-
-			if ( abstractCollectionType.GetIsGenericTypeDefinition() )
-			{
-				if ( !defaultCollectionType.GetIsGenericTypeDefinition() )
-				{
-					throw new ArgumentException(
-						String.Format(
-							CultureInfo.CurrentCulture,
-							"The closed generic type '{1}' cannot be assigned to open generic type '{0}'.",
-							abstractCollectionType,
-							defaultCollectionType ),
-						"defaultCollectionType" );
-				}
-
-				if ( abstractCollectionType.GetGenericTypeParameters().Length !=
-					defaultCollectionType.GetGenericTypeParameters().Length )
-				{
-					throw new ArgumentException(
-						String.Format(
-							CultureInfo.CurrentCulture,
-							"The default generic collection type '{1}' does not have same arity for abstract generic collection type '{0}'.",
-							abstractCollectionType,
-							defaultCollectionType ),
-						"defaultCollectionType" );
-				}
-			}
-			else if ( defaultCollectionType.GetIsGenericTypeDefinition() )
-			{
-				throw new ArgumentException(
-					String.Format(
-						CultureInfo.CurrentCulture,
-						"The open generic type '{1}' cannot be assigned to closed generic type '{0}'.",
-						abstractCollectionType,
-						defaultCollectionType ),
-					"defaultCollectionType" );
-			}
-
-			if ( defaultCollectionType.GetIsAbstract() || defaultCollectionType.GetIsInterface() )
-			{
-				throw new ArgumentException(
-					String.Format( CultureInfo.CurrentCulture, "The defaultCollectionType cannot be abstract class nor interface. The type '{0}' is abstract type.", defaultCollectionType ),
-					"defaultCollectionType" );
-			}
-
-			// Use GetIntegerfaces() and BaseType instead of IsAssignableFrom because of open generic type support.
-			if ( !abstractCollectionType.IsAssignableFrom( defaultCollectionType )
-				 && abstractCollectionType.GetIsGenericTypeDefinition()
-				 && !defaultCollectionType
-						 .GetInterfaces()
-						 .Select( t => ( t.GetIsGenericType() && !t.GetIsGenericTypeDefinition() ) ? t.GetGenericTypeDefinition() : t )
-						 .Contains( abstractCollectionType )
-				 && !IsAnscestorType( abstractCollectionType, defaultCollectionType ) )
-			{
-				throw new ArgumentException(
-					String.Format(
-						CultureInfo.CurrentCulture,
-						"The type '{1}' is not assignable to '{0}'.",
-						abstractCollectionType,
-						defaultCollectionType ),
-					"defaultCollectionType" );
-			}
-
-			this._defaultCollectionTypes.Register( abstractCollectionType, defaultCollectionType, null, null, SerializerRegistrationOptions.AllowOverride );
-		}
-
-		private static bool IsAnscestorType( Type mayBeAncestor, Type mayBeDescendant )
-		{
-			for ( var type = mayBeDescendant; type != null; type = type.GetBaseType() )
-			{
-				if ( type == mayBeAncestor )
-				{
-					return true;
-				}
-
-				if ( type.GetIsGenericType() && type.GetGenericTypeDefinition() == mayBeAncestor )
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
+		public void Register(Type abstractCollectionType, Type defaultCollectionType)
+			=> this._underlying.Register(abstractCollectionType, defaultCollectionType);
 
 		/// <summary>
 		///		Unregisters the default type of the collection.
@@ -292,14 +129,10 @@ namespace MsgPack.Serialization
 		///		<c>true</c> if default collection type is removed successfully;
 		///		otherwise, <c>false</c>.
 		/// </returns>
-		public bool Unregister( Type abstractCollectionType )
-		{
-			if ( abstractCollectionType == null )
-			{
-				return false;
-			}
+		public bool Unregister(Type abstractCollectionType)
+			=> this._underlying.Unregister(abstractCollectionType);
 
-			return this._defaultCollectionTypes.Unregister( abstractCollectionType );
-		}
+		IEnumerable<KeyValuePair<RuntimeTypeHandle, object>> IDefaultConcreteTypeRepository.AsEnumerable()
+			=> this._underlying.DefaultCollectionTypes.GetEntries().Select(e => new KeyValuePair<RuntimeTypeHandle, object>(e.Key.TypeHandle, e.Value));
 	}
 }

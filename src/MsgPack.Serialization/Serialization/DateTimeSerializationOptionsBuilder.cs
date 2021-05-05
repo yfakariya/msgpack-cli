@@ -62,7 +62,7 @@ namespace MsgPack.Serialization
 
 
 		/// <summary>
-		///		Initialized a new instance of <see cref="DateTimeSerializationOptionsBuilder"/> object.
+		///		Initialized a new instance of <see cref="DateTimeSerializationOptionsBuilder"/> class.
 		/// </summary>
 		public DateTimeSerializationOptionsBuilder()
 		{

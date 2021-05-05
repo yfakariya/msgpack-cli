@@ -27,7 +27,7 @@ namespace MsgPack.Internal
 		}
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		protected sealed override int EncodeStringHeader(uint length, Span<byte> buffer)
+		private protected sealed override int EncodeStringHeader(uint length, Span<byte> buffer)
 		{
 			if (length < 32)
 			{
@@ -55,7 +55,7 @@ namespace MsgPack.Internal
 		}
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
-		protected sealed override int EncodeBinaryHeader(uint length, Span<byte> buffer)
+		private protected sealed override int EncodeBinaryHeader(uint length, Span<byte> buffer)
 		{
 			if (length <= Byte.MaxValue)
 			{

@@ -4,11 +4,6 @@
 
 using System;
 using System.ComponentModel;
-#if FEATURE_MPCONTRACT
-using Contract = MsgPack.MPContract;
-#else
-using System.Diagnostics.Contracts;
-#endif // FEATURE_MPCONTRACT
 #if NETSTANDARD1_3 || NETSTANDARD2_0
 using System.Reflection;
 using System.Reflection.Emit;
@@ -27,8 +22,7 @@ namespace MsgPack.Serialization
 	public sealed class SerializerOptions
 	{
 #if !UNITY
-
-		private int _generatorOption;
+		private SerializationMethodGeneratorOption _generatorOption;
 
 		/// <summary>
 		///		Gets or sets the <see cref="SerializationMethodGeneratorOption"/> to control code generation.
@@ -39,12 +33,7 @@ namespace MsgPack.Serialization
 		/// </value>
 		public SerializationMethodGeneratorOption GeneratorOption
 		{
-			get
-			{
-				Contract.Ensures(Enum.IsDefined(typeof(SerializationMethod), Contract.Result<SerializationMethodGeneratorOption>()));
-
-				return (SerializationMethodGeneratorOption)Volatile.Read(ref this._generatorOption);
-			}
+			get => this._generatorOption;
 			set
 			{
 				switch (value)
@@ -65,9 +54,7 @@ namespace MsgPack.Serialization
 					}
 				}
 
-				Contract.EndContractBlock();
-
-				Volatile.Write(ref this._generatorOption, (int)value);
+				this._generatorOption = value;
 			}
 		}
 
@@ -194,11 +181,8 @@ namespace MsgPack.Serialization
 		///		<c>true</c> if generated serializers will override async methods; otherwise, <c>false</c>.
 		///		Default is <c>true</c>.
 		/// </value>
-		public bool WithAsync
-		{
-			get { return Volatile.Read( ref this._withAsync ); }
-			set { Volatile.Write( ref this._withAsync, value ); }
-		}
+		[Obsolete]
+		public bool WithAsync { get; set; }
 
 #endif // FEATURE_TAP
 

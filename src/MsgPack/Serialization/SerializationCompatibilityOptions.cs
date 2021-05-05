@@ -1,46 +1,16 @@
-﻿#region -- License Terms --
-//
-// MessagePack for CLI
-//
-// Copyright (C) 2010-2016 FUJIWARA, Yusuke and contributors
-//
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-//
-//        http://www.apache.org/licenses/LICENSE-2.0
-//
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
-//
-// Contributors:
-//    Samuel Cragg
-//
-#endregion -- License Terms --
-
-#if UNITY_5 || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WII || UNITY_IPHONE || UNITY_ANDROID || UNITY_PS3 || UNITY_XBOX360 || UNITY_FLASH || UNITY_BKACKBERRY || UNITY_WINRT
-#define UNITY
-#endif
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// This file is licensed under Apache2 license.
+// See the LICENSE in the project root for more information.
 
 using System;
-using System.Threading;
 
 namespace MsgPack.Serialization
 {
 	/// <summary>
 	///		Represents compatibility options of serialization runtime.
 	/// </summary>
-	public sealed class SerializationCompatibilityOptions
+	public sealed class SerializationCompatibilityOptions : ISerializationCompatibilityOptions
 	{
-#if !FEATURE_CONCURRENT
-		private volatile bool _oneBoundDataMemberOrder;
-#else
-		private bool _oneBoundDataMemberOrder;
-#endif // !FEATURE_CONCURRENT
-
 		/// <summary>
 		///		Gets or sets a value indicating whether <c>System.Runtime.Serialization.DataMemberAttribute.Order</c> should be started with 1 instead of 0.
 		/// </summary>
@@ -51,27 +21,7 @@ namespace MsgPack.Serialization
 		/// <remarks>
 		///		Using this value, you can switch between MessagePack for CLI and ProtoBuf.NET seamlessly.
 		/// </remarks>
-		public bool OneBoundDataMemberOrder
-		{
-			get
-			{
-#if !FEATURE_CONCURRENT
-				return this._oneBoundDataMemberOrder;
-#else
-				return Volatile.Read( ref this._oneBoundDataMemberOrder );
-#endif // !FEATURE_CONCURRENT
-			}
-			set
-			{
-#if !FEATURE_CONCURRENT
-				this._oneBoundDataMemberOrder = value;
-#else
-				Volatile.Write( ref this._oneBoundDataMemberOrder, value );
-#endif // !FEATURE_CONCURRENT
-			}
-		}
-
-		private int _packerCompatibilityOptions;
+		public bool OneBoundDataMemberOrder { get; set; }
 
 		/// <summary>
 		///		Gets or sets the <see cref="PackerCompatibilityOptions"/>.
@@ -82,21 +32,11 @@ namespace MsgPack.Serialization
 		/// <remarks>
 		///		<note>
 		///			Changing this property value does not affect already built serializers -- especially built-in (default) serializers.
-		///			You must specify <see cref="T:PackerCompatibilityOptions"/> enumeration to the constructor of <see cref="SerializationContext"/> to
+		///			You must specify <see cref="T:PackerCompatibilityOptions"/> enumeration to the constructor of <see cref="SerializerProvider"/> to
 		///			change built-in serializers' behavior.
 		///		</note>
 		/// </remarks>
-		public PackerCompatibilityOptions PackerCompatibilityOptions
-		{
-			get { return ( PackerCompatibilityOptions )Volatile.Read( ref this._packerCompatibilityOptions ); }
-			set { Volatile.Write( ref this._packerCompatibilityOptions, ( int )value ); }
-		}
-
-#if !FEATURE_CONCURRENT
-		private volatile bool _ignorePackabilityForCollection;
-#else
-		private bool _ignorePackabilityForCollection;
-#endif // !FEATURE_CONCURRENT
+		public PackerCompatibilityOptions PackerCompatibilityOptions { get; set; }
 
 		/// <summary>
 		///		Gets or sets a value indicating whether serializer generator ignores packability interfaces for collections or not.
@@ -106,73 +46,24 @@ namespace MsgPack.Serialization
 		/// </value>
 		/// <remarks>
 		///		Historically, MessagePack for CLI ignored packability interfaces (<see cref="IPackable"/>, <see cref="IUnpackable"/>, 
-		///		<c>IAsyncPackable"</c> and <c>IAsyncUnpackable</c>) for collection which implements <see cref="IEquatable{T}"/> (except <see cref="String"/> and its kinds).
+		///		<see cref="IAsyncPackable"/> and <see cref="IAsyncUnpackable"/>) for collection which implements <see cref="IEquatable{T}"/> (except <see cref="String"/> and its kinds).
 		///		As of 0.7, the generator respects such interfaces even if the target type is collection.
 		///		Although this behavior is desirable and correct, setting this property <c>true</c> turn out the new behavior for backward compatibility.
 		/// </remarks>
-		public bool IgnorePackabilityForCollection
-		{
-			get
-			{
-#if !FEATURE_CONCURRENT
-				return this._ignorePackabilityForCollection;
-#else
-				return Volatile.Read( ref this._ignorePackabilityForCollection );
-#endif // !FEATURE_CONCURRENT
-			}
-			set
-			{
-#if !FEATURE_CONCURRENT
-				this._ignorePackabilityForCollection = value;
-#else
-				Volatile.Write( ref this._ignorePackabilityForCollection, value );
-#endif // !FEATURE_CONCURRENT
-			}
-		}
-
-#if !FEATURE_CONCURRENT
-		private volatile bool _allowNonCollectionEnumerableTypes;
-#else
-		private bool _allowNonCollectionEnumerableTypes;
-#endif // !FEATURE_CONCURRENT
+		public bool IgnorePackabilityForCollection { get; set; }
 
 		/// <summary>
 		///		Gets or sets a value indicating whether the serializer generator should serialize types that implement IEnumerable but do not have an Add method.
 		/// </summary>
 		/// <value>
-		///		<c>true</c> if serializer generator should serialize a type implementing IEnumerable as a normal type if a public Add method is not found; otherwise, <c>false</c>. The default is <c>true</c>.
+		///		<c>true</c> if serializer generator should serialize a type implementing <see cref="IEnumerable"/> as a normal type if a public <c>Add</c> method is not found; otherwise, <c>false</c>. The default is <c>true</c>.
 		/// </value>
 		/// <remarks>
-		///		Historically, MessagePack for CLI always tried to serialize any type that implemented IEnumerable as a collection, throwing an exception
-		///		if an Add method could not be found. However, for types that implement IEnumerable but don't have an Add method the generator will now
+		///		Historically, MessagePack for CLI always tried to serialize any type that implemented <see cref="IEnumerable"/> as a collection, throwing an exception
+		///		if an <c>Add</c> method could not be found. However, for types that implement <see cref="IEnumerable"/> but don't have an <c>Add</c> method the generator will now
 		///		serialize the type as a non-collection type. To restore the old behavior for backwards compatibility, set this option to <c>false</c>.
 		/// </remarks>
-		public bool AllowNonCollectionEnumerableTypes
-		{
-			get
-			{
-#if !FEATURE_CONCURRENT
-				return this._allowNonCollectionEnumerableTypes;
-#else
-				return Volatile.Read( ref this._allowNonCollectionEnumerableTypes );
-#endif // !FEATURE_CONCURRENT
-			}
-			set
-			{
-#if !FEATURE_CONCURRENT
-				this._allowNonCollectionEnumerableTypes = value;
-#else
-				Volatile.Write( ref this._allowNonCollectionEnumerableTypes, value );
-#endif // !FEATURE_CONCURRENT
-			}
-		}
-
-
-#if !FEATURE_CONCURRENT
-		private volatile bool _allowAsymmetricSerializer;
-#else
-		private bool _allowAsymmetricSerializer;
-#endif // !FEATURE_CONCURRENT
+		public bool AllowNonCollectionEnumerableTypes { get; set; }
 
 		/// <summary>
 		///		Gets or sets a value indicating whether the serializer generator generates serializer types even when the generator determines that feature complete serializer cannot be generated due to lack of some requirement.
@@ -186,25 +77,11 @@ namespace MsgPack.Serialization
 		///		This is useful for logging, telemetry injestion, or so.
 		///		You can investigate serializer capability via <see cref="MessagePackSerializer.Capabilities"/> property.
 		/// </remarks>
-		public bool AllowAsymmetricSerializer
-		{
-			get
-			{
-#if !FEATURE_CONCURRENT
-				return this._allowAsymmetricSerializer;
-#else
-				return Volatile.Read( ref this._allowAsymmetricSerializer );
-#endif // !FEATURE_CONCURRENT
-			}
-			set
-			{
-#if !FEATURE_CONCURRENT
-				this._allowAsymmetricSerializer = value;
-#else
-				Volatile.Write( ref this._allowAsymmetricSerializer, value );
-#endif // !FEATURE_CONCURRENT
-			}
-		}
+		public bool AllowAsymmetricSerializer { get; set; }
+
+		bool ISerializationCompatibilityOptions.AllowsNonCollectionEnumerableTypes => this.AllowNonCollectionEnumerableTypes;
+		bool ISerializationCompatibilityOptions.IgnoresAdapterForCollection => this.IgnorePackabilityForCollection;
+		bool ISerializationCompatibilityOptions.UsesOneBoundDataMemberOrder => this.OneBoundDataMemberOrder;
 
 		// TODO: CheckNilImplicationInConstructorDeserialization
 

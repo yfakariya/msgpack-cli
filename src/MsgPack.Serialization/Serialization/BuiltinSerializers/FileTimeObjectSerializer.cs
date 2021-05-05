@@ -7,6 +7,7 @@ using System.Buffers;
 using System.Buffers.Binary;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.InteropServices;
 #if FEATURE_COM_TYPES
 using System.Runtime.InteropServices.ComTypes;
 #endif // FEATURE_COM_TYPES
@@ -121,7 +122,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Debug.Assert(result.Value.Length == sizeof(int));
 					Span<byte> buffer = stackalloc byte[sizeof(int)];
 					result.Value.CopyTo(buffer);
-					bits = BinaryPrimitives.ReadInt32BigEndian(buffer);
+					bits = MemoryMarshal.Cast<byte, int>(buffer)[0];
 					break;
 				}
 				case ElementType.Int64:
@@ -130,7 +131,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Debug.Assert(result.Value.Length == sizeof(long));
 					Span<byte> buffer = stackalloc byte[sizeof(long)];
 					result.Value.CopyTo(buffer);
-					bits = BinaryPrimitives.ReadInt64BigEndian(buffer);
+					bits = MemoryMarshal.Cast<byte, long>(buffer)[0];
 					break;
 				}
 				default:

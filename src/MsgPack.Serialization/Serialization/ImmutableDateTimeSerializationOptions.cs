@@ -96,7 +96,7 @@ namespace MsgPack.Serialization
 			=> codecFeatures?.Iso8601DecimalSeparator ?? this._iso8601DecimalMark;
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="IDateTimeSerializationOptions"/> object.
+		///		Initializes a new instance of <see cref="IDateTimeSerializationOptions"/> class.
 		/// </summary>
 		/// <param name="builder"><see cref="DateTimeSerializationOptionsBuilder"/>.</param>
 		public ImmutableDateTimeSerializationOptions(DateTimeSerializationOptionsBuilder builder)

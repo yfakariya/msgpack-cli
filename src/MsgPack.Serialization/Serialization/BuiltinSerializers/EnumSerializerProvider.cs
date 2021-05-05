@@ -21,7 +21,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		private readonly ObjectSerializer _dynamic;
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="EnumSerializerProvider"/> object.
+		///		Initializes a new instance of <see cref="EnumSerializerProvider"/> class.
 		/// </summary>
 		/// <param name="targetType">The type of the target enum type.</param>
 		/// <param name="ownerProvider">The provider which will own this instance.</param>

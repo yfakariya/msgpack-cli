@@ -8,6 +8,7 @@ using System.Buffers.Binary;
 using System.Buffers.Text;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text;
 #if FEATURE_TAP
 using System.Threading.Tasks;
@@ -140,7 +141,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Debug.Assert(result.Value.Length == sizeof(int));
 					Span<byte> buffer = stackalloc byte[sizeof(int)];
 					result.Value.CopyTo(buffer);
-					return MessagePackConvert.ToDateTimeOffset(BinaryPrimitives.ReadInt32BigEndian(buffer));
+					return MessagePackConvert.ToDateTimeOffset(MemoryMarshal.Cast<byte, int>(buffer)[0]);
 				}
 				case ElementType.Int64:
 				case ElementType.UInt64:
@@ -148,7 +149,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Debug.Assert(result.Value.Length == sizeof(long));
 					Span<byte> buffer = stackalloc byte[sizeof(long)];
 					result.Value.CopyTo(buffer);
-					return MessagePackConvert.ToDateTimeOffset(BinaryPrimitives.ReadInt64BigEndian(buffer));
+					return MessagePackConvert.ToDateTimeOffset(MemoryMarshal.Cast<byte, long>(buffer)[0]);
 				}
 				case ElementType.Array:
 				{

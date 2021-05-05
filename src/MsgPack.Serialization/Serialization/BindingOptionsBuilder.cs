@@ -42,7 +42,7 @@ namespace MsgPack.Serialization
 		public bool IsPrivilegedAccessDisabled { get; private set; } = true;
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="BindingOptionsBuilder"/> object.
+		///		Initializes a new instance of <see cref="BindingOptionsBuilder"/> class.
 		/// </summary>
 		public BindingOptionsBuilder() { }
 

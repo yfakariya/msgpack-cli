@@ -18,13 +18,31 @@ namespace MsgPack.Internal
 	/// </remarks>
 	public abstract partial class FormatEncoder
 	{
+		/// <summary>
+		///		Gets the option settings of this formatter.
+		/// </summary>
+		/// <value>
+		///		The option settings of this formatter.
+		/// </value>
 		public FormatEncoderOptions Options { get; }
 
+		/// <summary>
+		///		Initializes a new instance of <see cref="FormatEncoder"/> class.
+		/// </summary>
+		/// <param name="options">The option settings of this formatter.</param>
+		/// <exception cref="ArgumentNullException">
+		///		<paramref name="options"/> is <c>null</c>.
+		/// </exception>
 		protected FormatEncoder(FormatEncoderOptions options)
 		{
 			this.Options = Ensure.NotNull(options);
 		}
 
+#warning TODO: should not be "buffer".
+		/// <summary>
+		///		Formats and writes <c>null</c> value to the stream.
+		/// </summary>
+		/// <param name="buffer"></param>
 		public abstract void EncodeNull(IBufferWriter<byte> buffer);
 
 #if FEATURE_UTF8STRING

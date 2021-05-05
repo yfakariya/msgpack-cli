@@ -234,12 +234,12 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Determines whether the specified <see cref="MessagePackExtendedTypeObject" />s are equal.
+		///		Returns a value that indicates whether two <see cref="MessagePackExtendedTypeObject" /> objects are equal.
 		/// </summary>
-		/// <param name="left">A <see cref="MessagePackExtendedTypeObject" />.</param>
-		/// <param name="right">A <see cref="MessagePackExtendedTypeObject" />.</param>
+		/// <param name="left">The first <see cref="MessagePackExtendedTypeObject" /> to compare.</param>
+		/// <param name="right">The second <see cref="MessagePackExtendedTypeObject" /> to compare.</param>
 		/// <returns>
-		///   <c>true</c> if the specified <see cref="MessagePackExtendedTypeObject" />s are equal; otherwise, <c>false</c>.
+		///   <c>true</c> if the two <see cref="MessagePackExtendedTypeObject" /> objects are equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator ==(MessagePackExtendedTypeObject left, MessagePackExtendedTypeObject right)
 		{
@@ -247,12 +247,12 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Determines whether the specified <see cref="MessagePackExtendedTypeObject" />s are not equal.
+		///		Returns a value that indicates whether two <see cref="MessagePackExtendedTypeObject" /> objects are not equal.
 		/// </summary>
-		/// <param name="left">A <see cref="MessagePackExtendedTypeObject" />.</param>
-		/// <param name="right">A <see cref="MessagePackExtendedTypeObject" />.</param>
+		/// <param name="left">The first <see cref="MessagePackExtendedTypeObject" /> to compare.</param>
+		/// <param name="right">The second <see cref="MessagePackExtendedTypeObject" /> to compare.</param>
 		/// <returns>
-		///   <c>true</c> if the specified <see cref="MessagePackExtendedTypeObject" />s are not equal; otherwise, <c>false</c>.
+		///   <c>true</c> if the two <see cref="MessagePackExtendedTypeObject" /> objects are not equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator !=(MessagePackExtendedTypeObject left, MessagePackExtendedTypeObject right)
 		{

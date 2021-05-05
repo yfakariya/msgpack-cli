@@ -41,7 +41,7 @@ namespace MsgPack.Codecs
 		/// <param name="name">The unique name of the mapping.</param>
 		/// <param name="type">The unique extension type of the mapping. This value will be used on both of serialization and deserialization.</param>
 		/// <returns>
-		///		<c>true</c>, if they are added successfully; <c>false</c>, otherwise.
+		///		<c>true</c> if they are added successfully; <c>false</c>, otherwise.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///		<paramref name="name"/> is <c>null</c>.
@@ -81,7 +81,7 @@ namespace MsgPack.Codecs
 		///		Note that all items must have unique <see cref="ExtensionType"/> for whole <see cref="ExtensionTypeMappingsBuilder"/>.
 		///	</param>
 		/// <returns>
-		///		<c>true</c>, if they are added successfully; <c>false</c>, otherwise.
+		///		<c>true</c> if they are added successfully; <c>false</c>, otherwise.
 		/// </returns>
 		/// <exception cref="ArgumentNullException">
 		///		<paramref name="name"/> is <c>null</c>.
@@ -153,7 +153,7 @@ namespace MsgPack.Codecs
 		/// </summary>
 		/// <param name="name">The name of the mapping.</param>
 		/// <returns>
-		///		<c>true</c>, if the mapping was found and removed successfully; <c>false</c>, otherwise.
+		///		<c>true</c> if the mapping was found and removed successfully; <c>false</c>, otherwise.
 		/// </returns>
 		/// <remarks>
 		///		The related extra types are also removed.
@@ -178,7 +178,7 @@ namespace MsgPack.Codecs
 		/// </summary>
 		/// <param name="type">The extension type of the mapping. This value can be primary mapping value or one of extra mapping values.</param>
 		/// <returns>
-		///		<c>true</c>, if the mapping was found and removed successfully; <c>false</c>, otherwise.
+		///		<c>true</c> if the mapping was found and removed successfully; <c>false</c>, otherwise.
 		/// </returns>
 		/// <remarks>
 		///		The related primary type and extra types are also removed.
@@ -206,7 +206,7 @@ namespace MsgPack.Codecs
 		/// <summary>
 		///		Determines whether the specified extension type is already registered in this mappings or not.
 		/// </summary>
-		/// <param name="name">The name of the mapping.</param>
+		/// <param name="type">The type of the mapping.</param>
 		/// <returns>
 		///		<c>true</c> if the mapping which has specified extension type as primary type or one of extra types is found; <c>false</c>, otherwise.
 		/// </returns>
@@ -216,7 +216,7 @@ namespace MsgPack.Codecs
 		/// <summary>
 		///		Determines whether the specified extension type is registered as primary mapping in this mappings or not.
 		/// </summary>
-		/// <param name="name">The name of the mapping.</param>
+		/// <param name="type">The type of the mapping.</param>
 		/// <returns>
 		///		<c>true</c> if the mapping which has specified extension type as primary maping is found; <c>false</c>, otherwise.
 		/// </returns>

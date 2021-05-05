@@ -243,6 +243,9 @@ void WriteMethod(string type, bool isSigned, bool is64Bit)
 	var resultType = isSigned ? "long" : "ulong";
 #>
 		/// <inheritdoc />
+<#+
+	WriteClsCompliance(type);
+#>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override <#= type #> Decode<#= type #>(ref SequenceReader<byte> source, out int requestHint)
 		{
@@ -267,4 +270,25 @@ void WriteMethod(string type, bool isSigned, bool is64Bit)
 
 <#+
 }
+
+private void WriteClsCompliance(string type)
+{
+	if (IsClsCompliant(type))
+	{
+		return;
+	}
+#>
+		[CLSCompliant(false)]
+<#+
+}
+
+private static bool IsClsCompliant(string type)
+	=> type switch
+	{
+		"SByte" => false,
+		"UInt16" => false,
+		"UInt32" => false,
+		"UInt64" => false,
+		_ => true
+	};
 #>

@@ -10,6 +10,10 @@ using System;
 using System.Buffers;
 using System.Runtime.CompilerServices;
 
+// Abstract methods with [CLSCompilant(false)] are intended -- codec implementer must use languages which support unsigned integers.
+// [CLSCompliant] is just for users of Codec rather than implementers.
+#pragma warning disable 3011 // only CLS-compliant members can be abstract
+
 namespace MsgPack.Internal
 {
 	partial class FormatEncoder
@@ -82,6 +86,7 @@ namespace MsgPack.Internal
 		/// <param name="buffer"><see cref="IBufferWriter{T}">IBufferWriter&lt;byte&gt;</see>.</param>
 		/// <exception cref="ArgumentNullException"><paramref name="buffer" /> is <c>null</c>.</exception>
 		/// <exception cref="NotSupportedException">The underlying format does not suppor this type.</exception>
+		[CLSCompliant(false)]
 		public abstract void EncodeUInt32(UInt32 value, IBufferWriter<byte> buffer);
 
 		/// <summary>
@@ -90,6 +95,7 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="value">Value to be encoded.</param>
 		/// <param name="buffer"><see cref="IBufferWriter{T}">IBufferWriter&lt;byte&gt;</see>.</param>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public void EncodeUInt32(UInt32? value, IBufferWriter<byte> buffer)
 		{
@@ -112,6 +118,7 @@ namespace MsgPack.Internal
 		/// <param name="buffer"><see cref="IBufferWriter{T}">IBufferWriter&lt;byte&gt;</see>.</param>
 		/// <exception cref="ArgumentNullException"><paramref name="buffer" /> is <c>null</c>.</exception>
 		/// <exception cref="NotSupportedException">The underlying format does not suppor this type.</exception>
+		[CLSCompliant(false)]
 		public abstract void EncodeUInt64(UInt64 value, IBufferWriter<byte> buffer);
 
 		/// <summary>
@@ -120,6 +127,7 @@ namespace MsgPack.Internal
 		/// </summary>
 		/// <param name="value">Value to be encoded.</param>
 		/// <param name="buffer"><see cref="IBufferWriter{T}">IBufferWriter&lt;byte&gt;</see>.</param>
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public void EncodeUInt64(UInt64? value, IBufferWriter<byte> buffer)
 		{

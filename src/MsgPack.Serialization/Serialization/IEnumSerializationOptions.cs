@@ -40,7 +40,7 @@ namespace MsgPack.Serialization
 		///		Gets a value whether of member names are ignored in deserialization or not.
 		/// </summary>
 		/// <value>
-		///		<c>true</c>, if casing of member names are ignored in deserialization; <c>false</c>, otherwise.
+		///		<c>true</c> if casing of member names are ignored in deserialization; <c>false</c>, otherwise.
 		/// </value>
 		bool IgnoresCaseOnDeserialization { get; }
 	}

@@ -65,7 +65,7 @@ namespace MsgPack.Internal
 		///		Fetches first data from underlying <see cref="Stream"/> and fills internal buffer.
 		///		Remaining data in the current buffer will be included new buffer.
 		/// </summary>
-		/// <param name="cancellationToken"><see cref="CancellationToken"/> to cancel read operation.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests. This value can be omitted.</param>
 		/// <returns>Async operation state.</returns>
 		/// <exception cref="ObjectDisposedException">This object is already disposed.</exception>
 		public ValueTask FetchAsync(CancellationToken cancellationToken)
@@ -80,7 +80,7 @@ namespace MsgPack.Internal
 		///		<c>0</c> is valid value which means that the implementation fetches bytes from <see cref="Stream"/> to fill out current buffer.
 		///		Note that it is not guaranteed that <see cref="Memory"/> contains this length because underlying <see cref="Stream"/> may not have enough data.
 		///	</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken"/> to cancel read operation.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests. This value can be omitted.</param>
 		/// <returns>Async operation state.</returns>
 		/// <exception cref="ObjectDisposedException">This object is already disposed.</exception>
 		public async ValueTask FetchAsync(int requestHint, CancellationToken cancellationToken)

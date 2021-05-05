@@ -41,7 +41,7 @@ namespace MsgPack.Serialization
 		public NilImplication NilImplication { get; }
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="MessagePackMemberAttributeData"/> object.
+		///		Initializes a new instance of <see cref="MessagePackMemberAttributeData"/> class.
 		/// </summary>
 		/// <param name="id">ID of this member. This value will be array index on serialized stream. This value cannot be negative and must be unique in the type. This value may be <c>null</c>, in that case, the qualified member's will be ignored.</param>
 		/// <param name="name">Name which will be used in map key on serialized stream. This value may be <c>null</c>, in that case, the qualified member's name will be used. This value must be unique in the type.</param>

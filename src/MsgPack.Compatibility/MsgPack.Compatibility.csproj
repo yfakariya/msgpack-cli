@@ -1,7 +1,50 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\MsgPack\IAsyncPackable.cs" Link="IAsyncPackable.cs" />
+    <Compile Include="..\MsgPack\IAsyncUnpackable.cs" Link="IAsyncUnpackable.cs" />
+    <Compile Include="..\MsgPack\IPackable.cs" Link="IPackable.cs" />
+    <Compile Include="..\MsgPack\IUnpackable.cs" Link="IUnpackable.cs" />
+    <Compile Include="..\MsgPack\Packer.cs" Link="Packer.cs" />
+    <Compile Include="..\MsgPack\Packer.Factory.cs" Link="Packer.Factory.cs" />
+    <Compile Include="..\MsgPack\Packer.Nullable.cs" Link="Packer.Nullable.cs" />
+    <Compile Include="..\MsgPack\Packer.Packing.cs" Link="Packer.Packing.cs" />
+    <Compile Include="..\MsgPack\PackerCompatibilityOptions.cs" Link="PackerCompatibilityOptions.cs" />
+    <Compile Include="..\MsgPack\PackerUnpackerExtensions.cs" Link="PackerUnpackerExtensions.cs" />
+    <Compile Include="..\MsgPack\PackerUnpackerStreamOptions.cs" Link="PackerUnpackerStreamOptions.cs" />
+    <Compile Include="..\MsgPack\PackingOptions.cs" Link="PackingOptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\DefaultConcreteTypeRepository.cs" Link="Serialization\DefaultConcreteTypeRepository.cs" />
+    <Compile Include="..\MsgPack\Serialization\EnumSerializationOptions.cs" Link="Serialization\EnumSerializationOptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\MessagePackSerializerProvider.cs" Link="Serialization\MessagePackSerializerProvider.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializationCompatibilityLevel.cs" Link="Serialization\SerializationCompatibilityLevel.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializationCompatibilityOptions.cs" Link="Serialization\SerializationCompatibilityOptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializationContext.cs" Link="Serialization\SerializationContext.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializationContext.ExtTypeCodes.cs" Link="Serialization\SerializationContext.ExtTypeCodes.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializationExceptions.cs" Link="Serialization\SerializationExceptions.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializerOptions.cs" Link="Serialization\SerializerOptions.cs" />
+    <Compile Include="..\MsgPack\Unpacker.cs" Link="Unpacker.cs" />
+    <Compile Include="..\MsgPack\Unpacker.Leaf.cs" Link="Unpacker.Leaf.cs" />
+    <Compile Include="..\MsgPack\Unpacker.Unpacking.cs" Link="Unpacker.Unpacking.cs" />
+    <Compile Include="..\MsgPack\UnpackerOptions.cs" Link="UnpackerOptions.cs" />
+    <Compile Include="..\MsgPack\UnpackException.cs" Link="UnpackException.cs" />
+    <Compile Include="..\MsgPack\Unpacking.cs" Link="Unpacking.cs" />
+    <Compile Include="..\MsgPack\Unpacking.Numerics.cs" Link="Unpacking.Numerics.cs" />
+    <Compile Include="..\MsgPack\Unpacking.Others.cs" Link="Unpacking.Others.cs" />
+    <Compile Include="..\MsgPack\Unpacking.Streaming.cs" Link="Unpacking.Streaming.cs" />
+    <Compile Include="..\MsgPack\Unpacking.String.cs" Link="Unpacking.String.cs" />
+    <Compile Include="..\MsgPack\UnpackingMode.cs" Link="UnpackingMode.cs" />
+    <Compile Include="..\MsgPack\UnpackingResult.cs" Link="UnpackingResult.cs" />
+    <Compile Include="..\MsgPack\UnpackingStream.cs" Link="UnpackingStream.cs" />
+    <Compile Include="..\MsgPack\UnpackingStreamReader.cs" Link="UnpackingStreamReader.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MsgPack.Abstraction\MsgPack.Abstraction.csproj" />
+    <ProjectReference Include="..\MsgPack.Serialization\MsgPack.Serialization.csproj" />
+  </ItemGroup>
 
 </Project>

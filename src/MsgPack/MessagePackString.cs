@@ -22,7 +22,6 @@ namespace MsgPack
 	///		Encapselates <see cref="String"/> and its serialized UTF-8 bytes.
 	/// </summary>
 #if FEATURE_BINARY_SERIALIZATION
-#warning TODO: Enable in .NET Standard 2.0 in Changes.txt
 	[Serializable]
 #endif // FEATURE_BINARY_SERIALIZATION
 #if FEATURE_CODE_ACCESS_SECURITY

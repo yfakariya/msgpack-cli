@@ -366,7 +366,7 @@ namespace MsgPack.Serialization
 					}
 				}
 
-				type = type.GetBaseType();
+				type = type.GetBaseType()!;
 			}
 
 			return distinctMembers.ToArray();

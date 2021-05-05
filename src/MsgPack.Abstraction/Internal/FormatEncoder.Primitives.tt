@@ -12,6 +12,10 @@ using System;
 using System.Buffers;
 using System.Runtime.CompilerServices;
 
+// Abstract methods with [CLSCompilant(false)] are intended -- codec implementer must use languages which support unsigned integers.
+// [CLSCompliant] is just for users of Codec rather than implementers.
+#pragma warning disable 3011 // only CLS-compliant members can be abstract
+
 namespace MsgPack.Internal
 {
 	partial class FormatEncoder
@@ -36,6 +40,9 @@ foreach (var inputType in new [] {
 		/// <param name="buffer"><see cref="IBufferWriter{T}">IBufferWriter&lt;byte&gt;</see>.</param>
 		/// <exception cref="ArgumentNullException"><paramref name="buffer" /> is <c>null</c>.</exception>
 		/// <exception cref="NotSupportedException">The underlying format does not suppor this type.</exception>
+<#
+	WriteClsCompliance(inputType);
+#>
 		public abstract void Encode<#= inputType #>(<#= inputType #> value, IBufferWriter<byte> buffer);
 
 		/// <summary>
@@ -44,6 +51,9 @@ foreach (var inputType in new [] {
 		/// </summary>
 		/// <param name="value">Value to be encoded.</param>
 		/// <param name="buffer"><see cref="IBufferWriter{T}">IBufferWriter&lt;byte&gt;</see>.</param>
+<#
+	WriteClsCompliance(inputType);
+#>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public void Encode<#= inputType #>(<#= inputType #>? value, IBufferWriter<byte> buffer)
 		{
@@ -63,3 +73,25 @@ foreach (var inputType in new [] {
 #>
 	}
 }
+<#+
+private void WriteClsCompliance(string type)
+{
+	if (IsClsCompliant(type))
+	{
+		return;
+	}
+#>
+		[CLSCompliant(false)]
+<#+
+}
+
+private static bool IsClsCompliant(string type)
+	=> type switch
+	{
+		"SByte" => false,
+		"UInt16" => false,
+		"UInt32" => false,
+		"UInt64" => false,
+		_ => true
+	};
+#>

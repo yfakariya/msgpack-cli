@@ -39,7 +39,7 @@
             Above precision does not affect deserialization. Deserialization logic try to handle biggest precision as long as possible.
         </para>
         <para>
-            Also, time zone portion is supported on <see cref="DateTimeOffset"/>
+            Also, time zone portion is supported on <see cref="System.DateTimeOffset"/>
 .
         </para>
     </doc>

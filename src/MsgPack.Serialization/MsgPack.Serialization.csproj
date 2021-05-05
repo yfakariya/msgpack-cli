@@ -22,9 +22,7 @@
     <Compile Include="..\MsgPack\Serialization\MessagePackEnumAttribute.cs" Link="Serialization\MessagePackEnumAttribute.cs" />
     <Compile Include="..\MsgPack\Serialization\MessagePackEnumMemberAttribute.cs" Link="Serialization\MessagePackEnumMemberAttribute.cs" />
     <Compile Include="..\MsgPack\Serialization\MessagePackIgnoreAttribute.cs" Link="Serialization\MessagePackIgnoreAttribute.cs" />
-    <Compile Include="..\MsgPack\Serialization\MessagePackKnownTypeAttributes.cs" Link="Serialization\MessagePackKnownTypeAttributes.cs" />
     <Compile Include="..\MsgPack\Serialization\MessagePackMemberAttribute.cs" Link="Serialization\MessagePackMemberAttribute.cs" />
-    <Compile Include="..\MsgPack\Serialization\MessagePackRuntimeTypeAttributes.cs" Link="Serialization\MessagePackRuntimeTypeAttributes.cs" />
     <Compile Include="..\MsgPack\Serialization\NilImplication.cs" Link="Serialization\NilImplication.cs" />
     <Compile Include="..\MsgPack\Serialization\PolymorphicTypeVerificationContext.cs" Link="Serialization\PolymorphicTypeVerificationContext.cs" />
     <Compile Include="..\MsgPack\Serialization\Polymorphic\IPolymorphicHelperAttributes.cs" Link="Serialization\Polymorphic\IPolymorphicHelperAttributes.cs" />
@@ -116,6 +114,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Dianostic.tt</DependentUpon>
     </Compile>
+    <Compile Update="Serialization\MessagePackKnownTypeAttributes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackKnownTypeAttributes.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Serialization\MessagePackRuntimeTypeAttributes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackRuntimeTypeAttributes.tt</DependentUpon>
+    </Compile>
     <Compile Update="Serialization\SerializationOperationContext.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -158,6 +166,14 @@
     <None Update="Serialization\BuiltinSerializers\EnumSerializers.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EnumSerializers.cs</LastGenOutput>
+    </None>
+    <None Update="Serialization\MessagePackKnownTypeAttributes.tt">
+      <LastGenOutput>MessagePackKnownTypeAttributes.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Serialization\MessagePackRuntimeTypeAttributes.tt">
+      <LastGenOutput>MessagePackRuntimeTypeAttributes.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
     </None>
     <None Update="Serialization\SerializationOperationContext.tt">
       <LastGenOutput>SerializationOperationContext.cs</LastGenOutput>

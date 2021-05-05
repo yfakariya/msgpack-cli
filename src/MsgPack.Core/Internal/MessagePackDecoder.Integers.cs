@@ -16,6 +16,7 @@ namespace MsgPack.Internal
 	partial class MessagePackDecoder
 	{
 		/// <inheritdoc />
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override SByte DecodeSByte(ref SequenceReader<byte> source, out int requestHint)
 		{
@@ -91,6 +92,7 @@ namespace MsgPack.Internal
 		}
 
 		/// <inheritdoc />
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override UInt16 DecodeUInt16(ref SequenceReader<byte> source, out int requestHint)
 		{
@@ -107,6 +109,7 @@ namespace MsgPack.Internal
 		}
 
 		/// <inheritdoc />
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override UInt32 DecodeUInt32(ref SequenceReader<byte> source, out int requestHint)
 		{
@@ -123,6 +126,7 @@ namespace MsgPack.Internal
 		}
 
 		/// <inheritdoc />
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override UInt64 DecodeUInt64(ref SequenceReader<byte> source, out int requestHint)
 		{

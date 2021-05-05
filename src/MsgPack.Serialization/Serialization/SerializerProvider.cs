@@ -214,7 +214,6 @@ namespace MsgPack.Serialization
 						return lazyProvider;
 					}
 
-#warning TODO: Revise option
 					var isTuple = TupleItems.IsTuple(targetType);
 					var metadata =
 						isTuple ?
@@ -312,7 +311,7 @@ namespace MsgPack.Serialization
 			else
 			{
 				Throw.DateTimeSerializerProviderIsNotRegistered(targetType);
-				return default; // Never reaches
+				return default!; // Never reaches
 			}
 		}
 

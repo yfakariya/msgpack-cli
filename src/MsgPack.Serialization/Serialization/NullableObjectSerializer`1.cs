@@ -19,7 +19,7 @@ namespace MsgPack.Serialization
 		private readonly ObjectSerializer<T> _underlying;
 
 		/// <summary>
-		///		Initialized a new instance of the <see cref="NullableObjectSerializer{T}"/> object.
+		///		Initialized a new instance of the <see cref="NullableObjectSerializer{T}"/> class.
 		/// </summary>
 		/// <param name="ownerProvider">The provider which will own this object.</param>
 		/// <param name="underlying">The serializer which will handle non-null case.</param>

@@ -27,7 +27,7 @@ namespace MsgPack.Serialization
 		public ObjectSerializer? Delegated => this._delegated;
 
 		/// <summary>
-		///		Initializes a new instance of the <see cref="LazyDelegatingObjectSerializer{T}"/> object.
+		///		Initializes a new instance of the <see cref="LazyDelegatingObjectSerializer{T}"/> class.
 		/// </summary>
 		/// <param name="ownerProvider">
 		///		The <see cref="ObjectSerializerProvider"/> to support lazy retrieval.

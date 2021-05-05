@@ -18,7 +18,7 @@ namespace MsgPack.Serialization
 		internal TypeKeyRepository DefaultCollectionTypes { get; }
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="DefaultConcreteTypeRepositoryBuilder"/> object.
+		///		Initializes a new instance of <see cref="DefaultConcreteTypeRepositoryBuilder"/> class.
 		/// </summary>
 		/// <remarks>
 		///		This constructor internally registers default type mapping for known collection types.

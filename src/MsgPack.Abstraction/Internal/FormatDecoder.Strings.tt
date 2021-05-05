@@ -57,7 +57,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes <#= spec.DocType #> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 <#
 	foreach (var doc in spec.ExtraParameterDocs)
 	{
@@ -66,7 +66,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -88,7 +88,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes <#= spec.DocType #> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
@@ -101,7 +101,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -113,7 +113,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes <#= spec.DocType #> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 <#
 	foreach (var doc in spec.ExtraParameterDocs)
 	{
@@ -122,7 +122,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -144,7 +144,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes <#= spec.DocType #> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
@@ -157,7 +157,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -170,7 +170,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes the value from specified sequence to <#= spec.SpanTypeDoc #>.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><#= spec.SpanTypeDoc #> which will store the decoded binary.</param>
 <#
 	foreach (var doc in spec.ExtraParameterDocs)
@@ -180,7 +180,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -204,7 +204,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes the value from specified sequence to <#= spec.SpanTypeDoc #>.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><#= spec.SpanTypeDoc #> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
@@ -218,7 +218,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -232,7 +232,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <#= spec.SpanTypeDoc #>.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><#= spec.SpanTypeDoc #> which will store the decoded binary.</param>
 <#
 	foreach (var doc in spec.ExtraParameterDocs)
@@ -242,7 +242,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
@@ -267,7 +267,7 @@ foreach (var spec in new [] {
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <#= spec.SpanTypeDoc #>.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><#= spec.SpanTypeDoc #> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
@@ -281,7 +281,7 @@ foreach (var spec in new [] {
 <#
 	}
 #>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.

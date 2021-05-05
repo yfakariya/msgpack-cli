@@ -1,39 +1,9 @@
-#region -- License Terms --
-// 
-// MessagePack for CLI
-// 
-// Copyright (C) 2016 FUJIWARA, Yusuke
-// 
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-// 
-//        http://www.apache.org/licenses/LICENSE-2.0
-// 
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
-// 
-#endregion -- License Terms --
-
-#if UNITY_5 || UNITY_STANDALONE || UNITY_WEBPLAYER || UNITY_WII || UNITY_IPHONE || UNITY_ANDROID || UNITY_PS3 || UNITY_XBOX360 || UNITY_FLASH || UNITY_BKACKBERRY || UNITY_WINRT
-#define UNITY
-#endif
-
-#if DEBUG
-#define ASSERT
-#endif // DEBUG
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// This file is licensed under Apache2 license.
+// See the LICENSE in the project root for more information.
 
 using System;
-#if ASSERT
-#if FEATURE_MPCONTRACT
-using Contract = MsgPack.MPContract;
-#else
-using System.Diagnostics.Contracts;
-#endif // FEATURE_MPCONTRACT
-#endif // ASSERT
+using System.Diagnostics;
 using System.Reflection;
 
 namespace MsgPack.Serialization
@@ -43,19 +13,13 @@ namespace MsgPack.Serialization
 	/// </summary>
 	public struct PolymorphicTypeVerificationContext : IEquatable<PolymorphicTypeVerificationContext>
 	{
-		// TODO: Use ref for internal struct on stack.
-
-		private readonly string _loadingTypeFullName;
-
 		/// <summary>
 		///		Gets the full type name including its namespace to be loaded.
 		/// </summary>
 		/// <value>
 		///		The full type name including its namespace to be loaded. This value will not be <c>null</c>.
 		/// </value>
-		public string LoadingTypeFullName { get { return this._loadingTypeFullName; } }
-
-		private readonly string _loadingAssemblyFullName;
+		public string LoadingTypeFullName { get; }
 
 		/// <summary>
 		///		Gets the full name of the loading assembly.
@@ -63,9 +27,7 @@ namespace MsgPack.Serialization
 		/// <value>
 		///		The full name of the loading assembly.
 		/// </value>
-		public string LoadingAssemblyFullName { get { return this._loadingAssemblyFullName; } }
-
-		private readonly AssemblyName _loadingAssemblyName;
+		public string LoadingAssemblyFullName { get; }
 
 		/// <summary>
 		///		Gets the name of the loading assembly.
@@ -73,33 +35,31 @@ namespace MsgPack.Serialization
 		/// <value>
 		///		The name of the loading assembly.
 		/// </value>
-		public AssemblyName LoadingAssemblyName { get { return this._loadingAssemblyName; } }
+		public AssemblyName LoadingAssemblyName { get; }
 
-		internal PolymorphicTypeVerificationContext( string loadingTypeFullName, AssemblyName loadingAssemblyName, string loadingAssemblyFullName )
+		internal PolymorphicTypeVerificationContext(string loadingTypeFullName, AssemblyName loadingAssemblyName, string loadingAssemblyFullName)
 		{
-#if ASSERT
-			Contract.Assert( loadingTypeFullName != null );
-			Contract.Assert( loadingAssemblyName != null );
-#endif // ASSERT
-			this._loadingTypeFullName = loadingTypeFullName;
-			this._loadingAssemblyName = loadingAssemblyName;
-			this._loadingAssemblyFullName = loadingAssemblyFullName;
+			Debug.Assert(loadingTypeFullName != null);
+			Debug.Assert(loadingAssemblyName != null);
+			this.LoadingTypeFullName = loadingTypeFullName;
+			this.LoadingAssemblyName = loadingAssemblyName;
+			this.LoadingAssemblyFullName = loadingAssemblyFullName;
 		}
 
 		/// <summary>
-		///		Returns a <see cref="System.String" /> that represents this instance.
+		///		Returns a <see cref="String" /> that represents this instance.
 		/// </summary>
 		/// <returns>
-		///		A <see cref="System.String" /> that represents this instance.
+		///		A <see cref="String" /> that represents this instance.
 		/// </returns>
 		public override string ToString()
 		{
-			if ( this._loadingTypeFullName == null )
+			if (this.LoadingTypeFullName == null)
 			{
 				return String.Empty;
 			}
 
-			return this._loadingTypeFullName + ", " + this._loadingAssemblyFullName;
+			return this.LoadingTypeFullName + ", " + this.LoadingAssemblyFullName;
 		}
 
 		/// <summary>
@@ -109,15 +69,8 @@ namespace MsgPack.Serialization
 		/// <returns>
 		///		<c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
-		public override bool Equals( object obj )
-		{
-			if ( !( obj is PolymorphicTypeVerificationContext ) )
-			{
-				return false;
-			}
-
-			return this.Equals( ( PolymorphicTypeVerificationContext ) obj );
-		}
+		public override bool Equals(object? obj)
+			=> (obj is PolymorphicTypeVerificationContext other) && this.Equals(other);
 
 		/// <summary>
 		///		Determines whether the specified <see cref="PolymorphicTypeVerificationContext" /> is equal to this instance.
@@ -126,10 +79,8 @@ namespace MsgPack.Serialization
 		/// <returns>
 		///		<c>true</c> if the specified <see cref="PolymorphicTypeVerificationContext" /> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
-		public bool Equals( PolymorphicTypeVerificationContext other )
-		{
-			return this._loadingTypeFullName == other._loadingTypeFullName && this._loadingAssemblyFullName == other._loadingAssemblyFullName;
-		}
+		public bool Equals(PolymorphicTypeVerificationContext other)
+			=> this.LoadingTypeFullName == other.LoadingTypeFullName && this.LoadingAssemblyFullName == other.LoadingAssemblyFullName;
 
 		/// <summary>
 		///		Returns a hash code for this instance.
@@ -139,38 +90,34 @@ namespace MsgPack.Serialization
 		/// </returns>
 		public override int GetHashCode()
 		{
-			if ( this._loadingTypeFullName == null )
+			if (this.LoadingTypeFullName == null)
 			{
 				return 0;
 			}
 
-			return this._loadingTypeFullName.GetHashCode() ^ this._loadingAssemblyFullName.GetHashCode();
+			return this.LoadingTypeFullName.GetHashCode() ^ this.LoadingAssemblyFullName.GetHashCode();
 		}
 
 		/// <summary>
-		///		Determines whether the specified <see cref="PolymorphicTypeVerificationContext" />s are equal.
+		///		Returns a value that indicates whether two <see cref="PolymorphicTypeVerificationContext" /> objects are equal.
 		/// </summary>
-		/// <param name="left">The <see cref="PolymorphicTypeVerificationContext" />.</param>
-		/// <param name="right">The <see cref="PolymorphicTypeVerificationContext" />.</param>
+		/// <param name="left">The first <see cref="PolymorphicTypeVerificationContext" /> to compare.</param>
+		/// <param name="right">The second <see cref="PolymorphicTypeVerificationContext" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c> if the specified <see cref="PolymorphicTypeVerificationContext" />s are equal to each other; otherwise, <c>false</c>.
+		///   <c>true</c> if the two <see cref="PolymorphicTypeVerificationContext" /> objects are equal; otherwise, <c>false</c>.
 		/// </returns>
-		public static bool operator ==( PolymorphicTypeVerificationContext left, PolymorphicTypeVerificationContext right )
-		{
-			return left.Equals( right );
-		}
+		public static bool operator ==(PolymorphicTypeVerificationContext left, PolymorphicTypeVerificationContext right)
+			=> left.Equals(right);
 
 		/// <summary>
-		///		Determines whether the specified <see cref="PolymorphicTypeVerificationContext" />s are not equal.
+		///		Returns a value that indicates whether two <see cref="PolymorphicTypeVerificationContext" /> objects are not equal.
 		/// </summary>
-		/// <param name="left">The <see cref="PolymorphicTypeVerificationContext" />.</param>
-		/// <param name="right">The <see cref="PolymorphicTypeVerificationContext" />.</param>
+		/// <param name="left">The first <see cref="PolymorphicTypeVerificationContext" /> to compare.</param>
+		/// <param name="right">The second <see cref="PolymorphicTypeVerificationContext" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c> if the specified <see cref="PolymorphicTypeVerificationContext" />s are not equal; otherwise, <c>false</c>.
+		///   <c>true</c> if the two <see cref="PolymorphicTypeVerificationContext" /> objects are not equal; otherwise, <c>false</c>.
 		/// </returns>
-		public static bool operator !=( PolymorphicTypeVerificationContext left, PolymorphicTypeVerificationContext right )
-		{
-			return !left.Equals( right );
-		}
+		public static bool operator !=(PolymorphicTypeVerificationContext left, PolymorphicTypeVerificationContext right)
+			=> !left.Equals(right);
 	}
 }

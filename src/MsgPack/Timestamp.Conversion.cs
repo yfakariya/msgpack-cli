@@ -27,7 +27,7 @@ using MsgPack.Internal;
 
 namespace MsgPack
 {
-	partial struct Timestamp
+	public partial struct Timestamp
 	{
 		private long ToTicks(Type destination)
 		{
@@ -186,6 +186,7 @@ namespace MsgPack
 		///			<item>Its nanoseconds part is between 0 and 999,999,999.</item>
 		///		</list>
 		/// </remarks>
+		[Obsolete("Use Decode(ExtensionTypeObject)")]
 		public static Timestamp Decode(MessagePackExtendedTypeObject value)
 		{
 			if (value.TypeCode != TypeCode)
@@ -268,35 +269,32 @@ namespace MsgPack
 			return value.ToDateTimeOffset();
 		}
 
+#pragma warning disable 0618
+
 		/// <summary>
 		///		Converts a <see cref="Timestamp"/> value to a <see cref="MessagePackExtendedTypeObject"/>.
 		/// </summary>
 		/// <param name="value">A <see cref="Timestamp"/>.</param>
 		/// <returns>A <see cref="MessagePackExtendedTypeObject"/>.</returns>
-		public static implicit operator MessagePackExtendedTypeObject(Timestamp value)
-		{
-			return value.Encode();
-		}
+		public static implicit operator MessagePackExtendedTypeObject(Timestamp value) => value.Encode();
+
+#pragma warning restore 0618
 
 		/// <summary>
 		///		Converts a <see cref="DateTime"/> value to a <see cref="Timestamp"/>.
 		/// </summary>
 		/// <param name="value">A <see cref="DateTime"/>.</param>
 		/// <returns>A <see cref="Timestamp"/>.</returns>
-		public static implicit operator Timestamp(DateTime value)
-		{
-			return FromDateTime(value);
-		}
+		public static implicit operator Timestamp(DateTime value) => FromDateTime(value);
 
 		/// <summary>
 		///		Converts a <see cref="DateTimeOffset"/> value to a <see cref="Timestamp"/>.
 		/// </summary>
 		/// <param name="value">A <see cref="DateTimeOffset"/>.</param>
 		/// <returns>A <see cref="Timestamp"/>.</returns>
-		public static implicit operator Timestamp(DateTimeOffset value)
-		{
-			return FromDateTimeOffset(value);
-		}
+		public static implicit operator Timestamp(DateTimeOffset value) => FromDateTimeOffset(value);
+
+#pragma warning disable 0618
 
 		/// <summary>
 		///		Converts a <see cref="MessagePackExtendedTypeObject"/> value to a <see cref="Timestamp"/>.
@@ -310,9 +308,8 @@ namespace MsgPack
 		/// <exception cref="ArgumentOutOfRangeException">
 		///		<paramref name="value"/> have invalid nanoseconds value.
 		/// </exception>
-		public static explicit operator Timestamp(MessagePackExtendedTypeObject value)
-		{
-			return Decode(value);
-		}
+		public static explicit operator Timestamp(MessagePackExtendedTypeObject value) => Decode(value);
+
+#pragma warning restore 0618
 	}
 }

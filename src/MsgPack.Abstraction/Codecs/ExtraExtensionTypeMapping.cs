@@ -52,23 +52,23 @@ namespace MsgPack.Codecs
 			=> HashCode.Combine(this.Type, this.Label);
 
 		/// <summary>
-		///		Compares two <see cref="ExtraExtensionTypeMapping"/> are equal.
+		///		Returns a value that indicates whether two <see cref="ExtraExtensionTypeMapping" /> objects are equal.
 		/// </summary>
-		/// <param name="left">The <see cref="ExtraExtensionTypeMapping"/>.</param>
-		/// <param name="right">The <see cref="ExtraExtensionTypeMapping"/>.</param>
+		/// <param name="left">The first <see cref="ExtraExtensionTypeMapping" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtraExtensionTypeMapping" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c>, if <paramref name="left"/> and <paramref name="right"/> are equal; <c>false</c>, otherwise.
+		///   <c>true</c> if the two <see cref="ExtraExtensionTypeMapping" /> objects are equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator ==(ExtraExtensionTypeMapping left, ExtraExtensionTypeMapping right)
 			=> left.Equals(right);
 
 		/// <summary>
-		///		Compares two <see cref="ExtraExtensionTypeMapping"/> are not equal.
+		///		Returns a value that indicates whether two <see cref="ExtraExtensionTypeMapping" /> objects are not equal.
 		/// </summary>
-		/// <param name="left">The <see cref="ExtraExtensionTypeMapping"/>.</param>
-		/// <param name="right">The <see cref="ExtraExtensionTypeMapping"/>.</param>
+		/// <param name="left">The first <see cref="ExtraExtensionTypeMapping" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtraExtensionTypeMapping" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c>, if <paramref name="left"/> and <paramref name="right"/> are equal; <c>false</c>, otherwise.
+		///   <c>true</c> if the two <see cref="ExtraExtensionTypeMapping" /> objects are not equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator !=(ExtraExtensionTypeMapping left, ExtraExtensionTypeMapping right)
 			=> !left.Equals(right);
@@ -86,7 +86,7 @@ namespace MsgPack.Codecs
 		/// <summary>
 		///		Converts specified <see cref="ExtensionType"/> to <see cref="ExtraExtensionTypeMapping"/> implicitly.
 		/// </summary>
-		/// <param name="tag">The <see cref="ExtensionType"/>.</param>
+		/// <param name="type">The <see cref="ExtensionType"/>.</param>
 		/// <returns>
 		///		An <see cref="ExtraExtensionTypeMapping"/> which has <paramref name="type"/> and does not have a label.
 		/// </returns>

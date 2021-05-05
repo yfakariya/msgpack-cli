@@ -21,9 +21,9 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="String" /> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -45,13 +45,13 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="String" /> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -63,9 +63,9 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="String" /> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -87,13 +87,13 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="String" /> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -106,10 +106,10 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value from specified sequence to <see cref="Span{T}" /> of <see cref="Char" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Char" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -133,14 +133,14 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value from specified sequence to <see cref="Span{T}" /> of <see cref="Char" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Char" /> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -154,10 +154,10 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <see cref="Span{T}" /> of <see cref="Char" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Char" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
@@ -182,14 +182,14 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <see cref="Span{T}" /> of <see cref="Char" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Char" /> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
@@ -208,9 +208,9 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Utf8String" /> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -232,13 +232,13 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Utf8String" /> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -250,9 +250,9 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Utf8String" /> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -274,13 +274,13 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Utf8String" /> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -293,10 +293,10 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value from specified sequence to <see cref="Utf8Span" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Utf8Span" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -320,14 +320,14 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value from specified sequence to <see cref="Utf8Span" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Utf8Span" /> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -341,10 +341,10 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <see cref="Utf8Span" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Utf8Span" /> which will store the decoded binary.</param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
@@ -369,14 +369,14 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <see cref="Utf8Span" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Utf8Span" /> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
 		/// <param name="encoding">Specify charactor encoding. This value can be omitted, and default is UTF-8 without BOM.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
@@ -395,8 +395,8 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Byte" />[] value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -418,12 +418,12 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Byte" />[] value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -435,8 +435,8 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Byte" />[] value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
@@ -458,12 +458,12 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes <see cref="Byte" />[] value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
@@ -476,9 +476,9 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value from specified sequence to <see cref="Span{T}" /> of <see cref="Byte" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Byte" /> which will store the decoded binary.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -502,13 +502,13 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value from specified sequence to <see cref="Span{T}" /> of <see cref="Byte" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Byte" /> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value.
 		///		This value can be <c>0</c> for empty string.
@@ -522,9 +522,9 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <see cref="Span{T}" /> of <see cref="Byte" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Byte" /> which will store the decoded binary.</param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.
@@ -549,13 +549,13 @@ namespace MsgPack.Internal
 		/// <summary>
 		///		Decodes the value or <c>null</c> from specified sequence to <see cref="Span{T}" /> of <see cref="Byte" />.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="buffer"><see cref="Span{T}" /> of <see cref="Byte" /> which will store the decoded binary.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
 		/// </param>
-		/// <param name="cancellationToken"><see cref="CancellationToken" /> to cancel long running operation. This value can be omitted.</param>
+		/// <param name="cancellationToken">The token to monitor for cancellation requests.This value can be omitted.</param>
 		/// <return>
 		///		The length of the decoded value;
 		///		<c>null</c> when the underlying value is <c>null</c>.

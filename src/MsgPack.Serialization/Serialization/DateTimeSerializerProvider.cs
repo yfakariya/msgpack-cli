@@ -62,7 +62,7 @@ namespace MsgPack.Serialization
 #pragma warning restore CS8714
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="DateTimeSerializerProvider"/> object.
+		///		Initializes a new instance of <see cref="DateTimeSerializerProvider"/> class.
 		/// </summary>
 		/// <param name="targetType">
 		///		The target type which this object should handle to.

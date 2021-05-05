@@ -35,6 +35,7 @@ namespace MsgPack.Internal
 		}
 
 		/// <inheritdoc />
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override void EncodeUInt32(UInt32 value, IBufferWriter<byte> buffer)
 		{
@@ -73,6 +74,7 @@ namespace MsgPack.Internal
 		}
 
 		/// <inheritdoc />
+		[CLSCompliant(false)]
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override void EncodeUInt64(UInt64 value, IBufferWriter<byte> buffer)
 		{

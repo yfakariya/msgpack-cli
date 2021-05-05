@@ -11,7 +11,7 @@ namespace MsgPack.Serialization
 	{
 		/// <summary>
 		///		Applies to member type itself.
-		///		This option disables <see cref="SerializerProvider.DefaultCollectionTypes"/> settings.
+		///		This option disables <see cref="DefaultConcreteTypeRepositoryBuilder.DefaultCollectionTypes"/> settings.
 		/// </summary>
 		Member = 0,
 

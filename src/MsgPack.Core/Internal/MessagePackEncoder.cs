@@ -16,13 +16,14 @@ namespace MsgPack.Internal
 	/// </summary>
 	public abstract partial class MessagePackEncoder : FormatEncoder
 	{
-#warning TODO: Can devirt? If not, change to Create(MessagePackEncoderOptions)
-		public static MessagePackEncoder CreateLegacy(MessagePackEncoderOptions options) => new LegacyMessagePackEncoder(options);
-		public static MessagePackEncoder CreateCurrent(MessagePackEncoderOptions options) => new CurrentMessagePackEncoder(options);
+		public static MessagePackEncoder Create(MessagePackEncoderOptions options)
+			=> Ensure.NotNull(options).Features.SupportsExtensionTypes ?
+				new CurrentMessagePackEncoder(options) as MessagePackEncoder :
+				new LegacyMessagePackEncoder(options);
 
 		public new MessagePackEncoderOptions Options => (base.Options as MessagePackEncoderOptions)!;
 
-		protected MessagePackEncoder(MessagePackEncoderOptions options)
+		private protected MessagePackEncoder(MessagePackEncoderOptions options)
 			: base(options) { }
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
@@ -214,7 +215,7 @@ namespace MsgPack.Internal
 		private void EncodeStringHeader(uint length, Memory<byte> memory)
 			=> this.EncodeStringHeader(length, memory.Span);
 
-		protected abstract int EncodeStringHeader(uint length, Span<byte> buffer);
+		private protected abstract int EncodeStringHeader(uint length, Span<byte> buffer);
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override void EncodeString(in ReadOnlySequence<byte> encodedValue, int charLength, IBufferWriter<byte> buffer, CancellationToken cancellationToken = default)
@@ -247,6 +248,6 @@ namespace MsgPack.Internal
 		private int EncodeBinaryHeader(uint length, Memory<byte> memory)
 			=> this.EncodeBinaryHeader(length, memory.Span);
 
-		protected abstract int EncodeBinaryHeader(uint length, Span<byte> buffer);
+		private protected abstract int EncodeBinaryHeader(uint length, Span<byte> buffer);
 	}
 }

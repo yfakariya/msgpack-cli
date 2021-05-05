@@ -42,6 +42,7 @@ namespace MsgPack
 			this.Body = body;
 		}
 
+		/// <inheritdoc />
 		public override string ToString()
 		{
 			const int tokensLength = 3 + 8 + 3 + 20 + 3 + 4 + 4 + 3;
@@ -151,24 +152,24 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Determines whether two specified instances of <see cref="ExtensionTypeObject"/> are equal.
+		///		Returns a value that indicates whether two <see cref="ExtensionTypeObject" /> objects are equal.
 		/// </summary>
-		/// <param name="left">The first object to compare.</param>
-		/// <param name="right">The second object to compare.</param>
+		/// <param name="left">The first <see cref="ExtensionTypeObject" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtensionTypeObject" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c> if <paramref name="left"/> and <paramref name="right"/> represent the same type; otherwise, <c>false</c>.
-		///	</returns>
+		///   <c>true</c> if the two <see cref="ExtensionTypeObject" /> objects are equal; otherwise, <c>false</c>.
+		/// </returns>
 		public static bool operator ==(ExtensionTypeObject left, ExtensionTypeObject right)
 			=> left.Equals(right);
 
 		/// <summary>
-		///		Determines whether two specified instances of <see cref="ExtensionTypeObject"/> are not equal.
+		///		Returns a value that indicates whether two <see cref="ExtensionTypeObject" /> objects are not equal.
 		/// </summary>
-		/// <param name="left">The first object to compare.</param>
-		/// <param name="right">The second object to compare.</param>
+		/// <param name="left">The first <see cref="ExtensionTypeObject" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtensionTypeObject" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c> if <paramref name="left"/> and <paramref name="right"/> represent the different type; otherwise, <c>false</c>.
-		///	</returns>
+		///   <c>true</c> if the two <see cref="ExtensionTypeObject" /> objects are not equal; otherwise, <c>false</c>.
+		/// </returns>
 		public static bool operator !=(ExtensionTypeObject left, ExtensionTypeObject right)
 			=> !left.Equals(right);
 	}

@@ -24,7 +24,7 @@ namespace MsgPack.Serialization
 		///		Gets the value indicating whether array serialization method should use 1 bound order instead of default 0 bound order  for <see cref="MessagePackMemberAttribute.Id"/> or simular attribute properties.
 		/// </summary>
 		/// <value>
-		///		<c>true</c>, if the array serialization method should use 1 bound order; <c>false</c>, otherwise.
+		///		<c>true</c> if the array serialization method should use 1 bound order; <c>false</c>, otherwise.
 		/// </value>
 		/// <remarks>
 		///		Using this value, you can switch between MessagePack for CLI and ProtoBuf.NET seamlessly.

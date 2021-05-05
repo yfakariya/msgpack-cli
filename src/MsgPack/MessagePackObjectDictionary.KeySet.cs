@@ -26,9 +26,9 @@ namespace MsgPack
 #if !NET35
 			ISet<MessagePackObject>,
 #endif // !NET35
-#else
+#else // !UNITY
 		public sealed partial class KeyCollection :
-#endif // !UNITY
+#endif // else !UNITY
 			// ReSharper disable once RedundantExtendsListEntry
 			ICollection<MessagePackObject>, ICollection
 		{

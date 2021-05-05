@@ -206,5 +206,8 @@ namespace MsgPack
 
 		public static void UnknownExtensionTypeMappingName(string name, [CallerArgumentExpression("name")] string? paramName = null)
 			=> throw new KeyNotFoundException($"The name '{StringEscape.ForDisplay(name)}' is not registered as extension type mappings.");
+
+		public static void EmptyStruct(Type type, string paramName)
+			=> throw new ArgumentException($"The instance of value type '{type}' cannot be empty.", paramName);
 	}
 }

@@ -6,7 +6,6 @@ using System;
 using System.Buffers;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 
 namespace MsgPack.Internal
@@ -31,24 +30,22 @@ namespace MsgPack.Internal
 				Throw.BinaryLengthExceeded(source.Consumed, length, this.Options.MaxBinaryLengthInBytes);
 			}
 
-			var totalLength = length + headerLength;
-
-			if (totalLength > buffer.Length)
+			if (length > buffer.Length)
 			{
 				return -length;
 			}
 
-			if (source.UnreadSpan.Length < totalLength)
+			if (source.UnreadSpan.Length < length)
 			{
-				source.UnreadSpan.Slice(0, totalLength).CopyTo(buffer);
-				source.Advance(totalLength);
+				source.UnreadSpan.Slice(0, length).CopyTo(buffer);
+				source.Advance(length);
 				requestHint = 0;
-				return totalLength;
+				return length;
 			}
 
-			if (source.Remaining < totalLength)
+			if (source.Remaining < length)
 			{
-				requestHint = totalLength - (int)source.Remaining;
+				requestHint = length - (int)source.Remaining;
 				// Int32.MaxValue * -1 -> Overflow, so this value is suitable to "undefined value".
 				return Int32.MaxValue;
 			}

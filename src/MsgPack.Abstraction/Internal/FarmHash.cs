@@ -50,6 +50,7 @@ namespace MsgPack.Internal
 		///		May change from time to time, may differ on different platforms.
 		/// </summary>
 		/// <param name="bytes">Target byte span.</param>
+		/// <param name="seed">The seed of hash.</param>
 		/// <returns>Non-cryptgraphic, temporal hash value suitable as hash code.</returns>
 		public static unsafe int Hash32WithSeed(ReadOnlySpan<byte> bytes, uint seed)
 		{

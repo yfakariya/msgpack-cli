@@ -140,9 +140,11 @@ namespace MsgPack
 					return true;
 				}
 
+				Debug.Assert(this._underlying._keys != null);
+				Debug.Assert(this._underlying._values != null);
+
 				if (this._position == BeforeHead)
 				{
-#warning TODO: NRE
 					if (this._underlying._keys.Count == 0)
 					{
 						this._position = End;
@@ -157,14 +159,12 @@ namespace MsgPack
 					this._position++;
 				}
 
-#warning TODO: NRE
-				if (this._position == this._underlying._keys.Count)
+				if (this._position == this._underlying.Count)
 				{
 					this._position = End;
 					return false;
 				}
 
-#warning TODO: NRE
 				this._current = new KeyValuePair<MessagePackObject, MessagePackObject>(this._underlying._keys[this._position], this._underlying._values[this._position]);
 				return true;
 			}

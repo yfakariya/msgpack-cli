@@ -43,7 +43,7 @@ namespace MsgPack.Serialization
 		///		Converts UpperCamel (Pascal) or lowerCamel cased name to UPPER_SNAKE or lower_snake casing.
 		/// </summary>
 		/// <param name="mayBeUpperCamel">Name which is UpperCamel (Pascal) or lowerCamel cased.</param>
-		/// <param name="toBeUpperCase"><c>true</c>, if result should be upper casing; <c>false</c>, should be lower casing.</param>
+		/// <param name="toBeUpperCase"><c>true</c> if result should be upper casing; <c>false</c>, should be lower casing.</param>
 		/// <returns>Name with UPPER_SNAKE or lower_snake casing.</returns>
 		public static string ToSnakeCase(string mayBeUpperCamel, bool toBeUpperCase)
 		{

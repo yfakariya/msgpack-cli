@@ -17,7 +17,7 @@ namespace MsgPack.Internal
 		public MessagePackCompatibilityLevel CompatibilityLevel { get; private set; }
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="MessagePackEncoderOptionsBuilder"/> object.
+		///		Initializes a new instance of <see cref="MessagePackEncoderOptionsBuilder"/> class.
 		/// </summary>
 		public MessagePackEncoderOptionsBuilder()
 		{

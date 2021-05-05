@@ -8,6 +8,7 @@ using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using MsgPack.Internal;
@@ -64,7 +65,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 			}
 		}
 
-		protected abstract void SerializeUnderlyingValue(ref SerializationOperationContext context, [DisallowNull]T obj, IBufferWriter<byte> sink);
+		protected abstract void SerializeUnderlyingValue(ref SerializationOperationContext context, [DisallowNull] T obj, IBufferWriter<byte> sink);
 
 		[return: MaybeNull]
 		public sealed override T Deserialize(ref DeserializationOperationContext context, ref SequenceReader<byte> source)
@@ -109,7 +110,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Span<byte> buffer = stackalloc byte[sizeof(int)];
 					decoded.Value.CopyTo(buffer);
 
-					return this.FromInt32(BinaryPrimitives.ReadInt32BigEndian(buffer));
+					return this.FromInt32(MemoryMarshal.Cast<byte, int>(buffer)[0]);
 				}
 				case ElementType.Int64:
 				{
@@ -117,7 +118,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Span<byte> buffer = stackalloc byte[sizeof(long)];
 					decoded.Value.CopyTo(buffer);
 
-					return this.FromInt64(BinaryPrimitives.ReadInt64BigEndian(buffer));
+					return this.FromInt64(MemoryMarshal.Cast<byte, long>(buffer)[0]);
 				}
 				case ElementType.UInt64:
 				{
@@ -125,7 +126,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Span<byte> buffer = stackalloc byte[sizeof(ulong)];
 					decoded.Value.CopyTo(buffer);
 
-					return this.FromUInt64(BinaryPrimitives.ReadUInt64BigEndian(buffer));
+					return this.FromUInt64(MemoryMarshal.Cast<byte, ulong>(buffer)[0]);
 				}
 				case ElementType.Single:
 				{
@@ -133,7 +134,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Span<byte> buffer = stackalloc byte[sizeof(float)];
 					decoded.Value.CopyTo(buffer);
 
-					return this.FromSingle(BitConverter.Int32BitsToSingle(BinaryPrimitives.ReadInt32BigEndian(buffer)));
+					return this.FromSingle(MemoryMarshal.Cast<byte, float>(buffer)[0]);
 				}
 				case ElementType.Double:
 				{
@@ -141,7 +142,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 					Span<byte> buffer = stackalloc byte[sizeof(double)];
 					decoded.Value.CopyTo(buffer);
 
-					return this.FromDouble(BitConverter.Int64BitsToDouble(BinaryPrimitives.ReadInt64BigEndian(buffer)));
+					return this.FromDouble(MemoryMarshal.Cast<byte, double>(buffer)[0]);
 				}
 				default:
 				{
@@ -154,15 +155,15 @@ namespace MsgPack.Serialization.BuiltinSerializers
 		protected abstract T FromBoolean(bool value);
 
 		protected abstract T FromChar(char value);
-		
+
 		protected abstract T FromInt32(int value);
-		
+
 		protected abstract T FromInt64(long value);
-		
+
 		protected abstract T FromUInt64(ulong value);
-		
+
 		protected abstract T FromSingle(float value);
-		
+
 		protected abstract T FromDouble(double value);
 
 #if FEATURE_TAP

@@ -102,19 +102,19 @@ namespace MsgPack.Serialization
 		public static SerializerBuilder ForRuntimeCodeGenerationNotRegistered()
 			=> throw new InvalidOperationException(
 				"Runtime code generation engine is not configured. " +
-				"Ensure that MsgPack.Serialization.ILGeneration package exists and SerializationContextBuilder.UseRuntimeCodeGeneration() extension method was called."
+				"Ensure that MsgPack.Serialization.ILGeneration package exists and SerializationOptionsBuilder.UseRuntimeCodeGeneration() extension method was called."
 			);
 
 		public static SerializerBuilder ForReflectionNotRegistered()
 			=> throw new InvalidOperationException(
 				"Reflection engine is not configured. " +
-				"Ensure that MsgPack.Serialization.Reflection package exists and SerializationContextBuilder.UseReflection() extension method was called."
+				"Ensure that MsgPack.Serialization.Reflection package exists and SerializationOptionsBuilder.UseReflection() extension method was called."
 			);
 
 		public static SerializerBuilder ForSourceCodeGenerationNotRegistered()
 			=> throw new InvalidOperationException(
 				"Source code generation engine is not configured. " +
-				"Ensure that MsgPack.Serialization.SourceGeneration package exists and SerializationContextBuilder.UseSourceCodeGeneration() extension method was called."
+				"Ensure that MsgPack.Serialization.SourceGeneration package exists and SerializationOptionsBuilder.UseSourceCodeGeneration() extension method was called."
 			);
 
 		public static void TypeCannotBeSerializedBecauseNoMembersAndNoParameterizedPublicConstructors(Type targetType)

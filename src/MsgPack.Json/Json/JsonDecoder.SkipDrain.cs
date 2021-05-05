@@ -2,7 +2,6 @@
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
-using System;
 using System.Buffers;
 using System.Threading;
 using MsgPack.Internal;
@@ -31,7 +30,7 @@ namespace MsgPack.Json
 				{
 					// Skip current collection with CollectionIterator.Drain()
 					var iterator = decodeItemResult.CollectionIterator;
-					if (!iterator.Drain(ref source, out requestHint))
+					if (!iterator.Drain(ref source, out requestHint, cancellationToken))
 					{
 						source.Rewind(source.Consumed - originalPosition);
 						return;

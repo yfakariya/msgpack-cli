@@ -37,10 +37,10 @@ namespace MsgPack.Codecs
 		/// <returns>
 		///		<see cref="ExtensionType"/>.
 		/// </returns>
-		/// <exception cref="ArgumentNullException">
+		/// <exception cref="System.ArgumentNullException">
 		///		<paramref name="name"/> is <c>null</c>.
 		/// </exception>
-		/// <exception cref="ArgumentException">
+		/// <exception cref="System.ArgumentException">
 		///		<paramref name="name"/> is empty string.
 		/// </exception>
 		/// <exception cref="KeyNotFoundException">

@@ -68,7 +68,7 @@ namespace MsgPack.Serialization
 		///		Gets the value which indicates whether the buffer from <see cref="ByteBufferPool"/> should be cleared on return.
 		/// </summary>
 		/// <value>
-		///		<c>true</c>, if the buffer should be zero-cleared; <c>false</c>, otherwise. The default is <c>false</c>.
+		///		<c>true</c> if the buffer should be zero-cleared; <c>false</c>, otherwise. The default is <c>false</c>.
 		/// </value>
 		/// <remarks>
 		///		If <c>false</c>, a malicious serializer can snoof buffer contents, so it might be security vulnerability.

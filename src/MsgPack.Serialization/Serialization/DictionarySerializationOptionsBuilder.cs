@@ -103,7 +103,7 @@ namespace MsgPack.Serialization
 		}
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="DictionarySerializationOptionsBuilder" /> object.
+		///		Initializes a new instance of <see cref="DictionarySerializationOptionsBuilder" /> class.
 		/// </summary>
 		public DictionarySerializationOptionsBuilder() { }
 	}

@@ -870,10 +870,10 @@ namespace MsgPack.Serialization
 					String.Format(
 						CultureInfo.CurrentCulture,
 						"Cannot serialize type '{0}' because registered or generated serializer '{1}' does not implement '{2}', which is implemented by '{3}', for example.",
-						targetType.GetFullName(),
-						incompatibleType.GetFullName(),
+						targetType,
+						incompatibleType,
 						typeof(ICollectionInstanceFactory),
-						exampleClass.GetFullName()
+						exampleClass
 					)
 				);
 		}

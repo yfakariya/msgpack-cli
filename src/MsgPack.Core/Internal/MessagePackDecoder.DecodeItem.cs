@@ -16,8 +16,8 @@ namespace MsgPack.Internal
 		{
 			if (source.End)
 			{
-				requestHint = 0;
-				result = DecodeItemResult.EndOfStream();
+				requestHint = -1;
+				result = DecodeItemResult.InsufficientInput();
 				return;
 			}
 

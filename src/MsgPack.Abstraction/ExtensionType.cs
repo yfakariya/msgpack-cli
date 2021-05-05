@@ -7,6 +7,7 @@ using System.ComponentModel;
 
 namespace MsgPack
 {
+#warning TODO: Use MessagePack prefix because it looks System type.
 	/// <summary>
 	///		Represents a type of extension.
 	/// </summary>
@@ -57,24 +58,24 @@ namespace MsgPack
 			=> this.Tag.GetHashCode();
 
 		/// <summary>
-		///		Determines whether two specified instances of <see cref="ExtensionType"/> are equal.
+		///		Returns a value that indicates whether two <see cref="ExtensionType" /> objects are equal.
 		/// </summary>
-		/// <param name="left">The first object to compare.</param>
-		/// <param name="right">The second object to compare.</param>
+		/// <param name="left">The first <see cref="ExtensionType" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtensionType" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c> if <paramref name="left"/> and <paramref name="right"/> represent the same type; otherwise, <c>false</c>.
-		///	</returns>
+		///   <c>true</c> if the two <see cref="ExtensionType" /> objects are equal; otherwise, <c>false</c>.
+		/// </returns>
 		public static bool operator ==(ExtensionType left, ExtensionType right)
 			=> left.Tag == right.Tag;
 
 		/// <summary>
-		///		Determines whether two specified instances of <see cref="ExtensionType"/> are not equal.
+		///		Returns a value that indicates whether two <see cref="ExtensionType" /> objects are not equal.
 		/// </summary>
-		/// <param name="left">The first object to compare.</param>
-		/// <param name="right">The second object to compare.</param>
+		/// <param name="left">The first <see cref="ExtensionType" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtensionType" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c> if <paramref name="left"/> and <paramref name="right"/> represent the different type; otherwise, <c>false</c>.
-		///	</returns>
+		///   <c>true</c> if the two <see cref="ExtensionType" /> objects are not equal; otherwise, <c>false</c>.
+		/// </returns>
 		public static bool operator !=(ExtensionType left, ExtensionType right)
 			=> left.Tag != right.Tag;
 

@@ -74,23 +74,23 @@ namespace MsgPack.Codecs
 		}
 
 		/// <summary>
-		///		Compares two <see cref="ExtensionTypeMapping"/> are equal.
+		///		Returns a value that indicates whether two <see cref="ExtensionTypeMapping" /> objects are equal.
 		/// </summary>
-		/// <param name="left">The <see cref="ExtensionTypeMapping"/>.</param>
-		/// <param name="right">The <see cref="ExtensionTypeMapping"/>.</param>
+		/// <param name="left">The first <see cref="ExtensionTypeMapping" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtensionTypeMapping" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c>, if <paramref name="left"/> and <paramref name="right"/> are equal; <c>false</c>, otherwise.
+		///   <c>true</c> if the two <see cref="ExtensionTypeMapping" /> objects are equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator ==(ExtensionTypeMapping left, ExtensionTypeMapping right)
 			=> left.Equals(right);
 
 		/// <summary>
-		///		Compares two <see cref="ExtensionTypeMapping"/> are not equal.
+		///		Returns a value that indicates whether two <see cref="ExtensionTypeMapping" /> objects are not equal.
 		/// </summary>
-		/// <param name="left">The <see cref="ExtensionTypeMapping"/>.</param>
-		/// <param name="right">The <see cref="ExtensionTypeMapping"/>.</param>
+		/// <param name="left">The first <see cref="ExtensionTypeMapping" /> to compare.</param>
+		/// <param name="right">The second <see cref="ExtensionTypeMapping" /> to compare.</param>
 		/// <returns>
-		///		<c>true</c>, if <paramref name="left"/> and <paramref name="right"/> are equal; <c>false</c>, otherwise.
+		///   <c>true</c> if the two <see cref="ExtensionTypeMapping" /> objects are not equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator !=(ExtensionTypeMapping left, ExtensionTypeMapping right)
 			=> !left.Equals(right);

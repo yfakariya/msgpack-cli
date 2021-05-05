@@ -69,7 +69,7 @@ foreach (var type in types)
 	var t = type.Key;
 	var isBinary = type.Value;
 
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -110,9 +110,9 @@ foreach (var type in types)
 	{
 #>
 		/// <summary>
-		///		Initializes a new instance of the <see cref="<#= typeName #>"/> type which wraps <see cref="<#= GetTypeName( t ) #>"/> instance.
+		///		Initializes a new instance of the <see cref="<#= typeName #>"/> type which wraps <#= GetDocTypeName(t) #> instance.
 		/// </summary>
-		/// <param name="value">A <see cref="<#= typeName #>"/> value to be wrapped.</param>
+		/// <param name="value">The <see cref="<#= typeName #>"/> value to be wrapped.</param>
 <#
 		if (IsNotCLSCompliant(t))
 		{
@@ -149,7 +149,7 @@ foreach (var type in types)
 #>
 		}
 <#
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -165,7 +165,7 @@ foreach (var type in types)
 <#
 foreach(var t in types.Keys )
 {
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -175,9 +175,9 @@ foreach(var t in types.Keys )
 #>
 
 		/// <summary>
-		///		Convert this instance to <#= t.ToString() == typeof( byte[] ).ToString() ? "<see cref=\"Byte\" />[]" : "<see cref=\"" + GetTypeName( t ) + "\" />" #> instance.
+		///		Converts this instance to <#= GetDocTypeName(t) #> instance.
 		/// </summary>
-		/// <returns><#= t.ToString() == typeof( byte[] ).ToString() ? "<see cref=\"Byte\" />[]" : "<see cref=\"" + GetTypeName( t ) + "\" />" #> instance corresponds to this instance.</returns>
+		/// <returns><#= GetDocTypeName(t) #> instance corresponds to this instance.</returns>
 <#
 if (IsNotCLSCompliant(t))
 {
@@ -187,11 +187,11 @@ if (IsNotCLSCompliant(t))
 }
 
 var methodName =
-	t == typeof(byte[]) ?
+	t as Type == typeof(byte[]) ?
 	"Binary" :
-	t == "ReadOnlyMemory<char>" ?
+	t as string == "ReadOnlyMemory<char>" ?
 	"ReadOnlyMemoryOfChar" :
-	t == "ReadOnlyMemory<byte>" ?
+	t as string == "ReadOnlyMemory<byte>" ?
 	"ReadOnlyMemoryOfByte" :
 	GetTypeName(t);
 #>
@@ -202,7 +202,7 @@ var methodName =
 #>
 		}
 <#
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -220,7 +220,7 @@ var methodName =
 <#
 foreach (var t in types.Keys)
 {
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -230,9 +230,9 @@ foreach (var t in types.Keys)
 #>
 
 		/// <summary>
-		///		Convert <#= t.ToString() == typeof(byte[]).ToString() ? "<see cref=\"Byte\" />[]" : "<see cref=\"" + GetTypeName(t) + "\" />" #>instance to <see cref="<#= typeName #>"/> instance.
+		///		Converts <#= GetDocTypeName(t) #> instance to <see cref="<#= typeName #>"/> instance.
 		/// </summary>
-		/// <param name="value"><#= t.ToString() == typeof(byte[]).ToString() ? "<see cref=\"Byte\" />[]" : "<see cref=\"" + GetTypeName(t) + "\" />" #> instance.</param>
+		/// <param name="value">The <#= GetDocTypeName(t) #> instance.</param>
 		/// <returns><see cref="<#=  typeName #>"/> instance corresponds to <paramref name="value"/>.</returns>
 <#
 if (IsNotCLSCompliant(t))
@@ -245,7 +245,7 @@ if (IsNotCLSCompliant(t))
 		public static implicit operator <#= typeName #>(<#= GetTypeName(t) #> value)
 			=> new <#= typeName #>(value);
 <#
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -258,7 +258,7 @@ if (IsNotCLSCompliant(t))
 <#
 foreach (var t in types.Keys)
 {
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -268,10 +268,10 @@ foreach (var t in types.Keys)
 #>
 
 		/// <summary>
-		///		Convert this instance to <#= t.ToString() == typeof(byte[]).ToString() ? "<see cref=\"Byte\" />[]" : "<see cref=\"" + GetTypeName(t) + "\" />" #> instance.
+		///		Converts this instance to <#= GetDocTypeName(t) #> instance.
 		/// </summary>
-		/// <param name="value"><see cref="<#= typeName #>"/> instance.</param>
-		/// <returns><#= t.ToString() == typeof(byte[]).ToString() ? "<see cref=\"Byte\" />[]" : "<see cref=\"" + GetTypeName(t) + "\" />" #> instance corresponds to <paramref name="value"/>.</returns>
+		/// <param name="value">The <see cref="<#= typeName #>"/> instance.</param>
+		/// <returns><#= GetDocTypeName(t) #> instance corresponds to <paramref name="value"/>.</returns>
 <#
 	if (IsNotCLSCompliant(t))
 	{
@@ -287,7 +287,7 @@ foreach (var t in types.Keys)
 #>
 		}
 <#
-	if (t == "MessagePackExtendedTypeObject")
+	if (t as string == "MessagePackExtendedTypeObject")
 	{
 #>
 
@@ -718,6 +718,39 @@ private void GenerateAsT(string val, Object typeOrTypeName, bool passParameterNa
 private static string GetTypeName(object typeOrTypeName)
 	=> (typeOrTypeName as string) ?? (typeOrTypeName as Type).Name;
 
+private static string GetDocTypeName(object typeOrTypeName)
+{
+	if (typeOrTypeName is string typeName)
+	{
+		if (typeName.EndsWith("<byte>"))
+		{
+			var baseTypeName = typeName.Remove(typeName.Length - 6);
+			return $"<see cref=\"{baseTypeName}{{T}}\" /> of <see cref=\"Byte\" />";
+		}
+		else if (typeName.EndsWith("<char>"))
+		{
+			var baseTypeName = typeName.Remove(typeName.Length - 6);
+			return $"<see cref=\"{baseTypeName}{{T}}\" /> of <see cref=\"Char\" />";
+		}
+		else
+		{
+			return $"<see cref=\"{typeName}\" />";
+		}
+	}
+	else
+	{
+		var type = (typeOrTypeName as Type)!;
+		if (type.IsArray)
+		{
+			return $"<see cref=\"{type.GetElementType().Name}\" />[]";
+		}
+		else
+		{
+			return $"<see cref=\"{type.Name}\" />";
+		}
+	}
+}
+
 private static string GetNullability(object typeOrTypeName)
-	=> (typeOrTypeName == typeof(byte[]) || typeOrTypeName == typeof(string)) ? "?" : String.Empty;
+	=> (typeOrTypeName as Type == typeof(byte[]) || typeOrTypeName as Type == typeof(string)) ? "?" : String.Empty;
 #>

@@ -51,7 +51,7 @@ namespace MsgPack.Serialization
 		public SerializationMethod? PreferredSerializationMethod { get; private set; } = OptionsDefaults.PreferredSerializationMethod;
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="SerializationOptionsBuilder"/> object.
+		///		Initializes a new instance of <see cref="SerializationOptionsBuilder"/> class.
 		/// </summary>
 		public SerializationOptionsBuilder() { }
 

@@ -208,7 +208,7 @@ namespace MsgPack.Serialization
 		}
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="SerializerGenerationOptionsBuilder"/> object.
+		///		Initializes a new instance of <see cref="SerializerGenerationOptionsBuilder"/> class.
 		/// </summary>
 		public SerializerGenerationOptionsBuilder() { }
 

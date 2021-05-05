@@ -23,7 +23,7 @@ namespace MsgPack.Serialization
 		public Func<string, string> KeyTransformer { get; }
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="ImmutableDictionarySerializationOptions"/> object.
+		///		Initializes a new instance of <see cref="ImmutableDictionarySerializationOptions"/> class.
 		/// </summary>
 		/// <param name="builder"><see cref="DictionarySerializationOptionsBuilder"/>.</param>
 		internal ImmutableDictionarySerializationOptions(DictionarySerializationOptionsBuilder builder)

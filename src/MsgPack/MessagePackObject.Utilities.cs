@@ -16,7 +16,6 @@ using MsgPack.Internal;
 namespace MsgPack
 {
 #if FEATURE_BINARY_SERIALIZATION
-#warning TODO: Enable in .NET Standard 2.0 in Changes.txt
 	[Serializable]
 #endif // FEATURE_BINARY_SERIALIZATION
 	public partial struct MessagePackObject
@@ -536,8 +535,7 @@ namespace MsgPack
 
 			if (this._handleOrTypeCode is MessagePackObjectDictionary asMap)
 			{
-#warning TODO: item.GetHashCode() -> item.Key.GetHashCode() ^ item.Value.GetHashCode()
-				return asMap.Aggregate(0, (hash, item) => hash ^ item.GetHashCode());
+				return asMap.Aggregate(0, (hash, item) => hash ^ item.Key.GetHashCode() ^ item.Value.GetHashCode());
 			}
 
 			if (this._handleOrTypeCode is ReadOnlySequence<byte> asExtensionTypeObjectBody)
@@ -1140,8 +1138,7 @@ namespace MsgPack
 		public char[]? AsCharArray()
 		{
 			// TODO: More efficient
-#warning TODO: NRE
-			return this.AsString().ToCharArray();
+			return this.AsString()?.ToCharArray();
 		}
 
 		#endregion -- Primitive Type Conversion Methods --
@@ -1509,7 +1506,9 @@ namespace MsgPack
 		{
 			try
 			{
+#pragma warning disable 0618
 				return Timestamp.Decode(this.AsMessagePackExtendedTypeObject());
+#pragma warning restore 0618
 			}
 			catch (ArgumentException ex)
 			{
@@ -1520,12 +1519,12 @@ namespace MsgPack
 		#region -- Structure Operator Overloads --
 
 		/// <summary>
-		///		Compare two instances are equal.
+		///		Returns a value that indicates whether two <see cref="MessagePackObject" /> objects are equal.
 		/// </summary>
-		/// <param name="left"><see cref="MessagePackObject"/> instance.</param>
-		/// <param name="right"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="left">The first <see cref="MessagePackObject" /> to compare.</param>
+		/// <param name="right">The second <see cref="MessagePackObject" /> to compare.</param>
 		/// <returns>
-		///		Whether value of <paramref name="left"/> and <paramref name="right"/> are equal each other or not.
+		///   <c>true</c> if the two <see cref="MessagePackObject" /> objects are equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator ==(MessagePackObject left, MessagePackObject right)
 		{
@@ -1533,12 +1532,12 @@ namespace MsgPack
 		}
 
 		/// <summary>
-		///		Compare two instances are not equal.
+		///		Returns a value that indicates whether two <see cref="MessagePackObject" /> objects are not equal.
 		/// </summary>
-		/// <param name="left"><see cref="MessagePackObject"/> instance.</param>
-		/// <param name="right"><see cref="MessagePackObject"/> instance.</param>
+		/// <param name="left">The first <see cref="MessagePackObject" /> to compare.</param>
+		/// <param name="right">The second <see cref="MessagePackObject" /> to compare.</param>
 		/// <returns>
-		///		Whether value of <paramref name="left"/> and <paramref name="right"/> are not equal each other or are equal.
+		///   <c>true</c> if the two <see cref="MessagePackObject" /> objects are not equal; otherwise, <c>false</c>.
 		/// </returns>
 		public static bool operator !=(MessagePackObject left, MessagePackObject right)
 		{

@@ -12,6 +12,10 @@ using System;
 using System.Buffers;
 using System.Runtime.CompilerServices;
 
+// Abstract methods with [CLSCompilant(false)] are intended -- codec implementer must use languages which support unsigned integers.
+// [CLSCompliant] is just for users of Codec rather than implementers.
+#pragma warning disable 3011 // only CLS-compliant members can be abstract
+
 namespace MsgPack.Internal
 {
 	partial class FormatDecoder
@@ -35,13 +39,16 @@ foreach (var outputType in new [] {
 		/// <summary>
 		///		Decodes <see cref="<#= outputType #>" /> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="<#= outputType #>" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
+<#
+	WriteClsCompliance(outputType);
+#>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public <#= outputType #> Decode<#= outputType #>(ref SequenceReader<byte> source)
 		{
@@ -57,7 +64,7 @@ foreach (var outputType in new [] {
 		/// <summary>
 		///		Decodes <see cref="<#= outputType #>" /> value from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
@@ -68,19 +75,24 @@ foreach (var outputType in new [] {
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="<#= outputType #>" /> type.</exception>
+<#
+	WriteClsCompliance(outputType);
+#>
 		public abstract <#= outputType #> Decode<#= outputType #>(ref SequenceReader<byte> source, out int requestHint);
 
 		/// <summary>
 		///		Encodes <see cref="<#= outputType #>" /> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <return>
 		///		Decoded value if this method succeeds to decode value.
-		///		Note that the value of this return is not defined when <paramref name="requestHint" /> is <c>0</c>. 
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="<#= outputType #>" /> type.</exception>
 		///	<exception cref="InsufficientInputException"><paramref name="source"/> does not contain enough bytes to decode.</exception>
+<#
+	WriteClsCompliance(outputType);
+#>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public <#= outputType #>? DecodeNullable<#= outputType #>(ref SequenceReader<byte> source)
 		{
@@ -96,7 +108,7 @@ foreach (var outputType in new [] {
 		/// <summary>
 		///		Encodes <see cref="<#= outputType #>" /> value or <c>null</c> from specified sequence.
 		/// </summary>
-		/// <param name="source"><see cref="SequenceReader{T}">SequenceReader&lt;byte&gt;</see>.</param>
+		/// <param name="source">The reader of the source byte sequence. If and only if this method succeeds, the reader will be advanced.</param>
 		/// <param name="requestHint">
 		///		<c>0</c> if this method succeeds to decode value; Positive integer when <paramref name="source" /> does not contain enough bytes to decode, and required memory bytes hint is stored.
 		///		Note that <c>-1</c> represents unknown size. If so, caller must supply new buffer with most efficient size.
@@ -107,6 +119,9 @@ foreach (var outputType in new [] {
 		/// </return>
 		/// <exception cref="MessageFormatException"><paramref name="source"/> contains valid byte sequence for the underlying format.</exception>
 		/// <exception cref="MessageTypeException">The underlying format value is not compatible to <see cref="<#= outputType #>" /> type.</exception>
+<#
+	WriteClsCompliance(outputType);
+#>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public abstract <#= outputType #>? DecodeNullable<#= outputType #>(ref SequenceReader<byte> source, out int requestHint);
 
@@ -115,3 +130,26 @@ foreach (var outputType in new [] {
 #>
 	}
 }
+
+<#+
+private void WriteClsCompliance(string type)
+{
+	if (IsClsCompliant(type))
+	{
+		return;
+	}
+#>
+		[CLSCompliant(false)]
+<#+
+}
+
+private static bool IsClsCompliant(string type)
+	=> type switch
+	{
+		"SByte" => false,
+		"UInt16" => false,
+		"UInt32" => false,
+		"UInt64" => false,
+		_ => true
+	};
+#>

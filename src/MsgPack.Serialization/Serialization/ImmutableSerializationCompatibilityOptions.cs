@@ -38,9 +38,9 @@ namespace MsgPack.Serialization
 		public Func<IEnumerable<CustomAttributeData>, IEnumerable<CustomAttributeData>, MessagePackIgnoreAttributeData?> IgnoringAttributeCompatibilityProvider { get; }
 
 		/// <summary>
-		///		Initializes a new instance of <see cref="ImmutableSerializationCompatibilityOptions"/> object.
+		///		Initializes a new instance of <see cref="ImmutableSerializationCompatibilityOptions"/> class.
 		/// </summary>
-		/// <param name="builder"><see cref="SerializationContextBuilder"/>.</param>
+		/// <param name="builder"><see cref="SerializationCompatibilityOptionsBuilder"/>.</param>
 		public ImmutableSerializationCompatibilityOptions(SerializationCompatibilityOptionsBuilder builder)
 		{
 			this.AllowsNonCollectionEnumerableTypes = builder.AllowsNonCollectionEnumerableTypes;

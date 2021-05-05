@@ -22,6 +22,9 @@ foreach (var inputType in new []{ "Int32", "UInt32", "Int64", "UInt64" })
 {
 #>
 		/// <inheritdoc />
+<#
+	WriteClsCompliance(inputType);
+#>
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override void Encode<#= inputType #>(<#= inputType #> value, IBufferWriter<byte> buffer)
 		{
@@ -134,4 +137,25 @@ private void WriteEncodeSlowBody(string typeName, int size, string code)
 				buffer.Advance(<#= size #>);
 <#+
 }
+
+private void WriteClsCompliance(string type)
+{
+	if (IsClsCompliant(type))
+	{
+		return;
+	}
+#>
+		[CLSCompliant(false)]
+<#+
+}
+
+private static bool IsClsCompliant(string type)
+	=> type switch
+	{
+		"SByte" => false,
+		"UInt16" => false,
+		"UInt32" => false,
+		"UInt64" => false,
+		_ => true
+	};
 #>

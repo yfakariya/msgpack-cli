@@ -21,7 +21,7 @@ namespace MsgPack
 		///		The typical value is <see cref="DateTimeStyles.None"/>.
 		/// </param>
 		/// <param name="result">If the conversion succeeded, the conversion result will be stored; otherwise, the default value will be stored.</param>
-		/// <returns><c>true</c>, if the conversion succeeded; otherwise, <c>false</c>.</returns>
+		/// <returns><c>true</c> if the conversion succeeded; otherwise, <c>false</c>.</returns>
 		/// <remarks>
 		///		<para>
 		///			Currently, supported date-time format is only 'o' and 'O' (round-trip) or 's' (sortable, ISO-8601).
@@ -59,7 +59,7 @@ namespace MsgPack
 		///		The typical value is <see cref="DateTimeStyles.None"/>.
 		/// </param>
 		/// <param name="result">If the conversion succeeded, the conversion result will be stored; otherwise, the default value will be stored.</param>
-		/// <returns><c>true</c>, if the conversion succeeded; otherwise, <c>false</c>.</returns>
+		/// <returns><c>true</c> if the conversion succeeded; otherwise, <c>false</c>.</returns>
 		/// <remarks>
 		///		<para>
 		///			Currently, supported date-time format is only 'o' and 'O' (round-trip) or 's' (sortable, ISO-8601).

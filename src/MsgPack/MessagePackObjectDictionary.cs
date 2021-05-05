@@ -26,10 +26,9 @@ namespace MsgPack
 #if FEATURE_BINARY_SERIALIZATION
 	[Serializable]
 #endif // FEATURE_BINARY_SERIALIZATION
-	[DebuggerTypeProxy( typeof( DictionaryDebuggerProxy<,> ) )]
+	[DebuggerTypeProxy(typeof(DictionaryDebuggerProxy<,>))]
 	public partial class MessagePackObjectDictionary :
 		IDictionary<MessagePackObject, MessagePackObject>, IDictionary
-#warning TODO: ReadOnlyInterface
 	{
 		private const int Threashold = 10;
 		private const int ListInitialCapacity = Threashold;
@@ -199,8 +198,7 @@ namespace MsgPack
 		[SuppressMessage("Microsoft.Design", "CA1033:InterfaceMethodsShouldBeCallableByChildTypes", Justification = "Child types should never call this property.")]
 		bool IDictionary.IsReadOnly => this.IsFrozen;
 
-#warning TODO: NRE
-		ICollection IDictionary.Keys => this._keys;
+		ICollection IDictionary.Keys => this.Keys;
 
 		ICollection IDictionary.Values => this.Values;
 
@@ -367,11 +365,13 @@ namespace MsgPack
 			}
 		}
 
-		private static MessagePackObject ValidateObjectArgument(object? obj, [CallerArgumentExpression("obj")]string parameterName = null!)
+		private static MessagePackObject ValidateObjectArgument(object? obj, [CallerArgumentExpression("obj")] string parameterName = null!)
 		{
 			var result = TryValidateObjectArgument(obj);
 			if (result == null)
 			{
+				// When obj is null, result is MessagePackObject.Nil instead of null.
+				Debug.Assert(obj != null);
 				throw new ArgumentException(String.Format(CultureInfo.CurrentCulture, "Cannot convert '{1}' to {0}.", typeof(MessagePackObject).Name, obj.GetType()), parameterName);
 			}
 

@@ -12,7 +12,7 @@ namespace MsgPack.Internal
 	public sealed class MessagePackDecoderOptionsBuilder : FormatDecoderOptionsBuilder
 	{
 		/// <summary>
-		///		Initializes a new instance of <see cref="MessagePackDecoderOptionsBuilder"/> object.
+		///		Initializes a new instance of <see cref="MessagePackDecoderOptionsBuilder"/> class.
 		/// </summary>
 		public MessagePackDecoderOptionsBuilder() { }
 
