@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../MsgPack.Core/StringEscape.cs" Link="StringEscape.cs" />
+    <Compile Include="../MsgPack.Codec/Internal/MemoryExtensions.cs" Link="Internal/MemoryExtensions.cs" />
+    <Compile Include="../MsgPack.Codec/System.Text/EncodingExtensions.cs" Link="System.Text/EncodingExtensions.cs" />
+    <!--<Compile Include="..\MsgPack.Core\System.Text\Throw.cs" Link="System.Text\Throw.cs" />-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Codecs\Json\JsonEscapeSequence.EscapeTables.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonEscapeSequence.EscapeTables.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Codecs\Json\JsonDecoder.Nullables.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>JsonDecoder.Nullables.cs</LastGenOutput>
+    </None>
+    <None Update="Codecs\Json\JsonDecoder.Numbers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>JsonDecoder.Numbers.cs</LastGenOutput>
+    </None>
+    <None Update="Codecs\Json\JsonDecoder.StringBinary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>JsonDecoder.StringBinary.cs</LastGenOutput>
+    </None>
+    <None Update="Codecs\Json\JsonEscapeSequence.EscapeTables.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>JsonEscapeSequence.EscapeTables.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Codecs\Json\JsonDecoder.Nullables.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonDecoder.Nullables.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\Json\JsonDecoder.Numbers.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonDecoder.Numbers.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\Json\JsonDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonDecoder.StringBinary.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\Json\JsonEscapeSequence.EscapeTables.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>JsonEscapeSequence.EscapeTables.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="System.Text\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MsgPack.Core\MsgPack.Core.csproj" />
+  </ItemGroup>
+
+</Project>

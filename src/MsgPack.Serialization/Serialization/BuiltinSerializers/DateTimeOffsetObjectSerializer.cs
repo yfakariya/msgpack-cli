@@ -4,7 +4,6 @@
 
 using System;
 using System.Buffers;
-using System.Buffers.Binary;
 using System.Buffers.Text;
 using System.Diagnostics;
 using System.Globalization;
@@ -13,7 +12,7 @@ using System.Text;
 #if FEATURE_TAP
 using System.Threading.Tasks;
 #endif // FEATURE_TAP
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization.BuiltinSerializers
 {

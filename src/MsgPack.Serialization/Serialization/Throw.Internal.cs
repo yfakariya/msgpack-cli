@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization
 {

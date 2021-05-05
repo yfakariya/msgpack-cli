@@ -5,7 +5,7 @@
 using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization.ReflectionSerializers
 {

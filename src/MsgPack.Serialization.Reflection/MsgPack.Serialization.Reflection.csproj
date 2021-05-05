@@ -1,21 +1,21 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\MsgPack.Abstraction\Ensure.cs" Link="Ensure.cs" />
-    <Compile Include="..\MsgPack.Abstraction\Internal\MethodImplOptionsShim.cs" Link="Internal\MethodImplOptionsShim.cs" />
+    <Compile Include="../MsgPack.Core/Ensure.cs" Link="Ensure.cs" />
+    <Compile Include="../MsgPack.Core/Internal/MethodImplOptionsShim.cs" Link="Internal/MethodImplOptionsShim.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MsgPack.Abstraction\MsgPack.Abstraction.csproj" />
-    <ProjectReference Include="..\MsgPack.Serialization\MsgPack.Serialization.csproj" />
+    <ProjectReference Include="../MsgPack.Core/MsgPack.Core.csproj" />
+    <ProjectReference Include="../MsgPack.Serialization/MsgPack.Serialization.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Serialization\Internal\AsyncDecodeHelpers.Primitives.tt">
+    <None Update="Serialization/Internal/AsyncDecodeHelpers.Primitives.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AsyncDecodeHelpers.Primitives.cs</LastGenOutput>
     </None>
@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Serialization\Internal\AsyncDecodeHelpers.Primitives.cs">
+    <Compile Update="Serialization/Internal/AsyncDecodeHelpers.Primitives.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AsyncDecodeHelpers.Primitives.tt</DependentUpon>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Internal\" />
+    <Folder Include="Internal/" />
   </ItemGroup>
 
 </Project>

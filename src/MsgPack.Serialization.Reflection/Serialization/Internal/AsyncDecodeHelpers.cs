@@ -6,6 +6,7 @@ using System.Buffers;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using MsgPack.Codecs;
 using MsgPack.Internal;
 
 namespace MsgPack.Serialization.Internal

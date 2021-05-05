@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\MsgPack.Core\System.Text\EncodingExtensions.cs" Link="System.Text\EncodingExtensions.cs" />
+    <Compile Include="..\MsgPack.Codec\System.Text\EncodingExtensions.cs" Link="System.Text\EncodingExtensions.cs" />
     <Compile Include="..\MsgPack\ReflectionAbstractions.cs" Link="ReflectionAbstractions.cs" />
     <Compile Include="..\MsgPack\Serialization\CollectionDetailedKind.cs" Link="Serialization\CollectionDetailedKind.cs" />
     <Compile Include="..\MsgPack\Serialization\CollectionKind.cs" Link="Serialization\CollectionKind.cs" />
@@ -54,10 +54,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MsgPack.Abstraction\MsgPack.Abstraction.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
@@ -81,6 +77,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>SerializerProviderExtensions.Register.tt</DependentUpon>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MsgPack.Core\MsgPack.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

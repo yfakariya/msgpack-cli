@@ -4,14 +4,15 @@
 
 using System;
 using System.Buffers;
-using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Text;
+#if FEATURE_TAP
 using System.Threading.Tasks;
-using MsgPack.Internal;
+#endif // FEATURE_TAP
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization.BuiltinSerializers
 {

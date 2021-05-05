@@ -2,5 +2,16 @@
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
-#warning TODO: This assembly should be "MsgPack.Codec"
-#warning TODO: Some of ".Internal" namespace contents should be ".Codec" namespace
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("MsgPack.Codec")]
+[assembly: InternalsVisibleTo("MsgPack.Codec.Json")]
+[assembly: InternalsVisibleTo("MsgPack.Serialization")]
+[assembly: InternalsVisibleTo("MsgPack.Compatibility")]
+
+#if DEBUG
+[assembly: InternalsVisibleTo("MsgPack.Core.UnitTest")]
+#endif // DEBUG
+
+#warning TODO: Specify versions in build script with /p:
+#warning TODO: MsgPackObject, MsgPackObjectDictionary, MsgPackString should be .Compatibility assembly

@@ -8,6 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using MsgPack.Codecs;
 using MsgPack.Internal;
 
 namespace MsgPack.Serialization

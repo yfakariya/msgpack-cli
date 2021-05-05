@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 using MsgPack.Serialization.Internal;
 
 namespace MsgPack.Serialization.ReflectionSerializers

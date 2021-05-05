@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
@@ -6,92 +6,57 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../MsgPack.Abstraction/MsgPack.Abstraction.csproj" />
+    <Compile Include="../MsgPack/MessageNotSupportedException.cs" Link="MessageNotSupportedException.cs" />
+    <Compile Include="../MsgPack/MessageTypeException.cs" Link="MessageTypeException.cs" />
+    <Compile Include="../MsgPack/Binary.cs" Link="Binary.cs" />
+    <Compile Include="../MsgPack/MessagePackExtendedTypeObject.cs" Link="MessagePackExtendedTypeObject.cs" />
+    <Compile Include="../MsgPack/MessagePackObject.Utilities.cs" Link="MessagePackObject.Utilities.cs" />
+    <Compile Include="../MsgPack/MessagePackObjectDictionary.cs" Link="MessagePackObjectDictionary.cs" />
+    <Compile Include="../MsgPack/MessagePackObjectDictionary.Enumerator.cs" Link="MessagePackObjectDictionary.Enumerator.cs" />
+    <Compile Include="../MsgPack/MessagePackObjectDictionary.KeySet.cs" Link="MessagePackObjectDictionary.KeySet.cs" />
+    <Compile Include="../MsgPack/MessagePackObjectDictionary.KeySet.Enumerator.cs" Link="MessagePackObjectDictionary.KeySet.Enumerator.cs" />
+    <Compile Include="../MsgPack/MessagePackObjectDictionary.ValueCollection.cs" Link="MessagePackObjectDictionary.ValueCollection.cs" />
+    <Compile Include="../MsgPack/MessagePackObjectDictionary.ValueCollection.Enumerator.cs" Link="MessagePackObjectDictionary.ValueCollection.Enumerator.cs" />
+    <Compile Include="../MsgPack/MessagePackString.cs" Link="MessagePackString.cs" />
+    <Compile Include="../MsgPack/Timestamp.Calculation.cs" Link="Timestamp.Calculation.cs" />
+    <Compile Include="../MsgPack/Timestamp.Comparison.cs" Link="Timestamp.Comparison.cs" />
+    <Compile Include="../MsgPack/Timestamp.Conversion.cs" Link="Timestamp.Conversion.cs" />
+    <Compile Include="../MsgPack/Timestamp.cs" Link="Timestamp.cs" />
+    <Compile Include="../MsgPack/Timestamp.ParseExact.cs" Link="Timestamp.ParseExact.cs" />
+    <Compile Include="../MsgPack/Timestamp.Properties.cs" Link="Timestamp.Properties.cs" />
+    <Compile Include="../MsgPack/Timestamp.ToString.cs" Link="Timestamp.ToString.cs" />
+    <Compile Include="../MsgPack/Timestamp.TryParseExact.cs" Link="Timestamp.TryParseExact.cs" />
+    <Compile Include="../MsgPack/TimestampParseResult.cs" Link="TimestampParseResult.cs" />
+    <Compile Include="../MsgPack/TimestampStringConverter.cs" Link="TimestampStringConverter.cs" />
+    <Compile Include="../MsgPack/TimestampStringConverter.Parse.cs" Link="TimestampStringConverter.Parse.cs" />
+    <Compile Include="../MsgPack/TimestampStringConverter.ToString.cs" Link="TimestampStringConverter.ToString.cs" />
+    <Compile Include="..\MsgPack\CollectionDebuggerProxy`1.cs" Link="CollectionDebuggerProxy`1.cs" />
+    <Compile Include="..\MsgPack\CollectionOperation.cs" Link="CollectionOperation.cs" />
+    <Compile Include="..\MsgPack\DictionaryDebuggerProxy`2.cs" Link="DictionaryDebuggerProxy`2.cs" />
+    <Compile Include="..\MsgPack\MessagePackConvert.cs" Link="MessagePackConvert.cs" />
+    <Compile Include="..\MsgPack\MessagePackObjectEqualityComparer.cs" Link="MessagePackObjectEqualityComparer.cs" />
+    <Compile Include="..\MsgPack\Serialization\DateTimeConversionMethod.cs" Link="Serialization\DateTimeConversionMethod.cs" />
+    <Compile Include="..\MsgPack\Serialization\EnumSerializationMethod.cs" Link="Serialization\EnumSerializationMethod.cs" />
+    <Compile Include="..\MsgPack\Serialization\SerializationMethod.cs" Link="Serialization\SerializationMethod.cs" />
+    <Compile Include="..\MsgPack\SetOperation.cs" Link="SetOperation.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="../MsgPack/MessagePackCode.cs" Link="MessagePackCode.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Internal\MessagePackDecoder.StringBinary.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackDecoder.StringBinary.tt</DependentUpon>
-    </None>
-    <None Include="Serialization\MessagePackSerializerProviderExtensions.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackSerializerProviderExtensions.tt</DependentUpon>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Internal\MessagePackDecoder.Integers.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackDecoder.Integers.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Internal\MessagePackDecoder.Nullables.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackDecoder.Nullables.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Internal\MessagePackDecoder.Reals.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackDecoder.Reals.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Internal\MessagePackDecoder.StringBinary.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackDecoder.StringBinary.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Internal\MessagePackEncoder.Integers.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackEncoder.Integers.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Internal\MessagePackEncoder.Strings.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackEncoder.Strings.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Serialization\MessagePackSerializerProviderExtensions.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MessagePackSerializerProviderExtensions.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Internal/MessagePackDecoder.Nullables.tt">
+    <None Update="Codecs\FormatDecoder.Strings.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessagePackDecoder.Nullables.cs</LastGenOutput>
+      <LastGenOutput>FormatDecoder.Strings.cs</LastGenOutput>
     </None>
-    <None Update="Internal/MessagePackDecoder.Reals.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessagePackDecoder.Reals.cs</LastGenOutput>
-    </None>
-    <None Update="Internal/MessagePackEncoder.Integers.tt">
-      <LastGenOutput>MessagePackEncoder.Integers.cs</LastGenOutput>
+    <None Update="Codecs\FormatEncoder.Primitives.tt">
+      <LastGenOutput>FormatEncoder.Primitives.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <None Update="Internal/MessagePackDecoder.Integers.tt">
+    <None Update="Codecs\FormatDecoder.Primitives.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessagePackDecoder.Integers.cs</LastGenOutput>
+      <LastGenOutput>FormatDecoder.Primitives.cs</LastGenOutput>
     </None>
-    <None Update="Internal/MessagePackEncoder.Strings.tt">
-      <LastGenOutput>MessagePackEncoder.Strings.cs</LastGenOutput>
+    <None Update="MessagePackObject.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <None Update="Internal\MessagePackDecoder.StringBinary.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessagePackDecoder.StringBinary.cs</LastGenOutput>
-    </None>
-    <None Update="Serialization\MessagePackSerializerProviderExtensions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MessagePackSerializerProviderExtensions.cs</LastGenOutput>
+      <LastGenOutput>MessagePackObject.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -99,4 +64,27 @@
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Codecs\FormatDecoder.Primitives.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormatDecoder.Primitives.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\FormatDecoder.Strings.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormatDecoder.Strings.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\FormatEncoder.Primitives.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FormatEncoder.Primitives.tt</DependentUpon>
+    </Compile>
+    <Compile Update="MessagePackObject.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackObject.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
 </Project>

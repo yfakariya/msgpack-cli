@@ -1,4 +1,4 @@
-﻿// Copyright (c) FUJIWARA, Yusuke and all contributors.
+// Copyright (c) FUJIWARA, Yusuke and all contributors.
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
@@ -8,11 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
-using PrimitiveEncoder = System.Action<MsgPack.Internal.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>>;
-using StringEncoder = System.Action<MsgPack.Internal.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Text.Encoding?, System.Threading.CancellationToken>;
-using BinaryEncoder = System.Action<MsgPack.Internal.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Threading.CancellationToken>;
+using PrimitiveEncoder = System.Action<MsgPack.Codecs.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>>;
+using StringEncoder = System.Action<MsgPack.Codecs.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Text.Encoding?, System.Threading.CancellationToken>;
+using BinaryEncoder = System.Action<MsgPack.Codecs.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Threading.CancellationToken>;
 
 namespace MsgPack.Serialization.ReflectionSerializers
 {

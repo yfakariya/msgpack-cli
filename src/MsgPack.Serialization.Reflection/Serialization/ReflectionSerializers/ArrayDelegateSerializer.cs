@@ -6,7 +6,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 using MsgPack.Serialization.Internal;
 
 namespace MsgPack.Serialization.ReflectionSerializers

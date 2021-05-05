@@ -11,7 +11,7 @@
 using System;
 using System.Text;
 using System.Threading;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
 using CoreThrow = MsgPack.Throw;
 

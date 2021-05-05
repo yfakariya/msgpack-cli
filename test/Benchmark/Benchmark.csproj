@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -23,13 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MsgPack.Abstraction\MsgPack.Abstraction.csproj">
+    <ProjectReference Include="..\..\src\MsgPack.Codec.Json\MsgPack.Codec.Json.csproj">
+      <Aliases>newmpcli</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\MsgPack.Codec\MsgPack.Codec.csproj">
       <Aliases>newmpcli</Aliases>
     </ProjectReference>
     <ProjectReference Include="..\..\src\MsgPack.Core\MsgPack.Core.csproj">
       <Aliases>newmpcli</Aliases>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\MsgPack.Json\MsgPack.Json.csproj">
+    <ProjectReference Include="..\..\src\MsgPack.Serialization\MsgPack.Serialization.csproj">
       <Aliases>newmpcli</Aliases>
     </ProjectReference>
   </ItemGroup>

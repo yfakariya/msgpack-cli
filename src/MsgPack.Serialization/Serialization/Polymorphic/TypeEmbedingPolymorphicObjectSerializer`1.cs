@@ -7,9 +7,8 @@ using System.Buffers;
 using System.Diagnostics.CodeAnalysis;
 #if FEATURE_TAP
 using System.Threading.Tasks;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 #endif // FEATURE_TAP
-
 
 namespace MsgPack.Serialization.Polymorphic
 {

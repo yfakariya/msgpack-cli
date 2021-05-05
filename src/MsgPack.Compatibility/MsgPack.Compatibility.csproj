@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MsgPack.Abstraction\MsgPack.Abstraction.csproj" />
+    <ProjectReference Include="..\MsgPack.Core\MsgPack.Core.csproj" />
     <ProjectReference Include="..\MsgPack.Serialization\MsgPack.Serialization.csproj" />
   </ItemGroup>
 

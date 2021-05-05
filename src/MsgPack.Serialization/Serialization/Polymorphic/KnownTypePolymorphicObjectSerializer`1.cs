@@ -9,9 +9,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 #if FEATURE_TAP
 using System.Threading.Tasks;
+using MsgPack.Codecs;
 #endif // FEATURE_TAP
-
-using MsgPack.Internal;
 
 namespace MsgPack.Serialization.Polymorphic
 {

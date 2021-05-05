@@ -10,12 +10,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 using MsgPack.Serialization.Internal;
 
-using PrimitiveEncoder = System.Action<MsgPack.Internal.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>>;
-using StringEncoder = System.Action<MsgPack.Internal.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Text.Encoding?, System.Threading.CancellationToken>;
-using BinaryEncoder = System.Action<MsgPack.Internal.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Threading.CancellationToken>;
+using PrimitiveEncoder = System.Action<MsgPack.Codecs.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>>;
+using StringEncoder = System.Action<MsgPack.Codecs.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Text.Encoding?, System.Threading.CancellationToken>;
+using BinaryEncoder = System.Action<MsgPack.Codecs.FormatEncoder, object?, System.Buffers.IBufferWriter<byte>, System.Threading.CancellationToken>;
 
 namespace MsgPack.Serialization.ReflectionSerializers
 {

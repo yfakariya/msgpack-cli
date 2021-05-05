@@ -4,7 +4,7 @@
 
 using System;
 using System.IO;
-using MsgPack.Internal;
+using MsgPack.Codecs;
 
 namespace MsgPack.Serialization
 {

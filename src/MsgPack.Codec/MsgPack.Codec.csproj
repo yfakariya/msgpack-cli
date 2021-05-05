@@ -1,0 +1,102 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp3.1</TargetFrameworks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../MsgPack/MessagePackCode.cs" Link="MessagePackCode.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Codecs\MessagePackDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.StringBinary.tt</DependentUpon>
+    </None>
+    <None Include="Serialization\MessagePackSerializerProviderExtensions.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackSerializerProviderExtensions.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MsgPack.Core\MsgPack.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Codecs\MessagePackDecoder.Integers.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.Integers.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\MessagePackDecoder.Nullables.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.Nullables.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\MessagePackDecoder.Reals.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.Reals.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\MessagePackDecoder.StringBinary.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackDecoder.StringBinary.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\MessagePackEncoder.Integers.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackEncoder.Integers.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Codecs\MessagePackEncoder.Strings.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackEncoder.Strings.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Serialization\MessagePackSerializerProviderExtensions.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MessagePackSerializerProviderExtensions.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Codecs\MessagePackDecoder.Nullables.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackDecoder.Nullables.cs</LastGenOutput>
+    </None>
+    <None Update="Codecs\MessagePackDecoder.Reals.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackDecoder.Reals.cs</LastGenOutput>
+    </None>
+    <None Update="Codecs\MessagePackEncoder.Integers.tt">
+      <LastGenOutput>MessagePackEncoder.Integers.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Codecs\MessagePackDecoder.Integers.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackDecoder.Integers.cs</LastGenOutput>
+    </None>
+    <None Update="Codecs\MessagePackEncoder.Strings.tt">
+      <LastGenOutput>MessagePackEncoder.Strings.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Codecs\MessagePackDecoder.StringBinary.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackDecoder.StringBinary.cs</LastGenOutput>
+    </None>
+    <None Update="Serialization\MessagePackSerializerProviderExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MessagePackSerializerProviderExtensions.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+</Project>
