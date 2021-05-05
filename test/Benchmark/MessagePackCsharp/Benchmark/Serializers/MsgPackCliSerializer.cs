@@ -48,15 +48,15 @@ internal static class MsgPackCliSerializerRepository<T>
 	{
 		if (typeof(MsgPack.Samples.SampleObject).IsAssignableFrom(typeof(T)))
 		{
-			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleSerializer(new newmpcli::MsgPack.Serialization.ObjectSerializationContext());
+			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleSerializer(newmpcli::MsgPack.Serialization.SerializerProvider.Default);
 		}
 		else if (typeof(T) == typeof(int[]))
 		{
-			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32ArraySerializer(new newmpcli::MsgPack.Serialization.ObjectSerializationContext());
+			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32ArraySerializer(newmpcli::MsgPack.Serialization.SerializerProvider.Default);
 		}
 		else if (typeof(T) == typeof(int))
 		{
-			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32Serializer(new newmpcli::MsgPack.Serialization.ObjectSerializationContext());
+			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32Serializer(newmpcli::MsgPack.Serialization.SerializerProvider.Default);
 		}
 
 		throw new NotSupportedException($"No {typeof(T)} serializer.");
@@ -66,15 +66,15 @@ internal static class MsgPackCliSerializerRepository<T>
 	{
 		if (typeof(MsgPack.Samples.SampleObject).IsAssignableFrom(typeof(T)))
 		{
-			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleSerializer(new newmpcli::MsgPack.Serialization.ObjectSerializationContext());
+			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleSerializer(newmpcli::MsgPack.Serialization.SerializerProvider.Default);
 		}
 		else if (typeof(T) == typeof(int[]))
 		{
-			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32ArraySerializer(new newmpcli::MsgPack.Serialization.ObjectSerializationContext());
+			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32ArraySerializer(newmpcli::MsgPack.Serialization.SerializerProvider.Default);
 		}
 		else if (typeof(T) == typeof(int))
 		{
-			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32Serializer(new newmpcli::MsgPack.Serialization.ObjectSerializationContext());
+			return (newmpcli::MsgPack.Serialization.ObjectSerializer<T>)(object)new MsgPack.Samples.SampleInt32Serializer(newmpcli::MsgPack.Serialization.SerializerProvider.Default);
 		}
 
 		throw new NotSupportedException($"No {typeof(T)} serializer.");
@@ -84,8 +84,8 @@ internal static class MsgPackCliSerializerRepository<T>
 
 public class MsgPackCli_v2 : SerializerBase
 {
-	private static readonly newmpcli::MsgPack.Internal.MessagePackEncoder Encoder = newmpcli::MsgPack.Internal.MessagePackEncoder.CreateCurrent(newmpcli::MsgPack.Internal.MessagePackEncoderOptions.Default);
-	private static readonly newmpcli::MsgPack.Internal.MessagePackDecoder Decoder = new newmpcli::MsgPack.Internal.MessagePackDecoder(newmpcli::MsgPack.Internal.MessagePackDecoderOptions.Default);
+	private static readonly newmpcli::MsgPack.Codecs.FormatEncoder Encoder = newmpcli::MsgPack.Codecs.MessagePackEncoder.Create(newmpcli::MsgPack.Codecs.MessagePackEncoderOptions.Default);
+	private static readonly newmpcli::MsgPack.Codecs.FormatDecoder Decoder = new newmpcli::MsgPack.Codecs.MessagePackDecoder(newmpcli::MsgPack.Codecs.MessagePackDecoderOptions.Default);
 
 	public override T Deserialize<T>(object input)
 	{
@@ -129,8 +129,8 @@ public class MsgPackCli_v2 : SerializerBase
 
 public class MsgPackCliJson : SerializerBase
 {
-	private static readonly newmpcli::MsgPack.Json.JsonEncoder Encoder = new newmpcli::MsgPack.Json.JsonEncoder(newmpcli::MsgPack.Json.JsonEncoderOptions.Default);
-	private static readonly newmpcli::MsgPack.Json.JsonDecoder Decoder = newmpcli::MsgPack.Json.JsonDecoder.Create(newmpcli::MsgPack.Json.JsonDecoderOptions.Default);
+	private static readonly newmpcli::MsgPack.Codecs.Json.JsonEncoder Encoder = new newmpcli::MsgPack.Codecs.Json.JsonEncoder(newmpcli::MsgPack.Codecs.Json.JsonEncoderOptions.Default);
+	private static readonly newmpcli::MsgPack.Codecs.Json.JsonDecoder Decoder = newmpcli::MsgPack.Codecs.Json.JsonDecoder.Create(newmpcli::MsgPack.Codecs.Json.JsonDecoderOptions.Default);
 
 	public override T Deserialize<T>(object input)
 	{

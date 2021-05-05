@@ -13,5 +13,9 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("MsgPack.Core.UnitTest")]
 #endif // DEBUG
 
+#if BENCHMARK || DEBUG
+[assembly: InternalsVisibleTo("Benchmark")]
+#endif // BENCHMARK || DEBUG
+
 #warning TODO: Specify versions in build script with /p:
 #warning TODO: MsgPackObject, MsgPackObjectDictionary, MsgPackString should be .Compatibility assembly

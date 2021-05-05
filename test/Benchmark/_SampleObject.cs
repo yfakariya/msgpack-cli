@@ -18,12 +18,14 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using newmpcli::MsgPack.Serialization;
+using newmpcli::MsgPack.Codecs;
+#if JSON
+using newmpcli::MsgPack.Codecs.Json;
+#endif // JSON
 using newmpcli::MsgPack.Internal;
-using newmpcli::MsgPack.Json;
+using newmpcli::MsgPack.Serialization;
 
 namespace MsgPack.Samples
 {
@@ -33,7 +35,7 @@ namespace MsgPack.Samples
 	{
 		public Type DecoderType { get; set; } // if null, no cast will be used
 		public Type EncoderType { get; set; } // if null, no cast will be used
-		public FormatFeatures Features { get; set; } // if null, no optimization will be applied
+		public CodecFeatures Features { get; set; } // if null, no optimization will be applied
 		public Func<string, byte[]> PropertyKeyEncoder { get; set; } // if null, use EncodeString
 		public TrieKeyFactory TrieKeyHeadFactory { get; set; } // if null, use Dictionary<string, int>
 		public TrieKeyFactory TrieKeyRestFactory { get; set; } // if null, use Dictionary<string, int>
@@ -54,8 +56,8 @@ namespace MsgPack.Samples
 				EncoderType = typeof(MessagePackEncoder), // typeof(CurrentMessagePackEncoder)
 				Features = null, // TODO
 				PropertyKeyEncoder = null, // CurrentMessagePackEncoder.InternalEncodeString,
-				TrieKeyHeadFactory = MsgPackStringTrieKey.GetRaw64,
-				TrieKeyRestFactory = MsgPackStringTrieKey.GetRaw64
+				TrieKeyHeadFactory = ScalarStringTrieKey.GetRaw64,
+				TrieKeyRestFactory = ScalarStringTrieKey.GetRaw64
 			};
 		private static readonly SerializationFormat LegacyMessagePackSerializationFormat =
 			new SerializationFormat
@@ -64,8 +66,8 @@ namespace MsgPack.Samples
 				EncoderType = typeof(MessagePackEncoder), // typeof(LegacyMessagePackEncoder)
 				Features = null, // TODO
 				PropertyKeyEncoder = null, // LegacyMessagePackEncoder.InternalEncodeString,
-				TrieKeyHeadFactory = MsgPackStringTrieKey.GetRaw64,
-				TrieKeyRestFactory = MsgPackStringTrieKey.GetRaw64
+				TrieKeyHeadFactory = ScalarStringTrieKey.GetRaw64,
+				TrieKeyRestFactory = ScalarStringTrieKey.GetRaw64
 			};
 
 		public static SerializationFormat GetMessagePack(this SerializationFormatFactory factory, bool isCurrent = true)
@@ -81,8 +83,8 @@ namespace MsgPack.Samples
 				EncoderType = typeof(JsonEncoder),
 				Features = null, // TODO
 				PropertyKeyEncoder = null, // JsonEncoder.InternalEncodeString,
-				TrieKeyHeadFactory = MsgPackStringTrieKey.GetAsMsgPackString,
-				TrieKeyRestFactory = MsgPackStringTrieKey.GetRaw64
+				TrieKeyHeadFactory = ScalarStringTrieKey.GetRaw64,
+				TrieKeyRestFactory = ScalarStringTrieKey.GetRaw64
 			};
 		private static readonly SerializationFormat FlexibleJsonSerializationFormat =
 			new SerializationFormat
@@ -91,8 +93,8 @@ namespace MsgPack.Samples
 				EncoderType = typeof(JsonEncoder),
 				Features = null, // TODO
 				PropertyKeyEncoder = null, // JsonEncoder.InternalEncodeString,
-				TrieKeyHeadFactory = MsgPackStringTrieKey.GetAsMsgPackString,
-				TrieKeyRestFactory = MsgPackStringTrieKey.GetRaw64
+				TrieKeyHeadFactory = ScalarStringTrieKey.GetRaw64,
+				TrieKeyRestFactory = ScalarStringTrieKey.GetRaw64
 			};
 
 		public static SerializationFormat GetJson(this SerializationFormatFactory factory, JsonParseOptions parserOptions)
@@ -190,16 +192,16 @@ namespace MsgPack.Samples
 #else
 			new Serialization.SerializationContext() { SerializationMethod = Serialization.SerializationMethod.Map };
 #endif
-		public SampleSerializer(ObjectSerializationContext ownedContext)
-			: base(ownedContext, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize | SerializerCapabilities.DeserializeTo) { }
+		public SampleSerializer(ObjectSerializerProvider provider)
+			: base(provider, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize | SerializerCapabilities.DeserializeTo) { }
 
 
 		private bool UseArray { get; set; }
 #if USE_ARRAY
 			= true;
 #endif
-		private FormatFeatures FormatFeatures { get; set; } =
-			new FormatFeaturesBuilder(
+		private CodecFeatures FormatFeatures { get; set; } =
+			new CodecFeaturesBuilder(
 #if MSGPACK
 				"msgpack"
 #else
@@ -210,12 +212,10 @@ namespace MsgPack.Samples
 #if MSGPACK
 				CanCountCollectionItems = true,
 				CanSpecifyStringEncoding = true,
-				IsContextful = false,
 				SupportsExtensionTypes = true
 #else
 				CanCountCollectionItems = false,
 				CanSpecifyStringEncoding = false,
-				IsContextful = false,
 				SupportsExtensionTypes = false
 #endif
 			}.Build();
@@ -514,15 +514,15 @@ namespace MsgPack.Samples
 #endif // !USE_ARRAY
 		}
 
-		private static readonly MsgPackStringTrie<uint> DeserializationTrie = InitializeDeserializationTrie();
-		private static MsgPackStringTrie<uint> InitializeDeserializationTrie()
+		private static readonly ScalarStringTrie<uint> DeserializationTrie = InitializeDeserializationTrie();
+		private static ScalarStringTrie<uint> InitializeDeserializationTrie()
 		{
 			ReadOnlySpan<byte> __name = new byte[] { (byte)'N', (byte)'a', (byte)'m', (byte)'e' };
 			ReadOnlySpan<byte> __age = new byte[] { (byte)'A', (byte)'g', (byte)'e' };
 			ReadOnlySpan<byte> __isActive = new byte[] { (byte)'I', (byte)'s', (byte)'A', (byte)'c', (byte)'t', (byte)'i', (byte)'v', (byte)'e' };
 			ReadOnlySpan<byte> __roles = new byte[] { (byte)'R', (byte)'o', (byte)'l', (byte)'e', (byte)'s' };
 			ReadOnlySpan<byte> __attributes = new byte[] { (byte)'A', (byte)'t', (byte)'t', (byte)'r', (byte)'i', (byte)'b', (byte)'u', (byte)'t', (byte)'e', (byte)'s' };
-			var trie = new MsgPackStringTrie<uint>(5);
+			var trie = new ScalarStringTrie<uint>(5);
 #if !JSON
 #if STRING
 			trie.TryAdd(__name, 0);
@@ -829,10 +829,20 @@ namespace MsgPack.Samples
 
 				if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
+					// HACK: Use CLR max value
+					Span<byte> buffer;
+					// Use unsafe as workaround for C# compilers too strict escape analysis
+					unsafe
+					{
+						byte* pBuffer=stackalloc byte[UInt16.MaxValue];
+						buffer = new Span<byte>(pBuffer, UInt16.MaxValue);
+					}
+
 					for (var i = 0; i < itemsCount; i++)
 					{
 #warning For msgpack, it should contain header, For JSON, it should contain ...? -> For Collection
-						decoder.GetRawString(ref reader, out ReadOnlySpan<byte> key, context.CancellationToken);
+						var length = decoder.GetRawString(ref reader, buffer, out _, context.CancellationToken);
+						var key = buffer.Slice(0, length);
 
 						context.ValidatePropertyKeyLength(reader.Consumed, key.Length);
 
@@ -1007,10 +1017,20 @@ namespace MsgPack.Samples
 				}
 				else
 				{
+					// HACK: Use CLR max value
+					Span<byte> buffer;
+					// Use unsafe as workaround for C# compilers too strict escape analysis
+					unsafe
+					{
+						byte* pBuffer = stackalloc byte[UInt16.MaxValue];
+						buffer = new Span<byte>(pBuffer, UInt16.MaxValue);
+					}
+
 					while (!propertyIterator.CollectionEnds(ref reader))
 					{
 #warning For msgpack, it should contain header, For JSON, it should contain ...? -> For Collection
-						decoder.GetRawString(ref reader, out ReadOnlySpan<byte> key, context.CancellationToken);
+						var length = decoder.GetRawString(ref reader, buffer, context.CancellationToken);
+						var key = buffer.Slice(0, length);
 
 						context.ValidatePropertyKeyLength(reader.Consumed, key.Length);
 
@@ -1387,18 +1407,27 @@ namespace MsgPack.Samples
 		{
 			var reader = new SequenceReader<byte>(sequence);
 
-			ReadOnlySpan<byte> span;
-			if (!context.Decoder.GetRawString(ref reader, out span, out requestHint, context.CancellationToken))
+			// HACK: Use CLR max value
+			var buffer = context.ByteBufferPool.Rent(UInt16.MaxValue);
+			try
 			{
-				keyArray = default!;
-				key = default;
-				return false;
-			}
+				var length = context.Decoder.GetRawString(ref reader, buffer, out requestHint, context.CancellationToken);
+				if (requestHint != 0)
+				{
+					keyArray = default!;
+					key = default;
+					return false;
+				}
 
-			keyArray = context.ByteBufferPool.Rent(span.Length);
-			span.CopyTo(keyArray);
-			key = keyArray.AsMemory(0, span.Length);
-			return true;
+				keyArray = context.ByteBufferPool.Rent(length);
+				buffer.CopyTo(keyArray, 0);
+				key = keyArray.AsMemory(0, length);
+				return true;
+			}
+			finally
+			{
+				context.ByteBufferPool.Return(buffer);
+			}
 		}
 
 		private static bool TryDrain(AsyncDeserializationOperationContext context, ref ReadOnlySequence<byte> sequence, long remaining, out int requestHint)
@@ -1893,8 +1922,8 @@ namespace MsgPack.Samples
 
 	public sealed class SampleInt32ArraySerializer : ObjectSerializer<int[]>
 	{
-		public SampleInt32ArraySerializer(ObjectSerializationContext ownedContext)
-			: base(ownedContext, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize) { }
+		public SampleInt32ArraySerializer(ObjectSerializerProvider provider)
+			: base(provider, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize) { }
 
 		public sealed override void Serialize(ref SerializationOperationContext context, int[] obj, IBufferWriter<byte> sink)
 		{
@@ -1958,8 +1987,8 @@ namespace MsgPack.Samples
 
 	public sealed class SampleInt32Serializer : ObjectSerializer<int>
 	{
-		public SampleInt32Serializer(ObjectSerializationContext ownedContext)
-			: base(ownedContext, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize) { }
+		public SampleInt32Serializer(ObjectSerializerProvider provider)
+			: base(provider, SerializerCapabilities.Serialize | SerializerCapabilities.Deserialize) { }
 
 		public sealed override void Serialize(ref SerializationOperationContext context, int obj, IBufferWriter<byte> sink)
 		{
