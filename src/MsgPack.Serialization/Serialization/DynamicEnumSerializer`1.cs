@@ -34,16 +34,16 @@ namespace MsgPack.Serialization
 				this._byUnderlyingValue;
 
 		public override void Serialize(ref SerializationOperationContext context, [AllowNull] T obj, IBufferWriter<byte> sink)
-			=> this.GetSerializer(context.Encoder.Options.Features).Serialize(ref context, obj, sink);
+			=> this.GetSerializer(context.Encoder.Features).Serialize(ref context, obj, sink);
 
 		[return: MaybeNull]
 		public sealed override T Deserialize(ref DeserializationOperationContext context, ref SequenceReader<byte> source)
-			=> this.GetSerializer(context.Decoder.Options.Features).Deserialize(ref context, ref source);
+			=> this.GetSerializer(context.Decoder.Features).Deserialize(ref context, ref source);
 
 #if FEATURE_TAP
 
 		public sealed override ValueTask<T> DeserializeAsync(AsyncDeserializationOperationContext context, ReadOnlyStreamSequence source)
-			=> this.GetSerializer(context.Decoder.Options.Features).DeserializeAsync(context, source);
+			=> this.GetSerializer(context.Decoder.Features).DeserializeAsync(context, source);
 
 #endif // FEATURE_TAP
 	}

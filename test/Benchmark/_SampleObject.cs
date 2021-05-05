@@ -712,7 +712,7 @@ namespace MsgPack.Samples
 			{
 #if STRING
 #if NO_OPT
-				if (!decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					CheckNextItemExists(ref reader, ref propertyIterator);
 				}
@@ -723,7 +723,7 @@ namespace MsgPack.Samples
 
 #if INT32
 #if NO_OPT
-				if (!decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					CheckNextItemExists(ref reader, ref propertyIterator);
 				}
@@ -734,7 +734,7 @@ namespace MsgPack.Samples
 
 #if BOOL
 #if NO_OPT
-				if (!decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					CheckNextItemExists(ref reader, ref propertyIterator);
 				}
@@ -745,7 +745,7 @@ namespace MsgPack.Samples
 
 #if COLLECTION
 #if NO_OPT
-				if (!decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					CheckNextItemExists(ref reader, ref propertyIterator);
 				}
@@ -753,7 +753,7 @@ namespace MsgPack.Samples
 
 				context.IncrementDepth();
 #if NO_OPT
-				if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 #endif
 					var arrayLength = decoder.DecodeArrayHeader(ref reader);
@@ -782,14 +782,14 @@ namespace MsgPack.Samples
 				context.DecrementDepth();
 
 #if NO_OPT
-				if (!decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					CheckNextItemExists(ref reader, ref propertyIterator);
 				}
 #endif
 				context.IncrementDepth();
 #if NO_OPT
-				if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 #endif
 					var mapCount = decoder.DecodeMapHeader(ref reader);
@@ -827,7 +827,7 @@ namespace MsgPack.Samples
 			{
 				// Map
 
-				if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					// HACK: Use CLR max value
 					Span<byte> buffer;
@@ -931,7 +931,7 @@ namespace MsgPack.Samples
 #endif
 #warning TODO: No Collection items deserialized!
 								context.IncrementDepth();
-								if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+								if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 								{
 									var arrayLength = decoder.DecodeArrayHeader(ref reader);
 									// If settable
@@ -975,7 +975,7 @@ namespace MsgPack.Samples
 							{
 #endif
 								context.IncrementDepth();
-								if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+								if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 								{
 									var mapCount = decoder.DecodeMapHeader(ref reader);
 									// If settable
@@ -1121,7 +1121,7 @@ namespace MsgPack.Samples
 #endif
 #warning TODO: No Collection items deserialized!
 								context.IncrementDepth();
-								if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+								if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 								{
 									var arrayLength = decoder.DecodeArrayHeader(ref reader);
 									// If settable
@@ -1165,7 +1165,7 @@ namespace MsgPack.Samples
 							{
 #endif
 								context.IncrementDepth();
-								if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+								if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 								{
 									var mapCount = decoder.DecodeMapHeader(ref reader);
 									// If settable
@@ -1211,7 +1211,7 @@ namespace MsgPack.Samples
 			}
 
 #if NO_OPT
-			if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+			if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 			{
 #endif
 				decoder.Drain(ref reader, context.CollectionContext, itemsCount - 5, context.CancellationToken);
@@ -1262,7 +1262,7 @@ namespace MsgPack.Samples
 				return false;
 			}
 
-			if (context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+			if (context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 			{
 				arrayOrMap = context.Decoder.DecodeArrayOrMapHeader(ref reader, out itemsCount);
 				if (itemsCount < 5)
@@ -1453,7 +1453,7 @@ namespace MsgPack.Samples
 
 		public sealed override async ValueTask<bool> DeserializeToAsync(AsyncDeserializationOperationContext context, ReadOnlyStreamSequence source, SampleObject obj)
 		{
-			// T が値�
+			// T が値型
 			// throw new NotSupportedException();
 
 			await source.FetchAsync(context.CancellationToken).ConfigureAwait(false);
@@ -1495,7 +1495,7 @@ namespace MsgPack.Samples
 			if (arrayOrMap.IsArray)
 			{
 #if STRING
-				if (!context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					while (!this.TryCheckNextItemExists(ref propertyIterator, sequence, out requestHint))
 					{
@@ -1510,7 +1510,7 @@ namespace MsgPack.Samples
 #endif
 
 #if INT32
-				if (!context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					while (!this.TryCheckNextItemExists(ref propertyIterator, sequence, out requestHint))
 					{
@@ -1525,7 +1525,7 @@ namespace MsgPack.Samples
 #endif
 
 #if BOOL
-				if (!context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					while (!this.TryCheckNextItemExists(ref propertyIterator, sequence, out requestHint))
 					{
@@ -1540,7 +1540,7 @@ namespace MsgPack.Samples
 #endif
 
 #if COLLECTION
-				if (!context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					while (!this.TryCheckNextItemExists(ref propertyIterator, sequence, out requestHint))
 					{
@@ -1550,7 +1550,7 @@ namespace MsgPack.Samples
 
 				context.IncrementDepth();
 
-				if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					long arrayLength;
 					while (!TryDecodeArrayHeader(context, ref sequence, out arrayLength, out requestHint))
@@ -1604,7 +1604,7 @@ namespace MsgPack.Samples
 				}
 				context.DecrementDepth();
 
-				if (!context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (!context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					while (!this.TryCheckNextItemExists(ref propertyIterator, sequence, out requestHint))
 					{
@@ -1613,7 +1613,7 @@ namespace MsgPack.Samples
 				}
 
 				context.IncrementDepth();
-				if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+				if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 				{
 					long mapCount;
 					while (!TryDecodeMapHeader(context, ref sequence, out mapCount, out requestHint))
@@ -1688,6 +1688,7 @@ namespace MsgPack.Samples
 				//  		memory = await provider.GetNextAsync(memory, requestHint, context.CancellationToken).ConfigureAwait(false);
 				//			continue;
 				//  	}
+
 				for (var i = 0; i < itemsCount; i++)
 				{
 					byte[] propertyKeyArray = null!;
@@ -1741,7 +1742,7 @@ namespace MsgPack.Samples
 							case 3:
 							{
 								context.IncrementDepth();
-								if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+								if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 								{
 									long arrayLength;
 									while (!TryDecodeArrayHeader(context, ref sequence, out arrayLength, out requestHint))
@@ -1800,7 +1801,7 @@ namespace MsgPack.Samples
 							case 4:
 							{
 								context.IncrementDepth();
-								if (decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+								if (decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 								{
 									long mapCount;
 									while (!TryDecodeMapHeader(context, ref sequence, out mapCount, out requestHint))
@@ -1884,7 +1885,7 @@ namespace MsgPack.Samples
 				}
 			}
 
-			if (context.Decoder.Options.Features.CanCountCollectionItems) // OPTIMIZABLE
+			if (context.Decoder.Features.CanCountCollectionItems) // OPTIMIZABLE
 			{
 				itemsCount -= 5;
 				while (!TryDrain(context, ref sequence, itemsCount, out requestHint))
@@ -1945,7 +1946,7 @@ namespace MsgPack.Samples
 
 		public sealed override int[] Deserialize(ref DeserializationOperationContext context, ref SequenceReader<byte> source)
 		{
-			if (context.Decoder.Options.Features.CanCountCollectionItems)
+			if (context.Decoder.Features.CanCountCollectionItems)
 			{
 				var length = context.Decoder.DecodeArrayHeader(ref source);
 				var result = new int[length];

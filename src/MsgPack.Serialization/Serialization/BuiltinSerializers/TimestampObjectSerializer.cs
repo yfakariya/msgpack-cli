@@ -30,7 +30,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, Timestamp obj, IBufferWriter<byte> sink)
 		{
-			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
+			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Features))
 			{
 				case DateTimeConversionMethod.Native:
 				{
@@ -135,7 +135,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 			}
 
 			// Native or UnixEpoc
-			if ((specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Decoder.Options.Features)) == DateTimeConversionMethod.UnixEpoc)
+			if ((specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Decoder.Features)) == DateTimeConversionMethod.UnixEpoc)
 			{
 				return Timestamp.FromDateTime(MessagePackConvert.ToDateTime(bits));
 			}
@@ -150,7 +150,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 			long position
 		)
 		{
-			var features = context.Decoder.Options.Features;
+			var features = context.Decoder.Features;
 
 			// Iso8601
 			var encoding = context.StringEncoding ?? features.DefaultStringEncoding;

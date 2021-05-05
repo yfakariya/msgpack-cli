@@ -2,6 +2,7 @@
 // This file is licensed under Apache 2 license.
 // See the LICENSE in the project root for more information.
 
+using System;
 using MsgPack.Serialization;
 
 namespace MsgPack.Codecs
@@ -9,6 +10,15 @@ namespace MsgPack.Codecs
 	internal static class MessagePackCodecFeatures
 	{
 		public static CodecFeatures Latest => Version2017;
+
+		public static CodecFeatures FromCompatibilityLevel(MessagePackCompatibilityLevel compatibilityLevel)
+			=> compatibilityLevel switch
+			{
+				MessagePackCompatibilityLevel.Version2008 => Version2008,
+				MessagePackCompatibilityLevel.Version2013 => Version2013,
+				MessagePackCompatibilityLevel.Version2017 => Version2017,
+				_ => Latest
+			};
 
 		public static CodecFeatures Version2017 { get; } =
 			new CodecFeaturesBuilder("MessagePack")

@@ -20,6 +20,14 @@ namespace MsgPack.Codecs
 	public abstract partial class FormatEncoder
 	{
 		/// <summary>
+		///		Gets the <see cref="CodecFeatures"/> which provides features of the format.
+		/// </summary>
+		/// <value>
+		///		The <see cref="CodecFeatures"/> which provides features of the format.
+		/// </value>
+		public CodecFeatures Features { get; }
+
+		/// <summary>
 		///		Gets the option settings of this formatter.
 		/// </summary>
 		/// <value>
@@ -30,12 +38,14 @@ namespace MsgPack.Codecs
 		/// <summary>
 		///		Initializes a new instance of <see cref="FormatEncoder"/> class.
 		/// </summary>
+		/// <param name="features">The <see cref="CodecFeatures"/> which provides features of the format.</param>
 		/// <param name="options">The option settings of this formatter.</param>
 		/// <exception cref="ArgumentNullException">
 		///		<paramref name="options"/> is <c>null</c>.
 		/// </exception>
-		protected FormatEncoder(FormatEncoderOptions options)
+		protected FormatEncoder(CodecFeatures features, FormatEncoderOptions options)
 		{
+			this.Features = Ensure.NotNull(features);
 			this.Options = Ensure.NotNull(options);
 		}
 

@@ -98,7 +98,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			}
 
 			object? result;
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				result = this.Deserialize(decoder.DecodeArrayHeader(ref source), ref context, ref source);
 			}
@@ -156,7 +156,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			}
 
 			object? result;
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				result =
 					await this.DeserializeAsync(

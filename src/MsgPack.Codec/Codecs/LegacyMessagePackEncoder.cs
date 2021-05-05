@@ -15,10 +15,10 @@ namespace MsgPack.Codecs
 	/// </summary>
 	internal sealed class LegacyMessagePackEncoder : MessagePackEncoder
 	{
-		private static readonly LegacyMessagePackEncoder DefaultInstance = new LegacyMessagePackEncoder(MessagePackEncoderOptions.Default);
+		private static readonly LegacyMessagePackEncoder DefaultInstance = new LegacyMessagePackEncoder(MessagePackCodecFeatures.Version2008, MessagePackEncoderOptions.Default);
 
-		public LegacyMessagePackEncoder(MessagePackEncoderOptions options)
-			: base(options) { }
+		public LegacyMessagePackEncoder(CodecFeatures features, MessagePackEncoderOptions options)
+			: base(features, options) { }
 
 		internal static byte[] InternalEncodeString(string value)
 		{

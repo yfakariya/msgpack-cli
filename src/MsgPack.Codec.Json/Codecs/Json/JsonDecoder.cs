@@ -16,7 +16,7 @@ namespace MsgPack.Codecs.Json
 		public new JsonDecoderOptions Options { get; }
 
 		protected JsonDecoder(JsonDecoderOptions options)
-			: base(options)
+			: base(JsonFormatFeatures.Value, options)
 		{
 			this.Options = options;
 		}

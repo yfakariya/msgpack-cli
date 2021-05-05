@@ -2,8 +2,6 @@
 // This file is licensed under Apache2 license.
 // See the LICENSE in the project root for more information.
 
-using MsgPack.Codecs;
-
 namespace MsgPack.Codecs
 {
 	/// <summary>
@@ -20,7 +18,12 @@ namespace MsgPack.Codecs
 		/// </value>
 		public static MessagePackEncoderOptions Default { get; } = new MessagePackEncoderOptionsBuilder().Build();
 
-		internal MessagePackEncoderOptions(MessagePackEncoderOptionsBuilder builder, CodecFeatures codecFeatures)
-			: base(builder, codecFeatures) { }
+		public MessagePackCompatibilityLevel CompatibilityLevel { get; }
+
+		internal MessagePackEncoderOptions(MessagePackEncoderOptionsBuilder builder)
+			: base(builder)
+		{
+			this.CompatibilityLevel = builder.CompatibilityLevel;
+		}
 	}
 }

@@ -70,19 +70,10 @@ namespace MsgPack.Codecs
 		public bool ClearsBuffer { get; }
 
 		/// <summary>
-		///		Gets the <see cref="CodecFeatures"/> which provides features of the format.
-		/// </summary>
-		/// <value>
-		///		The <see cref="CodecFeatures"/> which provides features of the format.
-		/// </value>
-		public CodecFeatures Features { get; }
-
-		/// <summary>
 		///		Initializes a new instance of <see cref="FormatDecoderOptions"/> class.
 		/// </summary>
 		/// <param name="builder">The <see cref="FormatDecoderOptionsBuilder"/> which holds options for the new instance.</param>
-		/// <param name="features">The <see cref="CodecFeatures"/> which provides features of the format.</param>
-		protected FormatEncoderOptions(FormatEncoderOptionsBuilder builder, CodecFeatures features)
+		protected FormatEncoderOptions(FormatEncoderOptionsBuilder builder)
 		{
 			builder = Ensure.NotNull(builder);
 
@@ -92,7 +83,6 @@ namespace MsgPack.Codecs
 			this.ByteBufferPool = builder.ByteBufferPool;
 			this.CharBufferPool = builder.CharBufferPool;
 			this.ClearsBuffer = builder.ClearsBuffer;
-			this.Features = Ensure.NotNull(features);
 		}
 	}
 }

@@ -74,14 +74,7 @@ namespace MsgPack.Codecs
 		/// <returns><see cref="MessagePackEncoderOptions"/> built from settings of this object.</returns>
 		public MessagePackEncoderOptions Build() =>
 			new MessagePackEncoderOptions(
-				this, 
-				this.CompatibilityLevel switch
-				{
-					MessagePackCompatibilityLevel.Version2008 => MessagePackCodecFeatures.Version2008,
-					MessagePackCompatibilityLevel.Version2013 => MessagePackCodecFeatures.Version2013,
-					MessagePackCompatibilityLevel.Version2017 => MessagePackCodecFeatures.Version2017,
-					_ => MessagePackCodecFeatures.Latest
-				}
+				this				
 			);
 	}
 }

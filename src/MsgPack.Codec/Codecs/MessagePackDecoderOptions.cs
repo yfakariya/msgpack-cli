@@ -19,7 +19,7 @@ namespace MsgPack.Codecs
 		/// </value>
 		public static MessagePackDecoderOptions Default { get; } = new MessagePackDecoderOptionsBuilder().Build();
 
-		internal MessagePackDecoderOptions(MessagePackDecoderOptionsBuilder builder, CodecFeatures codecFeatures)
-			: base(builder, codecFeatures) { }
+		internal MessagePackDecoderOptions(MessagePackDecoderOptionsBuilder builder)
+			: base(builder) { }
 	}
 }

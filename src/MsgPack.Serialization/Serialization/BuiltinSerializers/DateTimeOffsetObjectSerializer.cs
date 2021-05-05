@@ -31,7 +31,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, DateTimeOffset obj, IBufferWriter<byte> sink)
 		{
-			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
+			switch (this._method ?? this.GetDefaultDateTimeConversionMethod(context.Encoder.Features))
 			{
 				case DateTimeConversionMethod.Native:
 				{
@@ -55,7 +55,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 				}
 				case DateTimeConversionMethod.Iso8601ExtendedFormat:
 				{
-					var features = context.Encoder.Options.Features;
+					var features = context.Encoder.Features;
 					var format =
 						Iso8601.GetFormatString(
 							this.GetIso8601DecimalMark(features) ?? '.',
@@ -203,7 +203,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 			long position
 		)
 		{
-			var features = context.Decoder.Options.Features;
+			var features = context.Decoder.Features;
 
 			// Iso8601
 			var encoding = context.StringEncoding ?? features.DefaultStringEncoding;

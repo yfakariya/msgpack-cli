@@ -20,6 +20,6 @@ namespace MsgPack.Codecs
 		///		Builds <see cref="MessagePackDecoderOptions"/> from settings of this object.
 		/// </summary>
 		/// <returns><see cref="MessagePackDecoderOptions"/> built from settings of this object.</returns>
-		public MessagePackDecoderOptions Build() => new MessagePackDecoderOptions(this, MessagePackCodecFeatures.Latest);
+		public MessagePackDecoderOptions Build() => new MessagePackDecoderOptions(this);
 	}
 }

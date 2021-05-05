@@ -176,7 +176,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			}
 
 			object? result;
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				result = this.Deserialize(decoder.DecodeArrayHeader(ref source), ref context, ref source);
 			}
@@ -272,7 +272,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				return false;
 			}
 
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				this.DeserializeTo(decoder.DecodeArrayHeader(ref source), ref context, ref source, obj);
 			}
@@ -363,7 +363,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 			}
 
 			object? result;
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				result =
 					await this.DeserializeAsync(
@@ -465,7 +465,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				return false;
 			}
 
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				await this.DeserializeToAsync(
 					await decoder.DecodeArrayHeaderAsync(source, context.CancellationToken).ConfigureAwait(false),

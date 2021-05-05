@@ -19,6 +19,14 @@ namespace MsgPack.Codecs
 	public abstract partial class FormatDecoder
 	{
 		/// <summary>
+		///		Gets the <see cref="CodecFeatures"/> which provides features of the format.
+		/// </summary>
+		/// <value>
+		///		The <see cref="CodecFeatures"/> which provides features of the format.
+		/// </value>
+		public CodecFeatures Features { get; }
+
+		/// <summary>
 		///		Gets the option settings of this parser.
 		/// </summary>
 		/// <value>
@@ -26,16 +34,17 @@ namespace MsgPack.Codecs
 		/// </value>
 		public FormatDecoderOptions Options { get; }
 
-#warning TODO: Separete CodeFeatures(FormatFeatures) from ParserOptions
 		/// <summary>
 		///		Initializes a new instance of <see cref="FormatDecoder"/> class.
 		/// </summary>
+		/// <param name="features">The <see cref="CodecFeatures"/> which provides features of the format.</param>
 		/// <param name="options">The option settings of this decoder.</param>
 		/// <exception cref="ArgumentNullException">
 		///		<paramref name="options"/> is <c>null</c>.
 		/// </exception>
-		protected FormatDecoder(FormatDecoderOptions options)
+		protected FormatDecoder(CodecFeatures features, FormatDecoderOptions options)
 		{
+			this.Features = Ensure.NotNull(features);
 			this.Options = Ensure.NotNull(options);
 		}
 

@@ -18,14 +18,17 @@ namespace MsgPack.Codecs
 	public abstract partial class MessagePackEncoder : FormatEncoder
 	{
 		public static MessagePackEncoder Create(MessagePackEncoderOptions options)
-			=> Ensure.NotNull(options).Features.SupportsExtensionTypes ?
-				new CurrentMessagePackEncoder(options) as MessagePackEncoder :
-				new LegacyMessagePackEncoder(options);
+		{
+			var features = MessagePackCodecFeatures.FromCompatibilityLevel(Ensure.NotNull(options).CompatibilityLevel);
+			return features.SupportsExtensionTypes ?
+				new CurrentMessagePackEncoder(features, options) as MessagePackEncoder :
+				new LegacyMessagePackEncoder(features, options);
+		}
 
 		public new MessagePackEncoderOptions Options => (base.Options as MessagePackEncoderOptions)!;
 
-		private protected MessagePackEncoder(MessagePackEncoderOptions options)
-			: base(options) { }
+		private protected MessagePackEncoder(CodecFeatures features, MessagePackEncoderOptions options)
+			: base(features, options) { }
 
 		[MethodImpl(MethodImplOptionsShim.AggressiveInlining)]
 		public sealed override void EncodeRawString(ReadOnlySpan<byte> rawString, int charLength, IBufferWriter<byte> buffer, CancellationToken cancellationToken = default)
@@ -167,7 +170,7 @@ namespace MsgPack.Codecs
 			{
 				actualLength = encoding.GetByteCount(value);
 			}
-			catch(OverflowException ex)
+			catch (OverflowException ex)
 			{
 				Throw.TooLargeByteLength(ex, encoding.EncodingName);
 				return;
@@ -205,7 +208,7 @@ namespace MsgPack.Codecs
 		public sealed override void EncodeString(ReadOnlySpan<byte> encodedValue, int charLength, IBufferWriter<byte> buffer, CancellationToken cancellationToken = default)
 		{
 			buffer = Ensure.NotNull(buffer);
-			
+
 			var span = buffer.GetSpan(5);
 			var used = this.EncodeStringHeader(unchecked((uint)encodedValue.Length), span);
 			buffer.Advance(used);

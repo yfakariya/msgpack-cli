@@ -32,7 +32,7 @@ namespace MsgPack.Codecs.Json
 		private readonly JsonEncoderOptions _options;
 
 		public JsonEncoder(JsonEncoderOptions options)
-			: base(options)
+			: base(JsonFormatFeatures.Value, options)
 		{
 			this._options = options;
 			this._singleInfinityFormatter = options.SingleInfinityFormatter;

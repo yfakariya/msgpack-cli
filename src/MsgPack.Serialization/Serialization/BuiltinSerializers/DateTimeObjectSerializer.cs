@@ -40,7 +40,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 			IRuntimeDateTimeSerializationOptionsProvider options
 		)
 		{
-			switch (specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Encoder.Options.Features))
+			switch (specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Encoder.Features))
 			{
 				case DateTimeConversionMethod.Native:
 				{
@@ -54,7 +54,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 				}
 				case DateTimeConversionMethod.Iso8601ExtendedFormat:
 				{
-					var features = context.Encoder.Options.Features;
+					var features = context.Encoder.Features;
 					var format =
 						Iso8601.GetFormatString(
 							options.GetIso8601DecimalMark(features) ?? '.',
@@ -161,7 +161,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 				}
 
 				// Native or UnixEpoc
-				if ((specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Decoder.Options.Features)) == DateTimeConversionMethod.UnixEpoc)
+				if ((specifiedMethod ?? options.GetDefaultDateTimeConversionMethod(context.Decoder.Features)) == DateTimeConversionMethod.UnixEpoc)
 				{
 					return MessagePackConvert.ToDateTime(bits);
 				}

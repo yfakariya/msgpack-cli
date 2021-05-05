@@ -49,7 +49,7 @@ namespace MsgPack.Serialization.BuiltinSerializers
 
 		public sealed override void Serialize(ref SerializationOperationContext context, [AllowNull] T obj, IBufferWriter<byte> sink)
 		{
-			var method = this._method ?? this.GenerationOptions.EnumOptions.GetSerializationMethod(context.Encoder.Options.Features);
+			var method = this._method ?? this.GenerationOptions.EnumOptions.GetSerializationMethod(context.Encoder.Features);
 			if (method == EnumSerializationMethod.ByName)
 			{
 				if (!this._serializationNameMapping.TryGetValue(obj!, out var asString))

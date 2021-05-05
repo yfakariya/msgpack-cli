@@ -21,11 +21,11 @@ namespace MsgPack.Codecs
 		{
 			if (compatibilityLevel == MessagePackCompatibilityLevel.Version2008)
 			{
-				this._encoder = new LegacyMessagePackEncoder(encoderOptions);
+				this._encoder = new LegacyMessagePackEncoder(MessagePackCodecFeatures.FromCompatibilityLevel(compatibilityLevel), encoderOptions);
 			}
 			else
 			{
-				this._encoder = new CurrentMessagePackEncoder(encoderOptions);
+				this._encoder = new CurrentMessagePackEncoder(MessagePackCodecFeatures.FromCompatibilityLevel(compatibilityLevel), encoderOptions);
 			}
 
 			this._decoder = new MessagePackDecoder(decoderOptions);

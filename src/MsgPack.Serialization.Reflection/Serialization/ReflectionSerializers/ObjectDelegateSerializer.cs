@@ -372,7 +372,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 				return;
 			}
 
-			if (this._provider.GenerationOptions.SerializationOptions.GetDefaultObjectSerializationMethod(context.Encoder.Options.Features) == SerializationMethod.Array)
+			if (this._provider.GenerationOptions.SerializationOptions.GetDefaultObjectSerializationMethod(context.Encoder.Features) == SerializationMethod.Array)
 			{
 				encoder.EncodeArrayStart(this._memberValueEncoders.Count, sink, context.CollectionContext);
 
@@ -482,7 +482,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 
 			var decoder = context.Decoder;
 
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				var collectionType = decoder.DecodeArrayOrMapHeader(ref source, out var itemsCount);
 				for (var i = 0; i < itemsCount; i++)
@@ -535,7 +535,7 @@ namespace MsgPack.Serialization.ReflectionSerializers
 
 			var decoder = context.Decoder;
 
-			if (decoder.Options.Features.CanCountCollectionItems)
+			if (decoder.Features.CanCountCollectionItems)
 			{
 				var collectionTypeAndCount = await decoder.DecodeArrayOrMapHeaderAsync(source, context.CancellationToken).ConfigureAwait(false);
 				var collectionType = collectionTypeAndCount.CollectionType;

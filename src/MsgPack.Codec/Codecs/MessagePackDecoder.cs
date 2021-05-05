@@ -13,7 +13,7 @@ namespace MsgPack.Codecs
 	public sealed partial class MessagePackDecoder : FormatDecoder
 	{
 		public MessagePackDecoder(MessagePackDecoderOptions options)
-			: base(options)
+			: base(MessagePackCodecFeatures.Latest, options)
 		{
 			this._detectCollectionEnds = this.DetectCollectionEnds;
 		}
