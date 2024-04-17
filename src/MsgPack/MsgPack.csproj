@@ -349,39 +349,7 @@
     <None Include="Unpacking.ttinclude" />
     <None Include="remarks.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="AsyncReadResult.cs" />
-    <Compile Remove="AsyncReadResult`1.cs" />
-    <Compile Remove="TaskAugument.cs" />
     <Compile Remove="MPContract.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net35'">
-    <Compile Remove="Serialization\AbstractSerializers\SerializerBuilder`2.Tuple.cs" />
-    <Compile Remove="Serialization\CollectionSerializers\ReadOnlyCollectionMessagePackSerializer`2.cs" />
-    <Compile Remove="Serialization\CollectionSerializers\ReadOnlyDictionaryMessagePackSerializer`3.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\AbstractReadOnlyCollectionMessagePackSerializer`2.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\AbstractReadOnlyDictionaryMessagePackSerializer`3.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\FSharpCollectionSerializer`2.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\FSharpMapSerializer`3.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\ImmutableCollectionSerializer`2.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\ImmutableDictionarySerializer`3.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\ImmutableStackSerializer`2.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\SimdTypeSerializers.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\System_Numerics_ComplexMessagePackSerializer.cs" />
-    <Compile Remove="Serialization\DefaultSerializers\System_Security_Cryptography_HashAlgorithmNameMessagePackSerializer.cs" />
-    <Compile Remove="Serialization\EmittingSerializers\CallbackReadOnlyCollectionMessagePackSerializer`2.cs" />
-    <Compile Remove="Serialization\EmittingSerializers\CallbackReadOnlyDictionaryMessagePackSerializer`3.cs" />
-    <Compile Remove="Serialization\Metadata\_Type.cs" />
-    <Compile Remove="Serialization\ReflectionSerializers\ReflectionTupleMessagePackSerializer`1.cs" />
-    <Compile Remove="TupleItems.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' != 'net35'">
-    <Compile Remove="Contract.cs" />
-    <Compile Remove="Delegates.cs" />
-    <Compile Remove="NetFxCompatibilities.cs" />
-    <Compile Remove="Volatile.cs" />
-    <Compile Remove="Tuple`n.cs" />
-  </ItemGroup>
   <ItemGroup Condition="'$(FeatureEmit)' != 'true'">
     <Compile Remove="Serialization\AbstractSerializers\**\*.*" />
     <Compile Remove="Serialization\DefaultSerializers\System_Security_Cryptography_HashAlgorithmNameMessagePackSerializer.cs" />
@@ -426,11 +394,6 @@
   </ItemGroup>
   <ItemGroup Condition="'$(FeatureAsmGen)' != 'true'">
     <Compile Remove="Serialization\EmittingSerializers\AssemblyBuilderCodeGenerationContext.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(FeatureTap)' == 'true'">
-    <Compile Include="AsyncReadResult.cs" />
-    <Compile Include="AsyncReadResult`1.cs" />
-    <Compile Include="TaskAugument.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
