@@ -1,0 +1,7 @@
+* text=auto
+
+*.sln text
+*.slnx text
+*.csproj text
+*.props text
+*.targets text
