@@ -353,9 +353,7 @@
     <Compile Remove="AsyncReadResult.cs" />
     <Compile Remove="AsyncReadResult`1.cs" />
     <Compile Remove="TaskAugument.cs" />
-    <Compile Remove="BufferedStream.cs" />
     <Compile Remove="MPContract.cs" />
-    <Compile Remove="NetStandardCompatibility.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net35'">
     <Compile Remove="Serialization\AbstractSerializers\SerializerBuilder`2.Tuple.cs" />
@@ -383,10 +381,6 @@
     <Compile Remove="NetFxCompatibilities.cs" />
     <Compile Remove="Volatile.cs" />
     <Compile Remove="Tuple`n.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.1' or '$(TargetFramework)' == 'netstandard1.3' or '$(TargetFramework)' == 'uap10.0'">
-    <Compile Include="BufferedStream.cs" />
-    <Compile Include="NetStandardCompatibility.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(FeatureEmit)' != 'true'">
     <Compile Remove="Serialization\AbstractSerializers\**\*.*" />
