@@ -384,15 +384,6 @@
     <Compile Remove="Volatile.cs" />
     <Compile Remove="Tuple`n.cs" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-    <Compile Remove="Serialization\DefaultSerializers\SimdTypeSerializers.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net45' or '$(TargetFramework)' == 'netstandard1.1' or '$(TargetFramework)' == 'netstandard1.3'">
-    <Compile Remove="Serialization\DefaultSerializers\System_Security_Cryptography_HashAlgorithmNameMessagePackSerializer.cs" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'uap10.0'">
-    <Compile Remove="UnsafeNativeMethods.cs" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard1.1' or '$(TargetFramework)' == 'netstandard1.3' or '$(TargetFramework)' == 'uap10.0'">
     <Compile Include="BufferedStream.cs" />
     <Compile Include="NetStandardCompatibility.cs" />
