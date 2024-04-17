@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <DocumentationFile>$(OutputPath)/$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(DefineConstants)', '(^|;)UNITY[^;]*($|;)'))">
+    <DefineConstants>$(DefineConstants);UNITY;AOT</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="!$([System.Text.RegularExpressions.Regex]::IsMatch('%(DefineConstants)', '(^|;)UNITY[^;]*($|;)'))">
+    <DefineConstants>$(DefineConstants);LIBRARY;FEATURE_COM_TYPES;</DefineConstants>
+    <FeatureCodeGen>true</FeatureCodeGen>
+    <FeatureEmit>true</FeatureEmit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION;FEATURE_READ_ONLY_COLLECTION;FEATURE_ISET;FEATURE_TAP;FEATURE_EXCEPTION_DISPATCH_INFO;FEATURE_TUPLE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net35' or '$(TargetFramework)' == 'net462'">
+    <!-- CLR 2 and CLR 4 -->
+    <DefineConstants>$(DefineConstants);FEATURE_CER;FEATURE_CODE_ACCESS_SECURITY</DefineConstants>
+    <FeatureAsmGen>true</FeatureAsmGen>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <DefineConstants>$(DefineConstants);FEATURE_ASYNC_DISPOSABLE;FEATURE_ADVANCED_BIT_CONVERTER;FEATURE_DO_NOT_WRAP_EXCEPTIONS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net8.0'">
+    <DefineConstants>$(DefineConstants);FEATURE_ASYNC_DISPOSABLE;FEATURE_ADVANCED_BIT_CONVERTER;FEATURE_DO_NOT_WRAP_EXCEPTIONS;FEATURE_ENCODING_EXTENSION;FEATURE_UTF8STRING;FEATURE_ADVANCED_OBSOLETE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <FeatureAsmGen>true</FeatureAsmGen>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).Tests" />
+    <AssemblyAttribute Include="System.CLSCompliantAttribute">
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.InteropServices.ComVisibleAttribute">
+      <_Parameter1_IsLiteral>false</_Parameter1_IsLiteral>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(TargetFramework)' != 'net35'">
+      <_Parameter1>TargetFramework</_Parameter1>
+      <_Parameter2>$(TargetFramework)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+</Project>
