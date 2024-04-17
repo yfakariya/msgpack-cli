@@ -6,6 +6,28 @@ There are TODOs to be implemented in the future.
 * If you implement the item of the list, send PR. Please remember you run UnitTests.
 * They are ordered "personal" priority based on their effect and cost.
 
+## Recent
+
+### v2
+
+* [ ] Modernize build system
+* [ ] Modernize target frameworks #359
+* [ ] Modernize CI
+* [ ] Fix metadata #360
+* [ ] Change default ordering as "delaration order" (metadata token based) #358
+
+### v2.1 or lator
+
+* [ ] Support new primitives including `Half` `Int128` `UInt128`
+
+### 3.0
+
+* [ ] Re-architecting to support various codec and improve performance.
+* [ ] Reorganize options to simplify them.
+* [ ] Source generator support.
+
+**Following section will be revised...**
+
 ## Should be implemented in next minor versions.
 
 ### Documentation and Samples
