@@ -352,7 +352,7 @@ namespace MsgPack.Serialization.Reflection
 			var result = this._underlying.DeclareLocal( localType );
 			this._localDeclarations.Add( result, name );
 			// TODO: NLiblet
-#if !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if NETFRAMEWORK
 			if ( !this._isInDynamicMethod && this._isDebuggable )
 			{
 				try
@@ -364,7 +364,7 @@ namespace MsgPack.Serialization.Reflection
 					this._isInDynamicMethod = true;
 				}
 			}
-#endif // !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 			return result;
 		}
 
@@ -374,7 +374,7 @@ namespace MsgPack.Serialization.Reflection
 			var result = this._underlying.DeclareLocal( localType, pinned );
 			this._localDeclarations.Add( result, name );
 			// TODO: NLiblet
-#if !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if NETFRAMEWORK
 			if ( !this._isInDynamicMethod && this._isDebuggable )
 			{
 				try
@@ -386,7 +386,7 @@ namespace MsgPack.Serialization.Reflection
 					this._isInDynamicMethod = true;
 				}
 			}
-#endif // !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 			return result;
 		}
 #endif // DEBUG

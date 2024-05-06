@@ -67,7 +67,7 @@ namespace MsgPack.Serialization
 #endif // NETSTANDARD2_0
 	class SerializerGenerator
 	{
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 		/// <summary>
 		///		Gets the type of the root object which will be serialized/deserialized.
 		/// </summary>
@@ -294,7 +294,7 @@ namespace MsgPack.Serialization
 		{
 			return new SerializerAssemblyGenerationLogic().Generate( targetTypes, configuration );
 		}
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 
 		/// <summary>
 		///		Generates source codes which implement auto-generated serializer types for specified types with default configuration.
@@ -564,7 +564,7 @@ namespace MsgPack.Serialization
 			protected abstract Func<Type, ISerializerCodeGenerator> CreateGeneratorFactory( SerializationContext context );
 		}
 
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 		private sealed class SerializerAssemblyGenerationLogic : SerializerGenerationLogic<SerializerAssemblyGenerationConfiguration>
 		{
 			protected override EmitterFlavor EmitterFlavor
@@ -594,7 +594,7 @@ namespace MsgPack.Serialization
 				return type => new AssemblyBuilderSerializerBuilder( type, type.GetCollectionTraits( CollectionTraitOptions.Full, context.CompatibilityOptions.AllowNonCollectionEnumerableTypes ) );
 			}
 		}
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 
 		private sealed class SerializerCodesGenerationLogic : SerializerGenerationLogic<SerializerCodeGenerationConfiguration>
 		{

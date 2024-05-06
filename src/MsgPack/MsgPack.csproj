@@ -349,6 +349,10 @@
     <None Include="Unpacking.ttinclude" />
     <None Include="remarks.xml" />
   </ItemGroup>
+  <!-- TODO: Remove code contracts -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+    <Compile Remove="MPContract.cs" />
+  </ItemGroup>
   <ItemGroup Condition="'$(FeatureEmit)' != 'true'">
     <Compile Remove="Serialization\AbstractSerializers\**\*.*" />
     <Compile Remove="Serialization\DefaultSerializers\System_Security_Cryptography_HashAlgorithmNameMessagePackSerializer.cs" />

@@ -78,12 +78,12 @@ namespace MsgPack.Serialization.EmittingSerializers
 #endif // DEBUG
 			this._isDebuggable = isDebuggable;
 
-#if DEBUG && !NET35 && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if DEBUG && NETFRAMEWORK
 			if ( isDebuggable && SerializerDebugging.DumpEnabled )
 			{
 				SerializerDebugging.PrepareDump( host.Assembly as AssemblyBuilder );
 			}
-#endif // DEBUG && !NET35 && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#endif // DEBUG && NETFRAMEWORK
 		}
 
 		#region -- Field --

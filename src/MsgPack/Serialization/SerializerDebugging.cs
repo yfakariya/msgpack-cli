@@ -207,7 +207,7 @@ namespace MsgPack.Serialization
 		}
 
 #if !NETSTANDARD1_3
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 		[ThreadStatic]
 		private static AssemblyBuilder _assemblyBuilder;
 
@@ -244,7 +244,7 @@ namespace MsgPack.Serialization
 			_moduleBuilder =
 				_assemblyBuilder.DefineDynamicModule( "ExpressionTreeSerializerLogics", "ExpressionTreeSerializerLogics.dll", true );
 		}
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 
 #if !FERATURE_CONCURRENT
 		private static volatile DependentAssemblyManager _dependentAssemblyManager = DependentAssemblyManager.Default;
@@ -319,7 +319,7 @@ namespace MsgPack.Serialization
 			set { _onTheFlyCodeDomEnabled = value; }
 		}
 
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 		/// <summary>
 		///		Creates the new type builder for the serializer.
 		/// </summary>
@@ -352,7 +352,7 @@ namespace MsgPack.Serialization
 			}
 #endif // !NET35
 		}
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 
 		/// <summary>
 		///		Resets debugging states.
@@ -360,10 +360,10 @@ namespace MsgPack.Serialization
 		[System.Diagnostics.CodeAnalysis.SuppressMessage( "Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "For unit testing" )]
 		public static void Reset()
 		{
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 			_assemblyBuilder = null;
 			_moduleBuilder = null;
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 			_dumpEnabled = false;
 
 			if ( _ilTraceWriter != null )
