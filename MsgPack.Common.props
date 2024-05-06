@@ -47,18 +47,8 @@
   <PropertyGroup Condition="$(TargetFramework.StartsWith('net3')) or $(TargetFramework.StartsWith('net4'))">
     <IsNetFramework>true</IsNetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'monoandroid10'">
-    <DefineConstants>$(DefineConstants);__ANDROID__</DefineConstants>
-    <TargetFrameworkIdentifier>MonoAndroid</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'xamarin.ios10'">
-    <DefineConstants>$(DefineConstants);__IOS__</DefineConstants>
-    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'uap10.0'">
-    <DefineConstants>$(DefineConstants);NETFX_CORE;WINDOWS_UWP;NETSTANDARD1_3;AOT</DefineConstants>
+  <PropertyGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <IsNetStandard>true</IsNetStandard>
   </PropertyGroup>
   
   <!-- Document XML -->
@@ -70,35 +60,8 @@
   </PropertyGroup>
   
   <!-- Debug settings -->
-  <PropertyGroup Condition="'$(IsNetFramework)' == 'true' or '$(TargetFramework)' == 'uap10.0'">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
-  
-  <!-- Feature Flags -->
-  <PropertyGroup Condition="'$(TargetFramework)' == 'uap10.0' or $(TargetFramework.StartsWith('net4')) or $(TargetFramework.StartsWith('netcoreapp')) or $(TargetFramework.StartsWith('netstandard')) or '$(IsXamarin)' == 'true'">
-    <DefineConstants>$(DefineConstants);FEATURE_TAP</DefineConstants>
-    <FeatureTap>true</FeatureTap>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'uap10.0' or $(TargetFramework.StartsWith('net4')) or $(TargetFramework.StartsWith('netstandard')) or $(TargetFramework.StartsWith('netcoreapp')) or '$(IsXamarin)' == 'true'">
-    <DefineConstants>$(DefineConstants);FEATURE_CONCURRENT</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(IsNetFramework)' == 'true' or '$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netcoreapp2.0' or '$(IsXamarin)' == 'true'">
-    <DefineConstants>$(DefineConstants);FEATURE_POINTER_CONVERSION</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(IsNetFramework)' == 'true' or '$(TargetFramework)' == 'netstandard1.3' or '$(TargetFramework)' == 'netstandard2.0' or $(TargetFramework.StartsWith('netcoreapp'))">
-    <DefineConstants>$(DefineConstants);FEATURE_EMIT</DefineConstants>
-    <FeatureEmit>true</FeatureEmit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(IsNetFramework)' == 'true' or '$(TargetFramework)' == 'netstandard2.0' or '$(TargetFramework)' == 'netcoreapp2.0'">
-    <DefineConstants>$(DefineConstants);FEATURE_CODEGEN</DefineConstants>
-    <FeatureCodeGen>true</FeatureCodeGen>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(IsNetFramework)' == 'true'">
-    <DefineConstants>$(DefineConstants);FEATURE_ASMGEN</DefineConstants>
-    <FeatureAsmGen>true</FeatureAsmGen>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net46' or '$(TargetFramework)' == 'net47' or '$(TargetFramework)' == 'netstandard1.3' or '$(TargetFramework)' == 'netstandard2.0' or $(TargetFramework.StartsWith('netcoreapp')) or '$(IsXamarin)' == 'true'">
-    <DefineConstants>$(DefineConstants);FEATURE_MEMCOPY</DefineConstants>
+    <DebugType>pdbonly</DebugType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">

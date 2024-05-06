@@ -2,7 +2,14 @@
 <Project>
   <PropertyGroup>
     <DocumentationFile>$(OutputPath)/$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup> 
+  <PropertyGroup Condition="$(TargetFramework.StartsWith('net3')) or $(TargetFramework.StartsWith('net4'))">
+    <IsNetFramework>true</IsNetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+    <IsNetStandard>true</IsNetStandard>
+  </PropertyGroup>
+  <!-- Feature Flags -->
   <PropertyGroup Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(DefineConstants)', '(^|;)UNITY[^;]*($|;)'))">
     <DefineConstants>$(DefineConstants);UNITY;AOT</DefineConstants>
   </PropertyGroup>
@@ -14,10 +21,19 @@
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION;FEATURE_READ_ONLY_COLLECTION;FEATURE_ISET;FEATURE_TAP;FEATURE_EXCEPTION_DISPATCH_INFO;FEATURE_TUPLE</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net35' or '$(TargetFramework)' == 'net462'">
-    <!-- CLR 2 and CLR 4 -->
-    <DefineConstants>$(DefineConstants);FEATURE_CER;FEATURE_CODE_ACCESS_SECURITY</DefineConstants>
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);FEATURE_TAP;FEATURE_CONCURRENT;FEATURE_POINTER_CONVERSION;FEATURE_EMIT;FEATURE_CODEGEN;FEATURE_MEMCOPY</DefineConstants>
+    <FeatureTap>true</FeatureTap>
+    <FeatureEmit>true</FeatureEmit>
+    <FeatureCodeGen>true</FeatureCodeGen>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsNetFramework)' == 'true' or $(TargetFramework.StartsWith('net9'))">
+    <DefineConstants>$(DefineConstants);FEATURE_ASMGEN</DefineConstants>
     <FeatureAsmGen>true</FeatureAsmGen>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net46'">
+    <!-- TODO: Remove code contract -->
+    <DefineConstants>$(DefineConstants);FEATURE_MPCONTRACT</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
     <DefineConstants>$(DefineConstants);FEATURE_ASYNC_DISPOSABLE;FEATURE_ADVANCED_BIT_CONVERTER;FEATURE_DO_NOT_WRAP_EXCEPTIONS</DefineConstants>
@@ -25,9 +41,7 @@
   <PropertyGroup Condition="'$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net8.0'">
     <DefineConstants>$(DefineConstants);FEATURE_ASYNC_DISPOSABLE;FEATURE_ADVANCED_BIT_CONVERTER;FEATURE_DO_NOT_WRAP_EXCEPTIONS;FEATURE_ENCODING_EXTENSION;FEATURE_UTF8STRING;FEATURE_ADVANCED_OBSOLETE</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0'">
-    <FeatureAsmGen>true</FeatureAsmGen>
-  </PropertyGroup>
+
   <ItemGroup>
     <InternalsVisibleTo Include="$(AssemblyName).Tests" />
     <AssemblyAttribute Include="System.CLSCompliantAttribute">
