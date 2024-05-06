@@ -612,7 +612,9 @@ namespace MsgPack.Serialization
 				return false;
 			}
 
+#pragma warning disable SYSLIB0050 // We support FieldAttributes.NotSerialized for backward compatibility.
 			return ( asField.Attributes & FieldAttributes.NotSerialized ) != 0;
+#pragma warning restore SYSLIB0050
 		}
 
 		private static ConstructorInfo FindDeserializationConstructor( SerializationContext context, Type targetType, out ConstructorKind constructorKind )

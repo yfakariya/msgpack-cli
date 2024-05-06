@@ -83,14 +83,14 @@ namespace MsgPack.Serialization
 		private Dictionary<RuntimeTypeHandle, object> GetClonedTable()
 		{
 			bool holdsReadLock = false;
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 			RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 			try
 			{
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 				RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 				try { }
 				finally
 				{
@@ -122,14 +122,14 @@ namespace MsgPack.Serialization
 		private bool GetCore( Type type, out object matched, out object genericDefinitionMatched )
 		{
 			bool holdsReadLock = false;
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 			RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 			try
 			{
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 				RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 				try { }
 				finally
 				{
@@ -187,14 +187,14 @@ namespace MsgPack.Serialization
 			if ( allowOverwrite || !this.ContainsType( key, nullableType ) )
 			{
 				bool holdsWriteLock = false;
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 				RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 				try
 				{
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 					RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 					try { }
 					finally
 					{
@@ -254,14 +254,14 @@ namespace MsgPack.Serialization
 			if ( this._table.ContainsKey( key.TypeHandle ) )
 			{
 				bool holdsWriteLock = false;
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 				RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 				try
 				{
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 					RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 					try { }
 					finally
 					{
@@ -288,14 +288,14 @@ namespace MsgPack.Serialization
 		internal bool Contains( Type type )
 		{
 			bool holdsReadLock = false;
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 			RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 			try
 			{
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 				RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 				try { }
 				finally
 				{
@@ -319,14 +319,14 @@ namespace MsgPack.Serialization
 		internal IEnumerable<KeyValuePair<Type, object>> GetEntries()
 		{
 			bool holdsReadLock = false;
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 			RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 			try
 			{
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if NETFRAMEWORK
 				RuntimeHelpers.PrepareConstrainedRegions();
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
 				try { }
 				finally
 				{
