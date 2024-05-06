@@ -22,27 +22,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security;
 
-[assembly: AssemblyTitle( "MessagePack for CLI(" +
-#if NET4_5
-".NET Framework 4.5"
-#elif NET35
-".NET Framework 3.5"
-#elif WINDOWS_UWP
-"UWP"
-#elif NETSTANDARD1_1
-".NET Standard 1.1"
-#elif NETSTANDARD1_3
-".NET Standard 1.3"
-#elif NETSTANDARD2_0
-".NET Standard 2.0"
-#elif XAMARIN && __ANDROID__
-"Xamarin Android"
-#elif XAMARIN && __IOS__
-"Xamarin iOS"
-#else
-".NET Framework 4.6"
-#endif // NET4_5..
-+ ")" )]
 [assembly: AssemblyDescription( "MessagePack for CLI(.NET/Mono) packing/unpacking library for" +
 #if NET4_5
 ".NET Framework 4.5"
@@ -64,8 +43,6 @@ using System.Security;
 ".NET Framework 4.6"
 #endif // NET4_5..
  )]
-
-[assembly: AssemblyFileVersion( "0.9.2259.1047" )]
 
 #if !NETSTANDARD1_1 && !NETSTANDARD1_3
 #if !NET35
