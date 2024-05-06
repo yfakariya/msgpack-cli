@@ -836,12 +836,12 @@ namespace MsgPack
 				{
 					var target = new Timestamp( seconds, 0 );
 					var expected = new DateTimeOffset( year, 1, 1, 0, 0, 0, TimeSpan.Zero ).AddDays( dayOfYear - 1 );
-					Assert.That( expected.DayOfYear, Is.EqualTo( dayOfYear ), "{0:yyyy-MM-dd}", expected );
-					Assert.That( target.DayOfYear, Is.EqualTo( expected.DayOfYear ), "{0:yyyy-MM-dd}", expected );
-					Assert.That( target.Year, Is.EqualTo( expected.Year ), "{0:yyyy-MM-dd}", expected );
-					Assert.That( target.Month, Is.EqualTo( expected.Month ), "{0:yyyy-MM-dd}", expected );
-					Assert.That( target.Day, Is.EqualTo( expected.Day ), "{0:yyyy-MM-dd}", expected );
-					Assert.That( target.DayOfWeek, Is.EqualTo( expected.DayOfWeek ), "{0:yyyy-MM-dd}", expected );
+					Assert.That( expected.DayOfYear, Is.EqualTo( dayOfYear ), $"{expected:yyyy-MM-dd}" );
+					Assert.That( target.DayOfYear, Is.EqualTo( expected.DayOfYear ), $"{expected:yyyy-MM-dd}" );
+					Assert.That( target.Year, Is.EqualTo( expected.Year ), $"{expected:yyyy-MM-dd}" );
+					Assert.That( target.Month, Is.EqualTo( expected.Month ), $"{expected:yyyy-MM-dd}" );
+					Assert.That( target.Day, Is.EqualTo( expected.Day ), $"{expected:yyyy-MM-dd}" );
+					Assert.That( target.DayOfWeek, Is.EqualTo( expected.DayOfWeek ), $"{expected:yyyy-MM-dd}" );
 
 					seconds += 24 * 60 * 60;
 				}
@@ -871,11 +871,11 @@ namespace MsgPack
 					}
 
 					var target = new Timestamp( seconds, 0 );
-					Assert.That( target.DayOfYear, Is.EqualTo( dayOfYear ), "{0:0000}-{1:00}-{2:00}", year, month, day );
-					Assert.That( target.Year, Is.EqualTo( year ), "{0:0000}-{1:00}-{2:00}", year, month, day );
-					Assert.That( target.Month, Is.EqualTo( month ), "{0:0000}-{1:00}-{2:00}", year, month, day );
-					Assert.That( target.Day, Is.EqualTo( day ), "{0:0000}-{1:00}-{2:00}", year, month, day );
-					Assert.That( target.DayOfWeek, Is.EqualTo( ( DayOfWeek )dayOfWeek ), "{0:0000}-{1:00}-{2:00}", year, month, day );
+					Assert.That( target.DayOfYear, Is.EqualTo( dayOfYear ), $"{year:0000}-{month:00}-{day:00}" );
+					Assert.That( target.Year, Is.EqualTo( year ), $"{year:0000}-{month:00}-{day:00}" );
+					Assert.That( target.Month, Is.EqualTo( month ), $"{year:0000}-{month:00}-{day:00}" );
+					Assert.That( target.Day, Is.EqualTo( day ), $"{year:0000}-{month:00}-{day:00}" );
+					Assert.That( target.DayOfWeek, Is.EqualTo( ( DayOfWeek )dayOfWeek ), $"{year:0000}-{month:00}-{day:00}" );
 
 					if ( day == 1 )
 					{

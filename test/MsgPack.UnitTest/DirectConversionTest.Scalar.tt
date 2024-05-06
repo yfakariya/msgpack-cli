@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -124,8 +124,8 @@ foreach( var __type in __integerTypes )
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.Unpack<#= __type.Name #>( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.Unpack<#= __type.Name #>( output.ToArray() ).Value );
+			Assert.That( Unpacking.Unpack<#= __type.Name #>( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.Unpack<#= __type.Name #>( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 <#
 }
@@ -160,8 +160,8 @@ foreach( var __type in __floatingTypes )
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.Unpack<#= __type.Name #>( new MemoryStream( output.ToArray() ) ), 10e-10 );
-			Assert.AreEqual( value, Unpacking.Unpack<#= __type.Name #>( output.ToArray() ).Value, 10e-10 );
+			Assert.That( Unpacking.Unpack<#= __type.Name #>( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ).Within( 10e-10 ) );
+			Assert.That( Unpacking.Unpack<#= __type.Name #>( output.ToArray() ).Value, Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 <#
 }

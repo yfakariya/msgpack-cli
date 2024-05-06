@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -55,12 +55,12 @@ namespace MsgPack
 			MessagePackObject objInt = val;
 			MessagePackObject objLong = ( long )val;
 #pragma warning disable 1718
-			Assert.IsTrue( objInt == objInt );
+			Assert.That( objInt == objInt, Is.True );
 #pragma warning restore 1718
-			Assert.IsTrue( objInt == objLong );
-			Assert.IsTrue( objLong == objInt );
+			Assert.That( objInt == objLong, Is.True );
+			Assert.That( objLong == objInt, Is.True );
 #pragma warning disable 1718
-			Assert.IsTrue( objLong == objLong );
+			Assert.That( objLong == objLong, Is.True );
 #pragma warning restore 1718
 		}
 
@@ -85,28 +85,28 @@ namespace MsgPack
 
 		private static void TestLong( long val )
 		{
-			MessagePackObject objInt = unchecked( ( int )( val & 0xffffffff ) );
+			MessagePackObject objInt = unchecked(( int )( val & 0xffffffff ));
 			MessagePackObject objLong = val;
 			if ( val > ( long )Int32.MaxValue || val < ( long )Int32.MinValue )
 			{
 #pragma warning disable 1718
-				Assert.IsTrue( objInt == objInt );
+				Assert.That( objInt == objInt, Is.True );
 #pragma warning restore 1718
-				Assert.IsFalse( objInt == objLong );
-				Assert.IsFalse( objLong == objInt );
+				Assert.That( objInt == objLong, Is.False );
+				Assert.That( objLong == objInt, Is.False );
 #pragma warning disable 1718
-				Assert.IsTrue( objLong == objLong );
+				Assert.That( objLong == objLong, Is.True );
 #pragma warning restore 1718
 			}
 			else
 			{
 #pragma warning disable 1718
-				Assert.IsTrue( objInt == objInt );
+				Assert.That( objInt == objInt, Is.True );
 #pragma warning restore 1718
-				Assert.IsTrue( objInt == objLong );
-				Assert.IsTrue( objLong == objInt );
+				Assert.That( objInt == objLong, Is.True );
+				Assert.That( objLong == objInt, Is.True );
 #pragma warning disable 1718
-				Assert.IsTrue( objLong == objLong );
+				Assert.That( objLong == objLong, Is.True );
 #pragma warning restore 1718
 			}
 		}
@@ -115,11 +115,11 @@ namespace MsgPack
 		public void TestNil()
 		{
 #pragma warning disable 1718
-			Assert.IsTrue( MessagePackObject.Nil == MessagePackObject.Nil );
+			Assert.That( MessagePackObject.Nil == MessagePackObject.Nil, Is.True );
 #pragma warning restore 1718
-			Assert.IsTrue( MessagePackObject.Nil == default( MessagePackObject ) );
-			Assert.IsFalse( MessagePackObject.Nil == 0 );
-			Assert.IsFalse( MessagePackObject.Nil == false );
+			Assert.That( MessagePackObject.Nil == default( MessagePackObject ), Is.True );
+			Assert.That( MessagePackObject.Nil == 0, Is.False );
+			Assert.That( MessagePackObject.Nil == false, Is.False );
 		}
 
 		[Test]
@@ -133,7 +133,7 @@ namespace MsgPack
 
 		private static void TestString( String str )
 		{
-			Assert.IsTrue( new MessagePackObject( Encoding.UTF8.GetBytes( str ) ) == Encoding.UTF8.GetBytes( str ) );
+			Assert.That( new MessagePackObject( Encoding.UTF8.GetBytes( str ) ) == Encoding.UTF8.GetBytes( str ), Is.True );
 		}
 	}
 }

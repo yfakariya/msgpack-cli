@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{3889C9BE-0473-4B41-80E8-C4C923E837E7}</ProjectGuid>
@@ -6,22 +6,17 @@
     <AssemblyName>MsgPack.UnitTest</AssemblyName>
   </PropertyGroup>
   <Import Project="..\..\MsgPack.Common.props" />
-  <PropertyGroup>
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter"/>
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
     <!-- To avoid PDB Reader error -->
     <!-- <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" /> -->
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="Microsoft.CSharp" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="System.ValueTuple" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="gen35\**\*.cs" />

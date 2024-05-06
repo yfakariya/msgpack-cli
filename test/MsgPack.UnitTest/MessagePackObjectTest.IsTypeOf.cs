@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -38,130 +38,130 @@ namespace MsgPack
 		[Test]
 		public void TestIsTypeOf_Single_IsTypeOfSingle_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( 1.0f ).IsTypeOf( typeof( Single ) ) );
+			Assert.That( new MessagePackObject( 1.0f ).IsTypeOf( typeof( Single ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Single_IsTypeOfDouble_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( 1.0f ).IsTypeOf( typeof( Double ) ) );
+			Assert.That( new MessagePackObject( 1.0f ).IsTypeOf( typeof( Double ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Single_IsTypeOfInt32_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( 1.0f ).IsTypeOf( typeof( Int32 ) ) );
+			Assert.That( new MessagePackObject( 1.0f ).IsTypeOf( typeof( Int32 ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Nil_IsTypeOfSingle_False()
 		{
-			Assert.AreEqual( false, MessagePackObject.Nil.IsTypeOf( typeof( Single ) ) );
+			Assert.That( MessagePackObject.Nil.IsTypeOf( typeof( Single ) ), Is.False );
 		}
 
 
 		[Test]
 		public void TestIsTypeOf_Double_IsTypeOfSingle_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( 1.0 ).IsTypeOf( typeof( Single ) ) );
+			Assert.That( new MessagePackObject( 1.0 ).IsTypeOf( typeof( Single ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Double_IsTypeOfDouble_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( 1.0 ).IsTypeOf( typeof( Double ) ) );
+			Assert.That( new MessagePackObject( 1.0 ).IsTypeOf( typeof( Double ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Double_IsTypeOfInt32_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( 1.0 ).IsTypeOf( typeof( Int32 ) ) );
+			Assert.That( new MessagePackObject( 1.0 ).IsTypeOf( typeof( Int32 ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Nil_IsTypeOfDouble_False()
 		{
-			Assert.AreEqual( false, MessagePackObject.Nil.IsTypeOf( typeof( Double ) ) );
+			Assert.That( MessagePackObject.Nil.IsTypeOf( typeof( Double ) ), Is.False );
 		}
 
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfByteArray_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( byte[] ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( byte[] ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfIEnumerableOfByte_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IEnumerable<byte> ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IEnumerable<byte> ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfIListOfByte_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IList<byte> ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IList<byte> ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfListOfByte_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( List<byte> ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( List<byte> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfString_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( string ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( string ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfCharArray_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( char[] ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( char[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfIEnumerableOfChar_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IEnumerable<char> ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IEnumerable<char> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfIListOfChar_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IList<char> ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( IList<char> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_NonStringBinary_IsTypeOfListOfChar_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( List<char> ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( List<char> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsRaw_NonStringBinary_True()
 		{
-			Assert.IsTrue( new MessagePackObject( new byte[] { 0xff } ).IsRaw );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsRaw, Is.True );
 		}
 
 
 		[Test]
 		public void TestIsTypeOf_Binary_IsTypeOfMessagePackExtendedTypeObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( MessagePackExtendedTypeObject ) ) );
+			Assert.That( new MessagePackObject( new byte[] { 0xff } ).IsTypeOf( typeof( MessagePackExtendedTypeObject ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_MessagePackExtendedTypeObject_IsTypeOfMessagePackExtendedTypeObject_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject( new MessagePackExtendedTypeObject( 1, new byte[] { 1 } ) ).IsTypeOf( typeof( MessagePackExtendedTypeObject ) ) );
+			Assert.That( new MessagePackObject( new MessagePackExtendedTypeObject( 1, new byte[] { 1 } ) ).IsTypeOf( typeof( MessagePackExtendedTypeObject ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_Nil_IsTypeOfMessagePackExtendedTypeObject_False()
 		{
-			Assert.AreEqual( false, MessagePackObject.Nil.IsTypeOf( typeof( MessagePackExtendedTypeObject ) ) );
+			Assert.That( MessagePackObject.Nil.IsTypeOf( typeof( MessagePackExtendedTypeObject ) ), Is.False );
 		}
 	}
 }

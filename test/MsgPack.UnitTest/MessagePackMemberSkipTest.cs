@@ -76,16 +76,16 @@ namespace MsgPack
 			// 3. Deserialize object from the specified stream.
 			var deserializedObject = serializer.Unpack( stream );
 
-			Assert.AreEqual( targetObject.Comment, deserializedObject.Comment );
-			Assert.AreEqual( targetObject.Id, deserializedObject.Id );
-			Assert.AreEqual( targetObject.Date, deserializedObject.Date );
-			Assert.AreEqual( targetObject.Title, deserializedObject.Title );
-			Assert.Null( deserializedObject.Image );
-			Assert.AreEqual( targetObject.Tags.Count, deserializedObject.Tags.Count );
+			Assert.That( deserializedObject.Comment, Is.EqualTo( targetObject.Comment ) );
+			Assert.That( deserializedObject.Id, Is.EqualTo( targetObject.Id ) );
+			Assert.That( deserializedObject.Date, Is.EqualTo( targetObject.Date ) );
+			Assert.That( deserializedObject.Title, Is.EqualTo( targetObject.Title ) );
+			Assert.That( deserializedObject.Image, Is.Null );
+			Assert.That( deserializedObject.Tags.Count, Is.EqualTo( targetObject.Tags.Count ) );
 			for ( int i = 0; i < deserializedObject.Tags.Count; i++ )
 			{
-				Assert.AreEqual( targetObject.Tags[ i ].Id, deserializedObject.Tags[ i ].Id );
-				Assert.Null( deserializedObject.Tags[ i ].Name );
+				Assert.That( deserializedObject.Tags[ i ].Id, Is.EqualTo( targetObject.Tags[ i ].Id ) );
+				Assert.That( deserializedObject.Tags[ i ].Name, Is.Null );
 			}
 
 			//// TODO: @yfakariya, Need help, how i can achieve below....
@@ -150,16 +150,16 @@ namespace MsgPack
 			// 3. Deserialize object from the specified stream.
 			var deserializedObject = serializer.Unpack( stream );
 
-			Assert.AreEqual( targetObject.Comment, deserializedObject.Comment );
-			Assert.AreEqual( targetObject.Id, deserializedObject.Id );
-			Assert.AreEqual( targetObject.Date, deserializedObject.Date );
-			Assert.AreEqual( targetObject.Title, deserializedObject.Title );
-			Assert.Null( deserializedObject.Image );
-			Assert.AreEqual( targetObject.Tags.Count, deserializedObject.Tags.Count );
+			Assert.That( deserializedObject.Comment, Is.EqualTo( targetObject.Comment ) );
+			Assert.That( deserializedObject.Id, Is.EqualTo( targetObject.Id ) );
+			Assert.That( deserializedObject.Date, Is.EqualTo( targetObject.Date ) );
+			Assert.That( deserializedObject.Title, Is.EqualTo( targetObject.Title ) );
+			Assert.That( deserializedObject.Image, Is.Null );
+			Assert.That( deserializedObject.Tags.Count, Is.EqualTo( targetObject.Tags.Count ) );
 			for ( int i = 0; i < deserializedObject.Tags.Count; i++ )
 			{
-				Assert.AreEqual( targetObject.Tags[ i ].Id, deserializedObject.Tags[ i ].Id );
-				Assert.Null( deserializedObject.Tags[ i ].Name );
+				Assert.That( deserializedObject.Tags[ i ].Id, Is.EqualTo( targetObject.Tags[ i ].Id ) );
+				Assert.That( deserializedObject.Tags[ i ].Name, Is.Null );
 			}
 
 			SerializationContext newContext = new SerializationContext();
@@ -173,16 +173,16 @@ namespace MsgPack
 			// 3. Deserialize object from the specified stream.
 			deserializedObject = serializer.Unpack( stream );
 
-			Assert.AreEqual( targetObject.Comment, deserializedObject.Comment );
-			Assert.AreEqual( targetObject.Id, deserializedObject.Id );
-			Assert.AreEqual( targetObject.Date, deserializedObject.Date );
-			Assert.AreEqual( targetObject.Title, deserializedObject.Title );
-			Assert.Null( deserializedObject.Image );
-			Assert.AreEqual( targetObject.Tags.Count, deserializedObject.Tags.Count );
+			Assert.That( deserializedObject.Comment, Is.EqualTo( targetObject.Comment ) );
+			Assert.That( deserializedObject.Id, Is.EqualTo( targetObject.Id ) );
+			Assert.That( deserializedObject.Date, Is.EqualTo( targetObject.Date ) );
+			Assert.That( deserializedObject.Title, Is.EqualTo( targetObject.Title ) );
+			Assert.That( deserializedObject.Image, Is.Null );
+			Assert.That( deserializedObject.Tags.Count, Is.EqualTo( targetObject.Tags.Count ) );
 			for ( int i = 0; i < deserializedObject.Tags.Count; i++ )
 			{
-				Assert.AreEqual( targetObject.Tags[ i ].Id, deserializedObject.Tags[ i ].Id );
-				Assert.Null( deserializedObject.Tags[ i ].Name );
+				Assert.That( deserializedObject.Tags[ i ].Id, Is.EqualTo( targetObject.Tags[ i ].Id ) );
+				Assert.That( deserializedObject.Tags[ i ].Name, Is.Null );
 			}
 		}
 	}

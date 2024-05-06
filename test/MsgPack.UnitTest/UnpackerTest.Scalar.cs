@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -46,11 +46,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD3, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -9223372036854775808 ) );
 			}
 		}
@@ -62,7 +62,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -9223372036854775808 ) );
 			}
 		}
@@ -74,7 +74,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -9223372036854775808 ) );
 			}
 		}
@@ -85,11 +85,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -2147483649 ) );
 			}
 		}
@@ -101,7 +101,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -2147483649 ) );
 			}
 		}
@@ -113,7 +113,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -2147483649 ) );
 			}
 		}
@@ -124,11 +124,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD2, 0x80, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -2147483648 ) );
 			}
 		}
@@ -140,7 +140,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -2147483648 ) );
 			}
 		}
@@ -152,7 +152,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -2147483648 ) );
 			}
 		}
@@ -163,11 +163,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0x7F, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32769 ) );
 			}
 		}
@@ -179,7 +179,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -32769 ) );
 			}
 		}
@@ -191,7 +191,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -32769 ) );
 			}
 		}
@@ -202,11 +202,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD1, 0x80, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32768 ) );
 			}
 		}
@@ -218,7 +218,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -32768 ) );
 			}
 		}
@@ -230,7 +230,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -32768 ) );
 			}
 		}
@@ -241,11 +241,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0x7F } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -129 ) );
 			}
 		}
@@ -257,7 +257,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -129 ) );
 			}
 		}
@@ -269,7 +269,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -129 ) );
 			}
 		}
@@ -280,11 +280,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD0, 0x80 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -128 ) );
 			}
 		}
@@ -296,7 +296,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -128 ) );
 			}
 		}
@@ -308,7 +308,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -128 ) );
 			}
 		}
@@ -319,11 +319,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD0, 0xDF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -33 ) );
 			}
 		}
@@ -335,7 +335,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -33 ) );
 			}
 		}
@@ -347,7 +347,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -33 ) );
 			}
 		}
@@ -358,11 +358,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xE0 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32 ) );
 			}
 		}
@@ -374,7 +374,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -32 ) );
 			}
 		}
@@ -386,7 +386,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -32 ) );
 			}
 		}
@@ -397,11 +397,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -1 ) );
 			}
 		}
@@ -413,7 +413,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -1 ) );
 			}
 		}
@@ -425,7 +425,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -1 ) );
 			}
 		}
@@ -436,11 +436,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0x0 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 0 ) );
 			}
 		}
@@ -452,7 +452,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 0 ) );
 			}
 		}
@@ -464,7 +464,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 0 ) );
 			}
 		}
@@ -475,11 +475,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0x1 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 1 ) );
 			}
 		}
@@ -491,7 +491,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 1 ) );
 			}
 		}
@@ -503,7 +503,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 1 ) );
 			}
 		}
@@ -514,11 +514,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0x7F } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 127 ) );
 			}
 		}
@@ -530,7 +530,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 127 ) );
 			}
 		}
@@ -542,7 +542,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 127 ) );
 			}
 		}
@@ -553,11 +553,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCC, 0x80 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 128 ) );
 			}
 		}
@@ -569,7 +569,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 128 ) );
 			}
 		}
@@ -581,7 +581,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 128 ) );
 			}
 		}
@@ -592,11 +592,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCC, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 255 ) );
 			}
 		}
@@ -608,7 +608,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 255 ) );
 			}
 		}
@@ -620,7 +620,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 255 ) );
 			}
 		}
@@ -631,11 +631,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCD, 0x1, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 256 ) );
 			}
 		}
@@ -647,7 +647,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 256 ) );
 			}
 		}
@@ -659,7 +659,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 256 ) );
 			}
 		}
@@ -670,11 +670,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCD, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 65535 ) );
 			}
 		}
@@ -686,7 +686,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 65535 ) );
 			}
 		}
@@ -698,7 +698,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 65535 ) );
 			}
 		}
@@ -709,11 +709,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCE, 0x0, 0x1, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 65536 ) );
 			}
 		}
@@ -725,7 +725,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 65536 ) );
 			}
 		}
@@ -737,7 +737,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 65536 ) );
 			}
 		}
@@ -748,11 +748,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCE, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 4294967295 ) );
 			}
 		}
@@ -764,7 +764,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 4294967295 ) );
 			}
 		}
@@ -776,7 +776,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 4294967295 ) );
 			}
 		}
@@ -787,11 +787,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCF, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 4294967296 ) );
 			}
 		}
@@ -803,7 +803,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 4294967296 ) );
 			}
 		}
@@ -815,7 +815,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 4294967296 ) );
 			}
 		}
@@ -826,11 +826,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 18446744073709551615 ) );
 			}
 		}
@@ -842,7 +842,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 18446744073709551615 ) );
 			}
 		}
@@ -854,7 +854,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 18446744073709551615 ) );
 			}
 		}
@@ -865,11 +865,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xC3 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( true ) );
 			}
 		}
@@ -881,7 +881,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Boolean result;
-				Assert.IsTrue( unpacker.ReadBoolean( out result ) );
+				Assert.That( unpacker.ReadBoolean( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( true ) );
 			}
 		}
@@ -893,7 +893,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Boolean? result;
-				Assert.IsTrue( unpacker.ReadNullableBoolean( out result ) );
+				Assert.That( unpacker.ReadNullableBoolean( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( true ) );
 			}
 		}
@@ -904,11 +904,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xC2 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( false ) );
 			}
 		}
@@ -920,7 +920,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Boolean result;
-				Assert.IsTrue( unpacker.ReadBoolean( out result ) );
+				Assert.That( unpacker.ReadBoolean( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( false ) );
 			}
 		}
@@ -932,7 +932,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Boolean? result;
-				Assert.IsTrue( unpacker.ReadNullableBoolean( out result ) );
+				Assert.That( unpacker.ReadNullableBoolean( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( false ) );
 			}
 		}
@@ -943,11 +943,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x7F, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.MinValue.Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -959,7 +959,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.MinValue.Equals( result ) );
 			}
 		}
@@ -971,7 +971,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.MinValue.Equals( result.Value ) );
 			}
 		}
@@ -982,11 +982,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x7F, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.MaxValue.Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -998,7 +998,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.MaxValue.Equals( result ) );
 			}
 		}
@@ -1010,7 +1010,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.MaxValue.Equals( result.Value ) );
 			}
 		}
@@ -1021,11 +1021,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.Epsilon.Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -1037,7 +1037,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.Epsilon.Equals( result ) );
 			}
 		}
@@ -1049,7 +1049,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.Epsilon.Equals( result.Value ) );
 			}
 		}
@@ -1060,11 +1060,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( 0.0f ).Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -1076,7 +1076,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( ( 0.0f ).Equals( result ) );
 			}
 		}
@@ -1088,7 +1088,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( ( 0.0f ).Equals( result.Value ) );
 			}
 		}
@@ -1099,11 +1099,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x80, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( -0.0f ).Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -1115,7 +1115,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( ( -0.0f ).Equals( result ) );
 			}
 		}
@@ -1127,7 +1127,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( ( -0.0f ).Equals( result.Value ) );
 			}
 		}
@@ -1138,11 +1138,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x80, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -1154,7 +1154,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result ) );
 			}
 		}
@@ -1166,7 +1166,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
 		}
@@ -1177,11 +1177,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -1193,7 +1193,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result ) );
 			}
 		}
@@ -1205,7 +1205,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
 		}
@@ -1216,11 +1216,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x80, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -1232,7 +1232,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result ) );
 			}
 		}
@@ -1244,7 +1244,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
 		}
@@ -1255,11 +1255,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -1271,7 +1271,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result ) );
 			}
 		}
@@ -1283,7 +1283,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
 		}
@@ -1294,11 +1294,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x80, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNegativeInfinity( ( System.Single )result.Value ) );
 			}
 		}
@@ -1310,7 +1310,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.IsNegativeInfinity( result ) );
 			}
 		}
@@ -1322,7 +1322,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.IsNegativeInfinity( result.Value ) );
 			}
 		}
@@ -1333,11 +1333,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x80, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsPositiveInfinity( ( System.Single )result.Value ) );
 			}
 		}
@@ -1349,7 +1349,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.IsPositiveInfinity( result ) );
 			}
 		}
@@ -1361,7 +1361,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.IsPositiveInfinity( result.Value ) );
 			}
 		}
@@ -1372,11 +1372,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.MinValue.Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -1388,7 +1388,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.MinValue.Equals( result ) );
 			}
 		}
@@ -1400,7 +1400,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.MinValue.Equals( result.Value ) );
 			}
 		}
@@ -1411,11 +1411,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.MaxValue.Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -1427,7 +1427,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.MaxValue.Equals( result ) );
 			}
 		}
@@ -1439,7 +1439,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.MaxValue.Equals( result.Value ) );
 			}
 		}
@@ -1450,11 +1450,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.Epsilon.Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -1466,7 +1466,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.Epsilon.Equals( result ) );
 			}
 		}
@@ -1478,7 +1478,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.Epsilon.Equals( result.Value ) );
 			}
 		}
@@ -1489,11 +1489,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( 0.0 ).Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -1505,7 +1505,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( ( 0.0 ).Equals( result ) );
 			}
 		}
@@ -1517,7 +1517,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( ( 0.0 ).Equals( result.Value ) );
 			}
 		}
@@ -1528,11 +1528,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( -0.0 ).Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -1544,7 +1544,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( ( -0.0 ).Equals( result ) );
 			}
 		}
@@ -1556,7 +1556,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( ( -0.0 ).Equals( result.Value ) );
 			}
 		}
@@ -1567,11 +1567,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -1583,7 +1583,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result ) );
 			}
 		}
@@ -1595,7 +1595,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
 		}
@@ -1606,11 +1606,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -1622,7 +1622,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result ) );
 			}
 		}
@@ -1634,7 +1634,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
 		}
@@ -1645,11 +1645,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -1661,7 +1661,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result ) );
 			}
 		}
@@ -1673,7 +1673,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
 		}
@@ -1684,11 +1684,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -1700,7 +1700,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result ) );
 			}
 		}
@@ -1712,7 +1712,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
 		}
@@ -1723,11 +1723,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNegativeInfinity( ( System.Double )result.Value ) );
 			}
 		}
@@ -1739,7 +1739,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.IsNegativeInfinity( result ) );
 			}
 		}
@@ -1751,7 +1751,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.IsNegativeInfinity( result.Value ) );
 			}
 		}
@@ -1762,11 +1762,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsPositiveInfinity( ( System.Double )result.Value ) );
 			}
 		}
@@ -1778,7 +1778,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.IsPositiveInfinity( result ) );
 			}
 		}
@@ -1790,7 +1790,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.IsPositiveInfinity( result.Value ) );
 			}
 		}
@@ -1802,7 +1802,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Boolean? result;
-				Assert.IsTrue( unpacker.ReadNullableBoolean( out result ) );
+				Assert.That( unpacker.ReadNullableBoolean( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1814,7 +1814,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1826,7 +1826,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1838,7 +1838,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				SByte? result;
-				Assert.IsTrue( unpacker.ReadNullableSByte( out result ) );
+				Assert.That( unpacker.ReadNullableSByte( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1850,7 +1850,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int16? result;
-				Assert.IsTrue( unpacker.ReadNullableInt16( out result ) );
+				Assert.That( unpacker.ReadNullableInt16( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1862,7 +1862,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int32? result;
-				Assert.IsTrue( unpacker.ReadNullableInt32( out result ) );
+				Assert.That( unpacker.ReadNullableInt32( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1874,7 +1874,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1886,7 +1886,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte? result;
-				Assert.IsTrue( unpacker.ReadNullableByte( out result ) );
+				Assert.That( unpacker.ReadNullableByte( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1898,7 +1898,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt16? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt16( out result ) );
+				Assert.That( unpacker.ReadNullableUInt16( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1910,7 +1910,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt32? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt32( out result ) );
+				Assert.That( unpacker.ReadNullableUInt32( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1922,7 +1922,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result, Is.Null );
 			}
 		}
@@ -1935,11 +1935,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD3, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -9223372036854775808 ) );
 			}
 		}
@@ -1952,7 +1952,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -9223372036854775808 ) );
 			}
@@ -1966,7 +1966,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -9223372036854775808 ) );
 			}
@@ -1978,11 +1978,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -2147483649 ) );
 			}
 		}
@@ -1995,7 +1995,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -2147483649 ) );
 			}
@@ -2009,7 +2009,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -2147483649 ) );
 			}
@@ -2021,11 +2021,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD2, 0x80, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -2147483648 ) );
 			}
 		}
@@ -2038,7 +2038,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -2147483648 ) );
 			}
@@ -2052,7 +2052,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -2147483648 ) );
 			}
@@ -2064,11 +2064,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0x7F, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32769 ) );
 			}
 		}
@@ -2081,7 +2081,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -32769 ) );
 			}
@@ -2095,7 +2095,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -32769 ) );
 			}
@@ -2107,11 +2107,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD1, 0x80, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32768 ) );
 			}
 		}
@@ -2124,7 +2124,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -32768 ) );
 			}
@@ -2138,7 +2138,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -32768 ) );
 			}
@@ -2150,11 +2150,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0x7F } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -129 ) );
 			}
 		}
@@ -2167,7 +2167,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -129 ) );
 			}
@@ -2181,7 +2181,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -129 ) );
 			}
@@ -2193,11 +2193,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD0, 0x80 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -128 ) );
 			}
 		}
@@ -2210,7 +2210,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -128 ) );
 			}
@@ -2224,7 +2224,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -128 ) );
 			}
@@ -2236,11 +2236,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xD0, 0xDF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -33 ) );
 			}
 		}
@@ -2253,7 +2253,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -33 ) );
 			}
@@ -2267,7 +2267,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -33 ) );
 			}
@@ -2279,11 +2279,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xE0 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32 ) );
 			}
 		}
@@ -2296,7 +2296,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -32 ) );
 			}
@@ -2310,7 +2310,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -32 ) );
 			}
@@ -2322,11 +2322,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -1 ) );
 			}
 		}
@@ -2339,7 +2339,7 @@ namespace MsgPack
 			{
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -1 ) );
 			}
@@ -2353,7 +2353,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -1 ) );
 			}
@@ -2365,11 +2365,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0x0 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 0 ) );
 			}
 		}
@@ -2382,7 +2382,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 0 ) );
 			}
@@ -2396,7 +2396,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 0 ) );
 			}
@@ -2408,11 +2408,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0x1 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 1 ) );
 			}
 		}
@@ -2425,7 +2425,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 1 ) );
 			}
@@ -2439,7 +2439,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 1 ) );
 			}
@@ -2451,11 +2451,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0x7F } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 127 ) );
 			}
 		}
@@ -2468,7 +2468,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 127 ) );
 			}
@@ -2482,7 +2482,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 127 ) );
 			}
@@ -2494,11 +2494,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCC, 0x80 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 128 ) );
 			}
 		}
@@ -2511,7 +2511,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 128 ) );
 			}
@@ -2525,7 +2525,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 128 ) );
 			}
@@ -2537,11 +2537,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCC, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 255 ) );
 			}
 		}
@@ -2554,7 +2554,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 255 ) );
 			}
@@ -2568,7 +2568,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 255 ) );
 			}
@@ -2580,11 +2580,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCD, 0x1, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 256 ) );
 			}
 		}
@@ -2597,7 +2597,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 256 ) );
 			}
@@ -2611,7 +2611,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 256 ) );
 			}
@@ -2623,11 +2623,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCD, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 65535 ) );
 			}
 		}
@@ -2640,7 +2640,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 65535 ) );
 			}
@@ -2654,7 +2654,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 65535 ) );
 			}
@@ -2666,11 +2666,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCE, 0x0, 0x1, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 65536 ) );
 			}
 		}
@@ -2683,7 +2683,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 65536 ) );
 			}
@@ -2697,7 +2697,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 65536 ) );
 			}
@@ -2709,11 +2709,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCE, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 4294967295 ) );
 			}
 		}
@@ -2726,7 +2726,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 4294967295 ) );
 			}
@@ -2740,7 +2740,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 4294967295 ) );
 			}
@@ -2752,11 +2752,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCF, 0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 4294967296 ) );
 			}
 		}
@@ -2769,7 +2769,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 4294967296 ) );
 			}
@@ -2783,7 +2783,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 4294967296 ) );
 			}
@@ -2795,11 +2795,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 18446744073709551615 ) );
 			}
 		}
@@ -2812,7 +2812,7 @@ namespace MsgPack
 			{
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 18446744073709551615 ) );
 			}
@@ -2826,7 +2826,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 18446744073709551615 ) );
 			}
@@ -2838,11 +2838,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xC3 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( true ) );
 			}
 		}
@@ -2855,7 +2855,7 @@ namespace MsgPack
 			{
 				Boolean result;
 				var ret = await unpacker.ReadBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( true ) );
 			}
@@ -2869,7 +2869,7 @@ namespace MsgPack
 			{
 				Boolean? result;
 				var ret = await unpacker.ReadNullableBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( true ) );
 			}
@@ -2881,11 +2881,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xC2 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( false ) );
 			}
 		}
@@ -2898,7 +2898,7 @@ namespace MsgPack
 			{
 				Boolean result;
 				var ret = await unpacker.ReadBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( false ) );
 			}
@@ -2912,7 +2912,7 @@ namespace MsgPack
 			{
 				Boolean? result;
 				var ret = await unpacker.ReadNullableBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( false ) );
 			}
@@ -2924,11 +2924,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x7F, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.MinValue.Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -2941,7 +2941,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.MinValue.Equals( result ) );
 			}
@@ -2955,7 +2955,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.MinValue.Equals( result.Value ) );
 			}
@@ -2967,11 +2967,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x7F, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.MaxValue.Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -2984,7 +2984,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.MaxValue.Equals( result ) );
 			}
@@ -2998,7 +2998,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.MaxValue.Equals( result.Value ) );
 			}
@@ -3010,11 +3010,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.Epsilon.Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -3027,7 +3027,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.Epsilon.Equals( result ) );
 			}
@@ -3041,7 +3041,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.Epsilon.Equals( result.Value ) );
 			}
@@ -3053,11 +3053,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( 0.0f ).Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -3070,7 +3070,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( 0.0f ).Equals( result ) );
 			}
@@ -3084,7 +3084,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( 0.0f ).Equals( result.Value ) );
 			}
@@ -3096,11 +3096,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x80, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( -0.0f ).Equals( ( System.Single )result.Value ) );
 			}
 		}
@@ -3113,7 +3113,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( -0.0f ).Equals( result ) );
 			}
@@ -3127,7 +3127,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( -0.0f ).Equals( result.Value ) );
 			}
@@ -3139,11 +3139,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x80, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -3156,7 +3156,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result ) );
 			}
@@ -3170,7 +3170,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
@@ -3182,11 +3182,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -3199,7 +3199,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result ) );
 			}
@@ -3213,7 +3213,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
@@ -3225,11 +3225,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x80, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -3242,7 +3242,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result ) );
 			}
@@ -3256,7 +3256,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
@@ -3268,11 +3268,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNaN( ( System.Single )result.Value ) );
 			}
 		}
@@ -3285,7 +3285,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result ) );
 			}
@@ -3299,7 +3299,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNaN( result.Value ) );
 			}
@@ -3311,11 +3311,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x80, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsNegativeInfinity( ( System.Single )result.Value ) );
 			}
 		}
@@ -3328,7 +3328,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNegativeInfinity( result ) );
 			}
@@ -3342,7 +3342,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsNegativeInfinity( result.Value ) );
 			}
@@ -3354,11 +3354,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x80, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.IsPositiveInfinity( ( System.Single )result.Value ) );
 			}
 		}
@@ -3371,7 +3371,7 @@ namespace MsgPack
 			{
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsPositiveInfinity( result ) );
 			}
@@ -3385,7 +3385,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.IsPositiveInfinity( result.Value ) );
 			}
@@ -3397,11 +3397,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.MinValue.Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -3414,7 +3414,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.MinValue.Equals( result ) );
 			}
@@ -3428,7 +3428,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.MinValue.Equals( result.Value ) );
 			}
@@ -3440,11 +3440,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.MaxValue.Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -3457,7 +3457,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.MaxValue.Equals( result ) );
 			}
@@ -3471,7 +3471,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.MaxValue.Equals( result.Value ) );
 			}
@@ -3483,11 +3483,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.Epsilon.Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -3500,7 +3500,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.Epsilon.Equals( result ) );
 			}
@@ -3514,7 +3514,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.Epsilon.Equals( result.Value ) );
 			}
@@ -3526,11 +3526,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( 0.0 ).Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -3543,7 +3543,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( 0.0 ).Equals( result ) );
 			}
@@ -3557,7 +3557,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( 0.0 ).Equals( result.Value ) );
 			}
@@ -3569,11 +3569,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( -0.0 ).Equals( ( System.Double )result.Value ) );
 			}
 		}
@@ -3586,7 +3586,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( -0.0 ).Equals( result ) );
 			}
@@ -3600,7 +3600,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( ( -0.0 ).Equals( result.Value ) );
 			}
@@ -3612,11 +3612,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -3629,7 +3629,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result ) );
 			}
@@ -3643,7 +3643,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
@@ -3655,11 +3655,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -3672,7 +3672,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result ) );
 			}
@@ -3686,7 +3686,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
@@ -3698,11 +3698,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -3715,7 +3715,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result ) );
 			}
@@ -3729,7 +3729,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
@@ -3741,11 +3741,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNaN( ( System.Double )result.Value ) );
 			}
 		}
@@ -3758,7 +3758,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result ) );
 			}
@@ -3772,7 +3772,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNaN( result.Value ) );
 			}
@@ -3784,11 +3784,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsNegativeInfinity( ( System.Double )result.Value ) );
 			}
 		}
@@ -3801,7 +3801,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNegativeInfinity( result ) );
 			}
@@ -3815,7 +3815,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsNegativeInfinity( result.Value ) );
 			}
@@ -3827,11 +3827,11 @@ namespace MsgPack
 			using( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.IsPositiveInfinity( ( System.Double )result.Value ) );
 			}
 		}
@@ -3844,7 +3844,7 @@ namespace MsgPack
 			{
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsPositiveInfinity( result ) );
 			}
@@ -3858,7 +3858,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.IsPositiveInfinity( result.Value ) );
 			}
@@ -3872,7 +3872,7 @@ namespace MsgPack
 			{
 				Boolean? result;
 				var ret = await unpacker.ReadNullableBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3886,7 +3886,7 @@ namespace MsgPack
 			{
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3900,7 +3900,7 @@ namespace MsgPack
 			{
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3914,7 +3914,7 @@ namespace MsgPack
 			{
 				SByte? result;
 				var ret = await unpacker.ReadNullableSByteAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3928,7 +3928,7 @@ namespace MsgPack
 			{
 				Int16? result;
 				var ret = await unpacker.ReadNullableInt16Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3942,7 +3942,7 @@ namespace MsgPack
 			{
 				Int32? result;
 				var ret = await unpacker.ReadNullableInt32Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3956,7 +3956,7 @@ namespace MsgPack
 			{
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3970,7 +3970,7 @@ namespace MsgPack
 			{
 				Byte? result;
 				var ret = await unpacker.ReadNullableByteAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3984,7 +3984,7 @@ namespace MsgPack
 			{
 				UInt16? result;
 				var ret = await unpacker.ReadNullableUInt16Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -3998,7 +3998,7 @@ namespace MsgPack
 			{
 				UInt32? result;
 				var ret = await unpacker.ReadNullableUInt32Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}
@@ -4012,7 +4012,7 @@ namespace MsgPack
 			{
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 			}

@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -142,7 +142,7 @@ foreach( var __type in __integerTypes )
 		private static void TestAs<#= __type.Name #>( <#= __type.Name #> value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( <#= __type.Name #> )target );
+			Assert.That( ( <#= __type.Name #> )target, Is.EqualTo( value ) );
 		}
 		
 <#
@@ -243,7 +243,7 @@ foreach( var __type in __floatingTypes )
 		private static void TestAs<#= __type.Name #>( <#= __type.Name #> value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( <#= __type.Name #> )target, 10e-10 );
+			Assert.That( ( <#= __type.Name #> )target, Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 <#
 }

@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -62,8 +62,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackByte( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackByte( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackByte( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackByte( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -88,8 +88,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackSByte( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackSByte( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackSByte( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackSByte( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -114,8 +114,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackInt16( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackInt16( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackInt16( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackInt16( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -139,8 +139,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackUInt16( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackUInt16( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackUInt16( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackUInt16( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -165,8 +165,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackInt32( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackInt32( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackInt32( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackInt32( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -190,8 +190,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackUInt32( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackUInt32( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackUInt32( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackUInt32( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -216,8 +216,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackInt64( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackInt64( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackInt64( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackInt64( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -241,8 +241,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackUInt64( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackUInt64( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackUInt64( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackUInt64( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 		[Test]
@@ -271,8 +271,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackSingle( new MemoryStream( output.ToArray() ) ), 10e-10 );
-			Assert.AreEqual( value, Unpacking.UnpackSingle( output.ToArray() ).Value, 10e-10 );
+			Assert.That( Unpacking.UnpackSingle( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ).Within( 10e-10 ) );
+			Assert.That( Unpacking.UnpackSingle( output.ToArray() ).Value, Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 
 		[Test]
@@ -301,8 +301,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackDouble( new MemoryStream( output.ToArray() ) ), 10e-10 );
-			Assert.AreEqual( value, Unpacking.UnpackDouble( output.ToArray() ).Value, 10e-10 );
+			Assert.That( Unpacking.UnpackDouble( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ).Within( 10e-10 ) );
+			Assert.That( Unpacking.UnpackDouble( output.ToArray() ).Value, Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿
+
 #region -- License Terms --
 //
 // MessagePack for CLI
@@ -44,8 +44,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMap0Value_AsFixMap0_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0x80 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0 ) );
 		}
 
 		[Test]
@@ -54,8 +54,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x80 } ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( 0 ) );
 			}
 		}
 
@@ -63,13 +63,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMap0Value_AsFixMap0_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0x80 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -79,13 +79,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x80 } ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result.Count, Is.EqualTo( 0 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -94,8 +94,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMap0Value_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDE, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0 ) );
 		}
 
 		[Test]
@@ -104,8 +104,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0 ) );
 			}
 		}
 
@@ -113,13 +113,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMap0Value_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDE, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -129,13 +129,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result.Count, Is.EqualTo( 0 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -144,8 +144,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMap0Value_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0 ) );
 		}
 
 		[Test]
@@ -154,8 +154,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0 ) );
 			}
 		}
 
@@ -163,13 +163,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMap0Value_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -179,13 +179,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result.Count, Is.EqualTo( 0 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -194,8 +194,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMap1Value_AsFixMap1_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0x81 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x1 ) );
 		}
 
 		[Test]
@@ -204,8 +204,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x81 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0x1, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( 0x1 ) );
 			}
 		}
 
@@ -213,13 +213,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMap1Value_AsFixMap1_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0x81 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() );
-			Assert.AreEqual( 7, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 7 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0x1 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -229,13 +229,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x81 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 7, buffer.Position );
-				Assert.AreEqual( 0x1, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 7 ) );
+				Assert.That( result.Count, Is.EqualTo( 0x1 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -244,8 +244,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMap1Value_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDE, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x1 ) );
 		}
 
 		[Test]
@@ -254,8 +254,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0x1, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0x1 ) );
 			}
 		}
 
@@ -263,13 +263,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMap1Value_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDE, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0x1 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -279,13 +279,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 0x1, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result.Count, Is.EqualTo( 0x1 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -294,8 +294,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMap1Value_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x1 ) );
 		}
 
 		[Test]
@@ -304,8 +304,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0x1, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0x1 ) );
 			}
 		}
 
@@ -313,13 +313,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMap1Value_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() );
-			Assert.AreEqual( 11, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 11 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0x1 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -329,13 +329,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x01 }.Concat( CreateDictionaryBodyBinary( 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 11, buffer.Position );
-				Assert.AreEqual( 0x1, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 11 ) );
+				Assert.That( result.Count, Is.EqualTo( 0x1 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -344,8 +344,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMapMaxValue_AsFixMap15_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0x8F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0xF, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0xF ) );
 		}
 
 		[Test]
@@ -354,8 +354,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x8F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0xF, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( 0xF ) );
 			}
 		}
 
@@ -363,13 +363,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMapMaxValue_AsFixMap15_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0x8F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() );
-			Assert.AreEqual( 91, result.ReadCount );
-			Assert.AreEqual( 0xF, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 91 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0xF ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -379,13 +379,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x8F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 91, buffer.Position );
-				Assert.AreEqual( 0xF, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 91 ) );
+				Assert.That( result.Count, Is.EqualTo( 0xF ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -394,8 +394,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMapMaxValue_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDE, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0xF, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0xF ) );
 		}
 
 		[Test]
@@ -404,8 +404,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0xF, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0xF ) );
 			}
 		}
 
@@ -413,13 +413,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMapMaxValue_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDE, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() );
-			Assert.AreEqual( 93, result.ReadCount );
-			Assert.AreEqual( 0xF, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 93 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0xF ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -429,13 +429,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 93, buffer.Position );
-				Assert.AreEqual( 0xF, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 93 ) );
+				Assert.That( result.Count, Is.EqualTo( 0xF ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -444,8 +444,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_FixMapMaxValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0xF, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0xF ) );
 		}
 
 		[Test]
@@ -454,8 +454,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0xF, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0xF ) );
 			}
 		}
 
@@ -463,13 +463,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_FixMapMaxValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() );
-			Assert.AreEqual( 95, result.ReadCount );
-			Assert.AreEqual( 0xF, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 95 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0xF ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -479,13 +479,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x0F }.Concat( CreateDictionaryBodyBinary( 0xF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 95, buffer.Position );
-				Assert.AreEqual( 0xF, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 95 ) );
+				Assert.That( result.Count, Is.EqualTo( 0xF ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -494,8 +494,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_Map16MinValue_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDE, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0x10, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x10 ) );
 		}
 
 		[Test]
@@ -504,8 +504,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0x10, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0x10 ) );
 			}
 		}
 
@@ -513,13 +513,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_Map16MinValue_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDE, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() );
-			Assert.AreEqual( 99, result.ReadCount );
-			Assert.AreEqual( 0x10, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 99 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0x10 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -529,13 +529,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 99, buffer.Position );
-				Assert.AreEqual( 0x10, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 99 ) );
+				Assert.That( result.Count, Is.EqualTo( 0x10 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -544,8 +544,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_Map16MinValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0x10, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x10 ) );
 		}
 
 		[Test]
@@ -554,8 +554,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0x10, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0x10 ) );
 			}
 		}
 
@@ -563,13 +563,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_Map16MinValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() );
-			Assert.AreEqual( 101, result.ReadCount );
-			Assert.AreEqual( 0x10, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 101 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0x10 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -579,13 +579,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0x00, 0x10 }.Concat( CreateDictionaryBodyBinary( 0x10 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 101, buffer.Position );
-				Assert.AreEqual( 0x10, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 101 ) );
+				Assert.That( result.Count, Is.EqualTo( 0x10 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -594,8 +594,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_Map16MaxValue_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDE, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0xFFFF ) );
 		}
 
 		[Test]
@@ -604,8 +604,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0xFFFF ) );
 			}
 		}
 
@@ -613,13 +613,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_Map16MaxValue_AsMap16_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDE, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 393213, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 393213 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0xFFFF ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -629,13 +629,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDE, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 393213, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 393213 ) );
+				Assert.That( result.Count, Is.EqualTo( 0xFFFF ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -644,8 +644,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_Map16MaxValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDF, 0x00, 0x00, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0xFFFF ) );
 		}
 
 		[Test]
@@ -654,8 +654,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0xFFFF ) );
 			}
 		}
 
@@ -663,13 +663,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_Map16MaxValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDF, 0x00, 0x00, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 393215, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 393215 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0xFFFF ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -679,13 +679,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x00, 0xFF, 0xFF }.Concat( CreateDictionaryBodyBinary( 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 393215, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 393215 ) );
+				Assert.That( result.Count, Is.EqualTo( 0xFFFF ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -694,8 +694,8 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_Map32MinValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xDF, 0x00, 0x01, 0x00, 0x00 }.Concat( CreateDictionaryBodyBinary( 0x10000 ) ).ToArray() );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0x10000, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x10000 ) );
 		}
 
 		[Test]
@@ -704,8 +704,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x01, 0x00, 0x00 }.Concat( CreateDictionaryBodyBinary( 0x10000 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0x10000, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0x10000 ) );
 			}
 		}
 
@@ -713,13 +713,13 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_Map32MinValue_AsMap32_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xDF, 0x00, 0x01, 0x00, 0x00 }.Concat( CreateDictionaryBodyBinary( 0x10000 ) ).ToArray() );
-			Assert.AreEqual( 393221, result.ReadCount );
-			Assert.AreEqual( 0x10000, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( 393221 ) );
+			Assert.That( result.Value.Count, Is.EqualTo( 0x10000 ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -729,13 +729,13 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDF, 0x00, 0x01, 0x00, 0x00 }.Concat( CreateDictionaryBodyBinary( 0x10000 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( 393221, buffer.Position );
-				Assert.AreEqual( 0x10000, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( 393221 ) );
+				Assert.That( result.Count, Is.EqualTo( 0x10000 ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -787,16 +787,16 @@ namespace MsgPack
 		public void TestUnpackDictionaryCount_ByteArray_Offset_OffsetIsValid_OffsetIsRespected()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xFF, 0x80, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0 ) );
 		}
 
 		[Test]
 		public void TestUnpackDictionaryCount_ByteArray_Null_Nil()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xC0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 	
 		[Test]
@@ -809,8 +809,8 @@ namespace MsgPack
 		public void TestUnpackDictionary_ByteArray_Null_Nil()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xC0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 	
 		[Test]

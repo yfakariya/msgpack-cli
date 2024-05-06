@@ -18,7 +18,11 @@
 //
 #endregion -- License Terms --
 
-#if !NETFX_CORE && !WINDOWS_PHONE && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !SILVERLIGHT && !NETSTANDARD2_0
+#if !NET8_0_OR_GREATER
+#if NET6_0_OR_GREATER
+#pragma warning disable SYSLIB0011
+#endif // NET6_0_OR_GREATER
+
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -166,9 +170,9 @@ namespace MsgPack
 				stream.Position = 0;
 				var actual = ( MessagePackObject )formatter.Deserialize( stream );
 
-				Assert.AreEqual( target, actual );
+				Assert.That( actual, Is.EqualTo( target ) );
 			}
 		}
 	}
 }
-#endif // !NETFX_CORE && !WINDOWS_PHONE && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#endif // !NET8_0_OR_GREATER

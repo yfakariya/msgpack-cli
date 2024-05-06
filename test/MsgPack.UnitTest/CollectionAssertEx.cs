@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -58,7 +58,7 @@ namespace MsgPack
 
 						if ( !actualIterator.MoveNext() )
 						{
-							Assert.Fail( "{2}{0}'actual' too short.{0}Index: {1}", Environment.NewLine, index, format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) );
+							Assert.Fail( $"{( format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) )}{Environment.NewLine}'actual' too short.{Environment.NewLine}Index: {index}" );
 						}
 
 						var expectedValue = expectedIterator.Current;
@@ -68,20 +68,20 @@ namespace MsgPack
 						{
 							if ( actualValue != null )
 							{
-								Assert.Fail( "{3}{0}'actual' at {1} is not null.{0}Expcted : null{0}Actual : {2}(0x{2:x})", Environment.NewLine, index, actualValue, format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) );
+								Assert.Fail( $"{( format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) )}{Environment.NewLine}'actual' at {index} is not null.{Environment.NewLine}Expcted : null{Environment.NewLine}Actual : {actualValue}(0x{actualValue:x})" );
 							}
 						}
 						else
 						{
 							if ( expectedValue == null )
 							{
-								Assert.Fail( "{3}{0}'actual' at {1} is not null.{0}Expcted : {2}(0x{2:x}){0}Actual : null", Environment.NewLine, index, expectedValue, format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) );
+								Assert.Fail( $"{( format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) )}{Environment.NewLine}'actual' at {index} is not null.{Environment.NewLine}Expcted : {expectedValue}(0x{expectedValue:x}){Environment.NewLine}Actual : null" );
 							}
 							else
 							{
 								if ( !expectedValue.Equals( actualValue ) )
 								{
-									Assert.Fail( "{4}{0}Items at {1} is not equal.{0}Expcted : {2}(0x{2:x}){0}Actual : {3}(0x{3:x})", Environment.NewLine, index, expectedValue, actualValue, format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) );
+									Assert.Fail( $"{( format == null ? null : String.Format( CultureInfo.CurrentCulture, format, args ) )}{Environment.NewLine}Items at {index} is not equal.{Environment.NewLine}Expcted : {expectedValue}(0x{expectedValue:x}){Environment.NewLine}Actual : {actualValue}(0x{actualValue:x})" );
 								}
 							}
 						}

@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ assembly Name="System.Core" #>
 <#@ assembly Name="System.Numerics" #>
@@ -109,11 +109,11 @@ foreach( var isAsync in new [] { false, true } )
 			using( var splitted = new SplittingStream( buffer ) )
 			using( var unpacker = this.CreateUnpacker( splitted ) )
 			{
-				Assert.IsTrue( <#= ReadAwait( isAsync ) #> );
+				Assert.That( <#= ReadAwait( isAsync ) #>, Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( <#= __testCase.Item4 #> )result.Value, Is.EqualTo( <#= __testCase.Item2 #> ) );
 			}
 		}
@@ -134,14 +134,14 @@ foreach( var isAsync in new [] { false, true } )
 			if( !isAsync )
 			{
 #>
-				Assert.IsTrue( <#= Read( isNullable, __testCase.Item4 ) #> );
+				Assert.That( <#= Read( isNullable, __testCase.Item4 ) #>, Is.True );
 <#
 			}
 			else
 			{
 #>
 				var ret = <#= ReadAwait( isNullable, __testCase.Item4 ) #>;
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 <#
 			}
@@ -164,11 +164,11 @@ foreach( var isAsync in new [] { false, true } )
 			using( var splitted = new SplittingStream( buffer ) )
 			using( var unpacker = this.CreateUnpacker( splitted ) )
 			{
-				Assert.IsTrue( <#= ReadAwait( isAsync ) #> );
+				Assert.That( <#= ReadAwait( isAsync ) #>, Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( <#= __testCase.Item4 #> )result.Value, Is.EqualTo( <#= __testCase.Item2.ToString( CultureInfo.InvariantCulture ).ToLowerInvariant() #> ) );
 			}
 		}
@@ -189,14 +189,14 @@ foreach( var isAsync in new [] { false, true } )
 			if( !isAsync )
 			{
 #>
-				Assert.IsTrue( <#= Read( isNullable, __testCase.Item4 ) #> );
+				Assert.That( <#= Read( isNullable, __testCase.Item4 ) #>, Is.True );
 <#
 			}
 			else
 			{
 #>
 				var ret = <#= ReadAwait( isNullable, __testCase.Item4 ) #>;
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 <#
 			}
@@ -219,11 +219,11 @@ foreach( var isAsync in new [] { false, true } )
 			using( var splitted = new SplittingStream( buffer ) )
 			using( var unpacker = this.CreateUnpacker( splitted ) )
 			{
-				Assert.IsTrue( <#= ReadAwait( isAsync ) #> );
+				Assert.That( <#= ReadAwait( isAsync ) #>, Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( <#= __testCase.Item4 #> ( <#= __testCase.Item3 #> )result.Value ) );
 			}
 		}
@@ -244,14 +244,14 @@ foreach( var isAsync in new [] { false, true } )
 			if( !isAsync )
 			{
 #>
-				Assert.IsTrue( <#= Read( isNullable, __testCase.Item3 ) #> );
+				Assert.That( <#= Read( isNullable, __testCase.Item3 ) #>, Is.True );
 <#
 			}
 			else
 			{
 #>
 				var ret = <#= ReadAwait( isNullable, __testCase.Item3 ) #>;
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 <#
 			}
@@ -286,14 +286,14 @@ foreach( var isAsync in new [] { false, true } )
 			if( !isAsync )
 			{
 #>
-				Assert.IsTrue( <#= Read( true, __scalarType ) #> );
+				Assert.That( <#= Read( true, __scalarType ) #>, Is.True );
 <#
 			}
 			else
 			{
 #>
 				var ret = <#= ReadAwait( true, __scalarType ) #>;
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 <#
 			}

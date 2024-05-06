@@ -544,8 +544,8 @@ namespace MsgPack.Serialization
 			{
 				var result = target.Unpack( buffer );
 				Assert.That( result.Count, Is.EqualTo( 1 ) );
-				Assert.That( result.First().Key == "results", "{0}.Key != results", result.First().Key );
-				Assert.That( result.First().Value.IsList, "{0}.Value is not list", result.First().Value.UnderlyingType );
+				Assert.That( result.First().Key == "results", $"{result.First().Key} != results" );
+				Assert.That( result.First().Value.IsList, $"{result.First().Value.UnderlyingType} is not list" );
 			}
 		}
 
@@ -556,9 +556,9 @@ namespace MsgPack.Serialization
 			using ( var buffer = new MemoryStream( new byte[] { 0x91, 2 } ) )
 			{
 				var result = target.Unpack( buffer );
-				Assert.That( result.IsList, "{0} is not list", result.UnderlyingType );
+				Assert.That( result.IsList, $"{result.UnderlyingType} is not list" );
 				Assert.That( result.AsList().Count, Is.EqualTo( 1 ) );
-				Assert.That( result.AsList().First() == 2, "{0}[0] != 2", result );
+				Assert.That( result.AsList().First() == 2, $"{result}[0] != 2" );
 			}
 		}
 
@@ -569,10 +569,10 @@ namespace MsgPack.Serialization
 			using ( var buffer = new MemoryStream( new byte[] { 0x81, 2, 3 } ) )
 			{
 				var result = target.Unpack( buffer );
-				Assert.That( result.IsDictionary, "{0} is not dictionary", result.UnderlyingType );
+				Assert.That( result.IsDictionary, $"{result.UnderlyingType} is not dictionary" );
 				Assert.That( result.AsDictionary().Count, Is.EqualTo( 1 ) );
-				Assert.That( result.AsDictionary().First().Key == 2, "{0}.First().Key != 2", result );
-				Assert.That( result.AsDictionary().First().Value == 3, "{0}.First().Value != 3", result );
+				Assert.That( result.AsDictionary().First().Key == 2, $"{result}.First().Key != 2" );
+				Assert.That( result.AsDictionary().First().Value == 3, $"{result}.First().Value != 3" );
 			}
 		}
 
@@ -626,7 +626,7 @@ namespace MsgPack.Serialization
 					( u, o ) =>
 					{
 						Assert.That( u.Read(), Is.True );
-						Assert.That( u.LastReadData == o, "{0} == {1}", u.LastReadData, o );
+						Assert.That( u.LastReadData == o, $"{u.LastReadData} == {o}" );
 					};
 
 				assertion( unpacker, 3 );

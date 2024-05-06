@@ -924,7 +924,7 @@ namespace MsgPack
 		{
 			using ( var target = CreateStreamForByteStreamTest() )
 			{
-				Assert.IsFalse( target.CanWrite );
+				Assert.That( target.CanWrite, Is.False );
 			}
 		}
 

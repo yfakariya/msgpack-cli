@@ -479,7 +479,7 @@ namespace MsgPack
 			{
 				target.PackToMessage( packer, new PackingOptions() );
 				var actual = buffer.ToArray();
-				Assert.AreEqual( expected, actual );
+				Assert.That( actual, Is.EqualTo( expected ) );
 			}
 		}
 
@@ -490,7 +490,7 @@ namespace MsgPack
 			{
 				target.PackToMessage( packer, new PackingOptions() );
 				var actual = buffer.ToArray();
-				Assert.AreEqual( expected, actual );
+				Assert.That( actual, Is.EqualTo( expected ) );
 			}
 		}
 

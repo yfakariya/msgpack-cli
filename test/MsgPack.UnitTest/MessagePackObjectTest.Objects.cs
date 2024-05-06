@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -324,7 +324,7 @@ namespace MsgPack
 		private static void TestFromObjectCore<T>( T value, MessagePackObject expected )
 		{
 			var actual = MessagePackObject.FromObject( value );
-			Assert.AreEqual( expected, actual );
+			Assert.That( actual, Is.EqualTo( expected ) );
 		}
 
 		[Test]
@@ -466,7 +466,7 @@ namespace MsgPack
 		private static void TestToObjectCore<T>( MessagePackObject target, T expected )
 		{
 			var actual = target.ToObject();
-			Assert.AreEqual( MessagePackObject.FromObject( expected ), MessagePackObject.FromObject( actual ) );
+			Assert.That( MessagePackObject.FromObject( actual ), Is.EqualTo( MessagePackObject.FromObject( expected ) ) );
 		}
 	}
 }

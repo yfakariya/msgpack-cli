@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -43,7 +43,7 @@ namespace MsgPack
 		[Test]
 		public void TestAsEnumreable_Nil_ReturnsNull()
 		{
-			Assert.IsNull( MessagePackObject.Nil.AsEnumerable() );
+			Assert.That( MessagePackObject.Nil.AsEnumerable(), Is.Null );
 		}
 
 		[Test]
@@ -55,19 +55,19 @@ namespace MsgPack
 		[Test]
 		public void TestAsList_Nil_ReturnsNull()
 		{
-			Assert.IsNull( MessagePackObject.Nil.AsList() );
+			Assert.That( MessagePackObject.Nil.AsList(), Is.Null );
 		}
 
 		[Test]
 		public void TestAsBinary_Nil_ReturnsNull()
 		{
-			Assert.IsNull( MessagePackObject.Nil.AsBinary() );
+			Assert.That( MessagePackObject.Nil.AsBinary(), Is.Null );
 		}
 
 		[Test]
 		public void TestAsString_Nil_ReturnsNull()
 		{
-			Assert.IsNull( MessagePackObject.Nil.AsString() );
+			Assert.That( MessagePackObject.Nil.AsString(), Is.Null );
 		}
 
 		[Test]
@@ -112,9 +112,9 @@ namespace MsgPack
 		public void TestOpExplicitSingle_Double_Success()
 		{
 			var target = new MessagePackObject( Double.MaxValue );
-			Assert.AreEqual(
-				( float )( Double.MaxValue ),
-				( float )target
+			Assert.That(
+				( float )target,
+				Is.EqualTo( ( float )( Double.MaxValue ) )
 			);
 		}
 
@@ -122,9 +122,9 @@ namespace MsgPack
 		public void TestOpExplicitDouble_Single_Success()
 		{
 			var target = new MessagePackObject( Single.MaxValue );
-			Assert.AreEqual(
-				( double )( Single.MaxValue ),
-				( double )target
+			Assert.That(
+				( double )target,
+				Is.EqualTo( ( double )( Single.MaxValue ) )
 			);
 		}
 	}

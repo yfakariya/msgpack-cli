@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -50,13 +50,6 @@ namespace MsgPack
 			}
 		}
 
-#if !SILVERLIGHT
-		private static double GetMicroseconds( Stopwatch sw )
-		{
-			return sw.ElapsedMilliseconds / 1000000.0;
-		}
-#endif // !SILVERLIGHT
-
 		[Test]
 		public void TestAsByte()
 		{
@@ -66,23 +59,20 @@ namespace MsgPack
 			TestAsByte( ( Byte )1 );
 			TestAsByte( Byte.MinValue );
 			TestAsByte( Byte.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsByte( rand.NextByte() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Byte: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "Byte: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsByte( Byte value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( Byte )target );
+			Assert.That( ( Byte )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -123,23 +113,20 @@ namespace MsgPack
 			TestAsSByte( ( SByte )1 );
 			TestAsSByte( SByte.MinValue );
 			TestAsSByte( SByte.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsSByte( rand.NextSByte() );
 			}
 			sw.Stop();
-			Console.WriteLine( "SByte: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "SByte: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsSByte( SByte value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( SByte )target );
+			Assert.That( ( SByte )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -181,23 +168,20 @@ namespace MsgPack
 			TestAsInt16( ( Int16 )1 );
 			TestAsInt16( Int16.MinValue );
 			TestAsInt16( Int16.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsInt16( rand.NextInt16() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Int16: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "Int16: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsInt16( Int16 value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( Int16 )target );
+			Assert.That( ( Int16 )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -236,23 +220,20 @@ namespace MsgPack
 			TestAsUInt16( ( UInt16 )1 );
 			TestAsUInt16( UInt16.MinValue );
 			TestAsUInt16( UInt16.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsUInt16( rand.NextUInt16() );
 			}
 			sw.Stop();
-			Console.WriteLine( "UInt16: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "UInt16: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsUInt16( UInt16 value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( UInt16 )target );
+			Assert.That( ( UInt16 )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -294,23 +275,20 @@ namespace MsgPack
 			TestAsInt32( ( Int32 )1 );
 			TestAsInt32( Int32.MinValue );
 			TestAsInt32( Int32.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsInt32( rand.NextInt32() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Int32: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "Int32: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsInt32( Int32 value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( Int32 )target );
+			Assert.That( ( Int32 )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -349,23 +327,20 @@ namespace MsgPack
 			TestAsUInt32( ( UInt32 )1 );
 			TestAsUInt32( UInt32.MinValue );
 			TestAsUInt32( UInt32.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsUInt32( rand.NextUInt32() );
 			}
 			sw.Stop();
-			Console.WriteLine( "UInt32: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "UInt32: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsUInt32( UInt32 value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( UInt32 )target );
+			Assert.That( ( UInt32 )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -407,23 +382,20 @@ namespace MsgPack
 			TestAsInt64( ( Int64 )1 );
 			TestAsInt64( Int64.MinValue );
 			TestAsInt64( Int64.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsInt64( rand.NextInt64() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Int64: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "Int64: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsInt64( Int64 value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( Int64 )target );
+			Assert.That( ( Int64 )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -449,23 +421,20 @@ namespace MsgPack
 			TestAsUInt64( ( UInt64 )1 );
 			TestAsUInt64( UInt64.MinValue );
 			TestAsUInt64( UInt64.MaxValue );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			var rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsUInt64( rand.NextUInt64() );
 			}
 			sw.Stop();
-			Console.WriteLine( "UInt64: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "UInt64: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsUInt64( UInt64 value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( UInt64 )target );
+			Assert.That( ( UInt64 )target, Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -493,23 +462,20 @@ namespace MsgPack
 			TestAsSingle( Single.NaN );
 			TestAsSingle( Single.NegativeInfinity );
 			TestAsSingle( Single.PositiveInfinity );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			TestRandom rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsSingle( rand.NextSingle() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Single: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "Single: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsSingle( Single value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( Single )target, 10e-10 );
+			Assert.That( ( Single )target, Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 
 		[Test]
@@ -524,23 +490,20 @@ namespace MsgPack
 			TestAsDouble( Double.NaN );
 			TestAsDouble( Double.NegativeInfinity );
 			TestAsDouble( Double.PositiveInfinity );
-
-#if !SILVERLIGHT
 			var sw = Stopwatch.StartNew();
 			TestRandom rand = new TestRandom();
-			for ( int i = 0; i < 1000; i++ )
+			for ( int i = 0; i < 100000; i++ )
 			{
 				TestAsDouble( rand.NextDouble() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Double: {0:#,0.###} usec/object", GetMicroseconds( sw ) );
-#endif // !SILVERLIGHT
+			Console.WriteLine( "Double: {0:#,0.###} usec/object", sw.Elapsed.Ticks / 1000000.0 );
 		}
 
 		private static void TestAsDouble( Double value )
 		{
 			var target = new MessagePackObject( value );
-			Assert.AreEqual( value, ( Double )target, 10e-10 );
+			Assert.That( ( Double )target, Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 	}
 }

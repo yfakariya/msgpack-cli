@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -82,8 +82,8 @@ namespace MsgPack
 		public void TestUnpack<#= __realType.Name #>_ByteArray_<#= __realValue.Item1 #>_AsIs()
 		{
 			var result = Unpacking.Unpack<#= __realType.Name #>( <#= __realValue.Item2 #> );
-			Assert.AreEqual( sizeof( <#= __realValue.Item3 #> ) + 1, result.ReadCount );
-			Assert.IsTrue( <#= __realType == __realValue.Item3 ? __realValue.Item4 : __realValue.Item5 #>result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( <#= __realValue.Item3 #> ) + 1 ) );
+			Assert.That( <#= __realType == __realValue.Item3 ? __realValue.Item4 : __realValue.Item5 #>result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -92,8 +92,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( <#= __realValue.Item2 #> ) )
 			{
 				var result = Unpacking.Unpack<#= __realType.Name #>( buffer );
-				Assert.AreEqual( sizeof( <#= __realValue.Item3 #> ) + 1, buffer.Position );
-				Assert.IsTrue( <#= __realType == __realValue.Item3 ? __realValue.Item4 : __realValue.Item5 #>result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( <#= __realValue.Item3 #> ) + 1 ) );
+				Assert.That( <#= __realType == __realValue.Item3 ? __realValue.Item4 : __realValue.Item5 #>result ), Is.True );
 			}
 		}
 		
@@ -107,8 +107,8 @@ namespace MsgPack
 		{
 			// Offset 1 is <#= __realType.Name #> 0.
 			var result = Unpacking.Unpack<#= __realType.Name #>( new byte[] { 0xFF, <#= __realType == typeof( float ) ? "0xCA" : "0xCB" #>, <#= String.Join( ", ", Enumerable.Repeat( "0x00", __realType == typeof( float ) ? 4 : 8 ) ) #>, 0xFF }, 1 );
-			Assert.AreEqual( sizeof( <#= __realType #> ) + 1, result.ReadCount );
-			Assert.AreEqual( 0.0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( <#= __realType #> ) + 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0.0 ) );
 		}
 
 		[Test]

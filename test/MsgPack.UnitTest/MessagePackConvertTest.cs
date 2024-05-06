@@ -53,7 +53,7 @@ namespace MsgPack
 		public void TestEncodeString_Normal_EncodedAsUtf8NonBom()
 		{
 			var encoding = new UTF8Encoding( encoderShouldEmitUTF8Identifier: false );
-			Assert.AreEqual( encoding.GetBytes( _testValue ), MessagePackConvert.EncodeString( _testValue ) );
+			Assert.That( MessagePackConvert.EncodeString( _testValue ), Is.EqualTo( encoding.GetBytes( _testValue ) ) );
 		}
 
 		[Test]
@@ -74,7 +74,7 @@ namespace MsgPack
 		{
 			var encoding = new UTF8Encoding( encoderShouldEmitUTF8Identifier: false );
 			byte[] value = encoding.GetBytes( _testValue );
-			Assert.AreEqual( _testValue, MessagePackConvert.DecodeStringStrict( value ) );
+			Assert.That( MessagePackConvert.DecodeStringStrict( value ), Is.EqualTo( _testValue ) );
 		}
 
 		[Test]
@@ -82,7 +82,7 @@ namespace MsgPack
 		{
 			var encoding = new UTF8Encoding( encoderShouldEmitUTF8Identifier: true );
 			byte[] value = encoding.GetBytes( _testValue );
-			Assert.AreEqual( _testValue, MessagePackConvert.DecodeStringStrict( value ) );
+			Assert.That( MessagePackConvert.DecodeStringStrict( value ), Is.EqualTo( _testValue ) );
 		}
 
 		[Test]
@@ -318,9 +318,9 @@ namespace MsgPack
 		public void TestFromDateTimeOffset_UtcNow_AsUnixEpoc()
 		{
 			var utcNow = DateTimeOffset.UtcNow;
-			Assert.AreEqual(
-				checked( utcNow.DateTime.Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ),
-				MessagePackConvert.FromDateTimeOffset( utcNow )
+			Assert.That(
+				MessagePackConvert.FromDateTimeOffset( utcNow ),
+				Is.EqualTo( checked( utcNow.DateTime.Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
@@ -329,36 +329,36 @@ namespace MsgPack
 		{
 			var utcNow = DateTimeOffset.UtcNow;
 			// LocalTime will be converted to UtcTime
-			Assert.AreEqual(
-				checked( utcNow.DateTime.Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ),
-				MessagePackConvert.FromDateTimeOffset( utcNow.ToLocalTime() )
+			Assert.That(
+				MessagePackConvert.FromDateTimeOffset( utcNow.ToLocalTime() ),
+				Is.EqualTo( checked( utcNow.DateTime.Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
 		[Test]
 		public void TestFromDateTimeOffset_UtcEpoc_Zero()
 		{
-			Assert.AreEqual(
-				0L,
-				MessagePackConvert.FromDateTimeOffset( new DateTimeOffset( 1970, 1, 1, 0, 0, 0, TimeSpan.Zero ) )
+			Assert.That(
+				MessagePackConvert.FromDateTimeOffset( new DateTimeOffset( 1970, 1, 1, 0, 0, 0, TimeSpan.Zero ) ),
+				Is.EqualTo( 0L )
 			);
 		}
 
 		[Test]
 		public void TestFromDateTimeOffset_MinValue_AsUnixEpoc()
 		{
-			Assert.AreEqual(
-				checked( ( DateTimeOffset.MinValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) ),
-				MessagePackConvert.FromDateTimeOffset( DateTimeOffset.MinValue.ToUniversalTime() )
+			Assert.That(
+				MessagePackConvert.FromDateTimeOffset( DateTimeOffset.MinValue.ToUniversalTime() ),
+				Is.EqualTo( checked( DateTimeOffset.MinValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
 		[Test]
 		public void TestFromDateTimeOffset_MaxValue_AsUnixEpoc()
 		{
-			Assert.AreEqual(
-				checked( ( DateTimeOffset.MaxValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) ),
-				MessagePackConvert.FromDateTimeOffset( DateTimeOffset.MaxValue.ToUniversalTime() )
+			Assert.That(
+				MessagePackConvert.FromDateTimeOffset( DateTimeOffset.MaxValue.ToUniversalTime() ),
+				Is.EqualTo( checked( DateTimeOffset.MaxValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
@@ -366,9 +366,10 @@ namespace MsgPack
 		[Test]
 		public void TestFromDateTime_UtcNow_AsUnixEpoc()
 		{
-			Assert.AreEqual(
-				checked( DateTime.UtcNow.Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ),
-				MessagePackConvert.FromDateTime( DateTime.UtcNow )
+			var now = DateTime.UtcNow;
+			Assert.That(
+				MessagePackConvert.FromDateTime( now ),
+				Is.EqualTo( checked( now.Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
@@ -377,36 +378,37 @@ namespace MsgPack
 		{
 			// LocalTime will be converted to UtcTime
 			var now = DateTime.Now;
-			Assert.AreEqual(
-				checked( now.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ),
-				MessagePackConvert.FromDateTime( now )
+			Assert.That(
+				MessagePackConvert.FromDateTime( now ),
+				Is.EqualTo( checked( now.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
 		[Test]
 		public void TestFromDateTime_UtcEpoc_Zero()
 		{
-			Assert.AreEqual(
-				0L,
-				MessagePackConvert.FromDateTime( new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc ) )
+			Assert.That(
+				MessagePackConvert.FromDateTime( new DateTime( 1970, 1, 1, 0, 0, 0, DateTimeKind.Utc ) ),
+				Is.EqualTo( 0L )
 			);
 		}
 
 		[Test]
 		public void TestFromDateTime_MinValue_AsUnixEpoc()
 		{
-			Assert.AreEqual(
-				checked( ( UtcMinValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) ),
-				MessagePackConvert.FromDateTime( UtcMinValue.ToUniversalTime() )
+			Assert.That(
+				MessagePackConvert.FromDateTime( UtcMinValue.ToUniversalTime() ),
+				Is.EqualTo( checked( UtcMinValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
+
 			);
 		}
 
 		[Test]
 		public void TestFromDateTime_MaxValue_AsUnixEpoc()
 		{
-			Assert.AreEqual(
-				checked( ( UtcMaxValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) ),
-				MessagePackConvert.FromDateTime( UtcMaxValue.ToUniversalTime() )
+			Assert.That(
+				MessagePackConvert.FromDateTime( UtcMaxValue.ToUniversalTime() ),
+				Is.EqualTo( checked( UtcMaxValue.ToUniversalTime().Subtract( UtcEpoc ).Ticks / TicksToMilliseconds ) )
 			);
 		}
 
@@ -415,9 +417,9 @@ namespace MsgPack
 		{
 			var expected = new DateTime( 9999, 12, 31, 23, 59, 59, 999, DateTimeKind.Utc );
 			var actual = new DateTime( 3155378975999999999L, DateTimeKind.Utc );
-			Assert.AreEqual(
-				MessagePackConvert.ToDateTime( MessagePackConvert.FromDateTime( expected ) ),
-				MessagePackConvert.ToDateTime( MessagePackConvert.FromDateTime( actual ) )
+			Assert.That(
+				MessagePackConvert.ToDateTime( MessagePackConvert.FromDateTime( actual ) ),
+				Is.EqualTo( MessagePackConvert.ToDateTime( MessagePackConvert.FromDateTime( expected ) ) )
 			);
 		}
 	}

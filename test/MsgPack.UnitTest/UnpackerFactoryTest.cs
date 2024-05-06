@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -35,7 +35,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 1000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 1000 )]
+#endif // NETFRAMEWORK
 	public class UnpackerFactoryTest
 	{
 		[Test]

@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -48,9 +48,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double>( Double.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -62,9 +62,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single>( Single.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -76,9 +76,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int64>( Int64.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -90,9 +90,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32>( Int32.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -104,9 +104,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int16>( Int16.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -118,9 +118,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.SByte>( SByte.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD0, 0x80 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD0, 0x80 } )
 				);
 			}
 		}
@@ -132,9 +132,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double>( Double.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -146,9 +146,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single>( Single.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -160,9 +160,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt64>( UInt64.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -174,9 +174,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt32>( UInt32.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -188,9 +188,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt16>( UInt16.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -202,9 +202,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Byte>( Byte.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCC, 0xFF },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCC, 0xFF } )
 				);
 			}
 		}
@@ -216,9 +216,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.SByte>( ( ( sbyte )-33 ) );
-				Assert.AreEqual(
-					new byte[] { 0xD0, unchecked( ( byte )( sbyte )-33 ) },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD0, unchecked( ( byte )( sbyte )-33 ) } )
 				);
 			}
 		}
@@ -230,9 +230,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32>( ( -32 ) );
-				Assert.AreEqual(
-					new byte[] { 0xE0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xE0 } )
 				);
 			}
 		}
@@ -244,9 +244,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32>( ( -1 ) );
-				Assert.AreEqual(
-					new byte[] { 0xFF },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xFF } )
 				);
 			}
 		}
@@ -258,9 +258,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32>( 0 );
-				Assert.AreEqual(
-					new byte[] { 0x00 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x00 } )
 				);
 			}
 		}
@@ -272,9 +272,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32>( ( 1 ) );
-				Assert.AreEqual(
-					new byte[] { 0x01 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x01 } )
 				);
 			}
 		}
@@ -286,9 +286,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32>( ( 127 ) );
-				Assert.AreEqual(
-					new byte[] { 0x7F },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x7F } )
 				);
 			}
 		}
@@ -300,9 +300,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Byte>( ( ( byte )128 ) );
-				Assert.AreEqual(
-					new byte[] { 0xCC, 0x80 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCC, 0x80 } )
 				);
 			}
 		}
@@ -314,9 +314,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Boolean>( true );
-				Assert.AreEqual(
-					new byte[] { 0xC3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC3 } )
 				);
 			}
 		}
@@ -328,9 +328,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Boolean>( false );
-				Assert.AreEqual(
-					new byte[] { 0xC2 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC2 } )
 				);
 			}
 		}
@@ -342,9 +342,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Object>( default( object ) );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -356,9 +356,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single>( Single.Epsilon );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.Epsilon ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.Epsilon ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -370,9 +370,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double>( Double.Epsilon );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.Epsilon ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.Epsilon ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -384,9 +384,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single>( Single.PositiveInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.PositiveInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.PositiveInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -398,9 +398,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double>( Double.PositiveInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.PositiveInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.PositiveInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -412,9 +412,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single>( Single.NegativeInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.NegativeInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.NegativeInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -426,9 +426,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double>( Double.NegativeInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.NegativeInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.NegativeInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -440,9 +440,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double?>( Double.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -454,9 +454,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Double?>( default( System.Double?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -468,9 +468,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single?>( Single.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -482,9 +482,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Single?>( default( System.Single?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -496,9 +496,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int64?>( Int64.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -510,9 +510,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int64?>( default( System.Int64?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -524,9 +524,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32?>( Int32.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -538,9 +538,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int32?>( default( System.Int32?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -552,9 +552,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int16?>( Int16.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -566,9 +566,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Int16?>( default( System.Int16?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -580,9 +580,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.SByte?>( SByte.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD0, 0x80 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD0, 0x80 } )
 				);
 			}
 		}
@@ -594,9 +594,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.SByte?>( default( System.SByte?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -608,9 +608,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt64?>( UInt64.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -622,9 +622,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt64?>( default( System.UInt64?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -636,9 +636,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt32?>( UInt32.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -650,9 +650,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt32?>( default( System.UInt32?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -664,9 +664,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt16?>( UInt16.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -678,9 +678,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.UInt16?>( default( System.UInt16?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -692,9 +692,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Byte?>( Byte.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCC, 0xFF },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCC, 0xFF } )
 				);
 			}
 		}
@@ -706,9 +706,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Byte?>( default( System.Byte?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -720,9 +720,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Boolean?>( true );
-				Assert.AreEqual(
-					new byte[] { 0xC3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC3 } )
 				);
 			}
 		}
@@ -734,9 +734,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack<System.Boolean?>( default( System.Boolean?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -749,9 +749,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -763,9 +763,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -777,9 +777,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -791,9 +791,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -805,9 +805,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -819,9 +819,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -833,9 +833,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -847,9 +847,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -861,9 +861,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -875,9 +875,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -890,9 +890,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0x93, 0x1, 0x2, 0x3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x93, 0x1, 0x2, 0x3 } )
 				);
 			}
 		}
@@ -905,9 +905,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					new byte[] { 0x82, 0x1, 0x1, 0x2, 0x2 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x82, 0x1, 0x1, 0x2, 0x2 } )
 				);
 			}
 		}
@@ -920,9 +920,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				packer.Pack( value );
-				Assert.AreEqual(
-					 new byte[] { 0xC3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC3 } )
 				);
 			}
 		}
@@ -936,9 +936,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double>( Double.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -950,9 +950,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single>( Single.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -964,9 +964,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int64>( Int64.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -978,9 +978,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32>( Int32.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -992,9 +992,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int16>( Int16.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1006,9 +1006,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.SByte>( SByte.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD0, 0x80 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD0, 0x80 } )
 				);
 			}
 		}
@@ -1020,9 +1020,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double>( Double.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1034,9 +1034,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single>( Single.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1048,9 +1048,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt64>( UInt64.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1062,9 +1062,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt32>( UInt32.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1076,9 +1076,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt16>( UInt16.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1090,9 +1090,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Byte>( Byte.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCC, 0xFF },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCC, 0xFF } )
 				);
 			}
 		}
@@ -1104,9 +1104,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.SByte>( ( ( sbyte )-33 ) );
-				Assert.AreEqual(
-					new byte[] { 0xD0, unchecked( ( byte )( sbyte )-33 ) },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD0, unchecked( ( byte )( sbyte )-33 ) } )
 				);
 			}
 		}
@@ -1118,9 +1118,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32>( ( -32 ) );
-				Assert.AreEqual(
-					new byte[] { 0xE0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xE0 } )
 				);
 			}
 		}
@@ -1132,9 +1132,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32>( ( -1 ) );
-				Assert.AreEqual(
-					new byte[] { 0xFF },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xFF } )
 				);
 			}
 		}
@@ -1146,9 +1146,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32>( 0 );
-				Assert.AreEqual(
-					new byte[] { 0x00 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x00 } )
 				);
 			}
 		}
@@ -1160,9 +1160,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32>( ( 1 ) );
-				Assert.AreEqual(
-					new byte[] { 0x01 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x01 } )
 				);
 			}
 		}
@@ -1174,9 +1174,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32>( ( 127 ) );
-				Assert.AreEqual(
-					new byte[] { 0x7F },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x7F } )
 				);
 			}
 		}
@@ -1188,9 +1188,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Byte>( ( ( byte )128 ) );
-				Assert.AreEqual(
-					new byte[] { 0xCC, 0x80 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCC, 0x80 } )
 				);
 			}
 		}
@@ -1202,9 +1202,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Boolean>( true );
-				Assert.AreEqual(
-					new byte[] { 0xC3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC3 } )
 				);
 			}
 		}
@@ -1216,9 +1216,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Boolean>( false );
-				Assert.AreEqual(
-					new byte[] { 0xC2 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC2 } )
 				);
 			}
 		}
@@ -1230,9 +1230,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Object>( default( object ) );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1244,9 +1244,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single>( Single.Epsilon );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.Epsilon ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.Epsilon ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1258,9 +1258,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double>( Double.Epsilon );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.Epsilon ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.Epsilon ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1272,9 +1272,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single>( Single.PositiveInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.PositiveInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.PositiveInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1286,9 +1286,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double>( Double.PositiveInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.PositiveInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.PositiveInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1300,9 +1300,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single>( Single.NegativeInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.NegativeInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.NegativeInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1314,9 +1314,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double>( Double.NegativeInfinity );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.NegativeInfinity ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.NegativeInfinity ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1328,9 +1328,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double?>( Double.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCB }.Concat( BitConverter.GetBytes( Double.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1342,9 +1342,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Double?>( default( System.Double?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1356,9 +1356,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single?>( Single.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCA }.Concat( BitConverter.GetBytes( Single.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1370,9 +1370,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Single?>( default( System.Single?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1384,9 +1384,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int64?>( Int64.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD3 }.Concat( BitConverter.GetBytes( Int64.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1398,9 +1398,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int64?>( default( System.Int64?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1412,9 +1412,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32?>( Int32.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD2 }.Concat( BitConverter.GetBytes( Int32.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1426,9 +1426,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int32?>( default( System.Int32?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1440,9 +1440,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int16?>( Int16.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD1 }.Concat( BitConverter.GetBytes( Int16.MinValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1454,9 +1454,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Int16?>( default( System.Int16?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1468,9 +1468,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.SByte?>( SByte.MinValue );
-				Assert.AreEqual(
-					new byte[] { 0xD0, 0x80 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xD0, 0x80 } )
 				);
 			}
 		}
@@ -1482,9 +1482,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.SByte?>( default( System.SByte?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1496,9 +1496,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt64?>( UInt64.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCF }.Concat( BitConverter.GetBytes( UInt64.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1510,9 +1510,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt64?>( default( System.UInt64?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1524,9 +1524,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt32?>( UInt32.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCE }.Concat( BitConverter.GetBytes( UInt32.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1538,9 +1538,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt32?>( default( System.UInt32?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1552,9 +1552,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt16?>( UInt16.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray(),
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCD }.Concat( BitConverter.GetBytes( UInt16.MaxValue ).Reverse() ).ToArray() )
 				);
 			}
 		}
@@ -1566,9 +1566,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.UInt16?>( default( System.UInt16?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1580,9 +1580,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Byte?>( Byte.MaxValue );
-				Assert.AreEqual(
-					new byte[] { 0xCC, 0xFF },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xCC, 0xFF } )
 				);
 			}
 		}
@@ -1594,9 +1594,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Byte?>( default( System.Byte?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1608,9 +1608,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Boolean?>( true );
-				Assert.AreEqual(
-					new byte[] { 0xC3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC3 } )
 				);
 			}
 		}
@@ -1622,9 +1622,9 @@ namespace MsgPack
 			using( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync<System.Boolean?>( default( System.Boolean?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1637,9 +1637,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1651,9 +1651,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1665,9 +1665,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1679,9 +1679,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1693,9 +1693,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1707,9 +1707,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1721,9 +1721,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1735,9 +1735,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1749,9 +1749,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1763,9 +1763,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -1778,9 +1778,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0x93, 0x1, 0x2, 0x3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x93, 0x1, 0x2, 0x3 } )
 				);
 			}
 		}
@@ -1793,9 +1793,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					new byte[] { 0x82, 0x1, 0x1, 0x2, 0x2 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0x82, 0x1, 0x1, 0x2, 0x2 } )
 				);
 			}
 		}
@@ -1808,9 +1808,9 @@ namespace MsgPack
 			using ( var packer = CreatePacker( buffer ) )
 			{
 				await packer.PackAsync( value );
-				Assert.AreEqual(
-					 new byte[] { 0xC3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC3 } )
 				);
 			}
 		}

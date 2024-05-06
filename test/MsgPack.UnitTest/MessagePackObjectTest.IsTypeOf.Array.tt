@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -82,49 +82,49 @@ foreach( var __case in __cases )
 		[Test]
 		public void TestIsTypeOf_<#= __case.Key #>_IsTypeOfArrayOfNotItemType_<#= __case.Key.EndsWith( "NotNull" ) ? "False" : "Null" #>()
 		{
-			Assert.AreEqual( <#= __case.Key.EndsWith( "NotNull" ) ? "false" : "null" #>, new MessagePackObject( <#= __case.Value #> ).IsTypeOf( typeof( bool[] ) ) );
+			Assert.That( new MessagePackObject( <#= __case.Value #> ).IsTypeOf( typeof( bool[] ) ), Is.<#= __case.Key.EndsWith( "NotNull" ) ? "False" : "Null" #> );
 		}
 
 		[Test]
 		public void TestIsTypeOf_<#= __case.Key #>_IsTypeOfArrayOfMessagePackObject_<#= __case.Key.EndsWith( "NotNull" ) ? "True" : "Null" #>()
 		{
-			Assert.AreEqual( <#= __case.Key.EndsWith( "NotNull" ) ? "true" : "null" #>, new MessagePackObject( <#= __case.Value #> ).IsTypeOf( typeof( MessagePackObject[] ) ) );
+			Assert.That( new MessagePackObject( <#= __case.Value #> ).IsTypeOf( typeof( MessagePackObject[] ) ), Is.<#= __case.Key.EndsWith( "NotNull" ) ? "True" : "Null" #> );
 		}
 
 		[Test]
 		public void TestIsTypeOf_<#= __case.Key #>_IsTypeOfArrayOfItemType_<#= __case.Key.EndsWith( "NotNull" ) ? "False" : "Null" #>()
 		{
-			Assert.AreEqual( <#= __case.Key.EndsWith( "NotNull" ) ? "false" : "null" #>, new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( int[] ) ) );
+			Assert.That( new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( int[] ) ), Is.<#= __case.Key.EndsWith( "NotNull" ) ? "False" : "Null" #> );
 		}
 
 		[Test]
 		public void TestIsTypeOf_<#= __case.Key #>_IsTypeOfIEnumerableOfMessagePackObject_<#= __case.Key.EndsWith( "NotNull" ) ? "True" : "Null" #>()
 		{
-			Assert.AreEqual( <#= __case.Key.EndsWith( "NotNull" ) ? "true" : "null" #>, new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( IEnumerable<MessagePackObject> ) ) );
+			Assert.That( new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( IEnumerable<MessagePackObject> ) ), Is.<#= __case.Key.EndsWith( "NotNull" ) ? "True" : "Null" #> );
 		}
 
 		[Test]
 		public void TestIsTypeOf_<#= __case.Key #>_IsTypeOfIListOfMessagePackObject_<#= __case.Key.EndsWith( "NotNull" ) ? "True" : "Null" #>()
 		{
-			Assert.AreEqual( <#= __case.Key.EndsWith( "NotNull" ) ? "true" : "null" #>, new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( IList<MessagePackObject> ) ) );
+			Assert.That( new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( IList<MessagePackObject> ) ), Is.<#= __case.Key.EndsWith( "NotNull" ) ? "True" : "Null" #> );
 		}
 
 		[Test]
 		public void TestIsTypeOf_<#= __case.Key #>_IsTypeOfListOfMessagePackObject_<#= __case.Key.EndsWith( "NotNull" ) ? "False" : "Null" #>()
 		{
-			Assert.AreEqual( <#= __case.Key.EndsWith( "NotNull" ) ? "false" : "null" #>, new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( List<MessagePackObject> ) ) );
+			Assert.That( new MessagePackObject(  <#= __case.Value #> ).IsTypeOf( typeof( List<MessagePackObject> ) ), Is.<#= __case.Key.EndsWith( "NotNull" ) ? "False" : "Null" #> );
 		}
 		
 		[Test]
 		public void TestIsArray_<#= __case.Key #>_<#= __case.Key.EndsWith( "NotNull" ) #>()
 		{
-			Assert.Is<#= __case.Key.EndsWith( "NotNull" ) #>( new MessagePackObject(  <#= __case.Value #> ).IsArray );
+			Assert.That( new MessagePackObject(  <#= __case.Value #> ).IsArray, Is.<#= __case.Key.EndsWith( "NotNull" ) #> );
 		}
 		
 		[Test]
 		public void TestIsList_<#= __case.Key #>_<#= __case.Key.EndsWith( "NotNull" ) #>()
 		{
-			Assert.Is<#= __case.Key.EndsWith( "NotNull" ) #>( new MessagePackObject(  <#= __case.Value #> ).IsList );
+			Assert.That( new MessagePackObject(  <#= __case.Value #> ).IsList, Is.<#= __case.Key.EndsWith( "NotNull" ) #> );
 		}
 
 <#

@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -50,7 +50,7 @@ namespace MsgPack
 		public void TestAsString_Null_Success()
 		{
 			var target = new MessagePackObject( default( string ) );
-			Assert.IsNull( target.AsString() );
+			Assert.That( target.AsString(), Is.Null );
 		}
 
 		[Test]
@@ -87,7 +87,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( Encoding.UTF32.GetBytes( _japanese ) );
 			var result = target.AsString( Encoding.UTF32 );
-			Assert.AreEqual( _japanese, result );
+			Assert.That( result, Is.EqualTo( _japanese ) );
 		}
 
 		[Test]
@@ -113,7 +113,7 @@ namespace MsgPack
 		public void TestAsString1_Null_Success()
 		{
 			var target = new MessagePackObject( default( string ) );
-			Assert.IsNull( target.AsString( Encoding.UTF8 ) );
+			Assert.That( target.AsString( Encoding.UTF8 ), Is.Null );
 		}
 
 		[Test]
@@ -127,21 +127,21 @@ namespace MsgPack
 		public void TestAsStringUtf8_Normal_Success()
 		{
 			var target = new MessagePackObject( Encoding.UTF8.GetBytes( _japanese ) );
-			Assert.AreEqual( _japanese, target.AsStringUtf8() );
+			Assert.That( target.AsStringUtf8(), Is.EqualTo( _japanese ) );
 		}
 
 		[Test]
 		public void TestAsStringUtf8_Empty_Success()
 		{
 			var target = new MessagePackObject( new byte[ 0 ] );
-			Assert.AreEqual( "", target.AsStringUtf8() );
+			Assert.That( target.AsStringUtf8(), Is.EqualTo( "" ) );
 		}
 
 		[Test]
 		public void TestAsStringUtf8_Null_Success()
 		{
 			var target = new MessagePackObject( default( string ) );
-			Assert.IsNull( target.AsStringUtf8() );
+			Assert.That( target.AsStringUtf8(), Is.Null );
 		}
 
 		[Test]
@@ -162,7 +162,7 @@ namespace MsgPack
 		public void TestAsStringUtf16_Utf16LEWithBom_Success()
 		{
 			var target = new MessagePackObject( Encoding.Unicode.GetPreamble().Concat( Encoding.Unicode.GetBytes( _japanese ) ).ToArray() );
-			Assert.AreEqual( _japanese, target.AsStringUtf16() );
+			Assert.That( target.AsStringUtf16(), Is.EqualTo( _japanese ) );
 		}
 
 		[Test]
@@ -181,35 +181,35 @@ namespace MsgPack
 			}
 
 			// It is OK. The bytes incidentally can be decoded as UTF-16BE.
-			Assert.AreNotEqual( _japanese, result );
+			Assert.That( result, Is.Not.EqualTo( _japanese ) );
 		}
 
 		[Test]
 		public void TestAsStringUtf16_Utf16BEWithBom_Success()
 		{
 			var target = new MessagePackObject( Encoding.BigEndianUnicode.GetPreamble().Concat( Encoding.BigEndianUnicode.GetBytes( _japanese ) ).ToArray() );
-			Assert.AreEqual( _japanese, target.AsStringUtf16() );
+			Assert.That( target.AsStringUtf16(), Is.EqualTo( _japanese ) );
 		}
 
 		[Test]
 		public void TestAsStringUtf16_Utf16BEWithoutBom_Success()
 		{
 			var target = new MessagePackObject( Encoding.BigEndianUnicode.GetBytes( _japanese ) );
-			Assert.AreEqual( _japanese, target.AsStringUtf16() );
+			Assert.That( target.AsStringUtf16(), Is.EqualTo( _japanese ) );
 		}
 
 		[Test]
 		public void TestAsStringUtf16_Empty_Success()
 		{
 			var target = new MessagePackObject( new byte[ 0 ] );
-			Assert.AreEqual( "", target.AsStringUtf16() );
+			Assert.That( target.AsStringUtf16(), Is.EqualTo( "" ) );
 		}
 
 		[Test]
 		public void TestAsStringUtf16_ForNonEncoded_Success()
 		{
 			var target = new MessagePackObject( _japanese );
-			Assert.AreEqual( _japanese, target.AsStringUtf16() );
+			Assert.That( target.AsStringUtf16(), Is.EqualTo( _japanese ) );
 		}
 
 		[Test]
@@ -223,7 +223,7 @@ namespace MsgPack
 		public void TestAsStringUtf16_Null_Success()
 		{
 			var target = new MessagePackObject( default( string ) );
-			Assert.IsNull( target.AsStringUtf16() );
+			Assert.That( target.AsStringUtf16(), Is.Null );
 		}
 
 		[Test]

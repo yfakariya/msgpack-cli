@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -94,8 +94,8 @@ foreach( var __integerValue in TestData.IntegerValues )
 		{
 #>
 			var result = Unpacking.Unpack<#= __integerType.Name #>( <#= __expression #> );
-			Assert.AreEqual( <#= __expression.Count( c => c == ',' ) + 1 #>, result.ReadCount );
-			Assert.AreEqual( <#= __testCase.Value #>L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( <#= __expression.Count( c => c == ',' ) + 1 #> ) );
+			Assert.That( result.Value, Is.EqualTo( <#= __testCase.Value #>L ) );
 <#
 		}
 		else
@@ -117,8 +117,8 @@ foreach( var __integerValue in TestData.IntegerValues )
 		{
 #>
 				var result = Unpacking.Unpack<#= __integerType.Name #>( buffer );
-				Assert.AreEqual( <#= __expression.Count( c => c == ',' ) + 1 #>, buffer.Position );
-				Assert.AreEqual( <#= __testCase.Value #>L, result );
+				Assert.That( buffer.Position, Is.EqualTo( <#= __expression.Count( c => c == ',' ) + 1 #> ) );
+				Assert.That( result, Is.EqualTo( <#= __testCase.Value #>L ) );
 <#
 		}
 		else
@@ -142,8 +142,8 @@ foreach( var __integerValue in TestData.IntegerValues )
 		{
 			// Offset 1 is positive fix num 1.
 			var result = Unpacking.Unpack<#= __integerType.Name #>( new byte[] { 0xFF, 0x57, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0x57, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x57 ) );
 		}
 
 		[Test]

@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ assembly Name="System.Core" #>
 <#@ import namespace="System" #>
@@ -137,13 +137,13 @@ private void PutTestUnpackDataBody( Tuple<string, string, string, string, bool> 
 		if ( !isAsync )
 		{
 #>
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 <#+
 		}
 		else
 		{
 #>
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 <#+
 		}
 #>
@@ -151,7 +151,7 @@ private void PutTestUnpackDataBody( Tuple<string, string, string, string, bool> 
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 <#+
 		if ( testSituation.Item2 == sourceType )
@@ -236,14 +236,14 @@ private void PutTestUnpackDirectBody( Tuple<string, string, string, string, bool
 		if ( !isAsync )
 		{
 #>
-				Assert.IsTrue( unpacker.Read<#= testSituation.Item1 #>( out result ) );
+				Assert.That( unpacker.Read<#= testSituation.Item1 #>( out result ), Is.True );
 <#+
 		}
 		else
 		{
 #>
 				var ret = await unpacker.Read<#= testSituation.Item1 #>Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 <#+
 		}

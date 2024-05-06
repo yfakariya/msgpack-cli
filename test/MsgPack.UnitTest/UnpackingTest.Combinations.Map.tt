@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -83,8 +83,8 @@ foreach( var __testCase in TestData.MapValues )
 		public void TestUnpackDictionaryCount_ByteArray_<#= __testCase.Item1 #>_As<#= ToValueId( __expression ) #>_AsIs()
 		{
 			var result = Unpacking.UnpackDictionaryCount( <#= __expression #> );
-			Assert.AreEqual( <#= GetHeaderLength( __expression ) #>, result.ReadCount );
-			Assert.AreEqual( <#= __testCase.Item2 #>, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( <#= GetHeaderLength( __expression ) #> ) );
+			Assert.That( result.Value, Is.EqualTo( <#= __testCase.Item2 #> ) );
 		}
 
 		[Test]
@@ -93,8 +93,8 @@ foreach( var __testCase in TestData.MapValues )
 			using ( var buffer = new MemoryStream( <#= __expression #> ) )
 			{
 				var result = Unpacking.UnpackDictionaryCount( buffer );
-				Assert.AreEqual( <#= GetHeaderLength( __expression ) #>, buffer.Position );
-				Assert.AreEqual( <#= __testCase.Item2 #>, result );
+				Assert.That( buffer.Position, Is.EqualTo( <#= GetHeaderLength( __expression ) #> ) );
+				Assert.That( result, Is.EqualTo( <#= __testCase.Item2 #> ) );
 			}
 		}
 
@@ -102,13 +102,13 @@ foreach( var __testCase in TestData.MapValues )
 		public void TestUnpackDictionary_ByteArray_<#= __testCase.Item1 #>_As<#= ToValueId( __expression ) #>_AsIs()
 		{
 			var result = Unpacking.UnpackDictionary( <#= __expression #> );
-			Assert.AreEqual( <#= __byteLength #>, result.ReadCount );
-			Assert.AreEqual( <#= __testCase.Item2 #>, result.Value.Count );
+			Assert.That( result.ReadCount, Is.EqualTo( <#= __byteLength #> ) );
+			Assert.That( result.Value.Count, Is.EqualTo( <#= __testCase.Item2 #> ) );
 			for ( int i = 0; i < result.Value.Count; i++ )
 			{
 				MessagePackObject value;
-				Assert.IsTrue( result.Value.TryGetValue( i + 1, out value ) );
-				Assert.IsTrue( value.Equals( 0x57 ) );
+				Assert.That( result.Value.TryGetValue( i + 1, out value ), Is.True );
+				Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 			}
 		}
 
@@ -118,13 +118,13 @@ foreach( var __testCase in TestData.MapValues )
 			using ( var buffer = new MemoryStream( <#= __expression #> ) )
 			{
 				var result = Unpacking.UnpackDictionary( buffer );
-				Assert.AreEqual( <#= __byteLength #>, buffer.Position );
-				Assert.AreEqual( <#= __testCase.Item2 #>, result.Count );
+				Assert.That( buffer.Position, Is.EqualTo( <#= __byteLength #> ) );
+				Assert.That( result.Count, Is.EqualTo( <#= __testCase.Item2 #> ) );
 				for ( int i = 0; i < result.Count; i++ )
 				{
 					MessagePackObject value;
-					Assert.IsTrue( result.TryGetValue( i + 1, out value ) );
-					Assert.IsTrue( value.Equals( 0x57 ) );
+					Assert.That( result.TryGetValue( i + 1, out value ), Is.True );
+					Assert.That( value, Is.EqualTo( ( MessagePackObject )0x57 ) );
 				}
 			}
 		}
@@ -140,16 +140,16 @@ foreach( var __testCase in TestData.MapValues )
 		public void TestUnpackDictionaryCount_ByteArray_Offset_OffsetIsValid_OffsetIsRespected()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xFF, 0x80, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0 ) );
 		}
 
 		[Test]
 		public void TestUnpackDictionaryCount_ByteArray_Null_Nil()
 		{
 			var result = Unpacking.UnpackDictionaryCount( new byte[] { 0xC0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 	
 		[Test]
@@ -162,8 +162,8 @@ foreach( var __testCase in TestData.MapValues )
 		public void TestUnpackDictionary_ByteArray_Null_Nil()
 		{
 			var result = Unpacking.UnpackDictionary( new byte[] { 0xC0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 	
 		[Test]

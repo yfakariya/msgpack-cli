@@ -102,7 +102,7 @@ namespace MsgPack.Serialization
 #if !NETSTANDARD1_1 && !NETSTANDARD1_3
 			if ( SerializerDebugging.DumpEnabled )
 			{
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 				try
 				{
 					SerializerDebugging.Dump();
@@ -115,9 +115,9 @@ namespace MsgPack.Serialization
 				{
 					SerializationMethodGeneratorManager.Refresh();
 				}
-#else // !NETSTANDARD2_0
+#else // FEATURE_ASMGEN
 				SerializationMethodGeneratorManager.Refresh();
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 			}
 
 			SerializerDebugging.Reset();
@@ -131,33 +131,33 @@ namespace MsgPack.Serialization
 		[Test]
 		public void TestCreation_ValueType_OnlyNullIsInvalid()
 		{
-			Assert.NotNull( CreateTarget<NilImplicationTestTargetForValueTypeMemberDefault>( this.CreateSerializationContext() ) );
+			Assert.That( CreateTarget<NilImplicationTestTargetForValueTypeMemberDefault>( this.CreateSerializationContext() ), Is.Not.Null );
 			Assert.Throws<SerializationException>(
 				() => CreateTarget<NilImplicationTestTargetForValueTypeNull>( this.CreateSerializationContext() )
 			);
-			Assert.NotNull( CreateTarget<NilImplicationTestTargetForValueTypeProhibit>( this.CreateSerializationContext() ) );
+			Assert.That( CreateTarget<NilImplicationTestTargetForValueTypeProhibit>( this.CreateSerializationContext() ), Is.Not.Null );
 		}
 
 		[Test]
 		public void TestCreation_ReferenceType_AllOk()
 		{
-			Assert.NotNull( CreateTarget<NilImplicationTestTargetForReferenceType>( this.CreateSerializationContext() ) );
+			Assert.That( CreateTarget<NilImplicationTestTargetForReferenceType>( this.CreateSerializationContext() ), Is.Not.Null );
 		}
 
 		[Test]
 		public void TestCreation_NullableValueType_AllOk()
 		{
-			Assert.NotNull( CreateTarget<NilImplicationTestTargetForNullableValueType>( this.CreateSerializationContext() ) );
+			Assert.That( CreateTarget<NilImplicationTestTargetForNullableValueType>( this.CreateSerializationContext() ), Is.Not.Null );
 		}
 
 		[Test]
 		public void TestCreation_ReadOnlyCollectionProperty_OnlyNullIsInvalid()
 		{
-			Assert.NotNull( CreateTarget<NilImplicationTestTargetForReadOnlyCollectionPropertyMemberDefault>( this.CreateSerializationContext() ) );
+			Assert.That( CreateTarget<NilImplicationTestTargetForReadOnlyCollectionPropertyMemberDefault>( this.CreateSerializationContext() ), Is.Not.Null );
 			Assert.Throws<SerializationException>(
 				() => CreateTarget<NilImplicationTestTargetForReadOnlyCollectionPropertyNull>( this.CreateSerializationContext() )
 			);
-			Assert.NotNull( CreateTarget<NilImplicationTestTargetForReadOnlyCollectionPropertyProhibit>( this.CreateSerializationContext() ) );
+			Assert.That( CreateTarget<NilImplicationTestTargetForReadOnlyCollectionPropertyProhibit>( this.CreateSerializationContext() ), Is.Not.Null );
 		}
 
 		// ------ Packing ------

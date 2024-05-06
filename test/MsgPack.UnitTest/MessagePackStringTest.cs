@@ -76,14 +76,14 @@ namespace MsgPack
 		public void TestGetHashCode_String()
 		{
 			var target = new MessagePackString( "ABC" );
-			Assert.AreEqual( "ABC".GetHashCode(), target.GetHashCode() );
+			Assert.That( target.GetHashCode(), Is.EqualTo( "ABC".GetHashCode() ) );
 		}
 
 		[Test]
 		public void TestGetHashCode_StringifiableBinary()
 		{
 			var target = new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false );
-			Assert.AreEqual( "ABC".GetHashCode(), target.GetHashCode() );
+			Assert.That( target.GetHashCode(), Is.EqualTo( "ABC".GetHashCode() ) );
 		}
 
 		[Test]
@@ -98,45 +98,45 @@ namespace MsgPack
 		public void TestGetHashCode_EmptyString()
 		{
 			var target = new MessagePackString( String.Empty );
-			Assert.AreEqual( String.Empty.GetHashCode(), target.GetHashCode() );
+			Assert.That( target.GetHashCode(), Is.EqualTo( String.Empty.GetHashCode() ) );
 		}
 
 		[Test]
 		public void TestToString_Binary()
 		{
 			var target = new MessagePackString( new byte[] { 0xFF, 0xED, 0xCB }, false );
-			Assert.AreEqual( "0xFFEDCB", target.ToString() );
+			Assert.That( target.ToString(), Is.EqualTo( "0xFFEDCB" ) );
 		}
 
 		[Test]
 		public void TestToString_String()
 		{
 			var target = new MessagePackString( "ABC" );
-			Assert.AreEqual( "ABC", target.ToString() );
+			Assert.That( target.ToString(), Is.EqualTo( "ABC" ) );
 		}
 
 		[Test]
 		public void TestToString_StringifiableBinary()
 		{
 			var target = new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false );
-			Assert.AreEqual( String.Format( CultureInfo.InvariantCulture, "0x{0:x}{1:x}{2:x}", ( byte )'A', ( byte )'B', ( byte )'C' ), target.ToString() );
+			Assert.That( target.ToString(), Is.EqualTo( String.Format( CultureInfo.InvariantCulture, "0x{0:x}{1:x}{2:x}", ( byte )'A', ( byte )'B', ( byte )'C' ) ) );
 			// Encode
 			target.GetString();
-			Assert.AreEqual( "ABC", target.ToString() );
+			Assert.That( target.ToString(), Is.EqualTo( "ABC" ) );
 		}
 
 		[Test]
 		public void TestToString_EmptyBinary()
 		{
 			var target = new MessagePackString( new byte[ 0 ], false );
-			Assert.AreEqual( String.Empty, target.ToString() );
+			Assert.That( target.ToString(), Is.EqualTo( String.Empty ) );
 		}
 
 		[Test]
 		public void TestToString_EmptyString()
 		{
 			var target = new MessagePackString( String.Empty );
-			Assert.AreEqual( String.Empty, target.ToString() );
+			Assert.That( target.ToString(), Is.EqualTo( String.Empty ) );
 		}
 
 		[Test]
@@ -162,7 +162,7 @@ namespace MsgPack
 			Debug.WriteLine( "Large(100,000 chars) : {0:#,0.0} usec", result.Item4 );
 		}
 
-#if !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETFX_CORE && !NETSTANDARD2_0
+#if NETFRAMEWORK
 		private static StrongName GetStrongName( Type type )
 		{
 			var assemblyName = type.Assembly.GetName();
@@ -246,74 +246,82 @@ namespace MsgPack
 			AppDomain.CurrentDomain.SetData( "MessagePackString.IsFastEqualsDisabled", MessagePackString.IsFastEqualsDisabled );
 		}
 
-#endif // !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETFX_CORE && !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 
 		private static Tuple<double, double, double, double> TestEqualsCore()
 		{
-			Assert.IsTrue(
+			Assert.That(
 				new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false ).Equals(
 					new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false )
 				),
+				Is.True,
 				"Binary-Binary-True"
 			);
 
-			Assert.IsTrue(
+			Assert.That(
 				new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false ).Equals(
 					new MessagePackString( "ABC" )
 				),
+				Is.True,
 				"Binary-String-True"
 			);
 
-			Assert.IsTrue(
+			Assert.That(
 				new MessagePackString( "ABC" ).Equals(
 					new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false )
 				),
+				Is.True,
 				"String-Binary-True"
 			);
 
-			Assert.IsTrue(
+			Assert.That(
 				new MessagePackString( "ABC" ).Equals(
 					new MessagePackString( "ABC" )
 				),
+				Is.True,
 				"String-String-True"
 			);
 
-			Assert.IsFalse(
+			Assert.That(
 				new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false ).Equals(
 					new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'D' }, false )
 				),
+				Is.False,
 				"Binary-Binary-False"
 			);
 
-			Assert.IsFalse(
+			Assert.That(
 				new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false ).Equals(
 					new MessagePackString( "ABD" )
 				),
+				Is.False,
 				"Binary-String-False"
 			);
 
-			Assert.IsFalse(
+			Assert.That(
 				new MessagePackString( "ABD" ).Equals(
 					new MessagePackString( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' }, false )
 				),
+				Is.False,
 				"String-Binary-False"
 			);
 
-			Assert.IsFalse(
+			Assert.That(
 				new MessagePackString( "ABC" ).Equals(
 					new MessagePackString( "ABD" )
 				),
+				Is.False,
 				"String-String-False"
 			);
 
 			var values =
-				new[] 
-				{ 
-					new MessagePackString( new byte[ 0 ], false ), 
-					new MessagePackString( new byte[] { 0x20 }, false ), 
+				new[]
+				{
+					new MessagePackString( new byte[ 0 ], false ),
+					new MessagePackString( new byte[] { 0x20 }, false ),
 					new MessagePackString( new byte[] { 0xff }, false ),
-					new MessagePackString( new byte[] { 1, 2, 3 }, false ), 
-					new MessagePackString( new byte[] { 3, 2, 1 }, false ) 
+					new MessagePackString( new byte[] { 1, 2, 3 }, false ),
+					new MessagePackString( new byte[] { 3, 2, 1 }, false )
 			};
 
 			const int iteration = 10;

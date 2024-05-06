@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -34,7 +34,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 1000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 1000 )]
+#endif // NETFRAMEWORK
 	public sealed class BigEndianBinaryTest
 	{
 		[Test]
@@ -120,41 +124,41 @@ namespace MsgPack
 		[Test]
 		public void TestToSingle()
 		{
-			Assert.AreEqual( 0.0f, BigEndianBinary.ToSingle( new byte[] { 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( -0.0f, BigEndianBinary.ToSingle( new byte[] { 0x80, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Single.Epsilon, BigEndianBinary.ToSingle( new byte[] { 0x00, 0x00, 0x00, 0x01 }, 0 ) );
-			Assert.AreEqual( -1.0f * Single.Epsilon, BigEndianBinary.ToSingle( new byte[] { 0x80, 0x00, 0x00, 0x01 }, 0 ) );
-			Assert.AreEqual( Single.MinValue, BigEndianBinary.ToSingle( new byte[] { 0xff, 0x7f, 0xff, 0xff }, 0 ) );
-			Assert.AreEqual( Single.MaxValue, BigEndianBinary.ToSingle( new byte[] { 0x7f, 0x7f, 0xff, 0xff }, 0 ) );
-			Assert.AreEqual( Single.NaN, BigEndianBinary.ToSingle( new byte[] { 0x7f, 0xc0, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Single.NaN, BigEndianBinary.ToSingle( new byte[] { 0xff, 0xc0, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Single.PositiveInfinity, BigEndianBinary.ToSingle( new byte[] { 0x7f, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Single.NegativeInfinity, BigEndianBinary.ToSingle( new byte[] { 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( 1.0f, BigEndianBinary.ToSingle( new byte[] { 0x3f, 0x80, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( -1.0f, BigEndianBinary.ToSingle( new byte[] { 0xbf, 0x80, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( 2.0f, BigEndianBinary.ToSingle( new byte[] { 0x40, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( -2.0f, BigEndianBinary.ToSingle( new byte[] { 0xc0, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( 1.0f, BigEndianBinary.ToSingle( new byte[] { 0xff, 0x3f, 0x80, 0x00, 0x00, 0xff }, 1 ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( 0.0f ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x80, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( -0.0f ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x00, 0x00, 0x00, 0x01 }, 0 ), Is.EqualTo( Single.Epsilon ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x80, 0x00, 0x00, 0x01 }, 0 ), Is.EqualTo( -1.0f * Single.Epsilon ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0xff, 0x7f, 0xff, 0xff }, 0 ), Is.EqualTo( Single.MinValue ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x7f, 0x7f, 0xff, 0xff }, 0 ), Is.EqualTo( Single.MaxValue ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x7f, 0xc0, 0x00, 0x00 }, 0 ), Is.EqualTo( Single.NaN ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0xff, 0xc0, 0x00, 0x00 }, 0 ), Is.EqualTo( Single.NaN ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x7f, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( Single.PositiveInfinity ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0xff, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( Single.NegativeInfinity ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x3f, 0x80, 0x00, 0x00 }, 0 ), Is.EqualTo( 1.0f ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0xbf, 0x80, 0x00, 0x00 }, 0 ), Is.EqualTo( -1.0f ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0x40, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( 2.0f ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0xc0, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( -2.0f ) );
+			Assert.That( BigEndianBinary.ToSingle( new byte[] { 0xff, 0x3f, 0x80, 0x00, 0x00, 0xff }, 1 ), Is.EqualTo( 1.0f ) );
 		}
 
 		[Test]
 		public void TestToDouble()
 		{
-			Assert.AreEqual( 0.0, BigEndianBinary.ToDouble( new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( -0.0, BigEndianBinary.ToDouble( new byte[] { 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Double.Epsilon, BigEndianBinary.ToDouble( new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }, 0 ) );
-			Assert.AreEqual( -1.0 * Double.Epsilon, BigEndianBinary.ToDouble( new byte[] { 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }, 0 ) );
-			Assert.AreEqual( Double.MinValue, BigEndianBinary.ToDouble( new byte[] { 0xff, 0xef, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, 0 ) );
-			Assert.AreEqual( Double.MaxValue, BigEndianBinary.ToDouble( new byte[] { 0x7f, 0xef, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, 0 ) );
-			Assert.AreEqual( Double.NaN, BigEndianBinary.ToDouble( new byte[] { 0x7f, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Double.NaN, BigEndianBinary.ToDouble( new byte[] { 0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Double.PositiveInfinity, BigEndianBinary.ToDouble( new byte[] { 0x7f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( Double.NegativeInfinity, BigEndianBinary.ToDouble( new byte[] { 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( 1.0, BigEndianBinary.ToDouble( new byte[] { 0x3f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( -1.0, BigEndianBinary.ToDouble( new byte[] { 0xbf, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( 2.0, BigEndianBinary.ToDouble( new byte[] { 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( -2.0, BigEndianBinary.ToDouble( new byte[] { 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ) );
-			Assert.AreEqual( 1.0, BigEndianBinary.ToDouble( new byte[] { 0xff, 0x3f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff }, 1 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( 0.0 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( -0.0 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }, 0 ), Is.EqualTo( Double.Epsilon ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 }, 0 ), Is.EqualTo( -1.0 * Double.Epsilon ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0xff, 0xef, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, 0 ), Is.EqualTo( Double.MinValue ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x7f, 0xef, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff }, 0 ), Is.EqualTo( Double.MaxValue ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x7f, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( Double.NaN ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0xff, 0xf8, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( Double.NaN ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x7f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( Double.PositiveInfinity ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0xff, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( Double.NegativeInfinity ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x3f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( 1.0 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0xbf, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( -1.0 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( 2.0 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }, 0 ), Is.EqualTo( -2.0 ) );
+			Assert.That( BigEndianBinary.ToDouble( new byte[] { 0xff, 0x3f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff }, 1 ), Is.EqualTo( 1.0 ) );
 		}
 
 #if PERFORMANCE_TEST
@@ -226,7 +230,7 @@ namespace MsgPack
 		private static void AssertPrimitive<T>( string expectedHexString, T actualPrimitive )
 			where T : IFormattable
 		{
-			Assert.AreEqual( expectedHexString, actualPrimitive.ToString( "x", CultureInfo.InvariantCulture ) );
+			Assert.That( actualPrimitive.ToString( "x", CultureInfo.InvariantCulture ), Is.EqualTo( expectedHexString ) );
 		}
 	}
 }

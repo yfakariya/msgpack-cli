@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -90,7 +90,25 @@ foreach( var __type in
 {
 #>
 
+<#
+	if( __type == typeof( long ) || __type == typeof( float ) )
+	
+	{
+#>
+#if NET6_0_OR_GREATER
+		public override <#= __type.Name #> Next<#= __type.Name #>()
+#else // NET6_0_OR_GREATER
 		public <#= __type.Name #> Next<#= __type.Name #>()
+#endif // NET6_0_OR_GREATER
+<#
+	}
+	else
+	{
+#>
+		public <#= __type.Name #> Next<#= __type.Name #>()
+<#
+	}
+#>
 		{
 			base.NextBytes( this._castBuffer );
 <#

@@ -117,7 +117,11 @@ using Does = NUnit.Framework.Does;
 namespace MsgPack.Serialization
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 60000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 60000 )]
+#endif // NETFRAMEWORK
 	public class <#= testClassName #>
 	{
 		private static SerializationContext GetSerializationContext()
@@ -269,7 +273,7 @@ namespace MsgPack.Serialization
 
 			if ( SerializerDebugging.DumpEnabled && this.CanDump )
 			{
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 				try
 				{
 					SerializerDebugging.Dump();
@@ -282,9 +286,9 @@ namespace MsgPack.Serialization
 				{
 					SerializationMethodGeneratorManager.Refresh();
 				}
-#else // !NETSTANDARD2_0
+#else // FEATURE_ASMGEN
 				SerializationMethodGeneratorManager.Refresh();
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 			}
 
 			SerializerDebugging.Reset();
@@ -549,8 +553,8 @@ namespace MsgPack.Serialization
 #>
 
 				// Kind is preserved.
-				Assert.That( result.Vanilla<#= suffix #>, Is.EqualTo( input.Vanilla<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> );
-				Assert.That( result.Default<#= suffix #>, Is.EqualTo( input.Default<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Default<#= suffix #>, input.Default<#= suffix #> );
+				Assert.That( result.Vanilla<#= suffix #>, Is.EqualTo( input.Vanilla<#= suffix #> ), $"{result.Vanilla<#= suffix #>:O}({result.Vanilla<#= suffix #>:%K}) == {input.Vanilla<#= suffix #>:O}({input.Vanilla<#= suffix #>:%K})" );
+				Assert.That( result.Default<#= suffix #>, Is.EqualTo( input.Default<#= suffix #> ), $"{result.Default<#= suffix #>:O}({result.Default<#= suffix #>:%K}) == {input.Default<#= suffix #>:O}({input.Default<#= suffix #>:%K})" );
 <#+
 				}
 				else
@@ -558,13 +562,13 @@ namespace MsgPack.Serialization
 #>
 
 				// UTC is forced.
-				Assert.That( CompareDateTime( result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #>.ToUniversalTime() ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> );
-				Assert.That( CompareDateTime( result.Default<#= suffix #>, input.Default<#= suffix #>.ToUniversalTime() ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Default<#= suffix #>, input.Default<#= suffix #> );
+				Assert.That( CompareDateTime( result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #>.ToUniversalTime() ), $"{result.Vanilla<#= suffix #>:O}({result.Vanilla<#= suffix #>:%K}) == {input.Vanilla<#= suffix #>:O}({input.Vanilla<#= suffix #>:%K})" );
+				Assert.That( CompareDateTime( result.Default<#= suffix #>, input.Default<#= suffix #>.ToUniversalTime() ), $"{result.Default<#= suffix #>:O}({result.Default<#= suffix #>:%K}) == {input.Default<#= suffix #>:O}({input.Default<#= suffix #>:%K})" );
 <#+
 				}
 #>
-				Assert.That( result.Native<#= suffix #>, Is.EqualTo( input.Native<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Native<#= suffix #>, input.Native<#= suffix #> );
-				Assert.That( CompareDateTime( result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #>.ToUniversalTime() ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #> );
+				Assert.That( result.Native<#= suffix #>, Is.EqualTo( input.Native<#= suffix #> ), $"{result.Native<#= suffix #>:O}({result.Native<#= suffix #>:%K}) == {input.Native<#= suffix #>:O}({input.Native<#= suffix #>:%K})" );
+				Assert.That( CompareDateTime( result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #>.ToUniversalTime() ), $"{result.UnixEpoc<#= suffix #>:O}({result.UnixEpoc<#= suffix #>:%K}) == {input.UnixEpoc<#= suffix #>:O}({input.UnixEpoc<#= suffix #>:%K})" );
 
 <#+
 				suffix = String.Format( CultureInfo.InvariantCulture, "DateTimeOffset{0}", memberType );
@@ -573,8 +577,8 @@ namespace MsgPack.Serialization
 #>
 
 				// Offset is preserved. 
-				Assert.That( result.Vanilla<#= suffix #>, Is.EqualTo( input.Vanilla<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> );
-				Assert.That( result.Default<#= suffix #>, Is.EqualTo( input.Default<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Default<#= suffix #>, input.Default<#= suffix #> );
+				Assert.That( result.Vanilla<#= suffix #>, Is.EqualTo( input.Vanilla<#= suffix #> ), $"{result.Vanilla<#= suffix #>:O}({result.Vanilla<#= suffix #>:%K}) == {input.Vanilla<#= suffix #>:O}({input.Vanilla<#= suffix #>:%K})" );
+				Assert.That( result.Default<#= suffix #>, Is.EqualTo( input.Default<#= suffix #> ), $"{result.Default<#= suffix #>:O}({result.Default<#= suffix #>:%K}) == {input.Default<#= suffix #>:O}({input.Default<#= suffix #>:%K})" );
 <#+
 				}
 				else if ( kind.Label == "Utc" )
@@ -582,8 +586,8 @@ namespace MsgPack.Serialization
 #>
 
 				// UTC == UTC
-				Assert.That( CompareDateTime( result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> );
-				Assert.That( CompareDateTime( result.Default<#= suffix #>, input.Default<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Default<#= suffix #>, input.Default<#= suffix #> );
+				Assert.That( CompareDateTime( result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> ), $"{result.Vanilla<#= suffix #>:O}({result.Vanilla<#= suffix #>:%K}) == {input.Vanilla<#= suffix #>:O}({input.Vanilla<#= suffix #>:%K})" );
+				Assert.That( CompareDateTime( result.Default<#= suffix #>, input.Default<#= suffix #> ), $"{result.Default<#= suffix #>:O}({result.Default<#= suffix #>:%K}) == {input.Default<#= suffix #>:O}({input.Default<#= suffix #>:%K})" );
 <#+
 				}
 				else
@@ -591,25 +595,25 @@ namespace MsgPack.Serialization
 #>
 
 				// UTC is forced.
-				Assert.That( CompareDateTime( result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #>.ToUniversalTime() ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #> );
-				Assert.That( CompareDateTime( result.Default<#= suffix #>, input.Default<#= suffix #>.ToUniversalTime() ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Default<#= suffix #>, input.Default<#= suffix #> );
+				Assert.That( CompareDateTime( result.Vanilla<#= suffix #>, input.Vanilla<#= suffix #>.ToUniversalTime() ), $"{result.Vanilla<#= suffix #>:O}({result.Vanilla<#= suffix #>:%K}) == {input.Vanilla<#= suffix #>:O}({input.Vanilla<#= suffix #>:%K})" );
+				Assert.That( CompareDateTime( result.Default<#= suffix #>, input.Default<#= suffix #>.ToUniversalTime() ), $"{result.Default<#= suffix #>:O}({result.Default<#= suffix #>:%K}) == {input.Default<#= suffix #>:O}({input.Default<#= suffix #>:%K})" );
 <#+
 				}
 #>
-				Assert.That( result.Native<#= suffix #>, Is.EqualTo( input.Native<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.Native<#= suffix #>, input.Native<#= suffix #> );
+				Assert.That( result.Native<#= suffix #>, Is.EqualTo( input.Native<#= suffix #> ), $"{result.Native<#= suffix #>:O}({result.Native<#= suffix #>:%K}) == {input.Native<#= suffix #>:O}({input.Native<#= suffix #>:%K})" );
 <#+
 				if ( kind.Label == "Utc" )
 				{
 #>
 				// UTC == UTC
-				Assert.That( CompareDateTime( result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #> ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #> );
+				Assert.That( CompareDateTime( result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #> ), $"{result.UnixEpoc<#= suffix #>:O}({result.UnixEpoc<#= suffix #>:%K}) == {input.UnixEpoc<#= suffix #>:O}({input.UnixEpoc<#= suffix #>:%K})" );
 <#+
 				}
 				else
 				{
 #>
 				// UTC is forced.
-				Assert.That( CompareDateTime( result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #>.ToUniversalTime() ), "{0:O}({0:%K}) == {1:O}({1:%K})", result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #> );
+				Assert.That( CompareDateTime( result.UnixEpoc<#= suffix #>, input.UnixEpoc<#= suffix #>.ToUniversalTime() ), $"{result.UnixEpoc<#= suffix #>:O}({result.UnixEpoc<#= suffix #>:%K}) == {input.UnixEpoc<#= suffix #>:O}({input.UnixEpoc<#= suffix #>:%K})" );
 <#+
 				}
 			}
@@ -1061,7 +1065,7 @@ namespace MsgPack.Serialization
 				buffer.Position = 0;
 				var asDictionary = Unpacking.UnpackDictionary( buffer );
 
-				Assert.That( asDictionary[ "Alias" ] == value.Member );
+				Assert.That( asDictionary[ "Alias" ] == value.Member, Is.True );
 
 				buffer.Position = 0;
 
@@ -2967,10 +2971,10 @@ namespace MsgPack.Serialization
 				target.Pack( buffer, value );
 				buffer.Position = 0;
 				T intermediate = unpacking( buffer );
-				Assert.That( safeComparer( intermediate, value ), "Expected:{1}{0}Actual :{2}", Environment.NewLine, value, intermediate );
+				Assert.That( safeComparer( intermediate, value ), $"Expected:{value}{Environment.NewLine}Actual :{intermediate}" );
 				buffer.Position = 0;
 				T unpacked = target.Unpack( buffer );
-				Assert.That( safeComparer( unpacked, value ), "Expected:{1}{0}Actual :{2}", Environment.NewLine, value, unpacked );
+				Assert.That( safeComparer( unpacked, value ), $"Expected:{value}{Environment.NewLine}Actual :{unpacked}" );
 			}
 		}
 
@@ -4253,7 +4257,7 @@ namespace MsgPack.Serialization
 					if ( ( expectedCapabilities & SerializerCapabilities.PackTo ) != 0 )
 					{
 						serializer.Pack( buffer, obj );
-						Assert.That( buffer.ToArray(), Is.EqualTo( serialized ), "{0} != {1}", BitConverter.ToString( buffer.ToArray() ), BitConverter.ToString( serialized ) );
+						Assert.That( buffer.ToArray(), Is.EqualTo( serialized ), $"{BitConverter.ToString( buffer.ToArray() )} != {BitConverter.ToString( serialized )}" );
 					}
 					else if ( ( expectedCapabilities & SerializerCapabilities.UnpackFrom ) != 0 )
 					{

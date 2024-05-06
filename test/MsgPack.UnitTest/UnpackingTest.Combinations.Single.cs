@@ -44,8 +44,8 @@ namespace MsgPack
 		public void TestUnpackSingle_ByteArray_SingleMinValue_AsIs()
 		{
 			var result = Unpacking.UnpackSingle( new byte[] { 0xCA, 0xFF, 0x7F, 0xFF, 0xFF } );
-			Assert.AreEqual( sizeof( System.Single ) + 1, result.ReadCount );
-			Assert.IsTrue( Single.MinValue.Equals(result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+			Assert.That( Single.MinValue.Equals(result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -54,8 +54,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCA, 0xFF, 0x7F, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackSingle( buffer );
-				Assert.AreEqual( sizeof( System.Single ) + 1, buffer.Position );
-				Assert.IsTrue( Single.MinValue.Equals(result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+				Assert.That( Single.MinValue.Equals(result ), Is.True );
 			}
 		}
 		
@@ -63,8 +63,8 @@ namespace MsgPack
 		public void TestUnpackSingle_ByteArray_SingleMaxValue_AsIs()
 		{
 			var result = Unpacking.UnpackSingle( new byte[] { 0xCA, 0x7F, 0x7F, 0xFF, 0xFF } );
-			Assert.AreEqual( sizeof( System.Single ) + 1, result.ReadCount );
-			Assert.IsTrue( Single.MaxValue.Equals(result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+			Assert.That( Single.MaxValue.Equals(result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -73,8 +73,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCA, 0x7F, 0x7F, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackSingle( buffer );
-				Assert.AreEqual( sizeof( System.Single ) + 1, buffer.Position );
-				Assert.IsTrue( Single.MaxValue.Equals(result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+				Assert.That( Single.MaxValue.Equals(result ), Is.True );
 			}
 		}
 		
@@ -82,8 +82,8 @@ namespace MsgPack
 		public void TestUnpackSingle_ByteArray_SingleZero_AsIs()
 		{
 			var result = Unpacking.UnpackSingle( new byte[] { 0xCA, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( sizeof( System.Single ) + 1, result.ReadCount );
-			Assert.IsTrue( ( 0.0f ).Equals(result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+			Assert.That( ( 0.0f ).Equals(result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -92,8 +92,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCA, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackSingle( buffer );
-				Assert.AreEqual( sizeof( System.Single ) + 1, buffer.Position );
-				Assert.IsTrue( ( 0.0f ).Equals(result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+				Assert.That( ( 0.0f ).Equals(result ), Is.True );
 			}
 		}
 		
@@ -101,8 +101,8 @@ namespace MsgPack
 		public void TestUnpackSingle_ByteArray_DoubleMinValue_AsIs()
 		{
 			var result = Unpacking.UnpackSingle( new byte[] { 0xCB, 0xFF, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } );
-			Assert.AreEqual( sizeof( System.Double ) + 1, result.ReadCount );
-			Assert.IsTrue( ( ( float )Double.MinValue ).Equals(result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Double ) + 1 ) );
+			Assert.That( ( ( float )Double.MinValue ).Equals(result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -111,8 +111,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCB, 0xFF, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackSingle( buffer );
-				Assert.AreEqual( sizeof( System.Double ) + 1, buffer.Position );
-				Assert.IsTrue( ( ( float )Double.MinValue ).Equals(result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( System.Double ) + 1 ) );
+				Assert.That( ( ( float )Double.MinValue ).Equals(result ), Is.True );
 			}
 		}
 		
@@ -120,8 +120,8 @@ namespace MsgPack
 		public void TestUnpackSingle_ByteArray_DoubleMaxValue_AsIs()
 		{
 			var result = Unpacking.UnpackSingle( new byte[] { 0xCB, 0x7F, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } );
-			Assert.AreEqual( sizeof( System.Double ) + 1, result.ReadCount );
-			Assert.IsTrue( ( ( float )Double.MaxValue ).Equals(result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Double ) + 1 ) );
+			Assert.That( ( ( float )Double.MaxValue ).Equals(result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -130,8 +130,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCB, 0x7F, 0xEF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackSingle( buffer );
-				Assert.AreEqual( sizeof( System.Double ) + 1, buffer.Position );
-				Assert.IsTrue( ( ( float )Double.MaxValue ).Equals(result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( System.Double ) + 1 ) );
+				Assert.That( ( ( float )Double.MaxValue ).Equals(result ), Is.True );
 			}
 		}
 		
@@ -139,8 +139,8 @@ namespace MsgPack
 		public void TestUnpackSingle_ByteArray_DoubleZero_AsIs()
 		{
 			var result = Unpacking.UnpackSingle( new byte[] { 0xCB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( sizeof( System.Double ) + 1, result.ReadCount );
-			Assert.IsTrue( ( 0.0f ).Equals(result.Value ) );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Double ) + 1 ) );
+			Assert.That( ( 0.0f ).Equals(result.Value ), Is.True );
 		}
 		
 		[Test]
@@ -149,8 +149,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCB, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackSingle( buffer );
-				Assert.AreEqual( sizeof( System.Double ) + 1, buffer.Position );
-				Assert.IsTrue( ( 0.0f ).Equals(result ) );
+				Assert.That( buffer.Position, Is.EqualTo( sizeof( System.Double ) + 1 ) );
+				Assert.That( ( 0.0f ).Equals(result ), Is.True );
 			}
 		}
 		
@@ -201,8 +201,8 @@ namespace MsgPack
 		{
 			// Offset 1 is Single 0.
 			var result = Unpacking.UnpackSingle( new byte[] { 0xFF, 0xCA, 0x00, 0x00, 0x00, 0x00, 0xFF }, 1 );
-			Assert.AreEqual( sizeof( System.Single ) + 1, result.ReadCount );
-			Assert.AreEqual( 0.0, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( sizeof( System.Single ) + 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0.0f ) );
 		}
 
 		[Test]

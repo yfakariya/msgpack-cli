@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -49,11 +49,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -9223372036854775808 ) );
 
 				// -1 is prepended extra bytes length
@@ -70,7 +70,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -9223372036854775808 ) );
 
 				// -1 is prepended extra bytes length
@@ -87,7 +87,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -9223372036854775808 ) );
 
 				// -1 is prepended extra bytes length
@@ -104,11 +104,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -2147483648 ) );
 
 				// -1 is prepended extra bytes length
@@ -125,7 +125,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -2147483648 ) );
 
 				// -1 is prepended extra bytes length
@@ -142,7 +142,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -2147483648 ) );
 
 				// -1 is prepended extra bytes length
@@ -159,11 +159,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32768 ) );
 
 				// -1 is prepended extra bytes length
@@ -180,7 +180,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -32768 ) );
 
 				// -1 is prepended extra bytes length
@@ -197,7 +197,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -32768 ) );
 
 				// -1 is prepended extra bytes length
@@ -214,11 +214,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -128 ) );
 
 				// -1 is prepended extra bytes length
@@ -235,7 +235,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -128 ) );
 
 				// -1 is prepended extra bytes length
@@ -252,7 +252,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -128 ) );
 
 				// -1 is prepended extra bytes length
@@ -269,11 +269,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32 ) );
 
 				// -1 is prepended extra bytes length
@@ -290,7 +290,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -32 ) );
 
 				// -1 is prepended extra bytes length
@@ -307,7 +307,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -32 ) );
 
 				// -1 is prepended extra bytes length
@@ -324,11 +324,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -1 ) );
 
 				// -1 is prepended extra bytes length
@@ -345,7 +345,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
-				Assert.IsTrue( unpacker.ReadInt64( out result ) );
+				Assert.That( unpacker.ReadInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( -1 ) );
 
 				// -1 is prepended extra bytes length
@@ -362,7 +362,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( -1 ) );
 
 				// -1 is prepended extra bytes length
@@ -379,11 +379,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 0 ) );
 
 				// -1 is prepended extra bytes length
@@ -400,7 +400,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 0 ) );
 
 				// -1 is prepended extra bytes length
@@ -417,7 +417,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 0 ) );
 
 				// -1 is prepended extra bytes length
@@ -434,11 +434,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 1 ) );
 
 				// -1 is prepended extra bytes length
@@ -455,7 +455,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 1 ) );
 
 				// -1 is prepended extra bytes length
@@ -472,7 +472,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 1 ) );
 
 				// -1 is prepended extra bytes length
@@ -489,11 +489,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 127 ) );
 
 				// -1 is prepended extra bytes length
@@ -510,7 +510,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 127 ) );
 
 				// -1 is prepended extra bytes length
@@ -527,7 +527,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 127 ) );
 
 				// -1 is prepended extra bytes length
@@ -544,11 +544,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 255 ) );
 
 				// -1 is prepended extra bytes length
@@ -565,7 +565,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 255 ) );
 
 				// -1 is prepended extra bytes length
@@ -582,7 +582,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 255 ) );
 
 				// -1 is prepended extra bytes length
@@ -599,11 +599,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 65535 ) );
 
 				// -1 is prepended extra bytes length
@@ -620,7 +620,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 65535 ) );
 
 				// -1 is prepended extra bytes length
@@ -637,7 +637,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 65535 ) );
 
 				// -1 is prepended extra bytes length
@@ -654,11 +654,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 4294967295 ) );
 
 				// -1 is prepended extra bytes length
@@ -675,7 +675,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 4294967295 ) );
 
 				// -1 is prepended extra bytes length
@@ -692,7 +692,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 4294967295 ) );
 
 				// -1 is prepended extra bytes length
@@ -709,11 +709,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 18446744073709551615 ) );
 
 				// -1 is prepended extra bytes length
@@ -730,7 +730,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
-				Assert.IsTrue( unpacker.ReadUInt64( out result ) );
+				Assert.That( unpacker.ReadUInt64( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( 18446744073709551615 ) );
 
 				// -1 is prepended extra bytes length
@@ -747,7 +747,7 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( 18446744073709551615 ) );
 
 				// -1 is prepended extra bytes length
@@ -764,11 +764,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( true ) );
 
 				// -1 is prepended extra bytes length
@@ -786,7 +786,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Boolean result;
-				Assert.IsTrue( unpacker.ReadBoolean( out result ) );
+				Assert.That( unpacker.ReadBoolean( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( true ) );
 
 				// -1 is prepended extra bytes length
@@ -804,7 +804,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Boolean? result;
-				Assert.IsTrue( unpacker.ReadNullableBoolean( out result ) );
+				Assert.That( unpacker.ReadNullableBoolean( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( true ) );
 
 				// -1 is prepended extra bytes length
@@ -821,11 +821,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( false ) );
 
 				// -1 is prepended extra bytes length
@@ -843,7 +843,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Boolean result;
-				Assert.IsTrue( unpacker.ReadBoolean( out result ) );
+				Assert.That( unpacker.ReadBoolean( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( false ) );
 
 				// -1 is prepended extra bytes length
@@ -861,7 +861,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Boolean? result;
-				Assert.IsTrue( unpacker.ReadNullableBoolean( out result ) );
+				Assert.That( unpacker.ReadNullableBoolean( out result ), Is.True );
 				Assert.That( result.Value, Is.EqualTo( false ) );
 
 				// -1 is prepended extra bytes length
@@ -878,11 +878,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.MaxValue.Equals( ( System.Single )result.Value ) );
 
 				// -1 is prepended extra bytes length
@@ -900,7 +900,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Single result;
-				Assert.IsTrue( unpacker.ReadSingle( out result ) );
+				Assert.That( unpacker.ReadSingle( out result ), Is.True );
 				Assert.That( Single.MaxValue.Equals( result ) );
 
 				// -1 is prepended extra bytes length
@@ -918,7 +918,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( Single.MaxValue.Equals( result.Value ) );
 
 				// -1 is prepended extra bytes length
@@ -935,11 +935,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.MaxValue.Equals( ( System.Double )result.Value ) );
 
 				// -1 is prepended extra bytes length
@@ -957,7 +957,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Double result;
-				Assert.IsTrue( unpacker.ReadDouble( out result ) );
+				Assert.That( unpacker.ReadDouble( out result ), Is.True );
 				Assert.That( Double.MaxValue.Equals( result ) );
 
 				// -1 is prepended extra bytes length
@@ -975,7 +975,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( Double.MaxValue.Equals( result.Value ) );
 
 				// -1 is prepended extra bytes length
@@ -993,7 +993,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Boolean? result;
-				Assert.IsTrue( unpacker.ReadNullableBoolean( out result ) );
+				Assert.That( unpacker.ReadNullableBoolean( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1011,7 +1011,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Single? result;
-				Assert.IsTrue( unpacker.ReadNullableSingle( out result ) );
+				Assert.That( unpacker.ReadNullableSingle( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1029,7 +1029,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Double? result;
-				Assert.IsTrue( unpacker.ReadNullableDouble( out result ) );
+				Assert.That( unpacker.ReadNullableDouble( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1047,7 +1047,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				SByte? result;
-				Assert.IsTrue( unpacker.ReadNullableSByte( out result ) );
+				Assert.That( unpacker.ReadNullableSByte( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1065,7 +1065,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Int16? result;
-				Assert.IsTrue( unpacker.ReadNullableInt16( out result ) );
+				Assert.That( unpacker.ReadNullableInt16( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1083,7 +1083,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Int32? result;
-				Assert.IsTrue( unpacker.ReadNullableInt32( out result ) );
+				Assert.That( unpacker.ReadNullableInt32( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1101,7 +1101,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Int64? result;
-				Assert.IsTrue( unpacker.ReadNullableInt64( out result ) );
+				Assert.That( unpacker.ReadNullableInt64( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1119,7 +1119,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				Byte? result;
-				Assert.IsTrue( unpacker.ReadNullableByte( out result ) );
+				Assert.That( unpacker.ReadNullableByte( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1137,7 +1137,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				UInt16? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt16( out result ) );
+				Assert.That( unpacker.ReadNullableUInt16( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1155,7 +1155,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				UInt32? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt32( out result ) );
+				Assert.That( unpacker.ReadNullableUInt32( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1173,7 +1173,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
 				UInt64? result;
-				Assert.IsTrue( unpacker.ReadNullableUInt64( out result ) );
+				Assert.That( unpacker.ReadNullableUInt64( out result ), Is.True );
 				Assert.That( result, Is.Null );
 
 				// -1 is prepended extra bytes length
@@ -1192,11 +1192,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -9223372036854775808 ) );
 
 				// -1 is prepended extra bytes length
@@ -1214,7 +1214,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -9223372036854775808 ) );
 
@@ -1233,7 +1233,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -9223372036854775808 ) );
 
@@ -1251,11 +1251,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -2147483648 ) );
 
 				// -1 is prepended extra bytes length
@@ -1273,7 +1273,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -2147483648 ) );
 
@@ -1292,7 +1292,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -2147483648 ) );
 
@@ -1310,11 +1310,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32768 ) );
 
 				// -1 is prepended extra bytes length
@@ -1332,7 +1332,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -32768 ) );
 
@@ -1351,7 +1351,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -32768 ) );
 
@@ -1369,11 +1369,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -128 ) );
 
 				// -1 is prepended extra bytes length
@@ -1391,7 +1391,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -128 ) );
 
@@ -1410,7 +1410,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -128 ) );
 
@@ -1428,11 +1428,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -32 ) );
 
 				// -1 is prepended extra bytes length
@@ -1450,7 +1450,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -32 ) );
 
@@ -1469,7 +1469,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -32 ) );
 
@@ -1487,11 +1487,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Int64 )result.Value, Is.EqualTo( -1 ) );
 
 				// -1 is prepended extra bytes length
@@ -1509,7 +1509,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64 result;
 				var ret = await unpacker.ReadInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( -1 ) );
 
@@ -1528,7 +1528,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( -1 ) );
 
@@ -1546,11 +1546,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 0 ) );
 
 				// -1 is prepended extra bytes length
@@ -1568,7 +1568,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 0 ) );
 
@@ -1587,7 +1587,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 0 ) );
 
@@ -1605,11 +1605,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 1 ) );
 
 				// -1 is prepended extra bytes length
@@ -1627,7 +1627,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 1 ) );
 
@@ -1646,7 +1646,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 1 ) );
 
@@ -1664,11 +1664,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 127 ) );
 
 				// -1 is prepended extra bytes length
@@ -1686,7 +1686,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 127 ) );
 
@@ -1705,7 +1705,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 127 ) );
 
@@ -1723,11 +1723,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 255 ) );
 
 				// -1 is prepended extra bytes length
@@ -1745,7 +1745,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 255 ) );
 
@@ -1764,7 +1764,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 255 ) );
 
@@ -1782,11 +1782,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 65535 ) );
 
 				// -1 is prepended extra bytes length
@@ -1804,7 +1804,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 65535 ) );
 
@@ -1823,7 +1823,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 65535 ) );
 
@@ -1841,11 +1841,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 4294967295 ) );
 
 				// -1 is prepended extra bytes length
@@ -1863,7 +1863,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 4294967295 ) );
 
@@ -1882,7 +1882,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 4294967295 ) );
 
@@ -1900,11 +1900,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.UInt64 )result.Value, Is.EqualTo( 18446744073709551615 ) );
 
 				// -1 is prepended extra bytes length
@@ -1922,7 +1922,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64 result;
 				var ret = await unpacker.ReadUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( 18446744073709551615 ) );
 
@@ -1941,7 +1941,7 @@ namespace MsgPack
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( 18446744073709551615 ) );
 
@@ -1959,11 +1959,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( true ) );
 
 				// -1 is prepended extra bytes length
@@ -1982,7 +1982,7 @@ namespace MsgPack
 
 				Boolean result;
 				var ret = await unpacker.ReadBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( true ) );
 
@@ -2002,7 +2002,7 @@ namespace MsgPack
 
 				Boolean? result;
 				var ret = await unpacker.ReadNullableBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( true ) );
 
@@ -2020,11 +2020,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( System.Boolean )result.Value, Is.EqualTo( false ) );
 
 				// -1 is prepended extra bytes length
@@ -2043,7 +2043,7 @@ namespace MsgPack
 
 				Boolean result;
 				var ret = await unpacker.ReadBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( false ) );
 
@@ -2063,7 +2063,7 @@ namespace MsgPack
 
 				Boolean? result;
 				var ret = await unpacker.ReadNullableBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.Value, Is.EqualTo( false ) );
 
@@ -2081,11 +2081,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Single.MaxValue.Equals( ( System.Single )result.Value ) );
 
 				// -1 is prepended extra bytes length
@@ -2104,7 +2104,7 @@ namespace MsgPack
 
 				Single result;
 				var ret = await unpacker.ReadSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.MaxValue.Equals( result ) );
 
@@ -2124,7 +2124,7 @@ namespace MsgPack
 
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Single.MaxValue.Equals( result.Value ) );
 
@@ -2142,11 +2142,11 @@ namespace MsgPack
 				// Verify initial offset (prepended bytes length)
 				Assert.That( unpacker.Offset, Is.EqualTo( 1 ) );
 
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( Double.MaxValue.Equals( ( System.Double )result.Value ) );
 
 				// -1 is prepended extra bytes length
@@ -2165,7 +2165,7 @@ namespace MsgPack
 
 				Double result;
 				var ret = await unpacker.ReadDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.MaxValue.Equals( result ) );
 
@@ -2185,7 +2185,7 @@ namespace MsgPack
 
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( Double.MaxValue.Equals( result.Value ) );
 
@@ -2205,7 +2205,7 @@ namespace MsgPack
 
 				Boolean? result;
 				var ret = await unpacker.ReadNullableBooleanAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2225,7 +2225,7 @@ namespace MsgPack
 
 				Single? result;
 				var ret = await unpacker.ReadNullableSingleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2245,7 +2245,7 @@ namespace MsgPack
 
 				Double? result;
 				var ret = await unpacker.ReadNullableDoubleAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2265,7 +2265,7 @@ namespace MsgPack
 
 				SByte? result;
 				var ret = await unpacker.ReadNullableSByteAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2285,7 +2285,7 @@ namespace MsgPack
 
 				Int16? result;
 				var ret = await unpacker.ReadNullableInt16Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2305,7 +2305,7 @@ namespace MsgPack
 
 				Int32? result;
 				var ret = await unpacker.ReadNullableInt32Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2325,7 +2325,7 @@ namespace MsgPack
 
 				Int64? result;
 				var ret = await unpacker.ReadNullableInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2345,7 +2345,7 @@ namespace MsgPack
 
 				Byte? result;
 				var ret = await unpacker.ReadNullableByteAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2365,7 +2365,7 @@ namespace MsgPack
 
 				UInt16? result;
 				var ret = await unpacker.ReadNullableUInt16Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2385,7 +2385,7 @@ namespace MsgPack
 
 				UInt32? result;
 				var ret = await unpacker.ReadNullableUInt32Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 
@@ -2405,7 +2405,7 @@ namespace MsgPack
 
 				UInt64? result;
 				var ret = await unpacker.ReadNullableUInt64Async();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.Null );
 

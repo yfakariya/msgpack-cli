@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -41,7 +41,11 @@ using IgnoreAttribute = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.Ig
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 1000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 1000 )]
+#endif // NETFRAMEWORK
 	public partial class PackUnpackTest
 	{
 		private static TextWriter Console
@@ -79,7 +83,7 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).PackNull();
-			Assert.IsTrue( UnpackOne( output ).IsNil );
+			Assert.That( UnpackOne( output ).IsNil, Is.True );
 		}
 
 		[Test]
@@ -94,9 +98,9 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( val );
 			MessagePackObject obj = UnpackOne( output );
-			Assert.AreEqual( val, obj.AsBoolean() );
-			Assert.AreEqual( val, ( bool )obj );
-			Assert.IsTrue( obj.IsTypeOf<bool>().GetValueOrDefault() );
+			Assert.That( obj.AsBoolean(), Is.EqualTo( val ) );
+			Assert.That( ( bool )obj, Is.EqualTo( val ) );
+			Assert.That( obj.IsTypeOf<bool>().GetValueOrDefault(), Is.True );
 		}
 
 		[Test]
@@ -131,7 +135,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000000 )]
+#endif // NETFRAMEWORK
 #if !HEAVY_TEST
 #if MSTEST
 		[Ignore]
@@ -163,7 +171,11 @@ namespace MsgPack
 
 #if !NET35
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000000 )]
+#endif // NETFRAMEWORK
 #if !HEAVY_TEST
 #if MSTEST
 		[Ignore]
@@ -258,9 +270,9 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).PackString( val );
 			MessagePackObject obj = UnpackOne( output );
-			Assert.AreEqual( val, obj.AsString() );
-			Assert.AreEqual( val, ( string )obj );
-			Assert.IsTrue( obj.IsTypeOf<string>().GetValueOrDefault() );
+			Assert.That( obj.AsString(), Is.EqualTo( val ) );
+			Assert.That( ( string )obj, Is.EqualTo( val ) );
+			Assert.That( obj.IsTypeOf<string>().GetValueOrDefault(), Is.True );
 		}
 
 		private static void TestString( String val )
@@ -268,8 +280,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).PackString( val );
 			MessagePackObject obj = UnpackOne( output );
-			Assert.AreEqual( val, obj.AsString() );
-			Assert.IsTrue( obj.IsTypeOf<string>().GetValueOrDefault() );
+			Assert.That( obj.AsString(), Is.EqualTo( val ) );
+			Assert.That( obj.IsTypeOf<string>().GetValueOrDefault(), Is.True );
 		}
 
 		private static void TestString( String val, Encoding encoding )
@@ -277,12 +289,16 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).PackString( val, encoding );
 			MessagePackObject obj = UnpackOne( output );
-			Assert.AreEqual( val, obj.AsString( encoding ) );
-			Assert.IsTrue( obj.IsTypeOf<string>().GetValueOrDefault() );
+			Assert.That( obj.AsString( encoding ), Is.EqualTo( val ) );
+			Assert.That( obj.IsTypeOf<string>().GetValueOrDefault(), Is.True );
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 10000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 10000 )]
+#endif // NETFRAMEWORK
 		public void TestArray()
 		{
 			var sw = new Stopwatch();
@@ -317,7 +333,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 10000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 10000 )]
+#endif // NETFRAMEWORK
 		public void TestArray_Splitted()
 		{
 			foreach (
@@ -358,13 +378,13 @@ namespace MsgPack
 			Packer.Create( output ).PackCollection( new[] { new int[ 0 ], new[] { 0 }, new[] { 0, 1 } } );
 			MessagePackObject obj = UnpackOne( output );
 			var outer = obj.AsList();
-			Assert.AreEqual( 3, outer.Count );
-			Assert.AreEqual( 0, outer[ 0 ].AsList().Count );
-			Assert.AreEqual( 1, outer[ 1 ].AsList().Count );
+			Assert.That( outer.Count, Is.EqualTo( 3 ) );
+			Assert.That( outer[ 0 ].AsList().Count, Is.EqualTo( 0 ) );
+			Assert.That( outer[ 1 ].AsList().Count, Is.EqualTo( 1 ) );
 			Assert.That( outer[ 1 ].AsList()[ 0 ].AsInt32(), Is.EqualTo( 0 ).With.TypeOf<int>() );
-			Assert.AreEqual( 2, outer[ 2 ].AsList().Count );
+			Assert.That( outer[ 2 ].AsList().Count, Is.EqualTo( 2 ) );
 			Assert.That( outer[ 2 ].AsList()[ 0 ].AsInt32(), Is.EqualTo( 0 ).With.TypeOf<int>() );
-			Assert.AreEqual( 1, outer[ 2 ].AsList()[ 1 ].AsInt32() );
+			Assert.That( outer[ 2 ].AsList()[ 1 ].AsInt32(), Is.EqualTo( 1 ) );
 		}
 
 		[Test]
@@ -381,17 +401,21 @@ namespace MsgPack
 			);
 			MessagePackObject obj = UnpackOne( output );
 			var outer = obj.AsDictionary();
-			Assert.AreEqual( 3, outer.Count );
-			Assert.AreEqual( 0, outer[ "0" ].AsDictionary().Count );
-			Assert.AreEqual( 1, outer[ "1" ].AsDictionary().Count );
+			Assert.That( outer.Count, Is.EqualTo( 3 ) );
+			Assert.That( outer[ "0" ].AsDictionary().Count, Is.EqualTo( 0 ) );
+			Assert.That( outer[ "1" ].AsDictionary().Count, Is.EqualTo( 1 ) );
 			Assert.That( outer[ "1" ].AsDictionary()[ 0 ].AsBoolean(), Is.False.With.TypeOf<bool>() );
-			Assert.AreEqual( 2, outer[ "2" ].AsDictionary().Count );
+			Assert.That( outer[ "2" ].AsDictionary().Count, Is.EqualTo( 2 ) );
 			Assert.That( outer[ "2" ].AsDictionary()[ 0 ].AsBoolean(), Is.False.With.TypeOf<bool>() );
 			Assert.That( outer[ "2" ].AsDictionary()[ 1 ].AsBoolean(), Is.True.With.TypeOf<bool>() );
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 5000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 5000 )]
+#endif // NETFRAMEWORK
 		public void TestHeteroArray()
 		{
 			var heteroList = new List<MessagePackObject>()
@@ -423,27 +447,27 @@ namespace MsgPack
 			try
 			{
 				var list = obj.AsList();
-				Assert.AreEqual( heteroList[ 0 ], list[ 0 ] );
-				Assert.AreEqual( heteroList[ 1 ], list[ 1 ] );
-				Assert.AreEqual( heteroList[ 2 ], list[ 2 ] );
-				Assert.AreEqual( heteroList[ 3 ], list[ 3 ] );
-				Assert.AreEqual( heteroList[ 4 ], list[ 4 ] );
-				Assert.AreEqual( heteroList[ 5 ], list[ 5 ] );
-				Assert.AreEqual( heteroList[ 6 ], list[ 6 ] );
-				Assert.AreEqual( heteroList[ 7 ], list[ 7 ] );
-				Assert.AreEqual( heteroList[ 8 ], list[ 8 ] );
-				Assert.AreEqual(
-					heteroList[ 9 ].AsDictionary()[ "1" ],
-					list[ 9 ].AsDictionary()[ "1" ]
+				Assert.That( list[ 0 ], Is.EqualTo( heteroList[ 0 ] ) );
+				Assert.That( list[ 1 ], Is.EqualTo( heteroList[ 1 ] ) );
+				Assert.That( list[ 2 ], Is.EqualTo( heteroList[ 2 ] ) );
+				Assert.That( list[ 3 ], Is.EqualTo( heteroList[ 3 ] ) );
+				Assert.That( list[ 4 ], Is.EqualTo( heteroList[ 4 ] ) );
+				Assert.That( list[ 5 ], Is.EqualTo( heteroList[ 5 ] ) );
+				Assert.That( list[ 6 ], Is.EqualTo( heteroList[ 6 ] ) );
+				Assert.That( list[ 7 ], Is.EqualTo( heteroList[ 7 ] ) );
+				Assert.That( list[ 8 ], Is.EqualTo( heteroList[ 8 ] ) );
+				Assert.That(
+					list[ 9 ].AsDictionary()[ "1" ],
+					Is.EqualTo( heteroList[ 9 ].AsDictionary()[ "1" ] )
 				);
-				Assert.IsTrue( list[ 9 ].AsDictionary()[ 2 ].IsNil );
-				Assert.AreEqual(
-					heteroList[ 9 ].AsDictionary()[ 3333333 ],
-					list[ 9 ].AsDictionary()[ 3333333 ]
+				Assert.That( list[ 9 ].AsDictionary()[ 2 ].IsNil, Is.True );
+				Assert.That(
+					list[ 9 ].AsDictionary()[ 3333333 ],
+					Is.EqualTo( heteroList[ 9 ].AsDictionary()[ 3333333 ] )
 				);
-				Assert.AreEqual( heteroList[ 10 ].AsList()[ 0 ], list[ 10 ].AsList()[ 0 ] );
-				Assert.AreEqual( heteroList[ 10 ].AsList()[ 1 ], list[ 10 ].AsList()[ 1 ] );
-				Assert.AreEqual( heteroList[ 10 ].AsList()[ 2 ], list[ 10 ].AsList()[ 2 ] );
+				Assert.That( list[ 10 ].AsList()[ 0 ], Is.EqualTo( heteroList[ 10 ].AsList()[ 0 ] ) );
+				Assert.That( list[ 10 ].AsList()[ 1 ], Is.EqualTo( heteroList[ 10 ].AsList()[ 1 ] ) );
+				Assert.That( list[ 10 ].AsList()[ 2 ], Is.EqualTo( heteroList[ 10 ].AsList()[ 2 ] ) );
 				isSuccess = true;
 			}
 			finally
@@ -499,7 +523,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 60000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 60000 )]
+#endif // NETFRAMEWORK
 		public void TestDictionary()
 		{
 			var sw = new Stopwatch();
@@ -534,7 +562,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 60000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 60000 )]
+#endif // NETFRAMEWORK
 		public void TestDictionary_Splitted()
 		{
 			foreach (
@@ -569,7 +601,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000 )]
+#endif // NETFRAMEWORK
 		public void TestBytes()
 		{
 			var sw = new Stopwatch();
@@ -602,7 +638,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000 )]
+#endif // NETFRAMEWORK
 		public void TestBytes_Splitted()
 		{
 			foreach (
@@ -635,7 +675,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000 )]
+#endif // NETFRAMEWORK
 		public void TestChars()
 		{
 			var sw = new Stopwatch();
@@ -659,18 +703,22 @@ namespace MsgPack
 				sw.Start();
 				var output = new MemoryStream();
 				Packer.Create( output ).PackString( String.Concat( Enumerable.Range( 0, count ).Select( i => ( i % 10 ).ToString() ).ToArray() ) );
-				Assert.AreEqual(
-					String.Concat( Enumerable.Range( 0, count ).Select( i => ( i % 10 ).ToString() ).ToArray() ),
-					UnpackOne( output ).AsString()
+				Assert.That(
+					UnpackOne( output ).AsString(),
+					Is.EqualTo( String.Concat( Enumerable.Range( 0, count ).Select( i => ( i % 10 ).ToString() ).ToArray() ) )
 				);
 				sw.Stop();
 			}
 
-			Console.WriteLine( "String: {0:0.###} msec/char", sw.ElapsedMilliseconds / 0x10000 );
+			TestContext.WriteLine( "String: {0:0.###} msec/char", sw.ElapsedMilliseconds / 0x10000 );
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000 )]
+#endif // NETFRAMEWORK
 		public void TestChars_Splitted()
 		{
 			foreach (
@@ -695,9 +743,9 @@ namespace MsgPack
 					output.Position = 0;
 					using ( var splitted = new SplittingStream( output ) )
 					{
-						Assert.AreEqual(
-							String.Concat( Enumerable.Range( 0, count ).Select( i => ( i % 10 ).ToString() ).ToArray() ),
-							Unpacking.UnpackObject( splitted ).AsString()
+						Assert.That(
+							Unpacking.UnpackObject( splitted ).AsString(),
+							Is.EqualTo( String.Concat( Enumerable.Range( 0, count ).Select( i => ( i % 10 ).ToString() ).ToArray() ) )
 						);
 					}
 				}
@@ -705,7 +753,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000 )]
+#endif // NETFRAMEWORK
 		public void TestExts()
 		{
 			var sw = new Stopwatch();
@@ -731,11 +783,11 @@ namespace MsgPack
 				sw.Start();
 				var output = new MemoryStream();
 				var value = new MessagePackExtendedTypeObject(
-					1, Enumerable.Range( 0, count ).Select( i => ( byte ) ( i % 0x100 ) ).ToArray() );
+					1, Enumerable.Range( 0, count ).Select( i => ( byte )( i % 0x100 ) ).ToArray() );
 				Packer.Create( output, PackerCompatibilityOptions.None ).PackExtendedTypeValue( value );
-				Assert.AreEqual(
-					value,
-					UnpackOne( output ).AsMessagePackExtendedTypeObject()
+				Assert.That(
+					UnpackOne( output ).AsMessagePackExtendedTypeObject(),
+					Is.EqualTo( value )
 				);
 				sw.Stop();
 			}
@@ -744,7 +796,11 @@ namespace MsgPack
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 3000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 3000 )]
+#endif // NETFRAMEWORK
 		public void TestExts_Splitted()
 		{
 			foreach (
@@ -773,9 +829,9 @@ namespace MsgPack
 					output.Position = 0;
 					using ( var splitted = new SplittingStream( output ) )
 					{
-						Assert.AreEqual(
-							value,
-							Unpacking.UnpackObject( splitted ).AsMessagePackExtendedTypeObject()
+						Assert.That(
+							Unpacking.UnpackObject( splitted ).AsMessagePackExtendedTypeObject(),
+							Is.EqualTo( value )
 						);
 					}
 				}

@@ -1,4 +1,4 @@
-﻿<#
+<#
 //
 // MessagePack for CLI
 //
@@ -115,7 +115,7 @@ foreach( var __leftType in __integerTypes )
 		[Test]
 		public void TestIsTypeOf_<#= __leftType.Name #><#= __value.Key #>_IsTypeOf<#= __rightType.Name #>_<#= __expected #>()
 		{
-			Assert.AreEqual( <#= __expected.ToString().ToLowerInvariant() #>, ( new MessagePackObject( ( <#= __leftType #> )( <#= __value.Value.ToString() #> ) ).IsTypeOf( typeof( <#= __rightType #> ) ) ) );
+			Assert.That( ( new MessagePackObject( ( <#= __leftType #> )( <#= __value.Value.ToString() #> ) ).IsTypeOf( typeof( <#= __rightType #> ) ) ), Is.EqualTo( <#= __expected.ToString().ToLowerInvariant() #> ) );
 		}
 		
 <#
@@ -125,7 +125,7 @@ foreach( var __leftType in __integerTypes )
 		[Test]
 		public void TestIsTypeOf_Nil_<#= __leftType.Name #>_False()
 		{
-			Assert.AreEqual( false, MessagePackObject.Nil.IsTypeOf( typeof( <#= __leftType #> ) ) );
+			Assert.That( MessagePackObject.Nil.IsTypeOf( typeof( <#= __leftType #> ) ), Is.False );
 		}
 		
 <#

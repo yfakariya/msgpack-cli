@@ -1,4 +1,4 @@
-﻿
+
 #region -- License Terms --
 //
 // MessagePack for CLI
@@ -134,8 +134,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_Int16MinValueAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0x00 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( -32768L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( -32768L ) );
 		}
 		
 		[Test]
@@ -144,8 +144,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( -32768L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( -32768L ) );
 			}
 		}
 
@@ -153,8 +153,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_Int16MinValueAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0xFF, 0xFF, 0x80, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( -32768L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( -32768L ) );
 		}
 		
 		[Test]
@@ -163,8 +163,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0x80, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( -32768L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( -32768L ) );
 			}
 		}
 
@@ -172,8 +172,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_Int16MinValueAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x80, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( -32768L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( -32768L ) );
 		}
 		
 		[Test]
@@ -182,8 +182,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x80, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( -32768L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( -32768L ) );
 			}
 		}
 
@@ -191,8 +191,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueMinusOneAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( -129L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( -129L ) );
 		}
 		
 		[Test]
@@ -201,8 +201,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( -129L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( -129L ) );
 			}
 		}
 
@@ -210,8 +210,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueMinusOneAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0x7F } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( -129L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( -129L ) );
 		}
 		
 		[Test]
@@ -220,8 +220,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( -129L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( -129L ) );
 			}
 		}
 
@@ -229,8 +229,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueMinusOneAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0xFF, 0x7F } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( -129L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( -129L ) );
 		}
 		
 		[Test]
@@ -239,8 +239,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( -129L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( -129L ) );
 			}
 		}
 
@@ -248,8 +248,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x80 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( -128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( -128L ) );
 		}
 		
 		[Test]
@@ -258,8 +258,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( -128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( -128L ) );
 			}
 		}
 
@@ -267,8 +267,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0x80 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( -128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( -128L ) );
 		}
 		
 		[Test]
@@ -277,8 +277,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( -128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( -128L ) );
 			}
 		}
 
@@ -286,8 +286,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0xFF, 0x80 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( -128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( -128L ) );
 		}
 		
 		[Test]
@@ -296,8 +296,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( -128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( -128L ) );
 			}
 		}
 
@@ -305,8 +305,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_SByteMinValueAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0x80 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( -128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( -128L ) );
 		}
 		
 		[Test]
@@ -315,8 +315,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( -128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( -128L ) );
 			}
 		}
 
@@ -324,8 +324,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueMinusOneAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDF } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( -33L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( -33L ) );
 		}
 		
 		[Test]
@@ -334,8 +334,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xDF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( -33L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( -33L ) );
 			}
 		}
 
@@ -343,8 +343,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueMinusOneAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0xDF } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( -33L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( -33L ) );
 		}
 		
 		[Test]
@@ -353,8 +353,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0xDF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( -33L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( -33L ) );
 			}
 		}
 
@@ -362,8 +362,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueMinusOneAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0xFF, 0xDF } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( -33L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( -33L ) );
 		}
 		
 		[Test]
@@ -372,8 +372,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0xDF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( -33L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( -33L ) );
 			}
 		}
 
@@ -381,8 +381,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueMinusOneAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0xDF } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( -33L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( -33L ) );
 		}
 		
 		[Test]
@@ -391,8 +391,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0xDF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( -33L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( -33L ) );
 			}
 		}
 
@@ -400,8 +400,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xE0 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( -32L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( -32L ) );
 		}
 		
 		[Test]
@@ -410,8 +410,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xE0 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( -32L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( -32L ) );
 			}
 		}
 
@@ -419,8 +419,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0xE0 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( -32L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( -32L ) );
 		}
 		
 		[Test]
@@ -429,8 +429,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0xE0 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( -32L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( -32L ) );
 			}
 		}
 
@@ -438,8 +438,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0xFF, 0xE0 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( -32L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( -32L ) );
 		}
 		
 		[Test]
@@ -448,8 +448,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0xE0 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( -32L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( -32L ) );
 			}
 		}
 
@@ -457,8 +457,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0xE0 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( -32L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( -32L ) );
 		}
 		
 		[Test]
@@ -467,8 +467,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0xE0 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( -32L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( -32L ) );
 			}
 		}
 
@@ -476,8 +476,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_NegativeFixNumMinValueAsNegativeFixNumMinus32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xE0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( -32L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( -32L ) );
 		}
 		
 		[Test]
@@ -486,8 +486,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xE0 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( -32L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( -32L ) );
 			}
 		}
 
@@ -495,8 +495,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_MinusOneAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( -1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( -1L ) );
 		}
 		
 		[Test]
@@ -505,8 +505,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( -1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( -1L ) );
 			}
 		}
 
@@ -514,8 +514,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_MinusOneAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0xFF } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( -1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( -1L ) );
 		}
 		
 		[Test]
@@ -524,8 +524,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0xFF, 0xFF, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( -1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( -1L ) );
 			}
 		}
 
@@ -533,8 +533,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_MinusOneAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0xFF, 0xFF } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( -1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( -1L ) );
 		}
 		
 		[Test]
@@ -543,8 +543,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0xFF, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( -1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( -1L ) );
 			}
 		}
 
@@ -552,8 +552,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_MinusOneAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0xFF } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( -1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( -1L ) );
 		}
 		
 		[Test]
@@ -562,8 +562,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( -1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( -1L ) );
 			}
 		}
 
@@ -571,8 +571,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_MinusOneAsNegativeFixNumMinus1_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xFF } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( -1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( -1L ) );
 		}
 		
 		[Test]
@@ -581,8 +581,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( -1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( -1L ) );
 			}
 		}
 
@@ -590,8 +590,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -600,8 +600,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -609,8 +609,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsUInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -619,8 +619,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -628,8 +628,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -638,8 +638,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -647,8 +647,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsUInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -657,8 +657,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -666,8 +666,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -676,8 +676,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -685,8 +685,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsUInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCD, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -695,8 +695,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCD, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -704,8 +704,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0x00 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -714,8 +714,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -723,8 +723,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsUInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCC, 0x00 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -733,8 +733,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCC, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -742,8 +742,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ZeroAsPositiveFixNum0_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0x00 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0L ) );
 		}
 		
 		[Test]
@@ -752,8 +752,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( 0L ) );
 			}
 		}
 
@@ -761,8 +761,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -771,8 +771,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -780,8 +780,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsUInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -790,8 +790,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -799,8 +799,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x01 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -809,8 +809,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -818,8 +818,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsUInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x01 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -828,8 +828,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -837,8 +837,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x00, 0x01 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -847,8 +847,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x00, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -856,8 +856,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsUInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCD, 0x00, 0x01 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -866,8 +866,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCD, 0x00, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -875,8 +875,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0x01 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -885,8 +885,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -894,8 +894,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsUInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCC, 0x01 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -904,8 +904,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCC, 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -913,8 +913,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PlusOneAsPositiveFixNum1_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0x01 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 1L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 1L ) );
 		}
 		
 		[Test]
@@ -923,8 +923,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x01 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 1L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( 1L ) );
 			}
 		}
 
@@ -932,8 +932,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -942,8 +942,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -951,8 +951,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsUInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -961,8 +961,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -970,8 +970,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x7F } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -980,8 +980,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -989,8 +989,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsUInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x7F } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -999,8 +999,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -1008,8 +1008,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x00, 0x7F } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -1018,8 +1018,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x00, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -1027,8 +1027,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsUInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCD, 0x00, 0x7F } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -1037,8 +1037,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCD, 0x00, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -1046,8 +1046,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD0, 0x7F } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -1056,8 +1056,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD0, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -1065,8 +1065,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsUInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCC, 0x7F } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -1075,8 +1075,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCC, 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -1084,8 +1084,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValueAsPositiveFixNum127_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0x7F } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 127L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 127L ) );
 		}
 		
 		[Test]
@@ -1094,8 +1094,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0x7F } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 127L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.EqualTo( 127L ) );
 			}
 		}
 
@@ -1103,8 +1103,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1113,8 +1113,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1122,8 +1122,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsUInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1132,8 +1132,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1141,8 +1141,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x80 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1151,8 +1151,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1160,8 +1160,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsUInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x80 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1170,8 +1170,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1179,8 +1179,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x00, 0x80 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1189,8 +1189,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x00, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1198,8 +1198,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsUInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCD, 0x00, 0x80 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1208,8 +1208,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCD, 0x00, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1217,8 +1217,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_PositiveFixNumMaxValuePlusOneAsUInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCC, 0x80 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 128L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 128L ) );
 		}
 		
 		[Test]
@@ -1227,8 +1227,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCC, 0x80 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 128L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 128L ) );
 			}
 		}
 
@@ -1236,8 +1236,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1246,8 +1246,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1255,8 +1255,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsUInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1265,8 +1265,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1274,8 +1274,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0xFF } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1284,8 +1284,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0x00, 0x00, 0x00, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1293,8 +1293,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsUInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0xFF } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1303,8 +1303,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCE, 0x00, 0x00, 0x00, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1312,8 +1312,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x00, 0xFF } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1322,8 +1322,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x00, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1331,8 +1331,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsUInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCD, 0x00, 0xFF } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1341,8 +1341,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCD, 0x00, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1350,8 +1350,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValueAsUInt8_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCC, 0xFF } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 255L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value, Is.EqualTo( 255L ) );
 		}
 		
 		[Test]
@@ -1360,8 +1360,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCC, 0xFF } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 255L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result, Is.EqualTo( 255L ) );
 			}
 		}
 
@@ -1369,8 +1369,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValuePlusOneAsInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 256L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 256L ) );
 		}
 		
 		[Test]
@@ -1379,8 +1379,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD3, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 256L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 256L ) );
 			}
 		}
 
@@ -1388,8 +1388,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValuePlusOneAsUInt64_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00 } );
-			Assert.AreEqual( 9, result.ReadCount );
-			Assert.AreEqual( 256L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 9 ) );
+			Assert.That( result.Value, Is.EqualTo( 256L ) );
 		}
 		
 		[Test]
@@ -1398,8 +1398,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 9, buffer.Position );
-				Assert.AreEqual( 256L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 9 ) );
+				Assert.That( result, Is.EqualTo( 256L ) );
 			}
 		}
 
@@ -1407,8 +1407,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValuePlusOneAsInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD2, 0x00, 0x00, 0x01, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 256L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 256L ) );
 		}
 		
 		[Test]
@@ -1417,8 +1417,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD2, 0x00, 0x00, 0x01, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 256L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 256L ) );
 			}
 		}
 
@@ -1426,8 +1426,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValuePlusOneAsUInt32_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCE, 0x00, 0x00, 0x01, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 256L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value, Is.EqualTo( 256L ) );
 		}
 		
 		[Test]
@@ -1436,8 +1436,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCE, 0x00, 0x00, 0x01, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 256L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result, Is.EqualTo( 256L ) );
 			}
 		}
 
@@ -1445,8 +1445,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValuePlusOneAsInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xD1, 0x01, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 256L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 256L ) );
 		}
 		
 		[Test]
@@ -1455,8 +1455,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD1, 0x01, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 256L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 256L ) );
 			}
 		}
 
@@ -1464,8 +1464,8 @@ namespace MsgPack
 		public void TestUnpackInt16_ByteArray_ByteMaxValuePlusOneAsUInt16_Fail()
 		{
 			var result = Unpacking.UnpackInt16( new byte[] { 0xCD, 0x01, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 256L, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value, Is.EqualTo( 256L ) );
 		}
 		
 		[Test]
@@ -1474,8 +1474,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xCD, 0x01, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackInt16( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 256L, result );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result, Is.EqualTo( 256L ) );
 			}
 		}
 
@@ -1751,8 +1751,8 @@ namespace MsgPack
 		{
 			// Offset 1 is positive fix num 1.
 			var result = Unpacking.UnpackInt16( new byte[] { 0xFF, 0x57, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0x57, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.EqualTo( 0x57 ) );
 		}
 
 		[Test]

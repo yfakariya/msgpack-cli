@@ -51,7 +51,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack.Serialization
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 30000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 30000 )]
+#endif // NETFRAMEWORK
 	public class MapReflectionBasedEnumSerializerTest
 	{
 		private SerializationContext GetSerializationContext()
@@ -108,7 +112,7 @@ namespace MsgPack.Serialization
 #if !NETSTANDARD1_1 && !NETSTANDARD1_3
 			if ( SerializerDebugging.DumpEnabled && this.CanDump )
 			{
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 				try
 				{
 					SerializerDebugging.Dump();
@@ -121,9 +125,9 @@ namespace MsgPack.Serialization
 				{
 					SerializationMethodGeneratorManager.Refresh();
 				}
-#else // !NETSTANDARD2_0
+#else // FEATURE_ASMGEN
 				SerializationMethodGeneratorManager.Refresh();
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 			}
 
 			SerializerDebugging.Reset();

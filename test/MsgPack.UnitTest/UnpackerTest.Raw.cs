@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -51,11 +51,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -78,11 +78,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -106,7 +106,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -123,7 +123,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -139,11 +139,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -170,7 +170,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -201,7 +201,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -222,11 +222,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -250,7 +250,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -271,7 +271,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -303,7 +303,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -325,7 +325,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -341,11 +341,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -372,7 +372,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -403,7 +403,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -424,11 +424,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -452,7 +452,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -473,7 +473,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -505,7 +505,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -527,7 +527,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -543,11 +543,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -570,11 +570,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -598,7 +598,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -615,7 +615,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -631,11 +631,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -662,7 +662,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -693,7 +693,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -714,11 +714,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -742,7 +742,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -763,7 +763,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -795,7 +795,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -817,7 +817,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -833,11 +833,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -864,7 +864,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -895,7 +895,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -916,11 +916,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -944,7 +944,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -965,7 +965,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -997,7 +997,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1019,7 +1019,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -1035,11 +1035,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1066,7 +1066,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1097,7 +1097,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1118,11 +1118,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1146,7 +1146,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -1167,7 +1167,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1199,7 +1199,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1221,7 +1221,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -1237,11 +1237,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1268,7 +1268,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1299,7 +1299,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1320,11 +1320,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1348,7 +1348,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -1369,7 +1369,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1401,7 +1401,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1423,7 +1423,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -1439,11 +1439,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1466,11 +1466,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1494,7 +1494,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -1511,7 +1511,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -1527,11 +1527,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1558,7 +1558,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1589,7 +1589,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1610,11 +1610,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1638,7 +1638,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -1659,7 +1659,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1691,7 +1691,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1713,7 +1713,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -1729,11 +1729,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1760,7 +1760,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1791,7 +1791,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1812,11 +1812,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1840,7 +1840,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -1861,7 +1861,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1893,7 +1893,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1915,7 +1915,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -1931,11 +1931,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -1962,7 +1962,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1993,7 +1993,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2014,11 +2014,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2042,7 +2042,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -2063,7 +2063,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2095,7 +2095,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2117,7 +2117,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -2133,11 +2133,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2164,7 +2164,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2195,7 +2195,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2216,11 +2216,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2244,7 +2244,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -2265,7 +2265,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2297,7 +2297,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2319,7 +2319,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -2335,11 +2335,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2366,7 +2366,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2397,7 +2397,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2418,11 +2418,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2446,7 +2446,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -2467,7 +2467,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2499,7 +2499,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2521,7 +2521,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -2537,11 +2537,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2568,7 +2568,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2599,7 +2599,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2620,11 +2620,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2648,7 +2648,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -2669,7 +2669,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2701,7 +2701,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2723,7 +2723,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -2739,11 +2739,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2766,11 +2766,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2794,7 +2794,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -2811,7 +2811,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -2827,11 +2827,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2858,7 +2858,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2889,7 +2889,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2910,11 +2910,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -2938,7 +2938,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -2959,7 +2959,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2991,7 +2991,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3013,7 +3013,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -3029,11 +3029,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3060,7 +3060,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3091,7 +3091,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3112,11 +3112,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3140,7 +3140,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -3161,7 +3161,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3193,7 +3193,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3215,7 +3215,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -3231,11 +3231,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3262,7 +3262,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3293,7 +3293,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3314,11 +3314,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3342,7 +3342,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -3363,7 +3363,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3395,7 +3395,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3417,7 +3417,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -3433,11 +3433,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3464,7 +3464,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3495,7 +3495,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3516,11 +3516,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3544,7 +3544,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -3565,7 +3565,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3597,7 +3597,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3619,7 +3619,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -3635,11 +3635,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3666,7 +3666,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3697,7 +3697,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3718,11 +3718,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3746,7 +3746,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -3767,7 +3767,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3799,7 +3799,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3821,7 +3821,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -3837,11 +3837,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3868,7 +3868,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3899,7 +3899,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3920,11 +3920,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -3948,7 +3948,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -3969,7 +3969,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4001,7 +4001,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4023,7 +4023,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -4039,11 +4039,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65536 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -4070,7 +4070,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4101,7 +4101,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4122,11 +4122,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65536 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -4150,7 +4150,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
 		}
@@ -4171,7 +4171,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4203,7 +4203,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4225,7 +4225,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
 		}
@@ -4241,11 +4241,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4266,11 +4266,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4292,7 +4292,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -4309,7 +4309,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -4325,11 +4325,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4354,7 +4354,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4385,7 +4385,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4406,11 +4406,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4432,7 +4432,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -4453,7 +4453,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4485,7 +4485,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4507,7 +4507,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -4523,11 +4523,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4552,7 +4552,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4583,7 +4583,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4604,11 +4604,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4630,7 +4630,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -4651,7 +4651,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4683,7 +4683,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4705,7 +4705,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -4721,11 +4721,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4750,7 +4750,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4781,7 +4781,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4802,11 +4802,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4828,7 +4828,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -4849,7 +4849,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4881,7 +4881,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4903,7 +4903,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -4919,11 +4919,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -4948,7 +4948,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4979,7 +4979,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5000,11 +5000,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5026,7 +5026,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -5047,7 +5047,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5079,7 +5079,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5101,7 +5101,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -5117,11 +5117,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5142,11 +5142,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5168,7 +5168,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -5185,7 +5185,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -5201,11 +5201,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5230,7 +5230,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5261,7 +5261,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5282,11 +5282,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5308,7 +5308,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -5329,7 +5329,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5361,7 +5361,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5383,7 +5383,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -5399,11 +5399,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5428,7 +5428,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5459,7 +5459,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5480,11 +5480,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5506,7 +5506,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -5527,7 +5527,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5559,7 +5559,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5581,7 +5581,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -5597,11 +5597,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5626,7 +5626,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5657,7 +5657,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5678,11 +5678,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5704,7 +5704,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -5725,7 +5725,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5757,7 +5757,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5779,7 +5779,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -5795,11 +5795,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5824,7 +5824,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5855,7 +5855,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5876,11 +5876,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -5902,7 +5902,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -5923,7 +5923,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5955,7 +5955,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5977,7 +5977,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -5993,11 +5993,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6022,7 +6022,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6053,7 +6053,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6074,11 +6074,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6100,7 +6100,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -6121,7 +6121,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6153,7 +6153,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6175,7 +6175,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -6191,11 +6191,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6220,7 +6220,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6251,7 +6251,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6272,11 +6272,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6298,7 +6298,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -6319,7 +6319,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6351,7 +6351,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6373,7 +6373,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -6389,11 +6389,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6414,11 +6414,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6440,7 +6440,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -6457,7 +6457,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
 		}
@@ -6473,11 +6473,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6502,7 +6502,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6533,7 +6533,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6554,11 +6554,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6580,7 +6580,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -6601,7 +6601,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6633,7 +6633,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6655,7 +6655,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
 		}
@@ -6671,11 +6671,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6700,7 +6700,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6731,7 +6731,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6752,11 +6752,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6778,7 +6778,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -6799,7 +6799,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6831,7 +6831,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6853,7 +6853,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
 		}
@@ -6869,11 +6869,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6898,7 +6898,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6929,7 +6929,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6950,11 +6950,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -6976,7 +6976,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -6997,7 +6997,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7029,7 +7029,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7051,7 +7051,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
 		}
@@ -7067,11 +7067,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7096,7 +7096,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7127,7 +7127,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7148,11 +7148,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7174,7 +7174,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -7195,7 +7195,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7227,7 +7227,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7249,7 +7249,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
 		}
@@ -7265,11 +7265,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7294,7 +7294,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7325,7 +7325,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7346,11 +7346,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7372,7 +7372,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -7393,7 +7393,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7425,7 +7425,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7447,7 +7447,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
 		}
@@ -7463,11 +7463,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7492,7 +7492,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7523,7 +7523,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7544,11 +7544,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7570,7 +7570,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -7591,7 +7591,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7623,7 +7623,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7645,7 +7645,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
 		}
@@ -7661,11 +7661,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7690,7 +7690,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7721,7 +7721,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7742,11 +7742,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7768,7 +7768,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
 		}
@@ -7789,7 +7789,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7821,7 +7821,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadString( out result ) );
+					Assert.That( unpacker.ReadString( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7843,7 +7843,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				String result;
-				Assert.IsTrue( unpacker.ReadString( out result ) );
+				Assert.That( unpacker.ReadString( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
 		}
@@ -7859,11 +7859,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7884,11 +7884,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7910,7 +7910,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -7927,7 +7927,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -7943,11 +7943,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -7972,7 +7972,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8003,7 +8003,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8024,11 +8024,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8050,7 +8050,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -8071,7 +8071,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8103,7 +8103,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8125,7 +8125,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -8141,11 +8141,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8170,7 +8170,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8201,7 +8201,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8222,11 +8222,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8248,7 +8248,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -8269,7 +8269,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8301,7 +8301,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8323,7 +8323,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -8339,11 +8339,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8364,11 +8364,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8390,7 +8390,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -8407,7 +8407,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -8423,11 +8423,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8452,7 +8452,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8483,7 +8483,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8504,11 +8504,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8530,7 +8530,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -8551,7 +8551,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8583,7 +8583,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8605,7 +8605,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -8621,11 +8621,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8650,7 +8650,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8681,7 +8681,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8702,11 +8702,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8728,7 +8728,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -8749,7 +8749,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8781,7 +8781,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8803,7 +8803,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -8819,11 +8819,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8848,7 +8848,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8879,7 +8879,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8900,11 +8900,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -8926,7 +8926,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -8947,7 +8947,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8979,7 +8979,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9001,7 +9001,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -9017,11 +9017,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9046,7 +9046,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9077,7 +9077,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9098,11 +9098,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9124,7 +9124,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -9145,7 +9145,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9177,7 +9177,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9199,7 +9199,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -9215,11 +9215,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9240,11 +9240,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9266,7 +9266,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -9283,7 +9283,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -9299,11 +9299,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9328,7 +9328,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9359,7 +9359,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9380,11 +9380,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9406,7 +9406,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -9427,7 +9427,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9459,7 +9459,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9481,7 +9481,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -9497,11 +9497,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9526,7 +9526,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9557,7 +9557,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9578,11 +9578,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9604,7 +9604,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -9625,7 +9625,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9657,7 +9657,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9679,7 +9679,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -9695,11 +9695,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9724,7 +9724,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9755,7 +9755,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9776,11 +9776,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9802,7 +9802,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -9823,7 +9823,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9855,7 +9855,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9877,7 +9877,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -9893,11 +9893,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -9922,7 +9922,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9953,7 +9953,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -9974,11 +9974,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10000,7 +10000,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -10021,7 +10021,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10053,7 +10053,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10075,7 +10075,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -10091,11 +10091,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10120,7 +10120,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10151,7 +10151,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10172,11 +10172,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10198,7 +10198,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -10219,7 +10219,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10251,7 +10251,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10273,7 +10273,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -10289,11 +10289,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10318,7 +10318,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10349,7 +10349,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10370,11 +10370,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10396,7 +10396,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -10417,7 +10417,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10449,7 +10449,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10471,7 +10471,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -10487,11 +10487,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10512,11 +10512,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10538,7 +10538,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -10555,7 +10555,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -10571,11 +10571,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10600,7 +10600,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10631,7 +10631,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10652,11 +10652,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10678,7 +10678,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -10699,7 +10699,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10731,7 +10731,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10753,7 +10753,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -10769,11 +10769,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10798,7 +10798,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10829,7 +10829,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10850,11 +10850,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10876,7 +10876,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -10897,7 +10897,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10929,7 +10929,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -10951,7 +10951,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -10967,11 +10967,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -10996,7 +10996,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11027,7 +11027,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11048,11 +11048,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11074,7 +11074,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -11095,7 +11095,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11127,7 +11127,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11149,7 +11149,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -11165,11 +11165,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11194,7 +11194,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11225,7 +11225,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11246,11 +11246,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11272,7 +11272,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -11293,7 +11293,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11325,7 +11325,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11347,7 +11347,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -11363,11 +11363,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11392,7 +11392,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11423,7 +11423,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11444,11 +11444,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11470,7 +11470,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -11491,7 +11491,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11523,7 +11523,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11545,7 +11545,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -11561,11 +11561,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11590,7 +11590,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11621,7 +11621,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11642,11 +11642,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11668,7 +11668,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -11689,7 +11689,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11721,7 +11721,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11743,7 +11743,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -11759,11 +11759,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11788,7 +11788,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11819,7 +11819,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11840,11 +11840,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -11866,7 +11866,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
 		}
@@ -11887,7 +11887,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11919,7 +11919,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -11941,7 +11941,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
 		}
@@ -11957,11 +11957,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -11984,11 +11984,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12012,7 +12012,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -12029,7 +12029,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -12045,11 +12045,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12076,7 +12076,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12107,7 +12107,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12128,11 +12128,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12156,7 +12156,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -12177,7 +12177,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12209,7 +12209,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12231,7 +12231,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -12247,11 +12247,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12278,7 +12278,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12309,7 +12309,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12330,11 +12330,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12358,7 +12358,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -12379,7 +12379,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12411,7 +12411,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12433,7 +12433,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -12449,11 +12449,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12480,7 +12480,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12511,7 +12511,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12532,11 +12532,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12560,7 +12560,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -12581,7 +12581,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12613,7 +12613,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12635,7 +12635,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -12651,11 +12651,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12682,7 +12682,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12713,7 +12713,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12734,11 +12734,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12762,7 +12762,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -12783,7 +12783,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12815,7 +12815,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -12837,7 +12837,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -12853,11 +12853,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12880,11 +12880,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12908,7 +12908,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -12925,7 +12925,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -12941,11 +12941,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -12972,7 +12972,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13003,7 +13003,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13024,11 +13024,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13052,7 +13052,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -13073,7 +13073,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13105,7 +13105,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13127,7 +13127,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -13143,11 +13143,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13174,7 +13174,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13205,7 +13205,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13226,11 +13226,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13254,7 +13254,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -13275,7 +13275,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13307,7 +13307,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13329,7 +13329,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -13345,11 +13345,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13376,7 +13376,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13407,7 +13407,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13428,11 +13428,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13456,7 +13456,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -13477,7 +13477,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13509,7 +13509,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13531,7 +13531,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -13547,11 +13547,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13578,7 +13578,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13609,7 +13609,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13630,11 +13630,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13658,7 +13658,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -13679,7 +13679,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13711,7 +13711,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13733,7 +13733,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -13749,11 +13749,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13780,7 +13780,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13811,7 +13811,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13832,11 +13832,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13860,7 +13860,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -13881,7 +13881,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13913,7 +13913,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -13935,7 +13935,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -13951,11 +13951,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -13982,7 +13982,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14013,7 +14013,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14034,11 +14034,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14062,7 +14062,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -14083,7 +14083,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14115,7 +14115,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14137,7 +14137,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -14153,11 +14153,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14180,11 +14180,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14208,7 +14208,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -14225,7 +14225,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
 		}
@@ -14241,11 +14241,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14272,7 +14272,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14303,7 +14303,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14324,11 +14324,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14352,7 +14352,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -14373,7 +14373,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14405,7 +14405,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14427,7 +14427,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
 		}
@@ -14443,11 +14443,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14474,7 +14474,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14505,7 +14505,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14526,11 +14526,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14554,7 +14554,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -14575,7 +14575,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14607,7 +14607,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14629,7 +14629,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
 		}
@@ -14645,11 +14645,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14676,7 +14676,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14707,7 +14707,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14728,11 +14728,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14756,7 +14756,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -14777,7 +14777,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14809,7 +14809,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14831,7 +14831,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
 		}
@@ -14847,11 +14847,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14878,7 +14878,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14909,7 +14909,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -14930,11 +14930,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -14958,7 +14958,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -14979,7 +14979,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15011,7 +15011,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15033,7 +15033,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
 		}
@@ -15049,11 +15049,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -15080,7 +15080,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15111,7 +15111,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15132,11 +15132,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -15160,7 +15160,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -15181,7 +15181,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15213,7 +15213,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15235,7 +15235,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
 		}
@@ -15251,11 +15251,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -15282,7 +15282,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15313,7 +15313,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15334,11 +15334,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -15362,7 +15362,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -15383,7 +15383,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15415,7 +15415,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15437,7 +15437,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
 		}
@@ -15453,11 +15453,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -15484,7 +15484,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15515,7 +15515,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15536,11 +15536,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -15564,7 +15564,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
 		}
@@ -15585,7 +15585,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15617,7 +15617,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinary( out result ) );
+					Assert.That( unpacker.ReadBinary( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15639,7 +15639,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				Byte[] result;
-				Assert.IsTrue( unpacker.ReadBinary( out result ) );
+				Assert.That( unpacker.ReadBinary( out result ), Is.True );
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
 		}
@@ -15657,11 +15657,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -15684,11 +15684,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -15713,7 +15713,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -15732,7 +15732,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -15749,11 +15749,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -15780,7 +15780,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15811,7 +15811,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15832,11 +15832,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -15861,7 +15861,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -15882,7 +15882,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15913,7 +15913,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -15936,7 +15936,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -15953,11 +15953,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -15984,7 +15984,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16015,7 +16015,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16036,11 +16036,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16065,7 +16065,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -16086,7 +16086,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16117,7 +16117,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16140,7 +16140,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -16157,11 +16157,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16184,11 +16184,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16213,7 +16213,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -16232,7 +16232,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -16249,11 +16249,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16280,7 +16280,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16311,7 +16311,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16332,11 +16332,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16361,7 +16361,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -16382,7 +16382,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16413,7 +16413,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16436,7 +16436,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -16453,11 +16453,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16484,7 +16484,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16515,7 +16515,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16536,11 +16536,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16565,7 +16565,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -16586,7 +16586,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16617,7 +16617,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16640,7 +16640,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -16657,11 +16657,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16688,7 +16688,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16719,7 +16719,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16740,11 +16740,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16769,7 +16769,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -16790,7 +16790,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16821,7 +16821,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16844,7 +16844,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -16861,11 +16861,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16892,7 +16892,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16923,7 +16923,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -16944,11 +16944,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -16973,7 +16973,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -16994,7 +16994,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17025,7 +17025,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17048,7 +17048,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -17065,11 +17065,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17092,11 +17092,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17121,7 +17121,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -17140,7 +17140,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -17157,11 +17157,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17188,7 +17188,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17219,7 +17219,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17240,11 +17240,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17269,7 +17269,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -17290,7 +17290,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17321,7 +17321,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17344,7 +17344,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -17361,11 +17361,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17392,7 +17392,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17423,7 +17423,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17444,11 +17444,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17473,7 +17473,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -17494,7 +17494,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17525,7 +17525,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17548,7 +17548,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -17565,11 +17565,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17596,7 +17596,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17627,7 +17627,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17648,11 +17648,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17677,7 +17677,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -17698,7 +17698,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17729,7 +17729,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17752,7 +17752,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -17769,11 +17769,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17800,7 +17800,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17831,7 +17831,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17852,11 +17852,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -17881,7 +17881,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -17902,7 +17902,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17933,7 +17933,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -17956,7 +17956,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -17973,11 +17973,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18004,7 +18004,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18035,7 +18035,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18056,11 +18056,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18085,7 +18085,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -18106,7 +18106,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18137,7 +18137,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18160,7 +18160,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -18177,11 +18177,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18208,7 +18208,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18239,7 +18239,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18260,11 +18260,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18289,7 +18289,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -18310,7 +18310,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18341,7 +18341,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18364,7 +18364,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -18381,11 +18381,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18408,11 +18408,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 0 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18437,7 +18437,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -18456,7 +18456,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -18473,11 +18473,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18504,7 +18504,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18535,7 +18535,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18556,11 +18556,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 1 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18585,7 +18585,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -18606,7 +18606,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18637,7 +18637,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18660,7 +18660,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -18677,11 +18677,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18708,7 +18708,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18739,7 +18739,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18760,11 +18760,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 31 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18789,7 +18789,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -18810,7 +18810,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18841,7 +18841,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18864,7 +18864,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -18881,11 +18881,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18912,7 +18912,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18943,7 +18943,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -18964,11 +18964,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 32 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -18993,7 +18993,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -19014,7 +19014,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19045,7 +19045,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19068,7 +19068,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -19085,11 +19085,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19116,7 +19116,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19147,7 +19147,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19168,11 +19168,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 255 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19197,7 +19197,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -19218,7 +19218,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19249,7 +19249,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19272,7 +19272,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -19289,11 +19289,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19320,7 +19320,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19351,7 +19351,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19372,11 +19372,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 256 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19401,7 +19401,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -19422,7 +19422,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19453,7 +19453,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19476,7 +19476,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -19493,11 +19493,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19524,7 +19524,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19555,7 +19555,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19576,11 +19576,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65535 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19605,7 +19605,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -19626,7 +19626,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19657,7 +19657,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19680,7 +19680,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -19697,11 +19697,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65536 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19728,7 +19728,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19759,7 +19759,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19780,11 +19780,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( String )result.Value, Is.EqualTo( new String( 'A', 65536 ) ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( String ) ) );
 
@@ -19809,7 +19809,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
@@ -19830,7 +19830,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19861,7 +19861,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -19884,7 +19884,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
@@ -19901,11 +19901,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -19926,11 +19926,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -19953,7 +19953,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -19972,7 +19972,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -19989,11 +19989,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20018,7 +20018,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20049,7 +20049,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20070,11 +20070,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20097,7 +20097,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -20118,7 +20118,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20149,7 +20149,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20172,7 +20172,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -20189,11 +20189,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20218,7 +20218,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20249,7 +20249,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20270,11 +20270,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20297,7 +20297,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -20318,7 +20318,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20349,7 +20349,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20372,7 +20372,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -20389,11 +20389,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20418,7 +20418,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20449,7 +20449,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20470,11 +20470,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20497,7 +20497,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -20518,7 +20518,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20549,7 +20549,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20572,7 +20572,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -20589,11 +20589,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20618,7 +20618,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20649,7 +20649,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20670,11 +20670,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20697,7 +20697,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -20718,7 +20718,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20749,7 +20749,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20772,7 +20772,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -20789,11 +20789,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20814,11 +20814,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20841,7 +20841,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -20860,7 +20860,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -20877,11 +20877,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20906,7 +20906,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20937,7 +20937,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -20958,11 +20958,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -20985,7 +20985,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -21006,7 +21006,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21037,7 +21037,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21060,7 +21060,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -21077,11 +21077,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21106,7 +21106,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21137,7 +21137,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21158,11 +21158,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21185,7 +21185,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -21206,7 +21206,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21237,7 +21237,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21260,7 +21260,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -21277,11 +21277,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21306,7 +21306,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21337,7 +21337,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21358,11 +21358,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21385,7 +21385,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -21406,7 +21406,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21437,7 +21437,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21460,7 +21460,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -21477,11 +21477,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21506,7 +21506,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21537,7 +21537,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21558,11 +21558,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21585,7 +21585,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -21606,7 +21606,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21637,7 +21637,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21660,7 +21660,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -21677,11 +21677,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21706,7 +21706,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21737,7 +21737,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21758,11 +21758,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21785,7 +21785,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -21806,7 +21806,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21837,7 +21837,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21860,7 +21860,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -21877,11 +21877,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21906,7 +21906,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21937,7 +21937,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -21958,11 +21958,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -21985,7 +21985,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -22006,7 +22006,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22037,7 +22037,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22060,7 +22060,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -22077,11 +22077,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22102,11 +22102,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22129,7 +22129,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -22148,7 +22148,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 0 ) ) );
 			}
@@ -22165,11 +22165,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22194,7 +22194,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22225,7 +22225,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22246,11 +22246,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22273,7 +22273,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -22294,7 +22294,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22325,7 +22325,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22348,7 +22348,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 1 ) ) );
 			}
@@ -22365,11 +22365,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22394,7 +22394,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22425,7 +22425,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22446,11 +22446,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22473,7 +22473,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -22494,7 +22494,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22525,7 +22525,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22548,7 +22548,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 31 ) ) );
 			}
@@ -22565,11 +22565,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22594,7 +22594,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22625,7 +22625,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22646,11 +22646,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22673,7 +22673,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -22694,7 +22694,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22725,7 +22725,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22748,7 +22748,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 32 ) ) );
 			}
@@ -22765,11 +22765,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22794,7 +22794,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22825,7 +22825,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22846,11 +22846,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22873,7 +22873,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -22894,7 +22894,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22925,7 +22925,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -22948,7 +22948,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 255 ) ) );
 			}
@@ -22965,11 +22965,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -22994,7 +22994,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23025,7 +23025,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23046,11 +23046,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23073,7 +23073,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -23094,7 +23094,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23125,7 +23125,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23148,7 +23148,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 256 ) ) );
 			}
@@ -23165,11 +23165,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23194,7 +23194,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23225,7 +23225,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23246,11 +23246,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23273,7 +23273,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -23294,7 +23294,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23325,7 +23325,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23348,7 +23348,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65535 ) ) );
 			}
@@ -23365,11 +23365,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23394,7 +23394,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23425,7 +23425,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23446,11 +23446,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23473,7 +23473,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
@@ -23494,7 +23494,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23525,7 +23525,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadStringAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23548,7 +23548,7 @@ namespace MsgPack
 			{
 				String result;
 				var ret = await unpacker.ReadStringAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( new String( 'A', 65536 ) ) );
 			}
@@ -23565,11 +23565,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23590,11 +23590,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23617,7 +23617,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -23636,7 +23636,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -23653,11 +23653,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23682,7 +23682,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23713,7 +23713,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23734,11 +23734,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23761,7 +23761,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -23782,7 +23782,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23813,7 +23813,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23836,7 +23836,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -23853,11 +23853,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23882,7 +23882,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23913,7 +23913,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -23934,11 +23934,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -23961,7 +23961,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -23982,7 +23982,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24013,7 +24013,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24036,7 +24036,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -24053,11 +24053,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24078,11 +24078,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24105,7 +24105,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -24124,7 +24124,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -24141,11 +24141,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24170,7 +24170,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24201,7 +24201,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24222,11 +24222,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24249,7 +24249,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -24270,7 +24270,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24301,7 +24301,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24324,7 +24324,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -24341,11 +24341,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24370,7 +24370,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24401,7 +24401,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24422,11 +24422,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24449,7 +24449,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -24470,7 +24470,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24501,7 +24501,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24524,7 +24524,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -24541,11 +24541,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24570,7 +24570,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24601,7 +24601,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24622,11 +24622,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24649,7 +24649,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -24670,7 +24670,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24701,7 +24701,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24724,7 +24724,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -24741,11 +24741,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24770,7 +24770,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24801,7 +24801,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24822,11 +24822,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24849,7 +24849,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -24870,7 +24870,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24901,7 +24901,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -24924,7 +24924,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -24941,11 +24941,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24966,11 +24966,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -24993,7 +24993,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -25012,7 +25012,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -25029,11 +25029,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25058,7 +25058,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25089,7 +25089,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25110,11 +25110,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25137,7 +25137,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -25158,7 +25158,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25189,7 +25189,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25212,7 +25212,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -25229,11 +25229,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25258,7 +25258,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25289,7 +25289,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25310,11 +25310,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25337,7 +25337,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -25358,7 +25358,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25389,7 +25389,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25412,7 +25412,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -25429,11 +25429,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25458,7 +25458,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25489,7 +25489,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25510,11 +25510,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25537,7 +25537,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -25558,7 +25558,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25589,7 +25589,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25612,7 +25612,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -25629,11 +25629,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25658,7 +25658,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25689,7 +25689,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25710,11 +25710,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25737,7 +25737,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -25758,7 +25758,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25789,7 +25789,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25812,7 +25812,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -25829,11 +25829,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25858,7 +25858,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25889,7 +25889,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25910,11 +25910,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -25937,7 +25937,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -25958,7 +25958,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -25989,7 +25989,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26012,7 +26012,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -26029,11 +26029,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26058,7 +26058,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26089,7 +26089,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26110,11 +26110,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26137,7 +26137,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -26158,7 +26158,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26189,7 +26189,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26212,7 +26212,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -26229,11 +26229,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26254,11 +26254,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26281,7 +26281,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -26300,7 +26300,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -26317,11 +26317,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26346,7 +26346,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26377,7 +26377,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26398,11 +26398,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26425,7 +26425,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -26446,7 +26446,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26477,7 +26477,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26500,7 +26500,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -26517,11 +26517,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26546,7 +26546,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26577,7 +26577,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26598,11 +26598,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26625,7 +26625,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -26646,7 +26646,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26677,7 +26677,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26700,7 +26700,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -26717,11 +26717,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26746,7 +26746,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26777,7 +26777,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26798,11 +26798,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26825,7 +26825,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -26846,7 +26846,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26877,7 +26877,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26900,7 +26900,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -26917,11 +26917,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -26946,7 +26946,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26977,7 +26977,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -26998,11 +26998,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27025,7 +27025,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -27046,7 +27046,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27077,7 +27077,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27100,7 +27100,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -27117,11 +27117,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27146,7 +27146,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27177,7 +27177,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27198,11 +27198,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27225,7 +27225,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -27246,7 +27246,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27277,7 +27277,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27300,7 +27300,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -27317,11 +27317,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27346,7 +27346,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27377,7 +27377,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27398,11 +27398,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27425,7 +27425,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -27446,7 +27446,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27477,7 +27477,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27500,7 +27500,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -27517,11 +27517,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27546,7 +27546,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27577,7 +27577,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27598,11 +27598,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				// raw/str always can be byte[]
 				var asBinary = ( byte[] )result.Value;
@@ -27625,7 +27625,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
@@ -27646,7 +27646,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27677,7 +27677,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27700,7 +27700,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
@@ -27717,11 +27717,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -27744,11 +27744,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -27773,7 +27773,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -27792,7 +27792,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -27809,11 +27809,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -27840,7 +27840,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27871,7 +27871,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27892,11 +27892,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -27921,7 +27921,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -27942,7 +27942,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27973,7 +27973,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -27996,7 +27996,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -28013,11 +28013,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28044,7 +28044,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28075,7 +28075,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28096,11 +28096,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28125,7 +28125,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -28146,7 +28146,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28177,7 +28177,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28200,7 +28200,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -28217,11 +28217,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28248,7 +28248,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28279,7 +28279,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28300,11 +28300,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28329,7 +28329,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -28350,7 +28350,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28381,7 +28381,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28404,7 +28404,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -28421,11 +28421,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28452,7 +28452,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28483,7 +28483,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28504,11 +28504,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28533,7 +28533,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -28554,7 +28554,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28585,7 +28585,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28608,7 +28608,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -28625,11 +28625,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28652,11 +28652,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28681,7 +28681,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -28700,7 +28700,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -28717,11 +28717,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28748,7 +28748,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28779,7 +28779,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28800,11 +28800,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28829,7 +28829,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -28850,7 +28850,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28881,7 +28881,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28904,7 +28904,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -28921,11 +28921,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -28952,7 +28952,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -28983,7 +28983,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29004,11 +29004,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29033,7 +29033,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -29054,7 +29054,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29085,7 +29085,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29108,7 +29108,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -29125,11 +29125,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29156,7 +29156,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29187,7 +29187,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29208,11 +29208,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29237,7 +29237,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -29258,7 +29258,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29289,7 +29289,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29312,7 +29312,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -29329,11 +29329,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29360,7 +29360,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29391,7 +29391,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29412,11 +29412,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29441,7 +29441,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -29462,7 +29462,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29493,7 +29493,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29516,7 +29516,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -29533,11 +29533,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29564,7 +29564,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29595,7 +29595,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29616,11 +29616,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29645,7 +29645,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -29666,7 +29666,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29697,7 +29697,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29720,7 +29720,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -29737,11 +29737,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29768,7 +29768,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29799,7 +29799,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29820,11 +29820,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29849,7 +29849,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -29870,7 +29870,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29901,7 +29901,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -29924,7 +29924,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -29941,11 +29941,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29968,11 +29968,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -29997,7 +29997,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -30016,7 +30016,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 0 ).ToArray() ) );
 			}
@@ -30033,11 +30033,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30064,7 +30064,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30095,7 +30095,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30116,11 +30116,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30145,7 +30145,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -30166,7 +30166,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30197,7 +30197,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30220,7 +30220,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 1 ).ToArray() ) );
 			}
@@ -30237,11 +30237,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30268,7 +30268,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30299,7 +30299,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30320,11 +30320,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30349,7 +30349,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -30370,7 +30370,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30401,7 +30401,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30424,7 +30424,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 31 ).ToArray() ) );
 			}
@@ -30441,11 +30441,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30472,7 +30472,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30503,7 +30503,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30524,11 +30524,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30553,7 +30553,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -30574,7 +30574,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30605,7 +30605,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30628,7 +30628,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 32 ).ToArray() ) );
 			}
@@ -30645,11 +30645,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30676,7 +30676,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30707,7 +30707,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30728,11 +30728,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30757,7 +30757,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -30778,7 +30778,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30809,7 +30809,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30832,7 +30832,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 255 ).ToArray() ) );
 			}
@@ -30849,11 +30849,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30880,7 +30880,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30911,7 +30911,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -30932,11 +30932,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -30961,7 +30961,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -30982,7 +30982,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31013,7 +31013,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31036,7 +31036,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 256 ).ToArray() ) );
 			}
@@ -31053,11 +31053,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -31084,7 +31084,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31115,7 +31115,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31136,11 +31136,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -31165,7 +31165,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -31186,7 +31186,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31217,7 +31217,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31240,7 +31240,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65535 ).ToArray() ) );
 			}
@@ -31257,11 +31257,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -31288,7 +31288,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31319,7 +31319,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31340,11 +31340,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				Assert.That( ( Byte[] )result.Value, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 				Assert.That( result.Value.UnderlyingType, Is.EqualTo( typeof( Byte[] ) ) );
 
@@ -31369,7 +31369,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}
@@ -31390,7 +31390,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31421,7 +31421,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadBinaryAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -31444,7 +31444,7 @@ namespace MsgPack
 			{
 				Byte[] result;
 				var ret = await unpacker.ReadBinaryAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result, Is.EqualTo( Enumerable.Repeat( 0xFF, 65536 ).ToArray() ) );
 			}

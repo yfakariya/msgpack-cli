@@ -36,7 +36,7 @@ namespace MsgPack
 	[TestFixture]
 	public class PackerFactoryTest
 	{
-#if !NETFX_CORE && !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if NETFRAMEWORK
 		[Test]
 		public void DefaultCompatibilityOptions_Classic()
 		{
@@ -56,7 +56,7 @@ namespace MsgPack
 		{
 			Assert.That( Packer.DefaultCompatibilityOptions, Is.EqualTo( PackerCompatibilityOptions.Classic ) );
 		}
-#endif // !NETFX_CORE && !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 
 		[Test]
 		public void TestCreate_DefaultOptions()

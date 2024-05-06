@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -52,11 +52,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -80,7 +80,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -112,7 +112,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -134,11 +134,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -159,7 +159,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -183,7 +183,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -216,7 +216,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -239,7 +239,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -258,11 +258,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -286,7 +286,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -318,7 +318,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -340,11 +340,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -365,7 +365,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 2 ) );
@@ -389,7 +389,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -422,7 +422,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -445,7 +445,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 2 ) );
@@ -464,11 +464,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -492,7 +492,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -524,7 +524,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -546,11 +546,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -571,7 +571,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 4 ) );
@@ -595,7 +595,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -628,7 +628,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -651,7 +651,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 4 ) );
@@ -670,11 +670,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -698,7 +698,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -730,7 +730,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -752,11 +752,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -777,7 +777,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 8 ) );
@@ -801,7 +801,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -834,7 +834,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -857,7 +857,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 8 ) );
@@ -876,11 +876,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -904,7 +904,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -936,7 +936,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -958,11 +958,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -983,7 +983,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 16 ) );
@@ -1007,7 +1007,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1040,7 +1040,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1063,7 +1063,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 16 ) );
@@ -1082,11 +1082,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1106,11 +1106,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1131,7 +1131,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 0 ) );
@@ -1151,7 +1151,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 0 ) );
@@ -1170,11 +1170,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1198,7 +1198,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1230,7 +1230,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1252,11 +1252,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1277,7 +1277,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -1301,7 +1301,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1334,7 +1334,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1357,7 +1357,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -1376,11 +1376,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1404,7 +1404,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1436,7 +1436,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1458,11 +1458,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1483,7 +1483,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 17 ) );
@@ -1507,7 +1507,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1540,7 +1540,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1563,7 +1563,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 17 ) );
@@ -1582,11 +1582,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1610,7 +1610,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1642,7 +1642,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1664,11 +1664,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1689,7 +1689,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 255 ) );
@@ -1713,7 +1713,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1746,7 +1746,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1769,7 +1769,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 255 ) );
@@ -1788,11 +1788,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1812,11 +1812,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1837,7 +1837,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 0 ) );
@@ -1857,7 +1857,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 0 ) );
@@ -1876,11 +1876,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1904,7 +1904,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1936,7 +1936,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -1958,11 +1958,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -1983,7 +1983,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -2007,7 +2007,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2040,7 +2040,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2063,7 +2063,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -2082,11 +2082,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2110,7 +2110,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2142,7 +2142,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2164,11 +2164,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2189,7 +2189,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 17 ) );
@@ -2213,7 +2213,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2246,7 +2246,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2269,7 +2269,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 17 ) );
@@ -2288,11 +2288,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2316,7 +2316,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2348,7 +2348,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2370,11 +2370,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2395,7 +2395,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 255 ) );
@@ -2419,7 +2419,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2452,7 +2452,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2475,7 +2475,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 255 ) );
@@ -2494,11 +2494,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2522,7 +2522,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2554,7 +2554,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2576,11 +2576,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2601,7 +2601,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 256 ) );
@@ -2625,7 +2625,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2658,7 +2658,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2681,7 +2681,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 256 ) );
@@ -2700,11 +2700,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2728,7 +2728,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2760,7 +2760,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2782,11 +2782,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2807,7 +2807,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 65535 ) );
@@ -2831,7 +2831,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2864,7 +2864,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -2887,7 +2887,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 65535 ) );
@@ -2906,11 +2906,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2930,11 +2930,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -2955,7 +2955,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 0 ) );
@@ -2975,7 +2975,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 0 ) );
@@ -2994,11 +2994,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3022,7 +3022,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3054,7 +3054,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3076,11 +3076,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3101,7 +3101,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -3125,7 +3125,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3158,7 +3158,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3181,7 +3181,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 1 ) );
@@ -3200,11 +3200,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3228,7 +3228,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3260,7 +3260,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3282,11 +3282,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3307,7 +3307,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 17 ) );
@@ -3331,7 +3331,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3364,7 +3364,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3387,7 +3387,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 17 ) );
@@ -3406,11 +3406,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3434,7 +3434,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3466,7 +3466,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3488,11 +3488,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3513,7 +3513,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 255 ) );
@@ -3537,7 +3537,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3570,7 +3570,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3593,7 +3593,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 255 ) );
@@ -3612,11 +3612,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3640,7 +3640,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3672,7 +3672,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3694,11 +3694,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3719,7 +3719,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 256 ) );
@@ -3743,7 +3743,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3776,7 +3776,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3799,7 +3799,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 256 ) );
@@ -3818,11 +3818,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3846,7 +3846,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3878,7 +3878,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3900,11 +3900,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -3925,7 +3925,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 65535 ) );
@@ -3949,7 +3949,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -3982,7 +3982,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4005,7 +4005,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 65535 ) );
@@ -4024,11 +4024,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4052,7 +4052,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4084,7 +4084,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.Read() );
+					Assert.That( unpacker.Read(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4106,11 +4106,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4131,7 +4131,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 65536 ) );
@@ -4155,7 +4155,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4188,7 +4188,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4211,7 +4211,7 @@ namespace MsgPack
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
 				MessagePackExtendedTypeObject result;
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
 				Assert.That( result.Body.Length, Is.EqualTo( 65536 ) );
@@ -4232,11 +4232,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4260,7 +4260,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4292,7 +4292,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4314,11 +4314,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4340,7 +4340,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4364,7 +4364,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4396,7 +4396,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4420,7 +4420,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4440,11 +4440,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4468,7 +4468,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4500,7 +4500,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4522,11 +4522,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4548,7 +4548,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4572,7 +4572,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4604,7 +4604,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4628,7 +4628,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4648,11 +4648,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4676,7 +4676,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4708,7 +4708,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4730,11 +4730,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4756,7 +4756,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4780,7 +4780,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4812,7 +4812,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4836,7 +4836,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4856,11 +4856,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4884,7 +4884,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4916,7 +4916,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -4938,11 +4938,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -4964,7 +4964,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -4988,7 +4988,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5020,7 +5020,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5044,7 +5044,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5064,11 +5064,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5092,7 +5092,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5124,7 +5124,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5146,11 +5146,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5172,7 +5172,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5196,7 +5196,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5228,7 +5228,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5252,7 +5252,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5272,11 +5272,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5296,11 +5296,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5322,7 +5322,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5344,7 +5344,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5364,11 +5364,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5392,7 +5392,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5424,7 +5424,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5446,11 +5446,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5472,7 +5472,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5496,7 +5496,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5528,7 +5528,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5552,7 +5552,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5572,11 +5572,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5600,7 +5600,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5632,7 +5632,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5654,11 +5654,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5680,7 +5680,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5704,7 +5704,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5736,7 +5736,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5760,7 +5760,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5780,11 +5780,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5808,7 +5808,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5840,7 +5840,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5862,11 +5862,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -5888,7 +5888,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5912,7 +5912,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5944,7 +5944,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -5968,7 +5968,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -5988,11 +5988,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6012,11 +6012,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6038,7 +6038,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6060,7 +6060,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6080,11 +6080,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6108,7 +6108,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6140,7 +6140,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6162,11 +6162,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6188,7 +6188,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6212,7 +6212,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6244,7 +6244,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6268,7 +6268,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6288,11 +6288,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6316,7 +6316,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6348,7 +6348,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6370,11 +6370,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6396,7 +6396,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6420,7 +6420,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6452,7 +6452,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6476,7 +6476,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6496,11 +6496,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6524,7 +6524,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6556,7 +6556,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6578,11 +6578,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6604,7 +6604,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6628,7 +6628,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6660,7 +6660,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6684,7 +6684,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6704,11 +6704,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6732,7 +6732,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6764,7 +6764,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6786,11 +6786,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6812,7 +6812,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6836,7 +6836,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6868,7 +6868,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6892,7 +6892,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -6912,11 +6912,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -6940,7 +6940,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6972,7 +6972,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -6994,11 +6994,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7020,7 +7020,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7044,7 +7044,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7076,7 +7076,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7100,7 +7100,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7120,11 +7120,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7144,11 +7144,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7170,7 +7170,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7192,7 +7192,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7212,11 +7212,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7240,7 +7240,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7272,7 +7272,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7294,11 +7294,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7320,7 +7320,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7344,7 +7344,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7376,7 +7376,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7400,7 +7400,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7420,11 +7420,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7448,7 +7448,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7480,7 +7480,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7502,11 +7502,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7528,7 +7528,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7552,7 +7552,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7584,7 +7584,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7608,7 +7608,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7628,11 +7628,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7656,7 +7656,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7688,7 +7688,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7710,11 +7710,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7736,7 +7736,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7760,7 +7760,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7792,7 +7792,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7816,7 +7816,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7836,11 +7836,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7864,7 +7864,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7896,7 +7896,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -7918,11 +7918,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -7944,7 +7944,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -7968,7 +7968,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8000,7 +8000,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8024,7 +8024,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -8044,11 +8044,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -8072,7 +8072,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8104,7 +8104,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8126,11 +8126,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -8152,7 +8152,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -8176,7 +8176,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8208,7 +8208,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8232,7 +8232,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -8252,11 +8252,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -8280,7 +8280,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8312,7 +8312,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadAsync().GetAwaiter().GetResult() );
+					Assert.That( unpacker.ReadAsync().GetAwaiter().GetResult(), Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8334,11 +8334,11 @@ namespace MsgPack
 			)
 			using( var unpacker = this.CreateUnpacker( buffer ) )
 			{
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( actual.Body, Is.Not.Null );
@@ -8360,7 +8360,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );
@@ -8384,7 +8384,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8416,7 +8416,7 @@ namespace MsgPack
 				{
 					// Just fail and revert.
 					var initialOffset = this.GetOffset( unpacker );
-					Assert.IsFalse( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success );
+					Assert.That( unpacker.ReadMessagePackExtendedTypeObjectAsync().GetAwaiter().GetResult().Success, Is.False );
 					Assert.That( this.GetOffset( unpacker ), Is.EqualTo( initialOffset ) );
 				}
 				else
@@ -8440,7 +8440,7 @@ namespace MsgPack
 			{
 				MessagePackExtendedTypeObject result;
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 				Assert.That( result.TypeCode, Is.EqualTo( typeCode ) );
 				Assert.That( result.Body, Is.Not.Null );

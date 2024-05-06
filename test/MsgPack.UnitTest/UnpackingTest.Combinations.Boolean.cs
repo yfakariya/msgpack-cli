@@ -1,4 +1,4 @@
-﻿
+
 #region -- License Terms --
 //
 // MessagePack for CLI
@@ -44,8 +44,8 @@ namespace MsgPack
 		public void TestUnpackBoolean_ByteArray_True_AsIs()
 		{
 			var result = Unpacking.UnpackBoolean( new byte[] { 0xC3 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( true, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.True );
 		}
 		
 		[Test]
@@ -54,8 +54,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC3 } ) )
 			{
 				var result = Unpacking.UnpackBoolean( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( true, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.True );
 			}
 		}
 
@@ -63,8 +63,8 @@ namespace MsgPack
 		public void TestUnpackBoolean_ByteArray_False_AsIs()
 		{
 			var result = Unpacking.UnpackBoolean( new byte[] { 0xC2 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( false, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.False );
 		}
 		
 		[Test]
@@ -73,8 +73,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC2 } ) )
 			{
 				var result = Unpacking.UnpackBoolean( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( false, result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.False );
 			}
 		}
 		
@@ -140,8 +140,8 @@ namespace MsgPack
 		{
 			// Offset 1 is true
 			var result = Unpacking.UnpackBoolean( new byte[] { 0xFF, 0xC3, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( true, result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.True );
 		}
 	}
 }

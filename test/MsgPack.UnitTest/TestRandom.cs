@@ -1,4 +1,4 @@
-﻿#region -- Licence Terms --
+#region -- Licence Terms --
 //
 // MessagePack for CLI
 //
@@ -52,13 +52,21 @@ namespace MsgPack
 			return BitConverter.ToInt32( this._castBuffer, 0 );
 		}
 
+#if NET6_0_OR_GREATER
+		public override Int64 NextInt64()
+#else // NET6_0_OR_GREATER
 		public Int64 NextInt64()
+#endif // NET6_0_OR_GREATER
 		{
 			base.NextBytes( this._castBuffer );
 			return BitConverter.ToInt64( this._castBuffer, 0 );
 		}
 
+#if NET6_0_OR_GREATER
+		public override Single NextSingle()
+#else // NET6_0_OR_GREATER
 		public Single NextSingle()
+#endif // NET6_0_OR_GREATER
 		{
 			base.NextBytes( this._castBuffer );
 			return BitConverter.ToSingle( this._castBuffer, 0 );

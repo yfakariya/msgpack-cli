@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -37,161 +37,161 @@ namespace MsgPack
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfArrayOfNotItemType_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( KeyValuePair<string, bool>[] ) ) );
+			Assert.That( new MessagePackObject( new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( KeyValuePair<string, bool>[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfArrayOfMessagePackObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( KeyValuePair<MessagePackObject, MessagePackObject>[] ) ) );
+			Assert.That( new MessagePackObject( new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( KeyValuePair<MessagePackObject, MessagePackObject>[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfArrayOfItemType_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( KeyValuePair<string, int>[] ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( KeyValuePair<string, int>[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfIEnumerableOfMessagePackObject_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfIListOfMessagePackObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( IList<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( IList<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfListOfMessagePackObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( List<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( List<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfIDictionaryOfMessagePackObject_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( IDictionary<MessagePackObject, MessagePackObject> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( IDictionary<MessagePackObject, MessagePackObject> ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNotNull_IsTypeOfMessagePackObjectDictionary_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( MessagePackObjectDictionary ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsTypeOf( typeof( MessagePackObjectDictionary ) ), Is.True );
 		}
 		
 		[Test]
 		public void TestIsMap_DictionaryNotNull_True()
 		{
-			Assert.IsTrue( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsMap );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() { { "1", 1 } } ).IsMap, Is.True );
 		}
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfArrayOfNotItemType_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new MessagePackObjectDictionary() ).IsTypeOf( typeof( KeyValuePair<string, bool>[] ) ) );
+			Assert.That( new MessagePackObject( new MessagePackObjectDictionary() ).IsTypeOf( typeof( KeyValuePair<string, bool>[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfArrayOfMessagePackObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject( new MessagePackObjectDictionary() ).IsTypeOf( typeof( KeyValuePair<MessagePackObject, MessagePackObject>[] ) ) );
+			Assert.That( new MessagePackObject( new MessagePackObjectDictionary() ).IsTypeOf( typeof( KeyValuePair<MessagePackObject, MessagePackObject>[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfArrayOfItemType_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( KeyValuePair<string, int>[] ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( KeyValuePair<string, int>[] ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfIEnumerableOfMessagePackObject_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfIListOfMessagePackObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( IList<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( IList<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfListOfMessagePackObject_False()
 		{
-			Assert.AreEqual( false, new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( List<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( List<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.False );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfIDictionaryOfMessagePackObject_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( IDictionary<MessagePackObject, MessagePackObject> ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( IDictionary<MessagePackObject, MessagePackObject> ) ), Is.True );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryEmptyNotNull_IsTypeOfMessagePackObjectDictionary_True()
 		{
-			Assert.AreEqual( true, new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( MessagePackObjectDictionary ) ) );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsTypeOf( typeof( MessagePackObjectDictionary ) ), Is.True );
 		}
 		
 		[Test]
 		public void TestIsMap_DictionaryEmptyNotNull_True()
 		{
-			Assert.IsTrue( new MessagePackObject(  new MessagePackObjectDictionary() ).IsMap );
+			Assert.That( new MessagePackObject(  new MessagePackObjectDictionary() ).IsMap, Is.True );
 		}
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfArrayOfNotItemType_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject( default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( KeyValuePair<string, bool>[] ) ) );
+			Assert.That( new MessagePackObject( default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( KeyValuePair<string, bool>[] ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfArrayOfMessagePackObject_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject( default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( KeyValuePair<MessagePackObject, MessagePackObject>[] ) ) );
+			Assert.That( new MessagePackObject( default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( KeyValuePair<MessagePackObject, MessagePackObject>[] ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfArrayOfItemType_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( KeyValuePair<string, int>[] ) ) );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( KeyValuePair<string, int>[] ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfIEnumerableOfMessagePackObject_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfIListOfMessagePackObject_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( IList<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( IList<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfListOfMessagePackObject_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( List<KeyValuePair<MessagePackObject, MessagePackObject>> ) ) );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( List<KeyValuePair<MessagePackObject, MessagePackObject>> ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfIDictionaryOfMessagePackObject_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( IDictionary<MessagePackObject, MessagePackObject> ) ) );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( IDictionary<MessagePackObject, MessagePackObject> ) ), Is.Null );
 		}
 
 		[Test]
 		public void TestIsTypeOf_DictionaryNull_IsTypeOfMessagePackObjectDictionary_Null()
 		{
-			Assert.AreEqual( null, new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( MessagePackObjectDictionary ) ) );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsTypeOf( typeof( MessagePackObjectDictionary ) ), Is.Null );
 		}
 		
 		[Test]
 		public void TestIsMap_DictionaryNull_False()
 		{
-			Assert.IsFalse( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsMap );
+			Assert.That( new MessagePackObject(  default( MessagePackObjectDictionary ) ).IsMap, Is.False );
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -40,7 +40,11 @@ using ExplicitAttribute = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 5000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 5000 )]
+#endif // NETFRAMEWORK
 	public partial class DirectConversionTest
 	{
 #if MSTEST
@@ -68,8 +72,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).PackNull();
-			Assert.AreEqual( null, Unpacking.UnpackNull( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( null, Unpacking.UnpackNull( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackNull( new MemoryStream( output.ToArray() ) ), Is.Null );
+			Assert.That( Unpacking.UnpackNull( output.ToArray() ).Value, Is.Null );
 		}
 
 		[Test]
@@ -83,8 +87,8 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
-			Assert.AreEqual( value, Unpacking.UnpackBoolean( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackBoolean( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackBoolean( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackBoolean( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 
 #if !SILVERLIGHT
@@ -189,21 +193,25 @@ namespace MsgPack
 		{
 			var output = new MemoryStream();
 			Packer.Create( output ).PackString( value );
-			Assert.AreEqual( value, Unpacking.UnpackString( new MemoryStream( output.ToArray() ) ) );
-			Assert.AreEqual( value, Unpacking.UnpackString( output.ToArray() ).Value );
+			Assert.That( Unpacking.UnpackString( new MemoryStream( output.ToArray() ) ), Is.EqualTo( value ) );
+			Assert.That( Unpacking.UnpackString( output.ToArray() ).Value, Is.EqualTo( value ) );
 		}
 #endif // !SILVERLIGHT
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 30000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 30000 )]
+#endif // NETFRAMEWORK
 		public void TestArray()
 		{
 			var emptyList = new List<int>();
 			{
 				var output = new MemoryStream();
 				Packer.Create( output ).PackCollection( emptyList );
-				Assert.AreEqual( 0, Unpacking.UnpackArrayLength( new MemoryStream( output.ToArray() ) ) );
-				Assert.AreEqual( 0, Unpacking.UnpackArrayLength( output.ToArray() ).Value );
+				Assert.That( Unpacking.UnpackArrayLength( new MemoryStream( output.ToArray() ) ), Is.EqualTo( 0 ) );
+				Assert.That( Unpacking.UnpackArrayLength( output.ToArray() ).Value, Is.EqualTo( 0 ) );
 			}
 
 			var random = new Random();
@@ -220,21 +228,21 @@ namespace MsgPack
 				Packer.Create( output ).PackCollection( l );
 
 				Stream streamInput = new MemoryStream( output.ToArray() );
-				Assert.AreEqual( len, Unpacking.UnpackArrayLength( streamInput ) );
+				Assert.That( Unpacking.UnpackArrayLength( streamInput ), Is.EqualTo( len ) );
 				for ( int j = 0; j < len; j++ )
 				{
-					Assert.AreEqual( l[ j ], Unpacking.UnpackInt32( streamInput ) );
+					Assert.That( Unpacking.UnpackInt32( streamInput ), Is.EqualTo( l[ j ] ) );
 				}
 
 				byte[] byteArrayInput = output.ToArray();
 				var arrayLength = Unpacking.UnpackArrayLength( byteArrayInput );
-				Assert.AreEqual( len, arrayLength.Value );
+				Assert.That( arrayLength.Value, Is.EqualTo( len ) );
 				int offset = arrayLength.ReadCount;
 				for ( int j = 0; j < len; j++ )
 				{
 					var uar = Unpacking.UnpackInt32( byteArrayInput, offset );
-					Assert.AreNotEqual( 0, uar.ReadCount );
-					Assert.AreEqual( l[ j ], uar.Value );
+					Assert.That( uar.ReadCount, Is.Not.EqualTo( 0 ) );
+					Assert.That( uar.Value, Is.EqualTo( l[ j ] ) );
 					offset += uar.ReadCount;
 				}
 			}
@@ -251,35 +259,39 @@ namespace MsgPack
 				Packer.Create( output ).PackCollection( l );
 
 				Stream streamInput = new MemoryStream( output.ToArray() );
-				Assert.AreEqual( len, Unpacking.UnpackArrayLength( streamInput ) );
+				Assert.That( Unpacking.UnpackArrayLength( streamInput ), Is.EqualTo( len ) );
 				for ( int j = 0; j < len; j++ )
 				{
-					Assert.AreEqual( l[ j ], Unpacking.UnpackString( streamInput ) );
+					Assert.That( Unpacking.UnpackString( streamInput ), Is.EqualTo( l[ j ] ) );
 				}
 
 				byte[] byteArrayInput = output.ToArray();
 				var arrayLength = Unpacking.UnpackArrayLength( byteArrayInput );
-				Assert.AreEqual( len, arrayLength.Value );
+				Assert.That( arrayLength.Value, Is.EqualTo( len ) );
 				int offset = arrayLength.ReadCount;
 				for ( int j = 0; j < len; j++ )
 				{
 					var usr = Unpacking.UnpackString( byteArrayInput, offset );
-					Assert.AreEqual( l[ j ], usr.Value );
+					Assert.That( usr.Value, Is.EqualTo( l[ j ] ) );
 					offset += usr.ReadCount;
 				}
 			}
 		}
 
 		[Test]
+#if NETFRAMEWORK
 		[Timeout( 30000 )]
+#else // NETFRAMEWORK
+		[CancelAfter( 30000 )]
+#endif // NETFRAMEWORK
 		public void TestMap()
 		{
 			var emptyMap = new Dictionary<int, int>();
 			{
 				var output = new MemoryStream();
 				Packer.Create( output ).PackDictionary( emptyMap );
-				Assert.AreEqual( 0, Unpacking.UnpackDictionaryCount( new MemoryStream( output.ToArray() ) ) );
-				Assert.AreEqual( 0, Unpacking.UnpackDictionaryCount( output.ToArray() ).Value );
+				Assert.That( Unpacking.UnpackDictionaryCount( new MemoryStream( output.ToArray() ) ), Is.EqualTo( 0 ) );
+				Assert.That( Unpacking.UnpackDictionaryCount( output.ToArray() ).Value, Is.EqualTo( 0 ) );
 			}
 
 			var random = new Random();
@@ -296,26 +308,26 @@ namespace MsgPack
 				Packer.Create( output ).PackDictionary( m );
 
 				Stream streamInput = new MemoryStream( output.ToArray() );
-				Assert.AreEqual( len, Unpacking.UnpackDictionaryCount( streamInput ) );
+				Assert.That( Unpacking.UnpackDictionaryCount( streamInput ), Is.EqualTo( len ) );
 				for ( int j = 0; j < len; j++ )
 				{
 					int value;
-					Assert.IsTrue( m.TryGetValue( Unpacking.UnpackInt32( streamInput ), out value ) );
-					Assert.AreEqual( value, Unpacking.UnpackInt32( streamInput ) );
+					Assert.That( m.TryGetValue( Unpacking.UnpackInt32( streamInput ), out value ), Is.True );
+					Assert.That( Unpacking.UnpackInt32( streamInput ), Is.EqualTo( value ) );
 				}
 
 				byte[] byteArrayInput = output.ToArray();
 				var arrayLength = Unpacking.UnpackDictionaryCount( byteArrayInput );
-				Assert.AreEqual( len, arrayLength.Value );
+				Assert.That( arrayLength.Value, Is.EqualTo( len ) );
 				int offset = arrayLength.ReadCount;
 				for ( int j = 0; j < len; j++ )
 				{
 					var keyUar = Unpacking.UnpackInt32( byteArrayInput, offset );
-					Assert.AreNotEqual( 0, keyUar.ReadCount );
+					Assert.That( keyUar.ReadCount, Is.Not.EqualTo( 0 ) );
 					int value;
-					Assert.IsTrue( m.TryGetValue( keyUar.Value, out value ) );
+					Assert.That( m.TryGetValue( keyUar.Value, out value ), Is.True );
 					var valueUar = Unpacking.UnpackInt32( byteArrayInput, offset + keyUar.ReadCount );
-					Assert.AreEqual( value, valueUar.Value );
+					Assert.That( valueUar.Value, Is.EqualTo( value ) );
 					offset += keyUar.ReadCount + valueUar.ReadCount;
 				}
 			}
@@ -332,26 +344,26 @@ namespace MsgPack
 				Packer.Create( output ).PackDictionary( m );
 
 				Stream streamInput = new MemoryStream( output.ToArray() );
-				Assert.AreEqual( len, Unpacking.UnpackDictionaryCount( streamInput ) );
+				Assert.That( Unpacking.UnpackDictionaryCount( streamInput ), Is.EqualTo( len ) );
 				for ( int j = 0; j < len; j++ )
 				{
 					int value;
-					Assert.IsTrue( m.TryGetValue( Unpacking.UnpackString( streamInput ), out value ) );
-					Assert.AreEqual( value, Unpacking.UnpackInt32( streamInput ) );
+					Assert.That( m.TryGetValue( Unpacking.UnpackString( streamInput ), out value ), Is.True );
+					Assert.That( Unpacking.UnpackInt32( streamInput ), Is.EqualTo( value ) );
 				}
 
 				byte[] byteArrayInput = output.ToArray();
 				var arrayLength = Unpacking.UnpackDictionaryCount( byteArrayInput );
-				Assert.AreEqual( len, arrayLength.Value );
+				Assert.That( arrayLength.Value, Is.EqualTo( len ) );
 				int offset = arrayLength.ReadCount;
 				for ( int j = 0; j < len; j++ )
 				{
 					var usr = Unpacking.UnpackString( byteArrayInput, offset );
-					Assert.AreNotEqual( 0, usr.ReadCount );
+					Assert.That( usr.ReadCount, Is.Not.EqualTo( 0 ) );
 					int value;
-					Assert.IsTrue( m.TryGetValue( usr.Value, out value ) );
+					Assert.That( m.TryGetValue( usr.Value, out value ), Is.True );
 					var uar = Unpacking.UnpackInt32( byteArrayInput, offset + usr.ReadCount );
-					Assert.AreEqual( value, uar.Value );
+					Assert.That( uar.Value, Is.EqualTo( value ) );
 					offset += usr.ReadCount + uar.ReadCount;
 				}
 			}

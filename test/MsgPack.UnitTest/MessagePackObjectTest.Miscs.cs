@@ -112,9 +112,9 @@ namespace MsgPack
 		[Test]
 		public void TestToString_Binary_Hex()
 		{
-			Assert.AreEqual(
-				"0xFFEDCBA98765432100",
-				new MessagePackObject( new byte[] { 0xFF, 0xED, 0xCB, 0xA9, 0x87, 0x65, 0x43, 0x21, 0x00 } ).ToString()
+			Assert.That(
+				new MessagePackObject( new byte[] { 0xFF, 0xED, 0xCB, 0xA9, 0x87, 0x65, 0x43, 0x21, 0x00 } ).ToString(),
+				Is.EqualTo( "0xFFEDCBA98765432100" )
 			);
 		}
 
@@ -122,9 +122,9 @@ namespace MsgPack
 		public void TestToString_ExtendedTypeObject_AsIs()
 		{
 			var mpeto = new MessagePackExtendedTypeObject( 123, new byte[] {1, 2, 3} );
-			Assert.AreEqual(
-				mpeto.ToString(),
-				new MessagePackObject( mpeto ).ToString()
+			Assert.That(
+				new MessagePackObject( mpeto ).ToString(),
+				Is.EqualTo( mpeto.ToString() )
 			);
 		}
 
@@ -209,7 +209,7 @@ namespace MsgPack
 				{
 					try
 					{
-						Assert.AreEqual( target.AsString(), result, indicator );
+						Assert.That( result, Is.EqualTo( target.AsString() ), indicator );
 						continue;
 					}
 					catch ( InvalidOperationException ) { }

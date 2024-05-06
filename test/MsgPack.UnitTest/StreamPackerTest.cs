@@ -36,7 +36,11 @@ using System.IO;
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 1000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 1000 )]
+#endif // NETFRAMEWORK
 	public partial class StreamPackerTest : PackerTest
 	{
 		protected override Packer CreatePacker( MemoryStream stream )

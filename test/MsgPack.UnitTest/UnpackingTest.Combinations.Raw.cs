@@ -44,8 +44,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw0Value_AsFixRaw0_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xA0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -55,8 +55,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xA0 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -65,8 +65,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw0Value_AsFixRaw0_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xA0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -76,8 +76,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xA0 } ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -85,8 +85,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw0Value_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xD9, 0x00 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -96,8 +96,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -106,8 +106,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw0Value_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xD9, 0x00 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -117,8 +117,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -126,8 +126,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw0Value_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -137,8 +137,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -147,8 +147,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw0Value_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -158,8 +158,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -167,8 +167,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw0Value_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -178,8 +178,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -188,8 +188,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw0Value_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -199,8 +199,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result.Length, Is.EqualTo( 0 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -208,8 +208,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw1Value_AsFixRaw1_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xA1 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -219,8 +219,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xA1 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -229,8 +229,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw1Value_AsFixRaw1_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xA1 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -240,8 +240,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xA1 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -249,8 +249,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw1Value_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xD9, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -260,8 +260,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -270,8 +270,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw1Value_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xD9, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -281,8 +281,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -290,8 +290,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw1Value_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 4, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 4 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -301,8 +301,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 4, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 4 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -311,8 +311,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw1Value_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 4, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 4 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -322,8 +322,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 4, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 4 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -331,8 +331,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRaw1Value_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 6, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 6 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -342,8 +342,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 6, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 6 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -352,8 +352,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRaw1Value_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() );
-			Assert.AreEqual( 6, result.ReadCount );
-			Assert.AreEqual( 0x1, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 6 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -363,8 +363,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x01 }.Concat( Enumerable.Repeat( ( byte )'a', 1 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 6, buffer.Position );
-				Assert.AreEqual( 0x1, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 6 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -372,8 +372,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRawMaxValue_AsFixRaw31_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xBF }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 32, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 32 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -383,8 +383,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xBF }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 32, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 32 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -393,8 +393,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRawMaxValue_AsFixRaw31_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xBF }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 32, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 32 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -404,8 +404,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xBF }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 32, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 32 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -413,8 +413,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRawMaxValue_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xD9, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 33, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 33 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -424,8 +424,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 33, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 33 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -434,8 +434,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRawMaxValue_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xD9, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 33, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 33 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -445,8 +445,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 33, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 33 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -454,8 +454,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRawMaxValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 34, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 34 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -465,8 +465,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 34, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 34 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -475,8 +475,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRawMaxValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 34, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 34 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -486,8 +486,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 34, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 34 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -495,8 +495,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_FixRawMaxValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 36, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 36 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -506,8 +506,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 36, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 36 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -516,8 +516,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_FixRawMaxValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() );
-			Assert.AreEqual( 36, result.ReadCount );
-			Assert.AreEqual( 0x1F, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 36 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x1F ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -527,8 +527,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x1F }.Concat( Enumerable.Repeat( ( byte )'a', 0x1F ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 36, buffer.Position );
-				Assert.AreEqual( 0x1F, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 36 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x1F ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -536,8 +536,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Str8MinValue_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xD9, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() );
-			Assert.AreEqual( 34, result.ReadCount );
-			Assert.AreEqual( 0x20, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 34 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x20 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -547,8 +547,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 34, buffer.Position );
-				Assert.AreEqual( 0x20, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 34 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x20 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -557,8 +557,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Str8MinValue_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xD9, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() );
-			Assert.AreEqual( 34, result.ReadCount );
-			Assert.AreEqual( 0x20, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 34 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x20 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -568,8 +568,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 34, buffer.Position );
-				Assert.AreEqual( 0x20, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 34 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x20 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -577,8 +577,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Str8MinValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() );
-			Assert.AreEqual( 35, result.ReadCount );
-			Assert.AreEqual( 0x20, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 35 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x20 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -588,8 +588,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 35, buffer.Position );
-				Assert.AreEqual( 0x20, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 35 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x20 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -598,8 +598,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Str8MinValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() );
-			Assert.AreEqual( 35, result.ReadCount );
-			Assert.AreEqual( 0x20, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 35 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x20 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -609,8 +609,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 35, buffer.Position );
-				Assert.AreEqual( 0x20, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 35 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x20 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -618,8 +618,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Str8MinValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() );
-			Assert.AreEqual( 37, result.ReadCount );
-			Assert.AreEqual( 0x20, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 37 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x20 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -629,8 +629,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 37, buffer.Position );
-				Assert.AreEqual( 0x20, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 37 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x20 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -639,8 +639,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Str8MinValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() );
-			Assert.AreEqual( 37, result.ReadCount );
-			Assert.AreEqual( 0x20, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 37 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x20 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -650,8 +650,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0x20 }.Concat( Enumerable.Repeat( ( byte )'a', 0x20 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 37, buffer.Position );
-				Assert.AreEqual( 0x20, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 37 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x20 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -659,8 +659,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Str8MaxValue_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xD9, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() );
-			Assert.AreEqual( 257, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 257 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -670,8 +670,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 257, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 257 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -680,8 +680,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Str8MaxValue_AsStr8_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xD9, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() );
-			Assert.AreEqual( 257, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 257 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -691,8 +691,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xD9, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 257, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 257 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -700,8 +700,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Str8MaxValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() );
-			Assert.AreEqual( 258, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 258 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -711,8 +711,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 258, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 258 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -721,8 +721,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Str8MaxValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() );
-			Assert.AreEqual( 258, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 258 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -732,8 +732,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 258, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 258 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -741,8 +741,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Str8MaxValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() );
-			Assert.AreEqual( 260, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 260 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -752,8 +752,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 260, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 260 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -762,8 +762,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Str8MaxValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() );
-			Assert.AreEqual( 260, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 260 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -773,8 +773,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 260, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 260 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -782,8 +782,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Raw16MinValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() );
-			Assert.AreEqual( 259, result.ReadCount );
-			Assert.AreEqual( 0x100, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 259 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x100 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -793,8 +793,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 259, buffer.Position );
-				Assert.AreEqual( 0x100, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 259 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x100 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -803,8 +803,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Raw16MinValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() );
-			Assert.AreEqual( 259, result.ReadCount );
-			Assert.AreEqual( 0x100, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 259 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x100 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -814,8 +814,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 259, buffer.Position );
-				Assert.AreEqual( 0x100, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 259 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x100 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -823,8 +823,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Raw16MinValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() );
-			Assert.AreEqual( 261, result.ReadCount );
-			Assert.AreEqual( 0x100, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 261 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x100 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -834,8 +834,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 261, buffer.Position );
-				Assert.AreEqual( 0x100, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 261 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x100 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -844,8 +844,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Raw16MinValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() );
-			Assert.AreEqual( 261, result.ReadCount );
-			Assert.AreEqual( 0x100, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 261 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x100 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -855,8 +855,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x100 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 261, buffer.Position );
-				Assert.AreEqual( 0x100, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 261 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x100 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -864,8 +864,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Raw16MaxValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDA, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 65538, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65538 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFFFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -875,8 +875,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 65538, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65538 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFFFF ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -885,8 +885,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Raw16MaxValue_AsRaw16_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDA, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 65538, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65538 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFFFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -896,8 +896,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDA, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 65538, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65538 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFFFF ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -905,8 +905,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Raw16MaxValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x00, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 65540, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65540 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFFFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -916,8 +916,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 65540, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65540 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFFFF ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -926,8 +926,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Raw16MaxValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x00, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 65540, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65540 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFFFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -937,8 +937,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x00, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )'a', 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 65540, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65540 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFFFF ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -946,8 +946,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromString_ByteArray_Raw32MinValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xDB, 0x00, 0x01, 0x00, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x10000 ) ).ToArray() );
-			Assert.AreEqual( 65541, result.ReadCount );
-			Assert.AreEqual( 0x10000, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65541 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x10000 ) );
 			Assert.That( result.Value, Is.All.EqualTo( ( byte )'a' ) );
 		}
 
@@ -957,8 +957,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x01, 0x00, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x10000 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 65541, buffer.Position );
-				Assert.AreEqual( 0x10000, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65541 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x10000 ) );
 				Assert.That( result, Is.All.EqualTo( ( byte )'a' ) );
 			}
 		}
@@ -967,8 +967,8 @@ namespace MsgPack
 		public void TestUnpackString_ByteArray_Raw32MinValue_AsRaw32_AsIs()
 		{
 			var result = Unpacking.UnpackString( new byte[] { 0xDB, 0x00, 0x01, 0x00, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x10000 ) ).ToArray() );
-			Assert.AreEqual( 65541, result.ReadCount );
-			Assert.AreEqual( 0x10000, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65541 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x10000 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 'a' ) );
 		}
 
@@ -978,8 +978,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xDB, 0x00, 0x01, 0x00, 0x00 }.Concat( Enumerable.Repeat( ( byte )'a', 0x10000 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackString( buffer );
-				Assert.AreEqual( 65541, buffer.Position );
-				Assert.AreEqual( 0x10000, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65541 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x10000 ) );
 				Assert.That( result, Is.All.EqualTo( 'a' ) );
 			}
 		}
@@ -987,8 +987,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin8MinValue_AsBin8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC4, 0x00 } );
-			Assert.AreEqual( 2, result.ReadCount );
-			Assert.AreEqual( 0x00, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 2 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x00 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -998,8 +998,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC4, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 2, buffer.Position );
-				Assert.AreEqual( 0x00, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 2 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x00 ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1008,8 +1008,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin8MinValue_AsBin16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC5, 0x00, 0x00 } );
-			Assert.AreEqual( 3, result.ReadCount );
-			Assert.AreEqual( 0x00, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 3 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x00 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1019,8 +1019,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC5, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 3, buffer.Position );
-				Assert.AreEqual( 0x00, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 3 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x00 ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1029,8 +1029,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin8MinValue_AsBin32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC6, 0x00, 0x00, 0x00, 0x00 } );
-			Assert.AreEqual( 5, result.ReadCount );
-			Assert.AreEqual( 0x00, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 5 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x00 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1040,8 +1040,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC6, 0x00, 0x00, 0x00, 0x00 } ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 5, buffer.Position );
-				Assert.AreEqual( 0x00, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 5 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x00 ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1050,8 +1050,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin8MaxValue_AsBin8_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC4, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFF ) ).ToArray() );
-			Assert.AreEqual( 257, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 257 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1061,8 +1061,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC4, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 257, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 257 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1071,8 +1071,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin8MaxValue_AsBin16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC5, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFF ) ).ToArray() );
-			Assert.AreEqual( 258, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 258 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1082,8 +1082,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC5, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 258, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 258 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1092,8 +1092,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin8MaxValue_AsBin32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC6, 0x00, 0x00, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFF ) ).ToArray() );
-			Assert.AreEqual( 260, result.ReadCount );
-			Assert.AreEqual( 0xFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 260 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1103,8 +1103,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC6, 0x00, 0x00, 0x00, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 260, buffer.Position );
-				Assert.AreEqual( 0xFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 260 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFF ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1113,8 +1113,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin16MinValue_AsBin16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC5, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )0xFF, 0x100 ) ).ToArray() );
-			Assert.AreEqual( 259, result.ReadCount );
-			Assert.AreEqual( 0x100, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 259 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x100 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1124,8 +1124,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC5, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )0xFF, 0x100 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 259, buffer.Position );
-				Assert.AreEqual( 0x100, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 259 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x100 ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1134,8 +1134,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin16MinValue_AsBin32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC6, 0x00, 0x00, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )0xFF, 0x100 ) ).ToArray() );
-			Assert.AreEqual( 261, result.ReadCount );
-			Assert.AreEqual( 0x100, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 261 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x100 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1145,8 +1145,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC6, 0x00, 0x00, 0x01, 0x00 }.Concat( Enumerable.Repeat( ( byte )0xFF, 0x100 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 261, buffer.Position );
-				Assert.AreEqual( 0x100, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 261 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x100 ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1155,8 +1155,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin16MaxValue_AsBin16_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC5, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 65538, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65538 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFFFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1166,8 +1166,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC5, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 65538, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65538 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFFFF ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1176,8 +1176,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin16MaxValue_AsBin32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC6, 0x00, 0x00, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFFFF ) ).ToArray() );
-			Assert.AreEqual( 65540, result.ReadCount );
-			Assert.AreEqual( 0xFFFF, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65540 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0xFFFF ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1187,8 +1187,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC6, 0x00, 0x00, 0xFF, 0xFF }.Concat( Enumerable.Repeat( ( byte )0xFF, 0xFFFF ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 65540, buffer.Position );
-				Assert.AreEqual( 0xFFFF, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65540 ) );
+				Assert.That( result.Length, Is.EqualTo( 0xFFFF ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1197,8 +1197,8 @@ namespace MsgPack
 		public void TestUnpackBinaryFromBinary_ByteArray_Bin32MinValue_AsBin32_AsIs()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC6, 0x00, 0x01, 0x00, 0x00 }.Concat( Enumerable.Repeat( ( byte )0xFF, 0x10000 ) ).ToArray() );
-			Assert.AreEqual( 65541, result.ReadCount );
-			Assert.AreEqual( 0x10000, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 65541 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0x10000 ) );
 			Assert.That( result.Value, Is.All.EqualTo( 0xFF ) );
 		}
 
@@ -1208,8 +1208,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC6, 0x00, 0x01, 0x00, 0x00 }.Concat( Enumerable.Repeat( ( byte )0xFF, 0x10000 ) ).ToArray() ) )
 			{
 				var result = Unpacking.UnpackBinary( buffer );
-				Assert.AreEqual( 65541, buffer.Position );
-				Assert.AreEqual( 0x10000, result.Length );
+				Assert.That( buffer.Position, Is.EqualTo( 65541 ) );
+				Assert.That( result.Length, Is.EqualTo( 0x10000 ) );
 				Assert.That( result, Is.All.EqualTo( 0xFF ) );
 			}
 		}
@@ -1260,16 +1260,16 @@ namespace MsgPack
 		public void TestUnpackBinary_ByteArray_Offset_OffsetIsValid_OffsetIsRespected()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xFF, 0xA0, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.AreEqual( 0, result.Value.Length );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value.Length, Is.EqualTo( 0 ) );
 		}
 
 		[Test]
 		public void TestUnpackBinary_ByteArray_Null_Nil()
 		{
 			var result = Unpacking.UnpackBinary( new byte[] { 0xC0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 	
 		[Test]

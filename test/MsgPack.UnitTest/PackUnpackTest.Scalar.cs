@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -52,7 +52,7 @@ namespace MsgPack
 				TestByte( rand.NextByte() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Byte: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "Byte: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestByte( Byte value )
@@ -60,8 +60,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( Byte )mpo );
-			Assert.AreEqual( value, mpo.AsByte() );
+			Assert.That( ( Byte )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsByte(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -75,8 +75,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( Byte )mpo );
-					Assert.AreEqual( value, mpo.AsByte() );
+					Assert.That( ( Byte )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsByte(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -96,7 +96,7 @@ namespace MsgPack
 				TestSByte( rand.NextSByte() );
 			}
 			sw.Stop();
-			Console.WriteLine( "SByte: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "SByte: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestSByte( SByte value )
@@ -104,8 +104,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( SByte )mpo );
-			Assert.AreEqual( value, mpo.AsSByte() );
+			Assert.That( ( SByte )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsSByte(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -119,8 +119,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( SByte )mpo );
-					Assert.AreEqual( value, mpo.AsSByte() );
+					Assert.That( ( SByte )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsSByte(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -140,7 +140,7 @@ namespace MsgPack
 				TestInt16( rand.NextInt16() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Int16: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "Int16: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestInt16( Int16 value )
@@ -148,8 +148,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( Int16 )mpo );
-			Assert.AreEqual( value, mpo.AsInt16() );
+			Assert.That( ( Int16 )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsInt16(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -163,8 +163,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( Int16 )mpo );
-					Assert.AreEqual( value, mpo.AsInt16() );
+					Assert.That( ( Int16 )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsInt16(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -183,7 +183,7 @@ namespace MsgPack
 				TestUInt16( rand.NextUInt16() );
 			}
 			sw.Stop();
-			Console.WriteLine( "UInt16: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "UInt16: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestUInt16( UInt16 value )
@@ -191,8 +191,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( UInt16 )mpo );
-			Assert.AreEqual( value, mpo.AsUInt16() );
+			Assert.That( ( UInt16 )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsUInt16(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -206,8 +206,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( UInt16 )mpo );
-					Assert.AreEqual( value, mpo.AsUInt16() );
+					Assert.That( ( UInt16 )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsUInt16(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -227,7 +227,7 @@ namespace MsgPack
 				TestInt32( rand.NextInt32() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Int32: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "Int32: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestInt32( Int32 value )
@@ -235,8 +235,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( Int32 )mpo );
-			Assert.AreEqual( value, mpo.AsInt32() );
+			Assert.That( ( Int32 )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsInt32(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -250,8 +250,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( Int32 )mpo );
-					Assert.AreEqual( value, mpo.AsInt32() );
+					Assert.That( ( Int32 )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsInt32(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -270,7 +270,7 @@ namespace MsgPack
 				TestUInt32( rand.NextUInt32() );
 			}
 			sw.Stop();
-			Console.WriteLine( "UInt32: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "UInt32: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestUInt32( UInt32 value )
@@ -278,8 +278,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( UInt32 )mpo );
-			Assert.AreEqual( value, mpo.AsUInt32() );
+			Assert.That( ( UInt32 )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsUInt32(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -293,8 +293,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( UInt32 )mpo );
-					Assert.AreEqual( value, mpo.AsUInt32() );
+					Assert.That( ( UInt32 )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsUInt32(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -314,7 +314,7 @@ namespace MsgPack
 				TestInt64( rand.NextInt64() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Int64: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "Int64: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestInt64( Int64 value )
@@ -322,8 +322,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( Int64 )mpo );
-			Assert.AreEqual( value, mpo.AsInt64() );
+			Assert.That( ( Int64 )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsInt64(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -337,8 +337,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( Int64 )mpo );
-					Assert.AreEqual( value, mpo.AsInt64() );
+					Assert.That( ( Int64 )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsInt64(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -357,7 +357,7 @@ namespace MsgPack
 				TestUInt64( rand.NextUInt64() );
 			}
 			sw.Stop();
-			Console.WriteLine( "UInt64: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "UInt64: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestUInt64( UInt64 value )
@@ -365,8 +365,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( UInt64 )mpo );
-			Assert.AreEqual( value, mpo.AsUInt64() );
+			Assert.That( ( UInt64 )mpo, Is.EqualTo( value ) );
+			Assert.That( mpo.AsUInt64(), Is.EqualTo( value ) );
 		}
 		
 		[Test]
@@ -380,8 +380,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( UInt64 )mpo );
-					Assert.AreEqual( value, mpo.AsUInt64() );
+					Assert.That( ( UInt64 )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsUInt64(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -405,7 +405,7 @@ namespace MsgPack
 				TestSingle( rand.NextSingle() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Single: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "Single: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestSingle( Single value )
@@ -413,8 +413,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( Single )mpo, 10e-10 );
-			Assert.AreEqual( value, mpo.AsSingle(), 10e-10 );
+			Assert.That( ( Single )mpo, Is.EqualTo( value ).Within( 10e-10 ) );
+			Assert.That( mpo.AsSingle(), Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 		
 		[Test]
@@ -428,8 +428,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( Single )mpo );
-					Assert.AreEqual( value, mpo.AsSingle() );
+					Assert.That( ( Single )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsSingle(), Is.EqualTo( value ) );
 				}
 			}
 		}
@@ -453,7 +453,7 @@ namespace MsgPack
 				TestDouble( rand.NextDouble() );
 			}
 			sw.Stop();
-			Console.WriteLine( "Double: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
+			TestContext.WriteLine( "Double: {0:0.###} msec/object", sw.ElapsedMilliseconds / 1000.0 );
 		}
 
 		private static void TestDouble( Double value )
@@ -461,8 +461,8 @@ namespace MsgPack
 			var output = new MemoryStream();
 			Packer.Create( output ).Pack( value );
 			var mpo = UnpackOne( output );
-			Assert.AreEqual( value, ( Double )mpo, 10e-10 );
-			Assert.AreEqual( value, mpo.AsDouble(), 10e-10 );
+			Assert.That( ( Double )mpo, Is.EqualTo( value ).Within( 10e-10 ) );
+			Assert.That( mpo.AsDouble(), Is.EqualTo( value ).Within( 10e-10 ) );
 		}
 		
 		[Test]
@@ -476,8 +476,8 @@ namespace MsgPack
 				using( var splitted = new SplittingStream( output ) )
 				{
 					var mpo = Unpacking.UnpackObject( splitted );
-					Assert.AreEqual( value, ( Double )mpo );
-					Assert.AreEqual( value, mpo.AsDouble() );
+					Assert.That( ( Double )mpo, Is.EqualTo( value ) );
+					Assert.That( mpo.AsDouble(), Is.EqualTo( value ) );
 				}
 			}
 		}

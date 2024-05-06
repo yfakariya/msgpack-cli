@@ -1595,7 +1595,7 @@ private void GeneratePolymorohismExtensionTests( bool generateTypes, bool genera
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		<#= methodSpec.IsStaticMethod ? " static" : String.Empty #> bool <#= methodSpec.VerifierMethodName #>( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );

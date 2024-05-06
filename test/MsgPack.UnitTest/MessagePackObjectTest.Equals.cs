@@ -1,4 +1,4 @@
-﻿#region -- License Terms --
+#region -- License Terms --
 //
 // MessagePack for CLI
 //
@@ -39,7 +39,7 @@ namespace MsgPack
 	{
 		private static void TestEqualsCore( MessagePackObject left, MessagePackObject right, bool expected )
 		{
-			Assert.AreEqual( expected, left.Equals( right ), "{0}=={1}", left.DebugDump(), right.DebugDump() );
+			Assert.That( left.Equals( right ), Is.EqualTo( expected ), $"{left.DebugDump()} == {right.DebugDump()}" );
 		}
 
 		private static void AssertEquals( MessagePackObject left, MessagePackObject right )
@@ -97,7 +97,7 @@ namespace MsgPack
 		[Test]
 		public void TestEquals_Nil_NullDictionary_True()
 		{
-			Assert.IsTrue( MessagePackObject.Nil.Equals( default( MessagePackObjectDictionary ) ) );
+			Assert.That( MessagePackObject.Nil.Equals( default( MessagePackObjectDictionary ) ), Is.True );
 		}
 
 
@@ -153,7 +153,7 @@ namespace MsgPack
 		[Test]
 		public void TestEquals_OtherIsNotMessagePackObject_False()
 		{
-			Assert.IsFalse( new MessagePackObject( 0 ).Equals( DateTimeKind.Unspecified ) );
+			Assert.That( new MessagePackObject( 0 ).Equals( DateTimeKind.Unspecified ), Is.False );
 		}
 
 
@@ -162,7 +162,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObject[] { 1, 2, 3 } );
 			var other = new MessagePackObject( new MessagePackObject[] { 1, 2, 3 } );
-			Assert.IsTrue( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.True );
 		}
 
 		[Test]
@@ -170,7 +170,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObject[] { 1, 2, 3 } );
 			var other = new MessagePackObject( new MessagePackObject[] { 1, 3, 2 } );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 		[Test]
@@ -178,36 +178,36 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObject[] { 1, 2, 3 } );
 			var other = new MessagePackObject( new MessagePackObject[] { 1, 2 } );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 		[Test]
 		public void TestEquals_Array_Null_False()
 		{
 			var target = new MessagePackObject( new MessagePackObject[] { 1, 2, 3 } );
-			Assert.IsFalse( target.Equals( default( object ) ) );
+			Assert.That( target.Equals( default( object ) ), Is.False );
 		}
 
 		[Test]
 		public void TestEquals_EmptyArray_Empty_True()
 		{
 			var target = new MessagePackObject( new MessagePackObject[ 0 ] );
-			Assert.IsTrue( target.Equals( new MessagePackObject[ 0 ] ) );
+			Assert.That( target.Equals( new MessagePackObject[ 0 ] ), Is.True );
 		}
 
 		[Test]
 		public void TestEquals_EmptyArray_Null_False()
 		{
 			var target = new MessagePackObject( new MessagePackObject[ 0 ] );
-			Assert.IsFalse( target.Equals( default( object ) ) );
+			Assert.That( target.Equals( default( object ) ), Is.False );
 		}
 
 		[Test]
 		public void TestEquals_Array_Raw_False()
 		{
-			var target = new MessagePackObject( new MessagePackObject[] { ( byte )'A', ( byte )'B', ( byte )'C' } );
+			var target = new MessagePackObject( new MessagePackObject[] { (byte)'A', (byte)'B', (byte)'C' } );
 			var other = new MessagePackObject( "ABC" );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 
@@ -216,7 +216,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
 			var other = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
-			Assert.IsTrue( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.True );
 		}
 
 		[Test]
@@ -224,7 +224,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
 			var other = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "D", 2 }, { "C", 3 } } );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 		[Test]
@@ -232,7 +232,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
 			var other = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 4 }, { "C", 3 } } );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 		[Test]
@@ -240,7 +240,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
 			var other = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "C", 3 }, { "B", 2 } } );
-			Assert.IsTrue( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.True );
 		}
 
 		[Test]
@@ -248,28 +248,28 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
 			var other = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 } } );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 		[Test]
 		public void TestEquals_Map_Null_False()
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary() { { "A", 1 }, { "B", 2 }, { "C", 3 } } );
-			Assert.IsFalse( target.Equals( default( object ) ) );
+			Assert.That( target.Equals( default( object ) ), Is.False );
 		}
 
 		[Test]
 		public void TestEquals_EmptyMap_Empty_True()
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary( 0 ) );
-			Assert.IsTrue( target.Equals( new MessagePackObjectDictionary( 0 ) ) );
+			Assert.That( target.Equals( new MessagePackObjectDictionary( 0 ) ), Is.True );
 		}
 
 		[Test]
 		public void TestEquals_EmptyMap_Null_False()
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary( 0 ) );
-			Assert.IsFalse( target.Equals( default( object ) ) );
+			Assert.That( target.Equals( default( object ) ), Is.False );
 		}
 
 		[Test]
@@ -277,7 +277,7 @@ namespace MsgPack
 		{
 			var target = new MessagePackObject( new MessagePackObjectDictionary { { "A", "A" }, { "B", "B" }, { "C", "C" } } );
 			var other = new MessagePackObject( "ABC" );
-			Assert.IsFalse( target.Equals( other ) );
+			Assert.That( target.Equals( other ), Is.False );
 		}
 
 		[Test]

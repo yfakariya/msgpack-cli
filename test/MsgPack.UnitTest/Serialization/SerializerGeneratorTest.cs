@@ -19,24 +19,24 @@
 #endregion -- License Terms --
 
 using System;
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 using System.CodeDom.Compiler;
-#endif // !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 using System.Collections;
 using System.Collections.Generic;
-#if NETSTANDARD2_0
+#if !NETFRAMEWORK
 using System.Globalization;
-#endif // NETSTANDARD2_0
+#endif // !NETFRAMEWORK
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-#if NETSTANDARD2_0
+#if !NETFRAMEWORK
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
-#endif // NETSTANDARD2_0
+#endif // !NETFRAMEWORK
 
 using MsgPack.Serialization.Reflection;
 
@@ -54,7 +54,7 @@ namespace MsgPack.Serialization
 		}
 
 		#region -- Compat --
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 #pragma warning disable 0618
 		[Test]
 		public void TestGenerateAssemblyFile_WithDefault_DllIsGeneratedOnAppBase()
@@ -265,10 +265,10 @@ namespace MsgPack.Serialization
 			}
 		}
 #pragma warning restore 0618
-#endif // !NETSTANDARD2_0
-#endregion -- Compat --
+#endif // FEATURE_ASMGEN
+		#endregion -- Compat --
 
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 		[Test]
 		public void TestGenerateAssembly_WithDefault_DllIsGeneratedOnAppBase()
 		{
@@ -921,8 +921,8 @@ namespace MsgPack.Serialization
 			}
 		}
 
-#region -- Issue102 --
-#if !NETSTANDARD2_0
+		#region -- Issue102 --
+#if NETFRAMEWORK
 		[Test]
 		public void TestGenerateCode_DefaultEnumSerializationMethod_IsReflected()
 		{
@@ -954,10 +954,10 @@ namespace MsgPack.Serialization
 			}
 		}
 
-#endif // !NETSTANDARD2_0
-#endregion -- Issue102 --
+#endif // NETFRAMEWORK
+		#endregion -- Issue102 --
 
-#region -- Issue107 --
+		#region -- Issue107 --
 
 		[Test]
 		public void TestGenerateSerializerSourceCodes_WithoutNamespace_Default()
@@ -1451,11 +1451,11 @@ namespace MsgPack.Serialization
 				}
 			}
 		}
-#endregion -- Issue 121 --
+		#endregion -- Issue 121 --
 
-#region -- Issue 138 --
+		#region -- Issue 138 --
 
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 		[Test]
 		public void TestGenerateSerializerCodeAssembly_WithoutNamespace_Default()
 		{
@@ -1561,11 +1561,11 @@ namespace MsgPack.Serialization
 				}
 			}
 		}
-#endif // !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 
-#endregion -- Issue 138 --
+		#endregion -- Issue 138 --
 
-#region -- Issue 203 --
+		#region -- Issue 203 --
 
 		[Test]
 		public void TestRecursiveAbstractCollection_GenericList_OK()
@@ -1623,7 +1623,7 @@ namespace MsgPack.Serialization
 
 #endregion -- Issue 203 --
 
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 		private static void TestOnWorkerAppDomain( string geneartedAssemblyFilePath, PackerCompatibilityOptions packerCompatibilityOptions, SerializationMethod method, byte[] bytesValue, byte[] expectedPackedValue, TestType testType )
 		{
 			var appDomainSetUp = new AppDomainSetup() { ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase };
@@ -1715,11 +1715,11 @@ namespace MsgPack.Serialization
 				AppDomain.Unload( workerDomain );
 			}
 		}
-#endif // !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 
 		private static void AssertValidCode( IEnumerable<SerializerCodeGenerationResult> results )
 		{
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 
 			var result =
 				CodeDomProvider
@@ -1749,7 +1749,7 @@ namespace MsgPack.Serialization
 				File.Delete( result.PathToAssembly );
 			}
 
-#else // !NETSTANDARD2_0
+#else // NETFRAMEWORK
 
 			var assemblyName = "CodeGenerationAssembly" + DateTime.UtcNow.ToString( "yyyyMMddHHmmssfff" );
 			var metadataList =
@@ -1796,10 +1796,10 @@ namespace MsgPack.Serialization
 					metadata.Dispose();
 				}
 			}
-#endif // !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 		}
 
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 
 		private static IEnumerable<string> GetCompileErrorLines( CompilerError error )
 		{
@@ -1807,7 +1807,7 @@ namespace MsgPack.Serialization
 			yield return File.ReadAllLines( error.FileName ).Skip( error.Line - 1 ).First();
 		}
 
-#else // !NETSTANDARD2_0
+#else // NETFRAMEWORK
 
 		private static IEnumerable<string> GetCompileErrorLines( IEnumerable<Diagnostic> diagnostics )
 		{
@@ -1828,7 +1828,7 @@ namespace MsgPack.Serialization
 				);
 		}
 
-#endif // !NETSTANDARD2_0
+#endif // NETFRAMEWORK
 
 		public sealed class Tester : MarshalByRefObject
 		{

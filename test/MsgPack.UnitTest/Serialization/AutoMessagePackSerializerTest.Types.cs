@@ -1114,14 +1114,17 @@ namespace MsgPack.Serialization
 			{
 				Assert.That(
 					( ( DateTime )( object )expected ).ToUniversalTime() == ( DateTime )( object )actual,
-					"Expected:{1:O}({2},{3}){0}Actual :{4:O}({5},{6})",
-					Environment.NewLine,
-					expected == null ? null : ( object )( ( DateTime )( object )expected ).ToUniversalTime(),
-					expected == null ? "(null)" : expected.GetType().FullName,
-					( ( DateTime )( object )expected ).Kind,
-					actual,
-					actual == null ? "(null)" : actual.GetType().FullName,
-					( ( DateTime )( object )actual ).Kind
+					String.Format(
+						CultureInfo.InvariantCulture,
+						"Expected:{1:O}({2},{3}){0}Actual :{4:O}({5},{6})",
+						Environment.NewLine,
+						expected == null ? null : ( object )( ( DateTime )( object )expected ).ToUniversalTime(),
+						expected == null ? "(null)" : expected.GetType().FullName,
+						( ( DateTime )( object )expected ).Kind,
+						actual,
+						actual == null ? "(null)" : actual.GetType().FullName,
+						( ( DateTime )( object )actual ).Kind
+					)
 				);
 				return;
 			}
@@ -1129,12 +1132,15 @@ namespace MsgPack.Serialization
 			{
 				Assert.That(
 					( DateTimeOffset )( object )expected == ( DateTimeOffset )( object )actual,
-					"Expected:{1:O}({2}){0}Actual :{3:O}({4})",
-					Environment.NewLine,
-					expected,
-					expected == null ? "(null)" : expected.GetType().FullName,
-					actual,
-					actual == null ? "(null)" : actual.GetType().FullName
+					String.Format(
+						CultureInfo.InvariantCulture,
+						"Expected:{1:O}({2}){0}Actual :{3:O}({4})",
+						Environment.NewLine,
+						expected,
+						expected == null ? "(null)" : expected.GetType().FullName,
+						actual,
+						actual == null ? "(null)" : actual.GetType().FullName
+					)
 				);
 				return;
 			}
@@ -1148,7 +1154,7 @@ namespace MsgPack.Serialization
 						entry.Key is DateTime
 							? ( object )( ( DateTime )entry.Key ).ToUniversalTime()
 							: entry.Key;
-					Assert.That( actuals.Contains( key ), "'{0}' is not in '[{1}]'", key, String.Join( ", ", actuals.Keys.OfType<object>().Select( o => o == null ? String.Empty : o.ToString() ).ToArray() ) );
+					Assert.That( actuals.Contains( key ), $"'{key}' is not in '[{String.Join( ", ", actuals.Keys.OfType<object>().Select( o => o == null ? String.Empty : o.ToString() ).ToArray() )}]'" );
 					Verify( entry.Value, actuals[ key ] );
 				}
 				return;
@@ -1171,12 +1177,15 @@ namespace MsgPack.Serialization
 			{
 				Assert.That(
 					( ( IStructuralEquatable )expected ).Equals( actual, EqualityComparer<object>.Default ),
-					"Expected:{1}({2}){0}Actual :{3}({4})",
-					Environment.NewLine,
-					expected,
-					expected == null ? "(null)" : expected.GetType().FullName,
-					actual,
-					actual == null ? "(null)" : actual.GetType().FullName
+					String.Format(
+						CultureInfo.InvariantCulture,
+						"Expected:{1}({2}){0}Actual :{3}({4})",
+						Environment.NewLine,
+						expected,
+						expected == null ? "(null)" : expected.GetType().FullName,
+						actual,
+						actual == null ? "(null)" : actual.GetType().FullName
+					)
 				);
 				return;
 			}
@@ -1239,12 +1248,15 @@ namespace MsgPack.Serialization
 #else
 				AotHelper.GetEqualityComparer<T>().Equals( expected, actual ),
 #endif // !UNITY
-				"Expected:{1}({2}){0}Actual :{3}({4})",
-				Environment.NewLine,
-				expected,
-				expected == null ? "(null)" : expected.GetType().FullName,
-				actual,
-				actual == null ? "(null)" : actual.GetType().FullName
+				String.Format(
+					CultureInfo.InvariantCulture,
+					"Expected:{1}({2}){0}Actual :{3}({4})",
+					Environment.NewLine,
+					expected,
+					expected == null ? "(null)" : expected.GetType().FullName,
+					actual,
+					actual == null ? "(null)" : actual.GetType().FullName
+				)
 			);
 		}
 		
@@ -1254,20 +1266,14 @@ namespace MsgPack.Serialization
 			var type = typeof( ArraySegmentEqualityComparer<> ).MakeGenericType( x.GetType().GetGenericArguments()[ 0 ] );
 			Assert.That(
 				( bool )type.InvokeMember( "Equals", BindingFlags.InvokeMethod, null, Activator.CreateInstance( type ), new[] { x, y } ),
-				"Expected:{1}{0}Actual :{2}",
-				Environment.NewLine,
-				x,
-				y
+				$"Expected:{x}{Environment.NewLine}Actual :{y}"
 			);
 #else
 			var elementType = x.GetType().GetTypeInfo().GenericTypeArguments[ 0 ];
 			var type = typeof( ArraySegmentEqualityComparer<> ).MakeGenericType( elementType );
 			Assert.That(
 				( bool )type.GetRuntimeMethod( "Equals", new[] { x.GetType(), x.GetType() } ).Invoke( Activator.CreateInstance( type ), new[] { x, y } ),
-				"Expected:{1}{0}Actual :{2}",
-				Environment.NewLine,
-				x,
-				y
+				$"Expected:{x}{Environment.NewLine}Actual :{y}"
 			);
 #endif // !NETFX_CORE && !NETSTANDARD1_1 && !NETSTANDARD1_3
 		}
@@ -12345,7 +12351,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 static bool PublicStaticAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12361,7 +12367,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 static bool PrivateStaticAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12377,7 +12383,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 bool PublicInstanceAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12393,7 +12399,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 bool PrivateInstanceAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12437,7 +12443,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 static bool PublicStaticAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12453,7 +12459,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 static bool PrivateStaticAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12469,7 +12475,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 bool PublicInstanceAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );
@@ -12485,7 +12491,7 @@ namespace MsgPack.Serialization
 #endif // !SILVERLIGHT || SILVERLIGHT_PRIVILEGED
 		 bool PrivateInstanceAllowAll( PolymorphicTypeVerificationContext context )
 		{
-			Assert.NotNull( context );
+			Assert.That( context, Is.Not.Null );
 			Assert.That( context.LoadingTypeFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyFullName, Is.Not.Empty );
 			Assert.That( context.LoadingAssemblyName, Is.Not.Null );

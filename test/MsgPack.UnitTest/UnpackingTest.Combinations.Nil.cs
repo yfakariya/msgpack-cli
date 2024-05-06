@@ -1,4 +1,4 @@
-﻿
+
 #region -- License Terms --
 //
 // MessagePack for CLI
@@ -74,8 +74,8 @@ namespace MsgPack
 		public void TestUnpackNull_ByteArray_AsIs()
 		{
 			var result = Unpacking.UnpackNull( new byte[] { 0xC0 } );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 		
 		[Test]
@@ -84,8 +84,8 @@ namespace MsgPack
 			using ( var buffer = new MemoryStream( new byte[] { 0xC0 } ) )
 			{
 				var result = Unpacking.UnpackNull( buffer );
-				Assert.AreEqual( 1, buffer.Position );
-				Assert.IsNull( result );
+				Assert.That( buffer.Position, Is.EqualTo( 1 ) );
+				Assert.That( result, Is.Null );
 			}
 		}
 
@@ -135,8 +135,8 @@ namespace MsgPack
 		public void TestUnpackNull_ByteArray_Offset_OffsetIsValid_OffsetIsRespected()
 		{
 			var result = Unpacking.UnpackNull( new byte[] { 0xFF, 0xC0, 0xFF }, 1 );
-			Assert.AreEqual( 1, result.ReadCount );
-			Assert.IsNull( result.Value );
+			Assert.That( result.ReadCount, Is.EqualTo( 1 ) );
+			Assert.That( result.Value, Is.Null );
 		}
 	}
 }

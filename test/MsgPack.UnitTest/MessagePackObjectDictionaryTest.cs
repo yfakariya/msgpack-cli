@@ -40,7 +40,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 1000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 1000 )]
+#endif // NETFRAMEWORK
 	public class MessagePackObjectDictionaryTest
 	{
 		[Test]
@@ -74,7 +78,7 @@ namespace MsgPack
 				try
 				{
 					var v = target[ i ];
-					Assert.Fail( "Exception is not thrown for removed key '{0}', returned '{1}'", i, v );
+					Assert.Fail( $"Exception is not thrown for removed key '{i}', returned '{v}'" );
 				}
 				catch ( KeyNotFoundException ) { }
 
@@ -396,7 +400,7 @@ namespace MsgPack
 			target.Add( 0, 0 );
 			var asCollectionT = target as ICollection<KeyValuePair<MessagePackObject, MessagePackObject>>;
 			Assert.Throws<ArgumentNullException>( () => asCollectionT.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( MessagePackObject.Nil, MessagePackObject.Nil ) ) );
-		}		
+		}
 
 		[Test]
 		public void TestIDictionaryContainsNull()
@@ -539,10 +543,10 @@ namespace MsgPack
 			while ( itr.MoveNext() )
 			{
 				object o = itr.Current;
-				Assert.AreEqual( typeof( KeyValuePair<MessagePackObject, MessagePackObject> ), o.GetType(), "Current should return a type of KeyValuePair" );
+				Assert.That( o, Is.TypeOf<KeyValuePair<MessagePackObject, MessagePackObject>>(), "Current should return a type of KeyValuePair" );
 				KeyValuePair<MessagePackObject, MessagePackObject> entry = ( KeyValuePair<MessagePackObject, MessagePackObject> )itr.Current;
 			}
-			Assert.AreEqual( "value4", _dictionary[ "key4" ].ToString(), "" );
+			Assert.That( _dictionary[ "key4" ].ToString(), Is.EqualTo( "value4" ) );
 		}
 
 
@@ -558,10 +562,10 @@ namespace MsgPack
 			while ( itr.MoveNext() )
 			{
 				object o = itr.Current;
-				Assert.AreEqual( typeof( KeyValuePair<MessagePackObject, MessagePackObject> ), o.GetType(), "Current should return a type of KeyValuePair<MessagePackObject, MessagePackObject>" );
+				Assert.That( o, Is.TypeOf<KeyValuePair<MessagePackObject, MessagePackObject>>(), "Current should return a type of KeyValuePair<MessagePackObject, MessagePackObject>" );
 				KeyValuePair<MessagePackObject, MessagePackObject> entry = ( KeyValuePair<MessagePackObject, MessagePackObject> )itr.Current;
 			}
-			Assert.AreEqual( "value4", _dictionary[ "key4" ].ToString(), "" );
+			Assert.That( _dictionary[ "key4" ].ToString(), Is.EqualTo( "value4" ) );
 		}
 
 		[Test]
@@ -576,10 +580,10 @@ namespace MsgPack
 			while ( itr.MoveNext() )
 			{
 				object o = itr.Current;
-				Assert.AreEqual( typeof( DictionaryEntry ), o.GetType(), "Current should return a type of DictionaryEntry" );
+				Assert.That( o, Is.TypeOf<DictionaryEntry>(), "Current should return a type of DictionaryEntry" );
 				DictionaryEntry entry = ( DictionaryEntry )itr.Current;
 			}
-			Assert.AreEqual( "value4", _dictionary[ "key4" ].ToString(), "" );
+			Assert.That( _dictionary[ "key4" ].ToString(), Is.EqualTo( "value4" ) );
 		}
 
 		[Test]
@@ -594,17 +598,17 @@ namespace MsgPack
 			int i = 0;
 			foreach ( KeyValuePair<MessagePackObject, MessagePackObject> entry in _dictionary )
 				i++;
-			Assert.AreEqual( 4, i, "fail1: foreach entry failed!" );
+			Assert.That( i, Is.EqualTo( 4 ), "fail1: foreach entry failed!" );
 
 			i = 0;
 			foreach ( KeyValuePair<MessagePackObject, MessagePackObject> entry in ( ( IEnumerable )_dictionary ) )
 				i++;
-			Assert.AreEqual( 4, i, "fail2: foreach entry failed!" );
+			Assert.That( i, Is.EqualTo( 4 ), "fail2: foreach entry failed!" );
 
 			i = 0;
 			foreach ( DictionaryEntry entry in ( ( IDictionary )_dictionary ) )
 				i++;
-			Assert.AreEqual( 4, i, "fail3: foreach entry failed!" );
+			Assert.That( i, Is.EqualTo( 4 ), "fail3: foreach entry failed!" );
 		}
 
 		[Test] // bug 75073
@@ -616,11 +620,11 @@ namespace MsgPack
 			IEnumerator<MessagePackObject> ve = values.Values.GetEnumerator();
 
 #if !UNITY
-			Assert.IsTrue( ke is MessagePackObjectDictionary.KeySet.Enumerator );
+			Assert.That( ke, Is.TypeOf<MessagePackObjectDictionary.KeySet.Enumerator>() );
 #else
-			Assert.IsTrue( ke is MessagePackObjectDictionary.KeyCollection.Enumerator );
+			Assert.That( ke, Is.TypeOf<MessagePackObjectDictionary.KeyCollection.Enumerator>() );
 #endif // !UNITY
-			Assert.IsTrue( ve is MessagePackObjectDictionary.ValueCollection.Enumerator );
+			Assert.That( ve, Is.TypeOf<MessagePackObjectDictionary.ValueCollection.Enumerator>() );
 		}
 
 		[Test]
@@ -630,11 +634,11 @@ namespace MsgPack
 			// Test that we return a KeyValuePair even for non-generic dictionary iteration
 			_dictionary[ "foo" ] = "bar";
 			IEnumerator<KeyValuePair<MessagePackObject, MessagePackObject>> enumerator = _dictionary.GetEnumerator();
-			Assert.IsTrue( enumerator.MoveNext(), "#1" );
-			Assert.AreEqual( typeof( KeyValuePair<MessagePackObject, MessagePackObject> ), ( ( IEnumerator )enumerator ).Current.GetType(), "#2" );
-			Assert.AreEqual( typeof( DictionaryEntry ), ( ( IDictionaryEnumerator )enumerator ).Entry.GetType(), "#3" );
-			Assert.AreEqual( typeof( KeyValuePair<MessagePackObject, MessagePackObject> ), ( ( IDictionaryEnumerator )enumerator ).Current.GetType(), "#4" );
-			Assert.AreEqual( typeof( KeyValuePair<MessagePackObject, MessagePackObject> ), ( ( object )enumerator.Current ).GetType(), "#5" );
+			Assert.That( enumerator.MoveNext(), Is.True, "#1" );
+			Assert.That( ( ( IEnumerator )enumerator ).Current, Is.TypeOf<KeyValuePair<MessagePackObject, MessagePackObject>>(), "#2" );
+			Assert.That( ( ( IDictionaryEnumerator )enumerator ).Entry, Is.TypeOf<DictionaryEntry>(), "#3" );
+			Assert.That( ( ( IDictionaryEnumerator )enumerator ).Current, Is.TypeOf<KeyValuePair<MessagePackObject, MessagePackObject>>(), "#4" );
+			Assert.That( ( ( object )enumerator.Current ), Is.TypeOf<KeyValuePair<MessagePackObject, MessagePackObject>>(), "#5" );
 		}
 
 		[Test]
@@ -705,9 +709,9 @@ namespace MsgPack
 		{
 			IDictionary d = new MessagePackObjectDictionary();
 			d.Add( 1, 2 );
-			Assert.IsTrue( d.Contains( 1 ) );
-			Assert.IsFalse( d.Contains( 2 ) );
-			Assert.IsFalse( d.Contains( "x" ) );
+			Assert.That( d.Contains( 1 ), Is.True );
+			Assert.That( d.Contains( 2 ), Is.False );
+			Assert.That( d.Contains( "x" ), Is.False );
 		}
 
 		[Test]
@@ -736,8 +740,8 @@ namespace MsgPack
 		{
 			IDictionary d = new MessagePackObjectDictionary();
 			d.Add( 1, 2 );
-			Assert.IsNull( d[ 2 ] );
-			Assert.IsNull( d[ "foo" ] );
+			Assert.That( d[ 2 ], Is.Null );
+			Assert.That( d[ "foo" ], Is.Null );
 		}
 
 		[Test] // bug #332534
@@ -762,15 +766,15 @@ namespace MsgPack
 
 			IEnumerator enumerator = test.Keys.GetEnumerator();
 
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
 
 			enumerator.Reset();
 
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsFalse( enumerator.MoveNext() );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.False );
 		}
 
 		[Test]
@@ -783,15 +787,15 @@ namespace MsgPack
 
 			IEnumerator enumerator = test.Values.GetEnumerator();
 
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
 
 			enumerator.Reset();
 
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsFalse( enumerator.MoveNext() );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.False );
 		}
 
 		[Test]
@@ -804,15 +808,15 @@ namespace MsgPack
 
 			IEnumerator enumerator = test.GetEnumerator();
 
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
 
 			enumerator.Reset();
 
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsTrue( enumerator.MoveNext() );
-			Assert.IsFalse( enumerator.MoveNext() );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.True );
+			Assert.That( enumerator.MoveNext(), Is.False );
 		}
 
 		[Test]
@@ -824,11 +828,11 @@ namespace MsgPack
 
 			var collection = dictionary as ICollection<KeyValuePair<MessagePackObject, MessagePackObject>>;
 
-			Assert.AreEqual( 2, collection.Count );
+			Assert.That( collection.Count, Is.EqualTo( 2 ) );
 
-			Assert.IsFalse( collection.Contains( new KeyValuePair<MessagePackObject, MessagePackObject>( "baz", 13 ) ) );
-			Assert.IsFalse( collection.Contains( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 13 ) ) );
-			Assert.IsTrue( collection.Contains( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 42 ) ) );
+			Assert.That( collection.Contains( new KeyValuePair<MessagePackObject, MessagePackObject>( "baz", 13 ) ), Is.False );
+			Assert.That( collection.Contains( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 13 ) ), Is.False );
+			Assert.That( collection.Contains( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 42 ) ), Is.True );
 		}
 
 		[Test]
@@ -840,14 +844,14 @@ namespace MsgPack
 
 			var collection = dictionary as ICollection<KeyValuePair<MessagePackObject, MessagePackObject>>;
 
-			Assert.AreEqual( 2, collection.Count );
+			Assert.That( collection.Count, Is.EqualTo( 2 ) );
 
-			Assert.IsFalse( collection.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( "baz", 13 ) ) );
-			Assert.IsFalse( collection.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 13 ) ) );
-			Assert.IsTrue( collection.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 42 ) ) );
+			Assert.That( collection.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( "baz", 13 ) ), Is.False );
+			Assert.That( collection.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 13 ) ), Is.False );
+			Assert.That( collection.Remove( new KeyValuePair<MessagePackObject, MessagePackObject>( "foo", 42 ) ), Is.True );
 
-			Assert.AreEqual( new MessagePackObject( 12 ), dictionary[ "bar" ] );
-			Assert.IsFalse( dictionary.ContainsKey( "foo" ) );
+			Assert.That( dictionary[ "bar" ], Is.EqualTo( new MessagePackObject( 12 ) ) );
+			Assert.That( dictionary.ContainsKey( "foo" ), Is.False );
 		}
 
 		[Test]
@@ -858,14 +862,14 @@ namespace MsgPack
 
 			var collection = dictionary as ICollection;
 
-			Assert.AreEqual( 1, collection.Count );
+			Assert.That( collection.Count, Is.EqualTo( 1 ) );
 
 			var pairs = new KeyValuePair<MessagePackObject, MessagePackObject>[ 1 ];
 
 			collection.CopyTo( pairs, 0 );
 
-			Assert.AreEqual( new MessagePackObject( "foo" ), pairs[ 0 ].Key );
-			Assert.AreEqual( new MessagePackObject( 42 ), pairs[ 0 ].Value );
+			Assert.That( pairs[ 0 ].Key, Is.EqualTo( new MessagePackObject( "foo" ) ) );
+			Assert.That( pairs[ 0 ].Value, Is.EqualTo( new MessagePackObject( 42 ) ) );
 		}
 
 		[Test]
@@ -876,14 +880,14 @@ namespace MsgPack
 
 			var collection = dictionary as ICollection;
 
-			Assert.AreEqual( 1, collection.Count );
+			Assert.That( collection.Count, Is.EqualTo( 1 ) );
 
 			var entries = new DictionaryEntry[ 1 ];
 
 			collection.CopyTo( entries, 0 );
 
-			Assert.AreEqual( new MessagePackObject( "foo" ), ( MessagePackObject )entries[ 0 ].Key );
-			Assert.AreEqual( new MessagePackObject( 42 ), ( MessagePackObject )entries[ 0 ].Value );
+			Assert.That( ( MessagePackObject )entries[ 0 ].Key, Is.EqualTo( new MessagePackObject( "foo" ) ) );
+			Assert.That( ( MessagePackObject )entries[ 0 ].Value, Is.EqualTo( new MessagePackObject( 42 ) ) );
 		}
 
 		[Test]
@@ -894,7 +898,7 @@ namespace MsgPack
 
 			var collection = dictionary as ICollection;
 
-			Assert.AreEqual( 1, collection.Count );
+			Assert.That( collection.Count, Is.EqualTo( 1 ) );
 
 			var array = new object[ 1 ];
 
@@ -902,8 +906,8 @@ namespace MsgPack
 
 			var pair = ( KeyValuePair<MessagePackObject, MessagePackObject> )array[ 0 ];
 
-			Assert.AreEqual( new MessagePackObject( "foo" ), pair.Key );
-			Assert.AreEqual( new MessagePackObject( 42 ), pair.Value );
+			Assert.That( pair.Key, Is.EqualTo( new MessagePackObject( "foo" ) ) );
+			Assert.That( pair.Value, Is.EqualTo( new MessagePackObject( 42 ) ) );
 		}
 
 		[Test]
@@ -917,7 +921,7 @@ namespace MsgPack
 
 			var collection = dictionary as ICollection;
 
-			Assert.AreEqual( 1, collection.Count );
+			Assert.That( collection.Count, Is.EqualTo( 1 ) );
 
 			var array = new int[ 1 ];
 
@@ -935,7 +939,7 @@ namespace MsgPack
 
 			values.CopyTo( array, 0 );
 
-			Assert.AreEqual( new MessagePackObject( "bar" ), array[ 0 ] );
+			Assert.That( array[ 0 ], Is.EqualTo( new MessagePackObject( "bar" ) ) );
 		}
 
 		delegate void D();
@@ -957,29 +961,29 @@ namespace MsgPack
 		public void Enumerator_Current()
 		{
 			var e1 = new MessagePackObjectDictionary.Enumerator();
-			Assert.IsFalse( Throws( delegate { var x = e1.Current; } ) );
+			Assert.That( Throws( delegate { var x = e1.Current; } ), Is.False );
 
 			var d = new MessagePackObjectDictionary();
 			var e2 = d.GetEnumerator();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 			e2.MoveNext();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 			e2.Dispose();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 
 			var e3 = ( ( IEnumerable<KeyValuePair<MessagePackObject, MessagePackObject>> )d ).GetEnumerator();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 			e3.MoveNext();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 			e3.Dispose();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 
 			var e4 = ( ( IEnumerable )d ).GetEnumerator();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 			e4.MoveNext();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 			( ( IDisposable )e4 ).Dispose();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 		}
 
 		[Test]
@@ -988,33 +992,33 @@ namespace MsgPack
 		{
 #if !UNITY
 			var e1 = new MessagePackObjectDictionary.KeySet.Enumerator();
-			Assert.IsFalse( Throws( delegate { var x = e1.Current; } ) );
+			Assert.That( Throws( delegate { var x = e1.Current; } ), Is.False );
 #else
 			var e1 = new MessagePackObjectDictionary.KeyCollection.Enumerator();
-			Assert.IsFalse( Throws( delegate { var x = e1.Current; } ) );
+			Assert.That( Throws( delegate { var x = e1.Current; } ), Is.False );
 #endif // !UNITY
 
 			var d = new MessagePackObjectDictionary().Keys;
 			var e2 = d.GetEnumerator();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 			e2.MoveNext();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 			e2.Dispose();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 
 			var e3 = ( ( IEnumerable<MessagePackObject> )d ).GetEnumerator();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 			e3.MoveNext();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 			e3.Dispose();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 
 			var e4 = ( ( IEnumerable )d ).GetEnumerator();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 			e4.MoveNext();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 			( ( IDisposable )e4 ).Dispose();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 		}
 
 		[Test]
@@ -1022,29 +1026,29 @@ namespace MsgPack
 		public void ValueEnumerator_Current()
 		{
 			var e1 = new MessagePackObjectDictionary.ValueCollection.Enumerator();
-			Assert.IsFalse( Throws( delegate { var x = e1.Current; } ) );
+			Assert.That( Throws( delegate { var x = e1.Current; } ), Is.False );
 
 			var d = new MessagePackObjectDictionary().Values;
 			var e2 = d.GetEnumerator();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 			e2.MoveNext();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 			e2.Dispose();
-			Assert.IsFalse( Throws( delegate { var x = e2.Current; } ) );
+			Assert.That( Throws( delegate { var x = e2.Current; } ), Is.False );
 
 			var e3 = ( ( IEnumerable<MessagePackObject> )d ).GetEnumerator();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 			e3.MoveNext();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False ); ;
 			e3.Dispose();
-			Assert.IsFalse( Throws( delegate { var x = e3.Current; } ) );
+			Assert.That( Throws( delegate { var x = e3.Current; } ), Is.False );
 
 			var e4 = ( ( IEnumerable )d ).GetEnumerator();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 			e4.MoveNext();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 			( ( IDisposable )e4 ).Dispose();
-			Assert.IsTrue( Throws( delegate { var x = e4.Current; } ) );
+			Assert.That( Throws( delegate { var x = e4.Current; } ), Is.True );
 		}
 
 		[Test]
@@ -1337,7 +1341,10 @@ namespace MsgPack
 			Assert.That( array[ 4 ], Is.EqualTo( MessagePackObject.Nil ) );
 		}
 
-#if !NETFX_CORE && !SILVERLIGHT && !UNITY && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if !NET8_0_OR_GREATER
+#if NET6_0_OR_GREATER
+#pragma warning disable SYSLIB0011
+#endif // NET6_0_OR_GREATER
 		[Test]
 		public void TestRuntimeSerialization_NotEmpty_RoundTripped()
 		{
@@ -1347,11 +1354,14 @@ namespace MsgPack
 				var serializer = new BinaryFormatter();
 				serializer.Serialize( buffer, target );
 				buffer.Position = 0;
-				var deserialized = (MessagePackObjectDictionary) serializer.Deserialize( buffer );
-				Assert.AreEqual( target, deserialized );
+				var deserialized = ( MessagePackObjectDictionary )serializer.Deserialize( buffer );
+				Assert.That( deserialized, Is.EqualTo( target ) );
 			}
 		}
-#endif // !NETFX_CORE && !SILVERLIGHT && !UNITY && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if NET6_0_OR_GREATER
+#pragma warning restore SYSLIB0011
+#endif // NET6_0_OR_GREATER
+#endif // !NET8_0_OR_GREATER
 
 		private sealed class MyClass { }
 	}

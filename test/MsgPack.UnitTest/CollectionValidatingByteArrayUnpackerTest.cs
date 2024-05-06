@@ -33,7 +33,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack
 {
 	[TestFixture]
+#if NETFRAMEWORK
 	[Timeout( 30000 )]
+#else // NETFRAMEWORK
+	[CancelAfter( 30000 )]
+#endif // NETFRAMEWORK
 	public class CollectionValidatingByteArrayUnpackerTest : ByteArrayUnpackerTest
 	{
 		protected override bool ShouldCheckSubtreeUnpacker

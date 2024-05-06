@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ assembly Name="System.Core" #>
 <#@ import namespace="System" #>
@@ -105,9 +105,9 @@ foreach( var isAsync in new [] { false, true } )
 			using( var packer = CreatePacker( buffer ) )
 			{
 				<#= Await( "packer.PackObject", isAsync ) #>( <#= __numeric.Item3 #> );
-				Assert.AreEqual(
-					<#= __numeric.Item4 #>,
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( <#= __numeric.Item4 #> )
 				);
 			}
 		}
@@ -130,9 +130,9 @@ foreach( var isAsync in new [] { false, true } )
 			using( var packer = CreatePacker( buffer ) )
 			{
 				<#= Await( "packer.PackObject", isAsync ) #>( <#= __numeric.Item3 #> );
-				Assert.AreEqual(
-					<#= __numeric.Item4 #>,
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( <#= __numeric.Item4 #> )
 				);
 			}
 		}
@@ -144,9 +144,9 @@ foreach( var isAsync in new [] { false, true } )
 			using( var packer = CreatePacker( buffer ) )
 			{
 				<#= Await( "packer.PackObject", isAsync ) #>( default( <#= __numeric.Item2 #>?  ) );
-				Assert.AreEqual(
-					new byte[]{ 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}
@@ -162,9 +162,9 @@ foreach( var isAsync in new [] { false, true } )
 			using( var packer = CreatePacker( buffer ) )
 			{
 				<#= Await( "packer.PackObject", isAsync ) #>( "ABC" );
-				Assert.AreEqual(
-					new byte[] { 0xA3, ( byte )'A', ( byte )'B', ( byte )'C' },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xA3 }.Concat( new byte[] { ( byte )'A', ( byte )'B', ( byte )'C' } ).ToArray() )
 				);
 			}
 		}
@@ -176,9 +176,9 @@ foreach( var isAsync in new [] { false, true } )
 			using( var packer = CreatePacker( buffer ) )
 			{
 				<#= Await( "packer.PackObject", isAsync ) #>( new byte[] { 1, 2, 3 } );
-				Assert.AreEqual(
-					new byte[] { 0xA3, 1, 2, 3 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xA3, 1, 2, 3 } )
 				);
 			}
 		}
@@ -190,9 +190,9 @@ foreach( var isAsync in new [] { false, true } )
 			using( var packer = CreatePacker( buffer ) )
 			{
 				<#= Await( "packer.PackObject", isAsync ) #>( default( object ) );
-				Assert.AreEqual(
-					new byte[] { 0xC0 },
-					this.GetResult( packer )
+				Assert.That(
+					this.GetResult( packer ),
+					Is.EqualTo( new byte[] { 0xC0 } )
 				);
 			}
 		}

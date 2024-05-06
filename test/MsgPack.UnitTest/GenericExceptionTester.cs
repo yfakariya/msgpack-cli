@@ -144,12 +144,12 @@ namespace MsgPack
 			this.TestMessageConstructor_WithNull_SetToDefaultMessage();
 			this.TestInnerExceptionConstructor_WithMessageAndInnerException_SetToMessageAndInnerException();
 			this.TestInnerExceptionConstructor_Null_SetToDefaultMessageAndNullInnerException();
-#if !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if !NET8_0_OR_GREATER
 			this.TestSerialization();
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 			this.TestSerializationOnPartialTrust();
-#endif // !NETSTANDARD2_0
-#endif // !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
+#endif // !NET8_0_OR_GREATER
 		}
 
 		private void TestDefaultConstructor()
@@ -220,14 +220,13 @@ namespace MsgPack
 			}
 		}
 
-#if !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if !NET8_0_OR_GREATER
+#if NET6_0_OR_GREATER
+#pragma warning disable SYSLIB0011
+#endif // NET6_0_OR_GREATER
 		private void TestSerialization()
 		{
-#if !NETSTANDARD2_0
-			Assert.That( typeof( T ), Is.BinarySerializable );
-#else // !NETSTANDARD2_0
 			Assert.That( typeof( T ).IsSerializable, Is.True );
-#endif // !NETSTANDARD2_0
 			var innerMessage = Guid.NewGuid().ToString();
 			var message = Guid.NewGuid().ToString();
 			var target = this._innerExceptionConstructor( message, new Exception( innerMessage ) );
@@ -244,7 +243,7 @@ namespace MsgPack
 			}
 		}
 
-#if !NETSTANDARD2_0
+#if NETFRAMEWORK
 		private void TestSerializationOnPartialTrust()
 		{
 			var appDomainSetUp = new AppDomainSetup() { ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase };
@@ -256,10 +255,10 @@ namespace MsgPack
 			evidence.AddHost( new Zone( SecurityZone.Internet ) );
 #pragma warning restore 0612
 			var permisions = GetDefaultInternetZoneSandbox();
-#else
+#else // MONO || NET35
 			evidence.AddHostEvidence( new Zone( SecurityZone.Internet ) );
 			var permisions = SecurityManager.GetStandardSandbox( evidence );
-#endif
+#endif // MONO || NET35
 			AppDomain workerDomain = AppDomain.CreateDomain( "PartialTrust", evidence, appDomainSetUp, permisions, GetStrongName( this.GetType() ), GetStrongName( typeof( Assert ) ) );
 			try
 			{
@@ -333,7 +332,10 @@ namespace MsgPack
 			var assemblyName = type.Assembly.GetName();
 			return new StrongName( new StrongNamePublicKeyBlob( assemblyName.GetPublicKey() ), assemblyName.Name, assemblyName.Version );
 		}
-#endif // !NETSTANDARD2_0
-#endif // !SILVERLIGHT && !AOT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // NETFRAMEWORK
+#if NET6_0_OR_GREATER
+#pragma warning restore SYSLIB0011
+#endif // NET6_0_OR_GREATER
+#endif // !NET8_0_OR_GREATER
 	}
 }

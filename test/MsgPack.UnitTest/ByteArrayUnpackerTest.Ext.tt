@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".cs" #>
 <#@ assembly Name="System.Core" #>
 <#@ import namespace="System" #>
@@ -123,13 +123,13 @@ private void PutTestUnpackDataBody( string typeCodeVariable, int expectedLengthI
 		if ( !isAsync )
 		{
 #>
-				Assert.IsTrue( unpacker.Read() );
+				Assert.That( unpacker.Read(), Is.True );
 <#+
 		}
 		else
 		{
 #>
-				Assert.IsTrue( await unpacker.ReadAsync() );
+				Assert.That( await unpacker.ReadAsync(), Is.True );
 <#+
 		}
 #>
@@ -137,7 +137,7 @@ private void PutTestUnpackDataBody( string typeCodeVariable, int expectedLengthI
 #pragma warning disable 612,618
 				var result = unpacker.Data;
 #pragma warning restore 612,618
-				Assert.IsTrue( result.HasValue );
+				Assert.That( result.HasValue, Is.True );
 
 				var actual = ( MessagePackExtendedTypeObject )result;
 				Assert.That( actual.TypeCode, Is.EqualTo( <#= typeCodeVariable #> ) );
@@ -186,14 +186,14 @@ private void PutTestUnpackDirectBody( string typeCodeVariable, int expectedLengt
 		if ( !isAsync )
 		{
 #>
-				Assert.IsTrue( unpacker.ReadMessagePackExtendedTypeObject( out result ) );
+				Assert.That( unpacker.ReadMessagePackExtendedTypeObject( out result ), Is.True );
 <#+
 		}
 		else
 		{
 #>
 				var ret = await unpacker.ReadMessagePackExtendedTypeObjectAsync();
-				Assert.IsTrue( ret.Success );
+				Assert.That( ret.Success, Is.True );
 				result = ret.Value;
 <#+
 		}

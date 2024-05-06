@@ -83,7 +83,7 @@ namespace MsgPack.Serialization
 		{
 			if ( SerializerDebugging.DumpEnabled )
 			{
-#if !NETSTANDARD2_0
+#if FEATURE_ASMGEN
 				try
 				{
 					SerializerDebugging.Dump();
@@ -96,9 +96,9 @@ namespace MsgPack.Serialization
 				{
 					SerializationMethodGeneratorManager.Refresh();
 				}
-#else // !NETSTANDARD2_0
+#else // FEATURE_ASMGEN
 				SerializationMethodGeneratorManager.Refresh();
-#endif // !NETSTANDARD2_0
+#endif // FEATURE_ASMGEN
 			}
 
 			SerializerDebugging.Reset();
