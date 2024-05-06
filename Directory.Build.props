@@ -10,5 +10,6 @@
     <Copyright>Copyright © FUJIWARA, Yusuke and all contributors</Copyright>
     <Version>2.0.0.0</Version>
     <InformationalVersion>2.0.0-nightly</InformationalVersion>
+    <ImplicitUsings>false</ImplicitUsings>
   </PropertyGroup>
 </Project>
