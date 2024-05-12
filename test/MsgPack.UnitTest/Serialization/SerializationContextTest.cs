@@ -575,12 +575,12 @@ namespace MsgPack.Serialization
 		{
 			private T _gotten;
 			private readonly Func<T> _getter;
-			private readonly Barrier _barrier;
+			private readonly ManualResetEventSlim _barrier;
 
 			public ConcurrentHelper( Func<T> getter )
 			{
 				this._getter = getter;
-				this._barrier = new Barrier( 1 );
+				this._barrier = new ManualResetEventSlim( initialState: false );
 			}
 
 			public void Dispose()
@@ -593,30 +593,29 @@ namespace MsgPack.Serialization
 				var tasks = new List<Task>();
 				for ( int i = 0; i < Environment.ProcessorCount * 2; i++ )
 				{
-					this._barrier.AddParticipant();
 					tasks.Add(
-						Task.Factory.StartNew(
+						Task.Run(
 							// ReSharper disable once PossibleNullReferenceException
-							@this => ( @this as ConcurrentHelper<T> ).TestCore(),
-							this
+							() => this.TestCoreAsync()
 						)
 					);
 				}
 
-				this._barrier.SignalAndWait();
+				this._barrier.Set();
 				// Wait join
 				Task.WaitAll( tasks.ToArray() );
 			}
 
-			private void TestCore()
+			private async Task TestCoreAsync()
 			{
 				var iteration = 50;
 
-				this._barrier.SignalAndWait();
+				this._barrier.Wait();
 
 				for ( int i = 0; i < iteration; i++ )
 				{
 					this.TestValue();
+					await Task.Yield();
 				}
 			}
 
