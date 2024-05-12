@@ -30,9 +30,9 @@ namespace MsgPack
 	/// <summary>
 	///		Implements <see cref="EqualityComparer{T}"/> of <see cref="MessagePackObject"/>.
 	/// </summary>
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if FEATURE_BINARY_SERIALIZATION
 	[Serializable]
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // FEATURE_BINARY_SERIALIZATION
 #if UNITY && DEBUG
 	public
 #else

@@ -18,10 +18,7 @@
 //
 #endregion -- License Terms --
 
-#if !NET8_0_OR_GREATER
-#if NET6_0_OR_GREATER
-#pragma warning disable SYSLIB0011
-#endif // NET6_0_OR_GREATER
+#if FEATURE_BINARY_SERIALIZATION
 
 using System;
 using System.IO;
@@ -175,4 +172,4 @@ namespace MsgPack
 		}
 	}
 }
-#endif // !NET8_0_OR_GREATER
+#endif // FEATURE_BINARY_SERIALIZATION

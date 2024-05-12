@@ -44,9 +44,9 @@ using System.Threading.Tasks;
 
 namespace MsgPack
 {
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#if FEATURE_BINARY_SERIALIZATION
 	[Serializable]
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3 && !NETSTANDARD2_0
+#endif // FEATURE_BINARY_SERIALIZATION
 	partial struct MessagePackObject : IPackable
 #if FEATURE_TAP
 		, IAsyncPackable
@@ -1927,9 +1927,9 @@ namespace MsgPack
 			Object = 16
 		}
 
-#if !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if FEATURE_BINARY_SERIALIZATION
 		[Serializable]
-#endif // !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // FEATURE_BINARY_SERIALIZATION
 		private sealed class ValueTypeCode
 		{
 			private readonly MessagePackValueTypeCode _typeCode;

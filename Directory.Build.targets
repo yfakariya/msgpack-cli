@@ -19,13 +19,17 @@
     <FeatureEmit>true</FeatureEmit>
   </PropertyGroup>
   <PropertyGroup>
-    <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION;FEATURE_READ_ONLY_COLLECTION;FEATURE_ISET;FEATURE_TAP;FEATURE_EXCEPTION_DISPATCH_INFO;FEATURE_TUPLE</DefineConstants>
+    <DefineConstants>$(DefineConstants);FEATURE_READ_ONLY_COLLECTION;FEATURE_ISET;FEATURE_TAP;FEATURE_EXCEPTION_DISPATCH_INFO;FEATURE_TUPLE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);FEATURE_TAP;FEATURE_CONCURRENT;FEATURE_POINTER_CONVERSION;FEATURE_EMIT;FEATURE_CODEGEN;FEATURE_MEMCOPY</DefineConstants>
     <FeatureTap>true</FeatureTap>
     <FeatureEmit>true</FeatureEmit>
     <FeatureCodeGen>true</FeatureCodeGen>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsNetFramework)' == 'true'">
+    <DefineConstants>$(DefineConstants);FEATURE_BINARY_SERIALIZATION</DefineConstants>
+    <FeatureAsmGen>true</FeatureAsmGen>
   </PropertyGroup>
   <PropertyGroup Condition="'$(IsNetFramework)' == 'true' or $(TargetFramework.StartsWith('net9'))">
     <DefineConstants>$(DefineConstants);FEATURE_ASMGEN</DefineConstants>

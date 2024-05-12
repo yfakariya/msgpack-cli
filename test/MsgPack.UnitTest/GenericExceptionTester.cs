@@ -144,12 +144,14 @@ namespace MsgPack
 			this.TestMessageConstructor_WithNull_SetToDefaultMessage();
 			this.TestInnerExceptionConstructor_WithMessageAndInnerException_SetToMessageAndInnerException();
 			this.TestInnerExceptionConstructor_Null_SetToDefaultMessageAndNullInnerException();
-#if !NET8_0_OR_GREATER
+#if FEATURE_BINARY_SERIALIZATION
 			this.TestSerialization();
 #if NETFRAMEWORK
 			this.TestSerializationOnPartialTrust();
 #endif // NETFRAMEWORK
-#endif // !NET8_0_OR_GREATER
+#else // FEATURE_BINARY_SERIALIZATION
+			this.TestSerialization();
+#endif // FEATURE_BINARY_SERIALIZATION
 		}
 
 		private void TestDefaultConstructor()
@@ -220,12 +222,9 @@ namespace MsgPack
 			}
 		}
 
-#if !NET8_0_OR_GREATER
-#if NET6_0_OR_GREATER
-#pragma warning disable SYSLIB0011
-#endif // NET6_0_OR_GREATER
 		private void TestSerialization()
 		{
+#if FEATURE_BINARY_SERIALIZATION
 			Assert.That( typeof( T ).IsSerializable, Is.True );
 			var innerMessage = Guid.NewGuid().ToString();
 			var message = Guid.NewGuid().ToString();
@@ -241,8 +240,12 @@ namespace MsgPack
 				Assert.That( deserialized.InnerException, Is.Not.Null.And.TypeOf( typeof( Exception ) ) );
 				Assert.That( deserialized.InnerException.Message, Is.EqualTo( target.InnerException.Message ) );
 			}
+#else // FEATURE_BINARY_SERIALIZATION
+			Assert.That( typeof( T ).IsSerializable, Is.False );
+#endif // FEATURE_BINARY_SERIALIZATION
 		}
 
+#if FEATURE_BINARY_SERIALIZATION
 #if NETFRAMEWORK
 		private void TestSerializationOnPartialTrust()
 		{
@@ -333,9 +336,6 @@ namespace MsgPack
 			return new StrongName( new StrongNamePublicKeyBlob( assemblyName.GetPublicKey() ), assemblyName.Name, assemblyName.Version );
 		}
 #endif // NETFRAMEWORK
-#if NET6_0_OR_GREATER
-#pragma warning restore SYSLIB0011
-#endif // NET6_0_OR_GREATER
-#endif // !NET8_0_OR_GREATER
+#endif // FEATURE_BINARY_SERIALIZATION
 	}
 }

@@ -33,9 +33,9 @@ using Is = NUnit.Framework.Is;
 #endif
 using System.Text;
 using System.IO;
-#if !NETFX_CORE && !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#if FEATURE_BINARY_SERIALIZATION
 using System.Runtime.Serialization.Formatters.Binary;
-#endif // !NETFX_CORE && !SILVERLIGHT && !NETSTANDARD1_1 && !NETSTANDARD1_3
+#endif // FEATURE_BINARY_SERIALIZATION
 
 namespace MsgPack
 {
@@ -1341,10 +1341,7 @@ namespace MsgPack
 			Assert.That( array[ 4 ], Is.EqualTo( MessagePackObject.Nil ) );
 		}
 
-#if !NET8_0_OR_GREATER
-#if NET6_0_OR_GREATER
-#pragma warning disable SYSLIB0011
-#endif // NET6_0_OR_GREATER
+#if FEATURE_BINARY_SERIALIZATION
 		[Test]
 		public void TestRuntimeSerialization_NotEmpty_RoundTripped()
 		{
@@ -1358,10 +1355,7 @@ namespace MsgPack
 				Assert.That( deserialized, Is.EqualTo( target ) );
 			}
 		}
-#if NET6_0_OR_GREATER
-#pragma warning restore SYSLIB0011
-#endif // NET6_0_OR_GREATER
-#endif // !NET8_0_OR_GREATER
+#endif // FEATURE_BINARY_SERIALIZATION
 
 		private sealed class MyClass { }
 	}
