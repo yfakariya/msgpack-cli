@@ -92,7 +92,7 @@ namespace MsgPack.Serialization
 
 		protected override IEnumerable<string> GetRuntimeAssemblies()
 		{
-#if NETSTANDARD2_0
+#if !NETFRAMEWORK
 			if ( this._baseDirectory == null )
 			{
 				yield break;
@@ -100,8 +100,11 @@ namespace MsgPack.Serialization
 
 			// Get directory which locates System.Private.Corelib.dll
 			var coreSdkAssemblyDirectory = Path.GetDirectoryName( typeof( object ).Assembly.Location );
-			// .NET Standard 2.0 library should refer netstandard.dll
+#warning TODO: test netstandard 2.0 / 2.1 assemblies
+#if !NET6_0_OR_GREATER // .NET core 2.1 and 3.1 should be used to test netstandard 2.0 and 2.1
+			// .NET Standard 2.x library should refer netstandard.dll
 			yield return Path.Combine( coreSdkAssemblyDirectory, "netstandard.dll" );
+#endif // !NET6_0_OR_GREATER
 			yield return typeof( object ).Assembly.Location; // System.Private.Corelib.dll
 			yield return typeof( Uri ).Assembly.Location; // System.Private.Uri.dll
 			yield return Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.dll" );
@@ -124,18 +127,18 @@ namespace MsgPack.Serialization
 			yield return Path.Combine( coreSdkAssemblyDirectory, "System.Threading.dll" );
 			yield return Path.Combine( coreSdkAssemblyDirectory, "System.Threading.Tasks.dll" );
 			yield return Path.Combine( this._baseDirectory, "MsgPack.dll" );
-#else
+#else // !NETFRAMEWORK
 			yield return typeof( object ).Assembly.Location; // mscorlib.dll
 			yield return typeof( Stack<> ).Assembly.Location; // System.dll
 #if NET35
 			yield return typeof( Enumerable ).Assembly.Location; // System.Core.dll
-#else
+#else // NET35
 			yield return typeof( Action<,,,,,,,,,,> ).Assembly.Location; // System.Core.dll
 			yield return typeof( System.Numerics.BigInteger ).Assembly.Location; // System.Numerics.dll
 #endif // NET35
 			yield return typeof( MessagePackObject ).Assembly.Location;
 			yield return typeof( SerializationContext ).Assembly.Location;
-#endif // NETSTANDARD2_0
+#endif // !NETFRAMEWORK
 		}
 	}
 }
