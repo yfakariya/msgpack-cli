@@ -1455,7 +1455,7 @@ namespace MsgPack.Serialization
 
 		#region -- Issue 138 --
 
-#if NETFRAMEWORK
+#if FEATURE_ASMGEN
 		[Test]
 		public void TestGenerateSerializerCodeAssembly_WithoutNamespace_Default()
 		{
@@ -1561,7 +1561,7 @@ namespace MsgPack.Serialization
 				}
 			}
 		}
-#endif // NETFRAMEWORK
+#endif // FEATURE_ASMGEN
 
 		#endregion -- Issue 138 --
 

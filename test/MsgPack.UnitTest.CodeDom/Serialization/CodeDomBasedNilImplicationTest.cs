@@ -70,11 +70,11 @@ namespace MsgPack.Serialization
 			{
 				Tracer.Emit.Listeners.Clear();
 				Tracer.Emit.Switch.Level = SourceLevels.All;
-#if NETSTANDARD2_0
+#if !NET5_0_OR_GREATER
 				Tracer.Emit.Listeners.Add( new TextWriterTraceListener( Console.Out ) );
-#else // NETSTANDRD2_0
+#else // !NET5_0_OR_GREATER
 				Tracer.Emit.Listeners.Add( new ConsoleTraceListener() );
-#endif // NETSTANDRD2_0
+#endif // !NET5_0_OR_GREATER
 			}
 
 			SerializerDebugging.DependentAssemblyManager = new TempFileDependentAssemblyManager( TestContext.CurrentContext.TestDirectory );

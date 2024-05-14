@@ -241,7 +241,13 @@ namespace MsgPack
 				Assert.That( deserialized.InnerException.Message, Is.EqualTo( target.InnerException.Message ) );
 			}
 #else // FEATURE_BINARY_SERIALIZATION
+#if NET8_0_OR_GREATER
+#pragma warning disable SYSLIB0050
+#endif // NET8_0_OR_GREATER
 			Assert.That( typeof( T ).IsSerializable, Is.False );
+#if NET8_0_OR_GREATER
+#pragma warning restore SYSLIB0050
+#endif // NET8_0_OR_GREATER
 #endif // FEATURE_BINARY_SERIALIZATION
 		}
 

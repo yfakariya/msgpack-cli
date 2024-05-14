@@ -9,7 +9,7 @@
     <RootNamespace>mpu</RootNamespace>
     <AssemblyName>mpu</AssemblyName>
     <!-- TODO: net9.0 with single file -->
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <FileAlignment>512</FileAlignment>
     <RestorePackages>true</RestorePackages>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

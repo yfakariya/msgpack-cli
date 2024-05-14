@@ -14,8 +14,10 @@
     <!-- To avoid PDB Reader error -->
     <!-- <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" /> -->
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net46'))">
     <PackageReference Include="System.ValueTuple" />
   </ItemGroup>
   <ItemGroup>

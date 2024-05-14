@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageVersion Include="NUnit" Version="3.14.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="3.7.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net461' and '$(TargetFramework)' != 'netcoreapp3.1'">
     <PackageVersion Include="NUnit" Version="4.1.0" />
-    <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageVersion Include="NUnit3TestAdapter" Version="4.3.2" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.3.3" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net461'">
+    <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net46'))">
     <PackageVersion Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
 </Project>

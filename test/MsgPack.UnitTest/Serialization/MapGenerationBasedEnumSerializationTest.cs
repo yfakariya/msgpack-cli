@@ -44,11 +44,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack.Serialization
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 30000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 30000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public class MapGenerationBasedEnumSerializerTest
 	{
 		private SerializationContext GetSerializationContext()

@@ -39,11 +39,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack.Serialization
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 15000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 15000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public class SerializationContextTest
 	{
 		[Test]

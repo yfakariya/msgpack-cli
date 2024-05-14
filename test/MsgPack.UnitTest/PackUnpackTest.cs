@@ -41,11 +41,11 @@ using IgnoreAttribute = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.Ig
 namespace MsgPack
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 1000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 1000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public partial class PackUnpackTest
 	{
 		private static TextWriter Console
@@ -135,11 +135,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 #if !HEAVY_TEST
 #if MSTEST
 		[Ignore]
@@ -171,11 +171,11 @@ namespace MsgPack
 
 #if !NET35
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 #if !HEAVY_TEST
 #if MSTEST
 		[Ignore]
@@ -294,11 +294,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 10000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 10000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestArray()
 		{
 			var sw = new Stopwatch();
@@ -333,11 +333,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 10000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 10000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestArray_Splitted()
 		{
 			foreach (
@@ -411,11 +411,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 5000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 5000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestHeteroArray()
 		{
 			var heteroList = new List<MessagePackObject>()
@@ -523,11 +523,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 60000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 60000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestDictionary()
 		{
 			var sw = new Stopwatch();
@@ -562,11 +562,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 60000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 60000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestDictionary_Splitted()
 		{
 			foreach (
@@ -601,11 +601,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestBytes()
 		{
 			var sw = new Stopwatch();
@@ -638,11 +638,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestBytes_Splitted()
 		{
 			foreach (
@@ -675,11 +675,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestChars()
 		{
 			var sw = new Stopwatch();
@@ -714,11 +714,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestChars_Splitted()
 		{
 			foreach (
@@ -753,11 +753,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestExts()
 		{
 			var sw = new Stopwatch();
@@ -796,11 +796,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 3000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 3000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestExts_Splitted()
 		{
 			foreach (

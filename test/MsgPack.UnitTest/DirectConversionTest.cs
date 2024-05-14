@@ -40,11 +40,11 @@ using ExplicitAttribute = Microsoft.VisualStudio.TestPlatform.UnitTestFramework.
 namespace MsgPack
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 5000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 5000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public partial class DirectConversionTest
 	{
 #if MSTEST
@@ -199,11 +199,11 @@ namespace MsgPack
 #endif // !SILVERLIGHT
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 30000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 30000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestArray()
 		{
 			var emptyList = new List<int>();
@@ -279,11 +279,11 @@ namespace MsgPack
 		}
 
 		[Test]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 		[Timeout( 30000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 		[CancelAfter( 30000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 		public void TestMap()
 		{
 			var emptyMap = new Dictionary<int, int>();

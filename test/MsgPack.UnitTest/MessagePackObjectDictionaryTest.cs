@@ -40,11 +40,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace MsgPack
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 1000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 1000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public class MessagePackObjectDictionaryTest
 	{
 		[Test]

@@ -51,11 +51,11 @@ using Is = NUnit.Framework.Is;
 namespace MsgPack.Serialization
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 30000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 30000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public class ArrayReflectionBasedEnumSerializerTest
 	{
 		private SerializationContext GetSerializationContext()
@@ -80,11 +80,11 @@ namespace MsgPack.Serialization
 			{
 				Tracer.Emit.Listeners.Clear();
 				Tracer.Emit.Switch.Level = SourceLevels.All;
-#if NETSTANDARD2_0
+#if !NET5_0_OR_GREATER
 				Tracer.Emit.Listeners.Add( new TextWriterTraceListener( Console.Out ) );
-#else // NETSTANDRD2_0
+#else // !NET5_0_OR_GREATER
 				Tracer.Emit.Listeners.Add( new ConsoleTraceListener() );
-#endif // NETSTANDRD2_0
+#endif // !NET5_0_OR_GREATER
 			}
 
 			SerializerDebugging.DependentAssemblyManager = new TempFileDependentAssemblyManager( TestContext.CurrentContext.TestDirectory );

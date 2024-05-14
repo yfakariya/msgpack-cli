@@ -4,7 +4,7 @@
     <ProjectGuid>{5BCEC32E-990E-4DE5-945F-BD27326A7418}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>MsgPack</AssemblyName>
-    <TargetFrameworks>net46;net6.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net462;net6.0;net8.0;netstandard2.0;netstandard2.1</TargetFrameworks>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <NuspecFile>$(SolutionDir)/msgpack.nuspec</NuspecFile>
@@ -16,7 +16,7 @@
   <PropertyGroup Condition="'$(Configuration)' != 'Release'">
     <OutputPath>bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />

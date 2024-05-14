@@ -77,11 +77,11 @@ using Does = NUnit.Framework.Does;
 namespace MsgPack.Serialization
 {
 	[TestFixture]
-#if NETFRAMEWORK
+#if NETFRAMEWORK || !NET5_0_OR_GREATER
 	[Timeout( 60000 )]
-#else // NETFRAMEWORK
+#else // NETFRAMEWORK || !NET5_0_OR_GREATER
 	[CancelAfter( 60000 )]
-#endif // NETFRAMEWORK
+#endif // NETFRAMEWORK || !NET5_0_OR_GREATER
 	public class ArrayGenerationBasedReflectionMessagePackSerializerTest
 	{
 		private static SerializationContext GetSerializationContext()

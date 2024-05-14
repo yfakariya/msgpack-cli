@@ -6,10 +6,16 @@
     <AssemblyName>MsgPack.UnitTest.BclExtensions</AssemblyName>
   </PropertyGroup>
   <Import Project="..\..\MsgPack.Common.props" />
-  <ItemGroup>
-    <!-- TODO: Update -->
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageVersion Include="System.Collections.Immutable" Version="1.7.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net461' and '$(TargetFramework)' != 'netcoreapp3.1'">
     <PackageVersion Include="System.Collections.Immutable" Version="8.0.0" />
-    <PackageVersion Include="FSharp.Core" Version="4.2.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageVersion Include="FSharp.Core" Version="8.0.200" />
 
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter"/>

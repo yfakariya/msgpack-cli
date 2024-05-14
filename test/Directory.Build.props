@@ -3,7 +3,12 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile)))\$(MSBuildThisFile)" 
     Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile))))' != '' " />
   <PropertyGroup>
-    <TargetFrameworks>net462;net6.0;net8.0;</TargetFrameworks>
+    <!--
+      .NET 4.7 is used to test ValueTuple because .NET 4.6.2 causes test error due to reference assembly (System.ValueType) resolution.
+      .NET 4.6.1 is used to test netstandard 2.0
+      .NET Core 3.1 is used to test netstandard 2.1
+    -->
+    <TargetFrameworks>net461;net462;net47;netcoreapp3.1;net6.0;net8.0;</TargetFrameworks>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
 </Project>
