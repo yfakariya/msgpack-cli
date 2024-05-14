@@ -1179,7 +1179,7 @@ namespace MsgPack.Serialization
 			);
 		}
 
-#if !SILVERLIGHT
+#if !DISABLE_VALUE_TUPLE_TEST
 
 		[Test]
 		public void TestValueTuple0()
@@ -1288,7 +1288,7 @@ namespace MsgPack.Serialization
 			);
 		}
 
-#endif // !SILVERLIGHT
+#endif // !DISABLE_VALUE_TUPLE_TEST
 
 		private void TestTupleCore<T>( T expected, int arity )
 			where T : IStructuralEquatable
