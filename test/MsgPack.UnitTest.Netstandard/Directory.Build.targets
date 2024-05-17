@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile)))\$(MSBuildThisFile)" 
+    Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile))))' != '' " />
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <!-- To avoid PDB Reader error -->
+    <!-- <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" /> -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/**/*.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/obj/**/*.*" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/gen35/**/*.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Dummies/**/*.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Mono/**/*.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Augments.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/CodeDomCodeGeneration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)/../../src/MsgPack.snk">
+      <Link>MsgPack.snk</Link>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/app.config" />
+    <None Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/cases.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/cases.mpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/cases_compact.mpac">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

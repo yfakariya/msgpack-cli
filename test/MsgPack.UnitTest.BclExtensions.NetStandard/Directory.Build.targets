@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile)))\$(MSBuildThisFile)" 
+    Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile))))' != '' " />
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="System.Collections.Immutable" Version="8.0.0" />
+    <PackageVersion Include="FSharp.Core" Version="8.0.200" />
+
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <PackageReference Include="System.Collections.Immutable" />
+    <PackageReference Include="FSharp.Core" />
+    <!-- To avoid PDB Reader error -->
+    <!-- <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" /> -->
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'netcoreapp1.0'">
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest.BclExtensions/**/*.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest.BclExtensions/obj/**/*.*" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/RoslynCodeGeneration.cs">
+      <Link>Serialization/RoslynCodeGeneration.cs</Link>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/TempFileDependentAssemblyManager.cs">
+      <Link>Serialization/TempFileDependentAssemblyManager.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)/../../src/MsgPack.snk">
+      <Link>MsgPack.snk</Link>
+    </None>
+  </ItemGroup>
+</Project>

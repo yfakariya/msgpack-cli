@@ -6,9 +6,6 @@
     <AssemblyName>MsgPack.UnitTest.CodeDom</AssemblyName>
   </PropertyGroup>
   <Import Project="..\..\MsgPack.Common.props" />
-  <PropertyGroup Condition="'$(TargetFramework)' == 'net462'">
-    <DefineConstants>$(DefineConstants);DISABLE_VALUE_TUPLE_TEST</DefineConstants>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NUnit" />
     <PackageReference Include="NUnit3TestAdapter"/>

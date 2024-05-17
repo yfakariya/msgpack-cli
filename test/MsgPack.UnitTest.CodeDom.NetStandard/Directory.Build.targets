@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile)))\$(MSBuildThisFile)" 
+    Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile))))' != '' " />
+  <PropertyGroup>
+    <DefineConstants>$(DefineConstants);NETSTANDARD</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit" />
+    <PackageReference Include="NUnit3TestAdapter"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+    <!-- To avoid PDB Reader error -->
+    <!-- <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" /> -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest.CodeDom/**/*.cs" />
+    <Compile Remove="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest.CodeDom/obj/**/*.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)/../../src/MsgPack.snk">
+      <Link>MsgPack.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/StreamExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/AddOnlyCollection`1.cs" Link="Serialization/AddOnlyCollection`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/AppendableReadOnlyCollections.cs" Link="Serialization/AppendableReadOnlyCollections.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ArraySegmentEqualityComparer`1.cs" Link="Serialization/ArraySegmentEqualityComparer`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/AutoMessagePackSerializerTest.Types.cs" Link="Serialization/AutoMessagePackSerializerTest.Types.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/BaseCollections.cs" Link="Serialization/BaseCollections.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexType.cs" Link="Serialization/ComplexType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexTypeWithDataContract.cs" Link="Serialization/ComplexTypeWithDataContract.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexTypeWithDataContractWithOrder.cs" Link="Serialization/ComplexTypeWithDataContractWithOrder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexTypeWithNonSerialized.cs" Link="Serialization/ComplexTypeWithNonSerialized.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexTypeWithOneBaseOrder.cs" Link="Serialization/ComplexTypeWithOneBaseOrder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexTypeWithoutAnyAttribute.cs" Link="Serialization/ComplexTypeWithoutAnyAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/ComplexTypeWithTwoMember.cs" Link="Serialization/ComplexTypeWithTwoMember.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/DataContractAndNonSerializedMixedTarget.cs" Link="Serialization/DataContractAndNonSerializedMixedTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/DataMemberAttributeNamedPropertyTestTarget.cs" Link="Serialization/DataMemberAttributeNamedPropertyTestTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/EnumSerializationTest.EnumDefinitions.cs" Link="Serialization/EnumSerializationTest.EnumDefinitions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/IVerifiable.cs" Link="Serialization/IVerifiable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/IVerifiable`1.cs" Link="Serialization/IVerifiable`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/NilImplicationTestTarget.cs" Link="Serialization/NilImplicationTestTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/RoslynCodeGeneration.cs" Link="Serialization/RoslynCodeGeneration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/SerializationTargets.cs" Link="Serialization/SerializationTargets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/SimpleCollection`1.cs" Link="Serialization/SimpleCollection`1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/StringKeyedCollection.cs" Link="Serialization/StringKeyedCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/TempFileDependentAssemblyManager.cs" Link="Serialization/TempFileDependentAssemblyManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/TestValueType.cs" Link="Serialization/TestValueType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/TypeWithDuplicatedMessagePackMemberAttributeMember.cs" Link="Serialization/TypeWithDuplicatedMessagePackMemberAttributeMember.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/TypeWithInvalidMessagePackMemberAttributeMember.cs" Link="Serialization/TypeWithInvalidMessagePackMemberAttributeMember.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)/../MsgPack.UnitTest/Serialization/TypeWithMissingMessagePackMemberAttributeMember.cs" Link="Serialization/TypeWithMissingMessagePackMemberAttributeMember.cs" />
+  </ItemGroup>
+</Project>

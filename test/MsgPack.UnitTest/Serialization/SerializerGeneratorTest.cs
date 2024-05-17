@@ -1659,6 +1659,29 @@ namespace MsgPack.Serialization
 		private static void TestOnWorkerAppDomainWithCompile( string geneartedSourceFilePath, PackerCompatibilityOptions packerCompatibilityOptions, EnumSerializationMethod enumSerializationMethod, TestEnumType enumValue, byte[] expectedPackedValue )
 		{
 			var parameters = new CompilerParameters();
+#if NETSTANDARD
+			var coreSdkAssemblyDirectory = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "netstandard.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Collections.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Collections.NonGeneric.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Collections.Specialized.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Diagnostics.Debug.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Diagnostics.Tools.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Globalization.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Linq.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Numerics.Vectors.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.ObjectModel.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Reflection.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Reflection.Extensions.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Reflection.Primitives.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.Extensions.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.InteropServices.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.Numerics.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.Serialization.Primitives.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Threading.dll" ) );
+			parameters.ReferencedAssemblies.Add( Path.Combine( coreSdkAssemblyDirectory, "System.Threading.Tasks.dll" ) );
+#endif // NETSTANDARD
 			parameters.ReferencedAssemblies.Add( typeof( GeneratedCodeAttribute ).Assembly.Location );
 			parameters.ReferencedAssemblies.Add( typeof( MessagePackObject ).Assembly.Location );
 			parameters.ReferencedAssemblies.Add( Assembly.GetExecutingAssembly().Location );
@@ -1720,7 +1743,9 @@ namespace MsgPack.Serialization
 		private static void AssertValidCode( IEnumerable<SerializerCodeGenerationResult> results )
 		{
 #if NETFRAMEWORK
-
+#if NETSTANDARD
+			var coreSdkAssemblyDirectory = Path.GetDirectoryName( typeof( object ).Assembly.Location );
+#endif // NETSTANDARD
 			var result =
 				CodeDomProvider
 				.CreateProvider( "C#" )
@@ -1728,6 +1753,9 @@ namespace MsgPack.Serialization
 					new CompilerParameters(
 						new[]
 						{
+#if NETSTANDARD
+							Path.Combine( coreSdkAssemblyDirectory, "netstandard.dll" ),
+#endif // NETSTANDARD
 							typeof( MessagePackObject ).Assembly.Location,
 							typeof( CodeDomProvider ).Assembly.Location,
 							typeof( Enumerable ).Assembly.Location,

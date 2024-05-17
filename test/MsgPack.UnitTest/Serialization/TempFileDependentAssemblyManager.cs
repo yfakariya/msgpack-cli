@@ -100,10 +100,10 @@ namespace MsgPack.Serialization
 
 			// Get directory which locates System.Private.Corelib.dll
 			var coreSdkAssemblyDirectory = Path.GetDirectoryName( typeof( object ).Assembly.Location );
-#if !NET6_0_OR_GREATER // .NET core 2.1 and 3.1 should be used to test netstandard 2.0 and 2.1
+#if NETSTANDARD
 			// .NET Standard 2.x library should refer netstandard.dll
 			yield return Path.Combine( coreSdkAssemblyDirectory, "netstandard.dll" );
-#endif // !NET6_0_OR_GREATER
+#endif // NETSTANDARD
 			yield return typeof( object ).Assembly.Location; // System.Private.Corelib.dll
 			yield return typeof( Uri ).Assembly.Location; // System.Private.Uri.dll
 			yield return Path.Combine( coreSdkAssemblyDirectory, "System.Runtime.dll" );

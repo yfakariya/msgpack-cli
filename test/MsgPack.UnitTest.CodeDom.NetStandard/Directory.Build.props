@@ -3,10 +3,9 @@
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile)))\$(MSBuildThisFile)" 
     Condition=" '$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory)/.., $(MSBuildThisFile))))' != '' " />
   <PropertyGroup>
-    <!--
-      .NET 4.7 is used to test ValueTuple because .NET 4.6.2 causes test error due to reference assembly (System.ValueType) resolution.
-    -->
-    <TargetFrameworks>net47;net6.0;net8.0;</TargetFrameworks>
-    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MsgPack.UnitTest.CodeDom</AssemblyName>
+    <TargetFrameworks>net8.0</TargetFrameworks>
   </PropertyGroup>
+  <Import Project="$(MSBuildThisFileDirectory)/../../MsgPack.Common.props" />
 </Project>
