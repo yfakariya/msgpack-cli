@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - directory: /
+    open-pull-requests-limit: 5
+    package-ecosystem: github-actions
+    rebase-strategy: auto
+    schedule:
+      interval: weekly
+      day: friday
+    ignore:
+      - dependency-name: "actions/checkout"
+        update-types: ["version-update:semver-patch","version-update:semver-minor"]
+  - directory: /
+    open-pull-requests-limit: 5
+    package-ecosystem: nuget
+    rebase-strategy: auto
+    schedule:
+      interval: weekly
+      day: friday
