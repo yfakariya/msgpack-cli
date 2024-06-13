@@ -1,0 +1,40 @@
+name: CI (full)
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - '**.md'
+      - .github/**
+      - doc/**
+    tags:
+      - "!*"
+  pull_request:
+    paths-ignore:
+      - '**.md'
+      - .github/**
+      - doc/**
+
+env:
+  BUILD_CONFIG: Debug
+
+jobs:
+  build-dotnet:
+    name: "Build .NET projects"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@4
+      - uses: ./.github/actions/setup-dotnet
+      - run: dotnet build -c ${{ env.BUILD_CONFIG }} ./MsgPack.sln
+
+  run-tests:
+    name: "Run full tests"
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-dotnet
+      - run: dotnet test -c ${{ env.BUILD_CONFIG }} MsgPack.sln
